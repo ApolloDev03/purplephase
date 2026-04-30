@@ -1,26 +1,112 @@
-@import "tailwindcss";
+/* @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-primary: #8b2d61;
+  --color-secondary: #ff8000;
+
+  --font-body: var(--font-helvetica-neue-lt-pro);
+  --font-heading: var(--font-chillax);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-helvetica-neue-lt-pro), Arial, sans-serif;
+  --font-heading: var(--font-chillax), ui-sans-serif, system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-helvetica-neue-lt-pro), Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-heading {
+  font-family: var(--font-chillax), sans-serif !important;
+}
+
+p,
+span,
+li,
+div,
+a,
+button,
+input,
+textarea,
+select,
+label,
+.font-body {
+  font-family: var(--font-helvetica-neue-lt-pro), Arial, sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+} */
+
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #8b2d61;
+  --color-secondary: #ff8000;
+
+  --font-body: var(--font-helvetica);
+  --font-heading: var(--font-chillax);
+}
+
+@theme inline {
+  --font-body: var(--font-helvetica), Arial, sans-serif;
+  --font-heading: var(--font-chillax), Arial, sans-serif;
+  --font-sans: var(--font-helvetica), Arial, sans-serif;
+}
+
+html,
+body {
+  font-family: var(--font-helvetica), Arial, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-heading {
+  font-family: var(--font-chillax), Arial, sans-serif !important;
+}
+
+p,
+a,
+button,
+input,
+textarea,
+select,
+label,
+li,
+.font-body {
+  font-family: var(--font-helvetica), Arial, sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
 }
