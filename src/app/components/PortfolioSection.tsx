@@ -1,114 +1,268 @@
+// "use client";
+
+// import React, { useState } from "react";
+// import Image from "next/image";
+// import { MoveUpRight } from "lucide-react";
+
+// // Assuming your image paths
+// import img1 from "../assets/Work-1.jpeg";
+// import img2 from "../assets/Work-2.jpg";
+// import img3 from "../assets/Work-3.jpeg";
+
+// const portfolioItems = [
+//   { id: 1, title: "VANRAS MASALA", category: "Packaging", image: img1 },
+//   { id: 2, title: "GITA SAMOSA CENTER", category: "Brand Identity", image: img2 },
+//   { id: 3, title: "DYNE CHEMICALS LLP", category: "Digital & Social", image: img3 },
+// ];
+
+// const filters = [
+//   "Brand Identity",
+//   "Packaging",
+//   "Branding & Advertising",
+//   "Digital & Social",
+//   "Digital Film",
+// ];
+
+// const PortfolioSection = () => {
+//   const [activeFilter, setActiveFilter] = useState<string | null>(null);
+
+//   const filteredItems = activeFilter
+//     ? portfolioItems.filter((item) => item.category === activeFilter)
+//     : portfolioItems.slice(0, 3); // Showing first 3 as seen in your Figma screen snippet
+
+//   return (
+//     <section className="w-full bg-white px-4 py-16 sm:px-8 lg:px-16">
+//       <div className="mx-auto max-w-[1400px]">
+
+//         {/* Section Heading */}
+//         <div className="mb-10 text-left">
+//           <h2 className="text-3xl font-semibold tracking-tight text-[#626262]  sm:text-5xl">
+//             Work That Works
+//           </h2>
+//         </div>
+
+//         {/* 3-Column Portfolio Grid */}
+//         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+//           {filteredItems.map((item) => (
+//             <div
+//               key={item.id}
+//               className="group relative h-[450px] aspect-[344/300] w-full  overflow-hidden rounded-sm bg-slate-100 shadow-sm"
+//             >
+//               {/* Portfolio Image */}
+//               <Image
+//                 src={item.image}
+//                 alt={item.title}
+//                 fill
+//                 sizes="(max-w-7xl) 33vw, 50vw, 100vw"
+//                 className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+//                 priority
+//               />
+
+//               {/* Bottom Transparent Overlay Grid Title */}
+//               <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 pt-12">
+//                 <h3 className="font-body font-semibold tracking-widest text-white">
+//                   {item.title}
+//                 </h3>
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+
+//         {/* Filter Navigation Bar (Positioned Below Grid Per Figma) */}
+//         <div className="mt-12 flex flex-wrap items-center justify-between gap-6 border-b border-slate-100 pb-6 not-italic">
+//           {/* Wow Me / Reset Button */}
+//           <div>
+//             <button
+//               onClick={() => setActiveFilter(null)}
+//               className="flex items-center gap-1.5 rounded bg-primary px-4 py-2  font-bold not-italic tracking-wider text-white transition-all hover:bg-[#86198f]"
+//             >
+//               Wow Me
+//               <MoveUpRight className="h-3 w-3" />
+//             </button>
+//           </div>
+
+//           {/* Filter Buttons */}
+//           <div className="flex flex-wrap items-center gap-x-4 gap-y-2 font-semibold not-italic tracking-wider text-slate-400">
+//             {filters.map((filter) => (
+//               <div key={filter} className="flex items-center gap-4 not-italic">
+//                 <button
+//                   onClick={() => setActiveFilter(filter)}
+//                   className="text-xl font-body text-primary not-italic transition-colors"
+//                 >
+//                   {filter}
+//                 </button>
+//               </div>
+//             ))}
+//           </div>
+//         </div>
+
+
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default PortfolioSection;
+
+
 "use client";
 
-import { motion } from 'framer-motion';
-import PortfolioItem from '../assets/Work-1.jpeg';
-import GitaImage from '../assets/Work-2.jpg';
-import DyneImage from '../assets/Work-3.jpeg';
-import { HiOutlineArrowUpRight } from 'react-icons/hi2';
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import axios from "axios";
+import { MoveUpRight } from "lucide-react";
 
-// --- Dynamic Data ---
-const portfolioItems = [
-  {
-    id: 1,
-    title: "VANRAS MASALA",
-    image: PortfolioItem.src, // Replace with your image asset path
-  },
-  {
-    id: 2,
-    title: "GITA SAMOSA CENTER",
-    image: GitaImage.src, // Replace with your image asset path
-  },
-  {
-    id: 3,
-    title: "DYNE CHEMICALS LLP",
-    image: DyneImage.src, // Replace with your image asset path
-  }
+const apiUrl = "https://purplephase.in/ppcadmin/api";
+
+type PortfolioImage = {
+  id: number;
+  image_url: string;
+  sort_order?: number;
+};
+
+type PortfolioItem = {
+  id: number;
+  title: string;
+  description?: string;
+  service?: {
+    id: number;
+    service_name: string;
+  };
+  images?: PortfolioImage[];
+};
+
+const filters = [
+  "Brand Identity",
+  "Packaging",
+  "Branding & Advertising",
+  "Digital & Social",
+  "Digital Film",
 ];
 
-// Specific filters visible in the screenshot
-const filters = ["Brand Identity", "Packaging", "Branding & Advertising", "Digital & Social", "Digital Film"];
-
 const PortfolioSection = () => {
+  const [activeFilter, setActiveFilter] = useState<string | null>(null);
+  const [portfolioList, setPortfolioList] = useState<PortfolioItem[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+
+  const fetchPortfolioList = async () => {
+    try {
+      setLoading(true);
+      setError("");
+
+      const res = await axios.post(
+        `${apiUrl}/portfolioList`,
+        {},
+        {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      if (res.data?.success) {
+        setPortfolioList(res.data?.data || []);
+      } else {
+        setError(res.data?.message || "Failed to fetch portfolio list.");
+      }
+    } catch (err) {
+      console.error("Portfolio API Error:", err);
+      setError("Something went wrong while loading portfolio.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchPortfolioList();
+  }, []);
+
+  const filteredItems = activeFilter
+    ? portfolioList.filter((item) => item.service?.service_name === activeFilter)
+    : portfolioList.slice(0, 3);
+
   return (
-    <section className="w-full max-w-full mx-auto px-6 lg:px-16 py-20 bg-white">
-      {/* 1. Header with precise 'Work That Works' font style */}
-      <motion.div
-        initial={{ opacity: 0, y: 15 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="mb-14"
-      >
-        <h2 className="text-5xl  text-gray-800 tracking-tight">
-          Work That Works
-        </h2>
-      </motion.div>
+    <section className="w-full bg-white px-4 py-16 sm:px-8 lg:px-16">
+      <div className="mx-auto max-w-[1400px]">
 
-      {/* 2. Grid of Portfolios with Glassmorphism Overlays */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-        {portfolioItems.map((item, index) => (
-          <motion.div
-            key={item.id}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.1, duration: 0.7 }}
-            whileHover={{ y: -5, transition: { duration: 0.2 } }}
-            className="group relative h-[570px] rounded-lg overflow-hidden border border-gray-100 shadow-sm cursor-pointer"
-          >
-            {/* The Image (set to fill the container) */}
-            <img
-              src={item.image}
-              alt={item.title}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-
-            {/* 3. The precise Glassmorphism Text Overlay */}
-            {/* Place at bottom, blur background slightly, transparent bg */}
-            <div className="absolute bottom-0 left-0 right-0 h-28 p-6 flex items-end">
-              <span className="text-xl font-bold text-white tracking-wide uppercase">
-                {item.title}
-              </span>
-            </div>
-
-            {/* Optional: Subtle gradient overlay for better text contrast if images are too light */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent group-hover:from-black/10 transition-colors pointer-events-none" />
-          </motion.div>
-        ))}
-      </div>
-
-      {/* 4. Filter Navigation (Matches specific style in Figma) */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
-        className="flex flex-col md:flex-row items-start md:items-center justify-between gap-6"
-      >
-        {/* Special 'Wow Me' Button */}
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="bg-[#A62666] text-white px-6 py-2 rounded-md  font-medium flex items-center gap-2"
-        >
-          Wow Me <HiOutlineArrowUpRight size={14} />
-        </motion.button>
-
-        {/* Gray-Purple Filter Labels */}
-        <div className="flex flex-wrap justify-end gap-x-8 gap-y-3">
-          {filters.map((filter, index) => (
-            <motion.a
-              key={filter}
-              href="#"
-              initial={{ opacity: 0, x: -10 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.5 + index * 0.05 }}
-              className="text-xl xl:2xl text-[#A62666] transition-colors"
-            >
-              {filter}
-            </motion.a>
-          ))}
+        {/* Section Heading */}
+        <div className="mb-10 text-left">
+          <h2 className="text-3xl font-semibold tracking-tight text-[#626262] sm:text-5xl">
+            Work That Works
+          </h2>
         </div>
-      </motion.div>
+
+        {loading && (
+          <p className="text-sm text-slate-400">Loading portfolio...</p>
+        )}
+
+        {error && (
+          <p className="text-sm text-red-500">{error}</p>
+        )}
+
+        {/* 3-Column Portfolio Grid */}
+        {!loading && !error && (
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {filteredItems.map((item) => {
+              const firstImage = item.images?.[0]?.image_url;
+
+              return (
+                <div
+                  key={item.id}
+                  className="group relative h-[450px] aspect-[344/300] w-full overflow-hidden rounded-sm bg-slate-100 shadow-sm"
+                >
+                  {/* Portfolio Image */}
+                  {firstImage && (
+                    <Image
+                      src={firstImage}
+                      alt={item.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                      priority
+                    />
+                  )}
+
+                  {/* Bottom Transparent Overlay Grid Title */}
+                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent p-6 pt-12">
+                    <h3 className="font-body font-semibold tracking-widest text-white">
+                      {item.title}
+                    </h3>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        )}
+
+        {/* Filter Navigation Bar */}
+        <div className="mt-12 flex flex-wrap items-center justify-between gap-6 border-b border-slate-100 pb-6 not-italic">
+          <div>
+            <button
+              onClick={() => setActiveFilter(null)}
+              className="flex items-center gap-1.5 rounded bg-primary px-4 py-2 font-bold not-italic tracking-wider text-white transition-all hover:bg-[#86198f]"
+            >
+              Wow Me
+              <MoveUpRight className="h-3 w-3" />
+            </button>
+          </div>
+
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-2 font-semibold not-italic tracking-wider text-slate-400">
+            {filters.map((filter) => (
+              <div key={filter} className="flex items-center gap-4 not-italic">
+                <button
+                  onClick={() => setActiveFilter(filter)}
+                  className="text-xl font-body text-primary not-italic transition-colors"
+                >
+                  {filter}
+                </button>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
     </section>
   );
 };

@@ -66,6 +66,7 @@ import { useEffect, useState } from "react";
 import { ChevronUp, Search, X } from "lucide-react";
 import { FaQuora, FaWhatsapp } from "react-icons/fa";
 import { useSidebar } from "./SidebarContext";
+import faqsicon from "../assets/faqs.png";
 
 export default function StickyActions() {
     const [showTop, setShowTop] = useState(false);
@@ -141,7 +142,11 @@ export default function StickyActions() {
                     onClick={() => setFaqOpen(true)}
                     className="flex h-12 w-12 items-center justify-center rounded-md bg-[#F58220] shadow-lg hover:scale-105 transition"
                 >
-                    <FaQuora className="text-white text-[34px]" />
+                    <img
+                        src={faqsicon.src}
+                        alt="FAQ"
+                        className="h-10 w-10 object-contain"
+                    />
                 </button>
 
                 {/* Top */}

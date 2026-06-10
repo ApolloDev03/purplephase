@@ -1,41 +1,23 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
+import axios from "axios";
+import { apiUrl } from "../config";
 
-import logo1 from "../assets/companylogo/1.jpg";
-import logo2 from "../assets/companylogo/2.jpg";
-import logo3 from "../assets/companylogo/3.jpg";
-import logo4 from "../assets/companylogo/4.jpg";
-import logo5 from "../assets/companylogo/5.jpg";
-import logo6 from "../assets/companylogo/6.jpg";
-import logo7 from "../assets/companylogo/BHARTJI-DESIGNER-JWELLERY-PVT.-LTD.png";
-import logo8 from "../assets/companylogo/IIM-UDAIPUR-.png";
-import logo9 from "../assets/companylogo/PACIFICA-.png";
-import logo10 from "../assets/companylogo/SHOTT-AMUSEMENT-LLP.png";
-
-const topRow = [
-    { id: 1, src: logo1.src },
-    { id: 2, src: logo2.src },
-    { id: 3, src: logo3.src },
-    { id: 4, src: logo4.src },
-    { id: 5, src: logo5.src },
-];
-
-const bottomRow = [
-    { id: 6, src: logo6.src },
-    { id: 7, src: logo7.src },
-    { id: 8, src: logo8.src },
-    { id: 9, src: logo9.src },
-    { id: 10, src: logo10.src },
-];
+type ClientLogo = {
+    id: number;
+    client_name: string;
+    client_logo: string;
+    altTag: string;
+};
 
 function LogoRow({
     items,
     reverse = false,
     trigger,
 }: {
-    items: { id: number; src: string }[];
+    items: ClientLogo[];
     reverse?: boolean;
     trigger: boolean;
 }) {
@@ -63,12 +45,12 @@ function LogoRow({
                     {marqueeItems.map((logo, index) => (
                         <div
                             key={`${logo.id}-${index}`}
-                            className="flex h-[100px] w-[170px] shrink-0 items-center justify-center rounded-2xl border border-gray-200 bg-white p-4 shadow-sm md:h-[150px] md:w-[250px]"
+                            className="flex h-25 w-42.5 shrink-0 items-center justify-center rounded-2xl border border-gray-200 bg-white p-4 shadow-sm md:h-[150px] md:w-[250px]"
                         >
                             <img
-                                src={logo.src}
-                                alt={`Logo ${logo.id}`}
-                                className="max-h-[100px] max-w-full object-contain grayscale transition duration-300 hover:grayscale-0 md:max-h-[100px]"
+                                src={`${logo.client_logo}`}
+                                alt={logo.altTag || logo.client_name}
+                                className="max-h-25 max-w-full object-contain  transition duration-300 grayscale-0 md:max-h-[100px]"
                             />
                         </div>
                     ))}
@@ -82,15 +64,53 @@ export function LogoSlider() {
     const sectionRef = useRef(null);
     const isInView = useInView(sectionRef, { once: true, amount: 0.3 });
 
+    const [clients, setClients] = useState<ClientLogo[]>([]);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchClients = async () => {
+            try {
+                const res = await axios.post(`${apiUrl}/OurClient`);
+
+                if (res.data?.status && Array.isArray(res.data.data)) {
+                    setClients(res.data.data);
+                } else {
+                    setClients([]);
+                }
+            } catch (error) {
+                console.error("Our Client API Error:", error);
+                setClients([]);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchClients();
+    }, []);
+
+    const middleIndex = Math.ceil(clients.length / 2);
+    const topRow = clients.slice(0, middleIndex);
+    const bottomRow = clients.slice(middleIndex);
+
     return (
         <section
             ref={sectionRef}
             className="w-full overflow-hidden bg-[#e5e5e5] py-12 md:py-16"
         >
-            <div className="space-y-6">
-                <LogoRow items={topRow} reverse={false} trigger={isInView} />
-                <LogoRow items={bottomRow} reverse={true} trigger={isInView} />
-            </div>
+            {loading ? (
+                <div className="flex min-h-55 items-center justify-center">
+                    <div className="h-12 w-12 rounded-full border-4 border-white border-t-[#A62666] animate-spin"></div>
+                </div>
+            ) : clients.length === 0 ? null : (
+                <div className="space-y-6">
+                    <LogoRow items={topRow} reverse={false} trigger={isInView} />
+                    <LogoRow
+                        items={bottomRow.length > 0 ? bottomRow : topRow}
+                        reverse={true}
+                        trigger={isInView}
+                    />
+                </div>
+            )}
         </section>
     );
 }

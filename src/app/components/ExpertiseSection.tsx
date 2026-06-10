@@ -1,213 +1,252 @@
-// "use client";
-
-// import { useEffect, useState } from "react";
-// import { motion, AnimatePresence } from "framer-motion";
-// import img1 from "../assets/Expertise.jpg";
-
-// const expertiseData = [
-//     { id: 1, title: "Market Research", image: img1 },
-//     { id: 2, title: "Strategic Brand Consulting", image: img1 },
-//     { id: 3, title: "Brand Identity Creation", image: img1 },
-//     { id: 4, title: "Product Launch", image: img1 },
-//     { id: 5, title: "Conceptual Packaging Design", image: img1 },
-//     { id: 6, title: "Advertising Campaign Design", image: img1 },
-//     { id: 7, title: "Marketing Collateral Design", image: img1 },
-// ];
-
-// const ITEM_HEIGHT = 64;
-// const TOTAL_ITEMS = expertiseData.length;
-// const VISIBLE_COUNT = 5;
-// const SLIDE_INTERVAL = 2000;
-
-// export default function ExpertiseSection() {
-//     const [activeIndex, setActiveIndex] = useState(0);
-//     const [direction, setDirection] = useState(1);
-
-//     useEffect(() => {
-//         const interval = setInterval(() => {
-//             setDirection(1);
-//             setActiveIndex((prev) => (prev + 1) % TOTAL_ITEMS);
-//         }, SLIDE_INTERVAL);
-//         return () => clearInterval(interval);
-//     }, []);
-
-//     const getVisibleItems = () => {
-//         return [0, 1, 2, 3, 4].map((offset) => {
-//             const index = (activeIndex + offset + TOTAL_ITEMS) % TOTAL_ITEMS;
-//             return { ...expertiseData[index], offset };
-//         });
-//     };
-
-//     return (
-//         <section className="relative bg-[#f5f5f3] py-16 md:py-20 xl:py-24">
-//             <div className="mx-auto w-full max-w-7xl px-6 md:px-10 xl:px-16">
-
-//                 <div className="flex flex-col lg:flex-row items-stretch justify-between gap-10 lg:gap-12 xl:gap-16">
-
-//                     {/* Left Side: Heading + Image */}
-//                     <div className="flex w-full lg:w-[45%] flex-col items-start gap-6">
-//                         <h2 className="text-4xl md:text-5xl xl:text-6xl font-medium leading-tight text-[#4a4a4a]">
-//                             Expertise
-//                         </h2>
-//                         <div className="relative aspect-square w-full max-w-[300px] md:max-w-[380px] xl:max-w-[440px] overflow-hidden">
-//                             <AnimatePresence mode="wait">
-//                                 <motion.img
-//                                     key={expertiseData[activeIndex].id}
-//                                     src={expertiseData[activeIndex].image.src}
-//                                     alt={expertiseData[activeIndex].title}
-//                                     initial={{ opacity: 0, scale: 0.95 }}
-//                                     animate={{ opacity: 1, scale: 1 }}
-//                                     exit={{ opacity: 0, scale: 1.05 }}
-//                                     transition={{ duration: 0.5, ease: "easeOut" }}
-//                                     className="absolute inset-0 h-full w-full object-contain p-4"
-//                                 />
-//                             </AnimatePresence>
-//                         </div>
-//                     </div>
-
-//                     {/* Right Side: Scrolling Text — vertically centered */}
-//                     <div className="flex w-full lg:w-[55%] items-center justify-start min-w-0">
-//                         <div
-//                             className="relative overflow-hidden w-full"
-//                             style={{
-//                                 height: `${ITEM_HEIGHT * VISIBLE_COUNT}px`,
-//                                 maskImage: "linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)",
-//                                 WebkitMaskImage: "linear-gradient(to bottom, transparent 0%, black 25%, black 75%, transparent 100%)",
-//                             }}
-//                         >
-//                             <AnimatePresence mode="popLayout" initial={false}>
-//                                 {getVisibleItems().map(({ id, title, offset }) => (
-//                                     <motion.div
-//                                         key={`${id}-${offset}`}
-//                                         initial={{ y: direction * ITEM_HEIGHT, opacity: 0 }}
-//                                         animate={{ y: 0, opacity: 1 }}
-//                                         exit={{ y: -direction * ITEM_HEIGHT, opacity: 0 }}
-//                                         transition={{ duration: 0.45, ease: "easeInOut" }}
-//                                         style={{ height: `${ITEM_HEIGHT}px` }}
-//                                         className="flex items-center justify-start w-full"
-//                                     >
-//                                         <span
-//                                             className={`block w-full text-left leading-tight whitespace-normal break-words transition-colors duration-300
-//       text-xl sm:text-2xl md:text-3xl lg:text-[28px] xl:text-[34px] 2xl:text-[40px]
-//       ${offset === 0 ? "text-primary" : "text-[#c0b8b8]"}`}
-//                                         >
-//                                             {title}
-//                                         </span>
-//                                     </motion.div>
-//                                 ))}
-//                             </AnimatePresence>
-//                         </div>
-//                     </div>
-
-//                 </div>
-//             </div>
-//         </section>
-//     );
-// }
 
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
+import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
-import img1 from "../assets/Expertise.jpg";
+import { apiUrl } from "../config";
 
-const expertiseData = [
-    { id: 1, title: "Market Research", image: img1 },
-    { id: 2, title: "Strategic Brand Consulting", image: img1 },
-    { id: 3, title: "Brand Identity Creation", image: img1 },
-    { id: 4, title: "Product Launch", image: img1 },
-    { id: 5, title: "Conceptual Packaging Design", image: img1 },
-    { id: 6, title: "Advertising Campaign Design", image: img1 },
-    { id: 7, title: "Marketing Collateral Design", image: img1 },
-];
+type ServiceItem = {
+    id: number;
+    service_name: string;
+    image: string | null;
+};
 
-const ITEM_HEIGHT = 72;
-const TOTAL_ITEMS = expertiseData.length;
-const VISIBLE_COUNT = 5;
-const SLIDE_INTERVAL = 2000;
+const ITEM_HEIGHT = 70;
+const VISIBLE_OFFSETS = [-2, -1, 0, 1, 2];
 
 export default function ExpertiseSection() {
+    const [expertiseData, setExpertiseData] = useState<ServiceItem[]>([]);
     const [activeIndex, setActiveIndex] = useState(0);
-    const [direction, setDirection] = useState(1);
+
+    const sectionRef = useRef<HTMLDivElement | null>(null);
+    const stickyRef = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setDirection(1);
-            setActiveIndex((prev) => (prev + 1) % TOTAL_ITEMS);
-        }, SLIDE_INTERVAL);
+        const fetchServices = async () => {
+            try {
+                const response = await axios.post(
+                    `${apiUrl}/serviceList`,
+                    {},
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                            Accept: "application/json",
+                        },
+                    }
+                );
 
-        return () => clearInterval(interval);
+                if (response.data?.success && Array.isArray(response.data.data)) {
+                    setExpertiseData(response.data.data);
+                }
+            } catch (error) {
+                console.error("Service list API error:", error);
+            }
+        };
+
+        fetchServices();
     }, []);
 
-    const getVisibleItems = () => {
-        return [0, 1, 2, 3, 4].map((offset) => {
-            const index = (activeIndex + offset) % TOTAL_ITEMS;
-            return { ...expertiseData[index], offset };
-        });
-    };
+    useEffect(() => {
+        const handleScroll = () => {
+            if (!sectionRef.current || expertiseData.length === 0) return;
+
+            const section = sectionRef.current;
+            const rect = section.getBoundingClientRect();
+
+            const totalScrollHeight = section.offsetHeight - window.innerHeight;
+
+            if (totalScrollHeight <= 0) return;
+
+            const scrollProgress = Math.min(
+                Math.max(-rect.top / totalScrollHeight, 0),
+                1
+            );
+
+            const newIndex = Math.round(
+                scrollProgress * (expertiseData.length - 1)
+            );
+
+            setActiveIndex(newIndex);
+        };
+
+        window.addEventListener("scroll", handleScroll, { passive: true });
+
+        handleScroll();
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, [expertiseData.length]);
+
+    const visibleItems = useMemo(() => {
+        if (expertiseData.length === 0) return [];
+
+        return VISIBLE_OFFSETS.map((offset) => {
+            const index = activeIndex + offset;
+
+            if (index < 0 || index >= expertiseData.length) {
+                return null;
+            }
+
+            return {
+                ...expertiseData[index],
+                offset,
+                index,
+            };
+        }).filter(Boolean) as Array<
+            ServiceItem & {
+                offset: number;
+                index: number;
+            }
+        >;
+    }, [activeIndex, expertiseData]);
+
+    const activeItem = expertiseData[activeIndex];
 
     return (
-        <section className="relative bg-[#f5f5f3] py-16 md:py-20 xl:py-24">
-            <div className="mx-auto w-full max-w-7xl px-6 md:px-10 xl:px-16">
-                <div className="flex flex-col lg:flex-row items-center justify-between gap-12 xl:gap-20">
-
-                    {/* Left Side */}
-                    <div className="w-full lg:w-[45%]">
-                        <h2 className="text-5xl md:text-6xl xl:text-7xl font-medium text-[#4a4a4a] mb-10">
+        <section
+            ref={sectionRef}
+            className="relative bg-white"
+            style={{
+                height: expertiseData.length
+                    ? `${expertiseData.length * 100}vh`
+                    : "100vh",
+            }}
+        >
+            <div
+                ref={stickyRef}
+                className="sticky top-0 flex h-screen items-center overflow-hidden bg-white py-10 md:py-14 xl:py-16"
+            >
+                <div className="mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-10 px-6 md:px-10 lg:grid-cols-[55%_45%] xl:px-16">
+                    {/* Left Content */}
+                    <div className="flex w-full flex-col justify-center">
+                        <motion.h2
+                            initial={{ opacity: 0, y: 24 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ duration: 0.7 }}
+                            className="mb-10 font-heading text-[38px] font-bold leading-none text-primary sm:text-[44px] md:mb-14 md:text-[52px]"
+                        >
                             Expertise
-                        </h2>
+                        </motion.h2>
 
-                        <div className="w-full max-w-[420px]">
+                        <div className="relative w-full max-w-[620px] overflow-hidden">
+                            <div
+                                className="relative"
+                                style={{
+                                    height: `${
+                                        ITEM_HEIGHT * VISIBLE_OFFSETS.length
+                                    }px`,
+                                }}
+                            >
+                                <AnimatePresence initial={false}>
+                                    {visibleItems.map(
+                                        ({
+                                            id,
+                                            service_name,
+                                            offset,
+                                            index,
+                                        }) => {
+                                            const isActive = offset === 0;
+                                            const distance = Math.abs(offset);
+
+                                            return (
+                                                <motion.button
+                                                    key={id}
+                                                    type="button"
+                                                    onClick={() =>
+                                                        setActiveIndex(index)
+                                                    }
+                                                    initial={false}
+                                                    animate={{
+                                                        y:
+                                                            offset *
+                                                                ITEM_HEIGHT +
+                                                            ITEM_HEIGHT * 2,
+                                                        opacity:
+                                                            distance === 0
+                                                                ? 1
+                                                                : distance === 1
+                                                                ? 0.45
+                                                                : 0.08,
+                                                        scale: isActive
+                                                            ? 1
+                                                            : 0.94,
+                                                    }}
+                                                    transition={{
+                                                        duration: 0.45,
+                                                        ease: "easeInOut",
+                                                    }}
+                                                    style={{
+                                                        height: ITEM_HEIGHT,
+                                                    }}
+                                                    className="absolute left-0 top-0 flex w-full items-center"
+                                                >
+                                                    <span
+                                                        className={`block w-full rounded-full px-2 py-4 text-center font-heading text-[18px] font-medium uppercase tracking-wide transition-all duration-300  ${
+                                                            isActive
+                                                                ? "bg-gradient-to-r from-[#c02a83] to-[#760052] text-white shadow-lg shadow-primary/20"
+                                                                : "bg-transparent text-[#8a8a8a]"
+                                                        }`}
+                                                    >
+                                                        {service_name}
+                                                    </span>
+                                                </motion.button>
+                                            );
+                                        }
+                                    )}
+                                </AnimatePresence>
+                            </div>
+
+                            <div className="pointer-events-none absolute left-0 top-0 h-16 w-full bg-gradient-to-b from-white to-transparent" />
+                            <div className="pointer-events-none absolute bottom-0 left-0 h-16 w-full bg-gradient-to-t from-white to-transparent" />
+                        </div>
+                    </div>
+
+                    {/* Right Image */}
+                    <motion.div
+                        initial={{ opacity: 0, x: 50, rotateY: -20 }}
+                        whileInView={{ opacity: 1, x: 0, rotateY: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                        className="flex w-full justify-center "
+                    >
+                        <div className="relative flex w-full items-center justify-center">
                             <AnimatePresence mode="wait">
                                 <motion.img
-                                    key={expertiseData[activeIndex].id}
-                                    src={expertiseData[activeIndex].image.src}
-                                    alt={expertiseData[activeIndex].title}
-                                    initial={{ opacity: 0, scale: 0.95 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    exit={{ opacity: 0, scale: 1.05 }}
-                                    transition={{ duration: 0.5 }}
-                                    className="w-full h-auto object-cover"
+                                    key={activeItem?.id || "default-image"}
+                                    src={
+                                        "/assets/Homepage banner/build-your-brand.gif"
+                                    }
+                                    alt={
+                                        activeItem?.service_name ||
+                                        "Expertise Animation"
+                                    }
+                                    initial={{
+                                        opacity: 0,
+                                        scale: 0.9,
+                                        rotateY: -25,
+                                    }}
+                                    animate={{
+                                        opacity: 1,
+                                        scale: 1,
+                                        rotateY: 0,
+                                    }}
+                                    exit={{
+                                        opacity: 0,
+                                        scale: 0.9,
+                                        rotateY: 25,
+                                    }}
+                                    transition={{
+                                        duration: 0.45,
+                                        ease: "easeOut",
+                                    }}
+                                    className="h-auto w-full object-contain  "
                                 />
                             </AnimatePresence>
                         </div>
-                    </div>
-
-                    {/* Right Side */}
-                    <div className="w-full lg:w-[55%] flex items-center">
-                        <div
-                            className="relative overflow-hidden w-full"
-                            style={{
-                                height: `${ITEM_HEIGHT * VISIBLE_COUNT}px`,
-                            }}
-                        >
-                            <AnimatePresence mode="popLayout" initial={false}>
-                                {getVisibleItems().map(({ id, title, offset }) => (
-                                    <motion.div
-                                        key={`${id}-${offset}`}
-                                        initial={{ y: direction * ITEM_HEIGHT, opacity: 0 }}
-                                        animate={{ y: 0, opacity: 1 }}
-                                        exit={{ y: -direction * ITEM_HEIGHT, opacity: 0 }}
-                                        transition={{ duration: 0.45 }}
-                                        style={{ height: `${ITEM_HEIGHT}px` }}
-                                        className="flex items-center"
-                                    >
-                                        <span
-                                            className={`block w-full text-left leading-tight transition-all duration-300
-                      text-[32px] md:text-[40px] xl:text-[48px]
-                      ${offset === 0
-                                                    ? "text-primary font-medium"
-                                                    : "text-[#c8c0c0]"
-                                                }`}
-                                        >
-                                            {title}
-                                        </span>
-                                    </motion.div>
-                                ))}
-                            </AnimatePresence>
-                        </div>
-                    </div>
-
+                    </motion.div>
                 </div>
             </div>
         </section>

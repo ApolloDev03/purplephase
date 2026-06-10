@@ -23,7 +23,7 @@ const Footer = () => {
 
     const navLinks = [
         // { name: "Home", href: "/" },
-        { name: "About", href: "#about-us" },
+        { name: "About", href: "/about-us" },
         { name: "Case Studies", href: "/CaseStudies" },
         { name: "Portfolio", href: "/Portfolio" },
         { name: "Knowledge Corner", href: "/KnowledgeCorner" },
@@ -61,7 +61,7 @@ const Footer = () => {
                         </a>
 
                         <div className="pt-4 space-y-1">
-                            {['+91 99986 10505'].map((num) => (
+                            {['+91 93270 09400'].map((num) => (
                                 <p key={num} className=" text-[#4A4A4A] hover:text-primary cursor-pointer transition-colors duration-300">
                                     {num}
                                 </p>
@@ -99,12 +99,12 @@ const Footer = () => {
                         transition={{ delay: 0.2 }}
                         className="flex flex-col lg:min-w-[150px]"
                     >
-                        <h4 className="text-[16px] text-[#626262] mb-6 ">Follow Us</h4>
-                        <ul className="space-y-4">
+                        <h4 className="text-[16px] text-[#626262] mb-2 ">Follow Us</h4>
+                        <ul className="space-y-2">
                             {socialLinks.map((social) => (
                                 <li key={social.name}>
                                     <a href={social.href} className="flex items-center gap-4 text-[16px] text-black group transition-all duration-300 hover:translate-x-1">
-                                        <span className="w-5 flex justify-center text-black group-hover:text-primary transition-colors duration-300">
+                                        <span className="w-4 flex justify-center text-black group-hover:text-primary transition-colors duration-300">
                                             {social.icon}
                                         </span>
                                         <span className="group-hover:text-primary transition-colors">{social.name}</span>

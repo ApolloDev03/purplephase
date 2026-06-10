@@ -33,7 +33,7 @@ export default function Breadcrumb() {
             onMouseMove={handleMouseMove}
         >
             <div className="relative z-10 mx-auto max-w-full px-6 md:px-10 lg:px-16">
-         
+
 
                 <AnimatePresence mode="wait">
                     <motion.div
@@ -104,7 +104,7 @@ export default function Breadcrumb() {
                             stiffness: 250,
                             damping: 20,
                         }}
-                        className="pointer-events-none absolute left-0 top-0 z-50 flex h-24 w-24 items-center justify-center rounded-full bg-secondary text-center text-[11px] font-semibold text-white shadow-xl"
+                        className="pointer-events-none absolute left-0 top-0 z-55 hidden h-24 w-24 items-center justify-center rounded-full bg-secondary text-center text-[11px] font-bold uppercase tracking-wide text-white shadow-2xl lg:flex"
                     >
                         LET&apos;S BUILD!
                     </motion.button>

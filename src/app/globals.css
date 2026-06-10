@@ -54,48 +54,38 @@ button {
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 } */
-
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #8b2d61;
+  --color-primary: #961965;
   --color-secondary: #ff8000;
 
-  --font-body: var(--font-helvetica);
-  --font-heading: var(--font-chillax);
+  --font-body: var(--font-montserrat);
+  --font-heading: var(--font-montserrat);
 }
 
 @theme inline {
-  --font-body: var(--font-helvetica), Arial, sans-serif;
-  --font-heading: var(--font-chillax), Arial, sans-serif;
-  --font-sans: var(--font-helvetica), Arial, sans-serif;
+  --font-body: var(--font-montserrat), Arial, sans-serif;
+  --font-heading: var(--font-montserrat), Arial, sans-serif;
+  --font-sans: var(--font-montserrat), Arial, sans-serif;
 }
 
 html,
 body {
-  font-family: var(--font-helvetica), Arial, sans-serif;
+  font-family: var(--font-montserrat), Arial, sans-serif !important;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-.font-heading {
-  font-family: var(--font-chillax), Arial, sans-serif !important;
+* {
+  font-family: var(--font-montserrat), Arial, sans-serif !important;
 }
 
-p,
-a,
-button,
-input,
-textarea,
-select,
-label,
-li,
-.font-body {
-  font-family: var(--font-helvetica), Arial, sans-serif;
+.hero-title {
+  font-family: var(--font-montserrat), Arial, sans-serif !important;
+  font-weight: 600;
+  font-size: 58px;
+  line-height: 140%;
+  letter-spacing: 0;
+  color: #961965;
 }
 
 button {
