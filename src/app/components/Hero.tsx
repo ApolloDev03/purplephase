@@ -113,11 +113,9 @@
 //         });
 //     };
 
-
 //     return (
 //         <div className="bg-[#e5e5e5]">
 //             <section className="relative flex min-h-screen flex-col overflow-hidden bg-[#e5e5e5] font-heading">
-
 
 //                 {/* Hero Section */}
 //                 <div
@@ -230,11 +228,9 @@
 //                 </div>
 //             </section>
 
-
 //         </div>
 //     );
 // }
-
 
 "use client";
 
@@ -245,168 +241,164 @@ import { BsArrowUpRightCircleFill } from "react-icons/bs";
 import { FaArrowRightLong } from "react-icons/fa6";
 
 const slides = [
-    {
-        id: 1,
-        eyebrow: "From Idea to Execution",
-        headline: "We Build Your Brand",
-        gif: "/assets/Homepage banner/Idea_to_brand_execution_animation.gif",
-    },
-    {
-        id: 2,
-        eyebrow: "Win every\nmoment of truth",
-        headline: "We Build Your Brand",
-        gif: "/assets/Homepage banner/Idea_to_brand_execution_animation.gif",
-    },
-    {
-        id: 3,
-        eyebrow: "Don't chase\nyour customers",
-        headline: "We Build Your Brand",
-        gif: "/assets/Homepage banner/Idea_to_brand_execution_animation.gif",
-    },
-    {
-        id: 4,
-        eyebrow: "Create an\nimpactful moat",
-        headline: "We Build Your Brand",
-        gif: "/assets/Homepage banner/Idea_to_brand_execution_animation.gif",
-    },
+  {
+    id: 1,
+    eyebrow: "From Idea to Execution",
+    headline: "We Build Your Brand",
+    gif: "/assets/Homepage banner/lightbulb.gif",
+  },
+  {
+    id: 2,
+    eyebrow: "Win every\nmoment of truth",
+    headline: "We Build Your Brand",
+    gif: "/assets/Homepage banner/homebanner2.gif",
+  },
+  {
+    id: 3,
+    eyebrow: "Don't chase\nyour customers",
+    headline: "We Build Your Brand",
+    gif: "/assets/Homepage banner/homebanner3.gif",
+  },
+  {
+    id: 4,
+    eyebrow: "Create an\nimpactful moat",
+    headline: "We Build Your Brand",
+    gif: "/assets/Homepage banner/homebanner4.gif",
+  },
 ];
 
 const TOTAL = slides.length;
 
 export default function HeaderHero() {
-    const [current, setCurrent] = useState(0);
-    const [isHovered, setIsHovered] = useState(false);
+  const [current, setCurrent] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
- const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
-    const resetAuto = useCallback(() => {
-        if (timerRef.current) clearInterval(timerRef.current);
+  const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const resetAuto = useCallback(() => {
+    if (timerRef.current) clearInterval(timerRef.current);
 
-        timerRef.current = setInterval(() => {
-            setCurrent((prev) => (prev + 1) % TOTAL);
-        }, 5500);
-    }, []);
+    timerRef.current = setInterval(() => {
+      setCurrent((prev) => (prev + 1) % TOTAL);
+    },7000);
+  }, []);
 
-    useEffect(() => {
-        resetAuto();
+  useEffect(() => {
+    resetAuto();
 
-        return () => {
-            if (timerRef.current) clearInterval(timerRef.current);
-        };
-    }, [resetAuto]);
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+    };
+  }, [resetAuto]);
 
-    const activeSlide = slides[current];
+  const activeSlide = slides[current];
 
-    return (
-        <section className="relative overflow-hidden bg-[#e5e5e5] font-heading">
-            <div className="relative grid min-h-[calc(100vh-120px)] grid-cols-1 lg:grid-cols-[40%_60%]">
-                {/* Left Side */}
-                <div className="relative z-20 flex min-h-[48vh] items-center bg-[#e5e5e5] px-6 py-10 sm:px-8 md:px-12 lg:min-h-[calc(100vh-120px)] lg:pl-14 lg:pr-0 xl:pl-20">
-                 <div
-    className="w-full max-w-[620px] text-center lg:text-left"
-    onMouseEnter={() => setIsHovered(true)}
-    onMouseLeave={() => setIsHovered(false)}
->
-    <div className="relative flex min-h-[100px] items-center justify-center sm:min-h-[115px] md:min-h-[130px] lg:justify-start">
-        <AnimatePresence mode="wait">
-            {!isHovered ? (
-                <motion.h1
+  return (
+    <section className="relative overflow-hidden bg-[#e5e5e5] font-heading">
+      <div className="relative grid min-h-[calc(100vh-120px)] grid-cols-1 lg:grid-cols-[40%_60%]">
+        {/* Left Side */}
+        <div className="relative z-20 flex min-h-[48vh] items-center bg-[#e5e5e5] px-6 py-10 sm:px-8 md:px-12 lg:min-h-[calc(100vh-120px)] lg:pl-14 lg:pr-0 xl:pl-20">
+          <div
+            className="w-full max-w-[620px] text-center lg:text-left"
+            onMouseEnter={() => setIsHovered(true)}
+            onMouseLeave={() => setIsHovered(false)}
+          >
+            <div className="relative flex min-h-[100px] items-center justify-center sm:min-h-[115px] md:min-h-[130px] lg:justify-start">
+              <AnimatePresence mode="wait">
+                {!isHovered ? (
+                  <motion.h1
                     key={`eyebrow-${activeSlide.id}`}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{
-                        duration: 0.45,
-                        ease: "easeOut",
+                      duration: 0.45,
+                      ease: "easeOut",
                     }}
-                    className="whitespace-nowrap font-body text-[24px] leading-[1.05] text-[#3f3f3f] sm:text-[30px] md:text-[36px] lg:text-[40px] xl:text-[44px]"
-                >
+                    className="whitespace-pre-line lg:whitespace-nowrap font-body text-[24px] leading-[1.05] text-[#3f3f3f] sm:text-[30px] md:text-[36px] lg:text-[40px] xl:text-[44px]"
+                  >
                     {activeSlide.eyebrow}
-                </motion.h1>
-            ) : (
-                <motion.h1
+                  </motion.h1>
+                ) : (
+                  <motion.h1
                     key={`headline-${activeSlide.id}`}
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{
-                        duration: 0.45,
-                        ease: "easeOut",
+                      duration: 0.45,
+                      ease: "easeOut",
                     }}
-                    className="whitespace-nowrap font-heading text-[24px] font-bold uppercase leading-[1.05] text-primary sm:text-[30px] md:text-[36px] lg:text-[40px] xl:text-[44px]"
-                >
+                    className="whitespace-pre-line lg:whitespace-nowrap font-heading text-[24px] font-bold uppercase leading-[1.05] text-primary sm:text-[30px] md:text-[36px] lg:text-[40px] xl:text-[44px]"
+                  >
                     {activeSlide.headline}
-                </motion.h1>
-            )}
-        </AnimatePresence>
-    </div>
-
-                        <motion.div
-                            initial={{ opacity: 0, y: 20 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            transition={{
-                                duration: 0.6,
-                                delay: 0.3,
-                            }}
-                            className="mt-5 flex justify-center lg:justify-start"
-                        >
-                            <Link
-                                href="/contact"
-                                className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-xs font-bold uppercase tracking-wide text-white transition-all duration-300 hover:bg-[#8f1f57]"
-                            >
-                                Let&apos;s Build
-
-                                <span className="flex h-5 w-5 items-center justify-center rounded-full  transition-all duration-300 group-hover:-rotate-45">
-                                    <FaArrowRightLong
-                                        size={20}
-                                        className="text-white"
-                                    />
-                                </span>
-                            </Link>
-                        </motion.div>
-                    </div>
-                </div>
-
-                {/* Right Side GIF */}
-                <div className="relative min-h-[52vh] overflow-hidden bg-[#e5e5e5] lg:min-h-[calc(100vh-120px)]">
-                    <AnimatePresence mode="wait">
-                        <motion.div
-                            key={`gif-${activeSlide.id}`}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.7, ease: "easeOut" }}
-                            className="absolute inset-0 h-full w-full"
-                        >
-                            <img
-                                src={activeSlide.gif}
-                                alt={activeSlide.eyebrow}
-                                className="h-full w-full object-cover object-right mix-blend-multiply"
-                            />
-                        </motion.div>
-                    </AnimatePresence>
-
-                    <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-32 bg-gradient-to-r from-[#e5e5e5] via-[#e5e5e5]/70 to-transparent lg:block" />
-                </div>
-
-                {/* Slider Dots */}
-                <div className="absolute bottom-7 left-1/2 z-50 flex -translate-x-1/2 items-center gap-3">
-                    {slides.map((slide, index) => (
-                        <button
-                            key={slide.id}
-                            onClick={() => {
-                                setCurrent(index);
-                                resetAuto();
-                            }}
-                            className={`h-2 rounded-full transition-all duration-300 ${
-                                current === index
-                                    ? "w-7 bg-primary"
-                                    : "w-3 bg-gray-400 hover:bg-primary/70"
-                            }`}
-                            aria-label={`Go to slide ${index + 1}`}
-                        />
-                    ))}
-                </div>
+                  </motion.h1>
+                )}
+              </AnimatePresence>
             </div>
-        </section>
-    );
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: 0.3,
+              }}
+              className="mt-5 flex justify-center lg:justify-start"
+            >
+              <Link
+                href="/contact"
+                className="group inline-flex items-center gap-2 rounded-full bg-primary px-6 py-3 text-xs font-bold uppercase tracking-wide text-white transition-all duration-300 hover:bg-[#8f1f57]"
+              >
+                Let&apos;s Build
+                <span className="flex h-5 w-5 items-center justify-center rounded-full  transition-all duration-300 group-hover:-rotate-45">
+                  <FaArrowRightLong size={20} className="text-white" />
+                </span>
+              </Link>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Right Side GIF */}
+        <div className="relative min-h-[35vh] sm:min-h-[42vh] md:min-h-[50vh] overflow-hidden bg-[#e5e5e5] lg:min-h-[calc(100vh-120px)]">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={`gif-${activeSlide.id}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+              className="absolute inset-0 h-full w-full"
+            >
+              <img
+                src={activeSlide.gif}
+                alt={activeSlide.eyebrow}
+                className="h-full w-full object-cover object-right mix-blend-multiply"
+              />
+            </motion.div>
+          </AnimatePresence>
+
+          <div className="pointer-events-none absolute inset-y-0 left-0 hidden w-32 bg-gradient-to-r from-[#e5e5e5] via-[#e5e5e5]/70 to-transparent lg:block" />
+        </div>
+
+        {/* Slider Dots */}
+        <div className="absolute bottom-4 sm:bottom-6 lg:bottom-7 left-1/2 z-50 flex -translate-x-1/2 items-center gap-3">
+          {slides.map((slide, index) => (
+            <button
+              key={slide.id}
+              onClick={() => {
+                setCurrent(index);
+                resetAuto();
+              }}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                current === index
+                  ? "w-7 bg-primary"
+                  : "w-3 bg-gray-400 hover:bg-primary/70"
+              }`}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 }

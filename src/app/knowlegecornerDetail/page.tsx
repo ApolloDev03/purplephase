@@ -5,6 +5,19 @@ import { Suspense, useEffect, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import axios from "axios";
 import { apiUrl } from "../config";
+import { AnimatePresence, motion } from "framer-motion";
+import { IoCloseOutline } from "react-icons/io5";
+
+import {
+  FaBehance,
+  FaPinterestP,
+  FaInstagram,
+  FaLinkedinIn,
+  FaFacebookF,
+  FaYoutube,
+} from "react-icons/fa";
+
+import { FaXTwitter } from "react-icons/fa6";
 
 type BlogDetailResponse = {
   message: string;
@@ -39,6 +52,46 @@ function BlogDetailContent() {
 
   const [blog, setBlog] = useState<BlogDetail | null>(null);
   const [loading, setLoading] = useState(true);
+  const [showFullText, setShowFullText] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const socials = [
+    {
+      name: "Behance",
+      icon: <FaBehance />,
+      href: "https://www.behance.net/purple_phase",
+    },
+    {
+      name: "Pinterest",
+      icon: <FaPinterestP />,
+      href: "https://in.pinterest.com/purple_phase_communications",
+    },
+    {
+      name: "Instagram",
+      icon: <FaInstagram />,
+      href: "https://www.instagram.com/purple_phase_communications/",
+    },
+    {
+      name: "Linkedin",
+      icon: <FaLinkedinIn />,
+      href: "https://www.linkedin.com/company/purple-phase-communications",
+    },
+    {
+      name: "Facebook",
+      icon: <FaFacebookF />,
+      href: "https://www.facebook.com/PurplePhaseCommunications/",
+    },
+    {
+      name: "Twitter",
+      icon: <FaXTwitter />,
+      href: "#",
+    },
+    {
+      name: "Youtube",
+      icon: <FaYoutube />,
+      href: "https://www.youtube.com/@purplephasecommunications",
+    },
+  ];
 
   const getImageUrl = (url: string) => {
     if (!url) return "";
@@ -99,9 +152,7 @@ function BlogDetailContent() {
     return (
       <main className="flex min-h-screen items-center justify-center bg-[#f8f3f6] px-4">
         <div className="max-w-xl rounded-[30px] bg-white p-10 text-center shadow-xl">
-          <h1 className="text-3xl font-bold text-[#2b1230]">
-            Blog Not Found
-          </h1>
+          <h1 className="text-3xl font-bold text-[#2b1230]">Blog Not Found</h1>
 
           <p className="mt-4 text-gray-600">
             This blog detail is not available. Please go back to blog page.
@@ -119,153 +170,108 @@ function BlogDetailContent() {
   }
 
   return (
-    <main className="min-h-screen bg-[#f8f3f6] text-[#1f1f1f]">
-      <section className="relative overflow-hidden bg-[#e5e5e5] px-4 py-16 sm:px-6 lg:px-16">
-        <div className="relative mx-auto max-w-full">
-          <Link
-            href="/blog"
-            className="mb-8 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-primary transition hover:text-secondary"
-          >
-            ← Back To Blog
-          </Link>
+    <main className="min-h-screen bg-[#ECECEC]">
+      {/* TOP AREA */}
+      <section className="mx-auto max-w-[1440px] px-6 md:px-20 lg:px-[30px] pt-10">
+        <h1 className="text-[32px] font-bold text-[#A62666]">
+          {blog.blogTitle}
+        </h1>
 
-          <div className="rounded-[34px] bg-white p-6 shadow-xl sm:p-10">
-            <span className="mb-5 inline-flex rounded-full bg-primary/10 px-5 py-2 text-xs font-bold uppercase tracking-[0.22em] text-primary">
-              Blog
-            </span>
-
-            <h1 className="max-w-full text-4xl font-bold leading-tight text-[#2b1230] sm:text-5xl lg:text-6xl">
-              {blog.blogTitle}
-            </h1>
-
-            <div className="mt-6 flex flex-wrap items-center gap-3 text-sm font-medium uppercase tracking-wider text-gray-500">
-              <span>
-                {new Date(blog.date).toLocaleDateString("en-IN", {
-                  day: "2-digit",
-                  month: "short",
-                  year: "numeric",
-                })}
-              </span>
-
-              <span className="h-1 w-1 rounded-full bg-secondary" />
-
-              <span>5 Min Read</span>
-            </div>
-
-
-          </div>
+        <div className="mt-8">
+          <img
+            src={getImageUrl(blog.blogImage)}
+            alt={blog.blogTitle}
+            className="w-full object-cover h-[500px]"
+          />
         </div>
-      </section>
 
-      <section className="px-4 pt-16 sm:px-6 lg:px-16">
-        <div className="mx-auto max-w-full ">
-          <div className="overflow-hidden rounded-[36px] shadow-2xl">
-            <img
-              src={getImageUrl(blog.blogImage)}
-              alt={blog.blogTitle}
-              className="h-75 w-full object-cover sm:h-120"
-            />
-          </div>
+        <div className="mt-8">
+          <p className="text-[14px] leading-[15px] text-[#666] whitespace-pre-line">
+            {showFullText
+              ? blog.blogDescription
+              : `${blog.blogDescription.slice(0, 500)}...`}
+          </p>
         </div>
-      </section>
 
-      <section className="px-4 py-16 sm:px-6 lg:px-8">
-        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1fr_340px]">
-          <article className="rounded-[34px] bg-white p-6 shadow-sm sm:p-10">
-
-            <h2 className="mb-6 text-3xl font-bold leading-tight text-[#2b1230]">
-              Description
-            </h2>
-
-
-            <p className="mt-6 max-w-3xl text-lg leading-8 text-gray-600">
-              {blog.blogDescription}
-            </p>
-
-            <div className="mt-10 rounded-[28px] bg-[#2b1230] p-8 text-white">
-              <p className="text-sm font-semibold uppercase tracking-[0.25em] text-secondary">
-                Brand Note
-              </p>
-
-              <h2 className="mt-3 text-3xl font-bold">
-                Creativity works best when strategy is clear.
-              </h2>
-
-              <p className="mt-4 leading-7 text-white/75">
-                Every strong brand is built through listening, understanding,
-                storytelling, design, and consistent execution.
-              </p>
-            </div>
-          </article>
-
-          <aside className="h-fit rounded-[34px] bg-white p-6 shadow-sm">
-            <h3 className="text-2xl font-bold text-[#2b1230]">
-              Related Blogs
-            </h3>
-
-            <div className="mt-6 space-y-5">
-              {blog.recentBlogs && blog.recentBlogs.length > 0 ? (
-                blog.recentBlogs.map((item) => (
-                  <Link
-                    key={item.blogId}
-                    href={`/knowlegecornerDetail?slug=${item.slugname}`}
-                    className="group block overflow-hidden rounded-2xl border border-gray-100 bg-white transition hover:border-primary/30 hover:bg-[#f8f3f6]"
-                  >
-                    <div className="flex gap-4 p-4">
-                      <div className="h-20 w-24 shrink-0 overflow-hidden rounded-xl bg-[#e5e5e5]">
-                        <img
-                          src={getImageUrl(item.blogImage)}
-                          alt={item.blogTitle}
-                          className="h-full w-full object-cover transition duration-500 group-hover:scale-110"
-                        />
-                      </div>
-
-                      <div className="flex-1">
-                        <h4 className="line-clamp-2 text-sm font-bold leading-snug text-[#2b1230] transition group-hover:text-primary">
-                          {item.blogTitle}
-                        </h4>
-
-                        <p className="mt-2 text-xs font-semibold uppercase tracking-wider text-secondary">
-                          {new Date(item.date).toLocaleDateString("en-IN", {
-                            day: "2-digit",
-                            month: "short",
-                            year: "numeric",
-                          })}
-                        </p>
-                      </div>
-                    </div>
-                  </Link>
-                ))
-              ) : (
-                <div className="rounded-2xl border border-gray-100 p-4 text-sm text-gray-500">
-                  No related blogs found.
-                </div>
-              )}
-            </div>
-
-            <div className="mt-8 rounded-[26px] bg-primary p-6 text-white">
-              <p className="text-sm font-semibold uppercase tracking-wider text-white/70">
-                Need Branding?
-              </p>
-
-              <h4 className="mt-3 text-2xl font-bold">
-                Let’s build your brand story.
-              </h4>
-
-              <Link
-                href="/contact"
-                className="mt-5 inline-flex rounded-full bg-white px-5 py-3 text-sm font-bold text-primary transition hover:bg-secondary hover:text-white"
+        <div className="mt-10 flex justify-center">
+          {blog.blogDescription.length > 500 && (
+            <div className="mt-10 flex justify-center">
+              <button
+                onClick={() => setShowFullText(!showFullText)}
+                className="rounded-full bg-[#A62666] px-8 py-2 text-xs font-semibold text-white"
               >
-                Contact Now
-              </Link>
+                {showFullText ? "Read Less" : "Read More"}
+              </button>
             </div>
-          </aside>
+          )}
         </div>
       </section>
+
+      {/* CTA */}
+      <section className="mt-16 bg-gradient-to-r from-[#B92D7A] to-[#730046] py-10">
+        <div className="text-center">
+          <h2 className="text-[28px] font-bold uppercase text-white">
+            Curious About Brand Strategy ?
+          </h2>
+
+          <button
+            onClick={() => setIsPopupOpen(true)}
+            className="glass-btn mt-6 inline-flex h-[44px] items-center justify-center gap-2 rounded-full px-8 font-semibold text-white"
+          >
+            Stay Connected
+            <span>↗</span>
+          </button>
+        </div>
+      </section>
+      <AnimatePresence>
+        {isPopupOpen && (
+          <>
+            <motion.div
+              className="fixed inset-0 z-[90] bg-black/60 backdrop-blur-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setIsPopupOpen(false)}
+            />
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.9 }}
+              className="fixed left-1/2 top-1/2 z-[100] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-3xl bg-white p-8 shadow-2xl"
+            >
+              <button
+                onClick={() => setIsPopupOpen(false)}
+                className="absolute right-5 top-5"
+              >
+                <IoCloseOutline size={30} />
+              </button>
+
+              <h3 className="mb-8 text-center text-2xl font-bold text-primary">
+                Stay Connected
+              </h3>
+
+              <div className="grid grid-cols-2 gap-y-6">
+                {socials.map((item) => (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    target="_blank"
+                    className="flex items-center gap-4 rounded-xl p-3 transition hover:bg-[#f6f6f6]"
+                  >
+                    <div className="text-2xl text-primary">{item.icon}</div>
+
+                    <span className="font-medium">{item.name}</span>
+                  </a>
+                ))}
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </main>
   );
 }
-
 
 export default function BlogDetailPage() {
   return (

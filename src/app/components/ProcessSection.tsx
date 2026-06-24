@@ -91,7 +91,7 @@ const ProcessSection = () => {
             </div>
 
             {/* Bottom Purple Strip */}
-            <div className="pointer-events-none absolute bottom-0 left-0 h-4 w-full bg-primary shadow-[0_-4px_16px_rgba(142,42,93,0.35)] sm:h-5" />
+            {/* <div className="pointer-events-none absolute bottom-0 left-0 h-4 w-full bg-primary shadow-[0_-4px_16px_rgba(142,42,93,0.35)] sm:h-5" /> */}
         </section>
     );
 };
