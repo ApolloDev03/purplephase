@@ -28,7 +28,10 @@ export default function RootLayout({
       className={montserrat.variable}
       suppressHydrationWarning={true}
     >
-      <body className="min-h-screen flex flex-col font-body">
+      <body
+        className="min-h-screen flex flex-col font-body"
+        suppressHydrationWarning={true}
+      >
         <SidebarProvider>
           <StickyActions />
           <Header />

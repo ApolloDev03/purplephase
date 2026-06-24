@@ -27,7 +27,7 @@ export default function Breadcrumb() {
 
     return (
         <section
-            className="relative overflow-hidden bg-[#e5e5e5] py-10 font-heading cursor-none"
+            className="relative overflow-hidden bg-[#e5e5e5] py-10 font-heading "
             onMouseEnter={() => setShowCursorButton(true)}
             onMouseLeave={() => setShowCursorButton(false)}
             onMouseMove={handleMouseMove}
@@ -88,28 +88,28 @@ export default function Breadcrumb() {
             </div>
 
             {/* Custom cursor button only inside section */}
-            <AnimatePresence>
+            {/* <AnimatePresence>
                 {showCursorButton && (
-                    <motion.button
-                        initial={{ opacity: 0, scale: 0.7 }}
-                        animate={{
-                            opacity: 1,
-                            scale: 1,
-                            x: cursorPos.x - 56,
-                            y: cursorPos.y - 56,
-                        }}
-                        exit={{ opacity: 0, scale: 0.7 }}
-                        transition={{
-                            type: "spring",
-                            stiffness: 250,
-                            damping: 20,
-                        }}
-                        className="pointer-events-none absolute left-0 top-0 z-55 hidden h-24 w-24 items-center justify-center rounded-full bg-secondary text-center text-[11px] font-bold uppercase tracking-wide text-white shadow-2xl lg:flex"
-                    >
-                        LET&apos;S BUILD!
-                    </motion.button>
+                    // <motion.button
+                    //     initial={{ opacity: 0, scale: 0.7 }}
+                    //     animate={{
+                    //         opacity: 1,
+                    //         scale: 1,
+                    //         x: cursorPos.x - 56,
+                    //         y: cursorPos.y - 56,
+                    //     }}
+                    //     exit={{ opacity: 0, scale: 0.7 }}
+                    //     transition={{
+                    //         type: "spring",
+                    //         stiffness: 250,
+                    //         damping: 20,
+                    //     }}
+                    //     className="pointer-events-none absolute left-0 top-0 z-55 hidden h-24 w-24 items-center justify-center rounded-full bg-secondary text-center text-[11px] font-bold uppercase tracking-wide text-white shadow-2xl lg:flex"
+                    // >
+                    //     LET&apos;S BUILD!
+                    // </motion.button>
                 )}
-            </AnimatePresence>
+            </AnimatePresence> */}
         </section>
     );
 }

@@ -100,3 +100,37 @@ button {
 .hide-scrollbar::-webkit-scrollbar {
   display: none;
 }
+
+
+@keyframes scrollY {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+.animate-scroll-y {
+  animation: scrollY 8s linear infinite;
+}
+
+.glass-btn {
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255,255,255,0.25);
+
+  box-shadow:
+    inset 0 1px 1px rgba(255,255,255,0.3),
+    0 8px 20px rgba(0,0,0,0.15);
+
+  transition: all .3s ease;
+}
+
+.glass-btn:hover {
+  background: rgba(255,255,255,0.18);
+  transform: translateY(-2px);
+}

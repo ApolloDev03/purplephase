@@ -34,7 +34,9 @@ export default function PortfolioSection() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const [selectedProject, setSelectedProject] = useState<PortfolioItem | null>(null);
+  const [selectedProject, setSelectedProject] = useState<PortfolioItem | null>(
+    null
+  );
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   const fetchPortfolioList = async () => {
@@ -57,6 +59,7 @@ export default function PortfolioSection() {
       } else {
         setError(res.data?.message || "Failed to fetch portfolio list.");
       }
+      console.log(res.data.data[0]);
     } catch (err) {
       console.error("Portfolio API Error:", err);
       setError("Something went wrong while loading portfolio.");
@@ -74,7 +77,7 @@ export default function PortfolioSection() {
       .map((item) => item?.service?.service_name)
       .filter(Boolean) as string[];
 
-    return [...Array.from(new Set(serviceNames)), "Show All"];
+    return [...new Set(serviceNames), "Show All"];
   }, [portfolioList]);
 
   const filteredProjects = useMemo(() => {
@@ -142,28 +145,24 @@ export default function PortfolioSection() {
             </h2>
 
             <p className="max-w-3xl text-sm leading-7 text-[#6d6d6d] md:text-[15px]">
-              A brand is ultimately shaped by customer experience. We create work to
-              make that experience purposeful, powerful and memorable.
+              A brand is ultimately shaped by customer experience. We create
+              work to make that experience purposeful, powerful and memorable.
             </p>
 
             {!loading && portfolioList.length > 0 && (
               <div className="my-10 flex flex-wrap justify-center gap-2">
                 {categories.map((cat) => {
                   const isActive = filter === cat;
-                  const isShowAll = cat === "Show All";
 
                   return (
                     <button
                       key={cat}
                       onClick={() => handleFilterChange(cat)}
-                      className={`rounded-md px-4 py-2 font-medium transition-all duration-200 ${isActive
-                        ? isShowAll
-                          ? "bg-[#F58220] text-white"
-                          : "bg-[#A61D67] text-white"
-                        : isShowAll
-                          ? "bg-[#F58220] text-white hover:opacity-90"
+                      className={`rounded-md px-4 py-2 font-medium transition-all duration-200 ${
+                        isActive
+                          ? "bg-[#A61D67] text-white"
                           : "bg-[#6B6B6B] text-white hover:bg-[#595959]"
-                        }`}
+                      }`}
                     >
                       {cat}
                     </button>
@@ -224,7 +223,7 @@ export default function PortfolioSection() {
                               <img
                                 src={firstImage}
                                 alt={project.title}
-                                className=" object-contain transition-transform duration-700 ease-out group-hover:scale-105"
+                                className="h-full w-full object-contain transition-transform duration-700 ease-out group-hover:scale-105"
                               />
                             ) : (
                               <div className="flex h-full w-full items-center justify-center rounded-2xl bg-gray-100 text-sm text-gray-400">
@@ -286,7 +285,7 @@ export default function PortfolioSection() {
             onClick={closeGallery}
           >
             <motion.div
-              className="relative w-full max-w-xl  rounded-[24px] bg-white p-4 shadow-2xl md:p-6"
+              className="relative w-full max-w-4xl  rounded-[24px] bg-white p-4 shadow-2xl md:p-6"
               initial={{ opacity: 0, scale: 0.92, y: 30 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.92, y: 30 }}

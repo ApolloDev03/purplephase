@@ -61,6 +61,7 @@ const VideoSection = () => {
                     muted
                     loop
                     playsInline
+                    // autoPlay
                     preload="auto"
                 >
                     <source src="/assets/Homepage banner/PPC-ideology.mp4" type="video/mp4" />
