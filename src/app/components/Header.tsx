@@ -89,7 +89,7 @@ export default function Header() {
 
     return (
         <>
-            <div className="sticky top-0 z-50 w-full bg-white font-sans backdrop-blur-md">
+            <div className="sticky top-0 z-99999 w-full bg-white font-sans backdrop-blur-md">
                 <div className="mx-auto flex w-full items-center justify-between px-4 py-4 sm:px-6 lg:px-16">
                     <a href="/" className="flex items-center gap-3">
                         <img
