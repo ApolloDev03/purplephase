@@ -380,14 +380,14 @@ export default function BrandPage() {
           height: loading || TOTAL === 0 ? "100vh" : `${TOTAL * 180 + 120}vh`,
         }}
       >
-        <div className="sticky top-0 h-screen overflow-hidden px-4 py-6 sm:px-6 md:px-10 lg:px-16">
+        <div className="sticky top-0 h-screen overflow-hidden px-4 py-16 sm:px-6 md:px-10 lg:px-16">
         <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
             <div>
-            <h2 className="text-2xl font-medium text-[#626262] sm:text-3xl md:text-5xl">
+            <h2 className="text-2xl font-semibold text-primary sm:text-3xl md:text-5xl">
                 Story Behind Brand Building
               </h2>
 
-              <p className="mt-2 text-sm text-[#7b7b7b] md:text-base">
+              <p className="mt-4 text-lg text-black ">
                 Explore the process behind crafting memorable brand experiences.
               </p>
             </div>

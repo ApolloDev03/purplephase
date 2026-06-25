@@ -89,7 +89,7 @@ export default function Header() {
 
     return (
         <>
-            <div className="sticky top-0 z-99999 w-full bg-white font-sans backdrop-blur-md">
+            <div className="sticky top-0 z-99 w-full bg-white font-sans backdrop-blur-md">
                 <div className="mx-auto flex w-full items-center justify-between px-4 py-4 sm:px-6 lg:px-16">
                     <a href="/" className="flex items-center gap-3">
                         <img
@@ -360,10 +360,10 @@ function ContactPopup({
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={onClose}
-                        className="fixed inset-0 z-[90] bg-black/60 backdrop-blur-sm"
+                        className="fixed inset-0 z-[999] bg-black/60 backdrop-blur-sm"
                     />
 
-                    <div className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden px-4 py-6">
+                    <div className="fixed inset-0 z-9999 flex items-center justify-center overflow-hidden px-4 py-6">
                         <motion.div
                             initial={{ opacity: 0, scale: 0.92, y: 30 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}

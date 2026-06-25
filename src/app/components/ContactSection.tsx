@@ -262,7 +262,7 @@ export function ContactSection() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)] py-16 md:py-20 lg:py-24">
+    <section className="relative overflow-hidden bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)] pt-16 ">
       <div className="mx-auto max-w-full px-5 md:px-8 lg:px-16">
         {/* Heading */}
         <div className="mb-8 md:mb-9">

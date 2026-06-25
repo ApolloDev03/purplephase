@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
-import Breadcrumb from "../components/breadcrumb";
 import { apiUrl } from "../config";
 
 type PortfolioImage = {
@@ -135,7 +134,6 @@ export default function PortfolioSection() {
 
   return (
     <>
-      <Breadcrumb />
 
       <section className="w-full bg-[#f3f3f3] px-4 py-16 sm:px-6 lg:px-16">
         <div className="mx-auto max-w-full">

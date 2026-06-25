@@ -134,3 +134,73 @@ button {
   background: rgba(255,255,255,0.18);
   transform: translateY(-2px);
 }
+
+  .counter-box {
+    position: relative;
+    border-radius: 9999px;
+    padding: 3px;
+    overflow: hidden;
+  }
+
+  .counter-content {
+    position: relative;
+    z-index: 2;
+    border-radius: inherit;
+    border: 1px solid rgba(255,255,255,.18);
+    background: rgba(255,255,255,.08);
+    backdrop-filter: blur(18px);
+    padding: 24px 80px;
+  }
+
+  /* ONLY BORDER */
+  .counter-box::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1.5px;
+
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      transparent 285deg,
+      rgba(255,255,255,1) 315deg,
+      rgba(255,255,255,.25) 340deg,
+      transparent 360deg
+    );
+
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+
+    opacity: 0;
+    transition: opacity .3s ease;
+
+    pointer-events: none;
+  }
+
+  .counter-box:hover::before {
+    opacity: 1;
+    animation: rotateBorder 2.5s linear infinite;
+  }
+
+  @keyframes rotateBorder {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .counter-box {
+      border-radius: 28px;
+    }
+
+    .counter-content {
+      border-radius: inherit;
+      padding: 24px;
+    }
+  }
+  
