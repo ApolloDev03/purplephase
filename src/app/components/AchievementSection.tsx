@@ -42,14 +42,14 @@ const CounterItem = ({ value, label }: CounterItemProps) => {
 
   return (
     <div className="flex flex-col items-center justify-between text-center">
-      <h3 className="text-white text-[30px] sm:text-[38px] md:text-[54px] lg:text-[75px] 2xl:text-[100px] font-semibold leading-none">
+      <h4 className="text-white text-[30px] sm:text-[38px] md:text-[54px] lg:text-[75px] 2xl:text-[100px] font-semibold leading-none">
         {displayValue}
         {suffix}
-      </h3>
+      </h4>
 
-      <p className="mt-2 text-white text-[13px] sm:text-[15px] md:text-[20px] 2xl:text-[29px] font-normal leading-none">
+      <span className="mt-2 text-white text-[13px] sm:text-[15px] md:text-[20px] 2xl:text-[29px] font-normal leading-none">
         {label}
-      </p>
+      </span>
     </div>
   );
 };
