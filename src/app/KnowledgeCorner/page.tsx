@@ -403,66 +403,7 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* CTA */}
-      {/* <section className="bg-gradient-to-r from-[#c02a85] to-[#6b003d] py-16">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-16">
-          <div className="grid lg:grid-cols-[1fr_380px] gap-10 items-center">
-            <div>
-              <h2 className="text-white text-4xl lg:text-5xl font-bold">
-                No decks. No jargon. Just an Honest Conversation.
-              </h2>
-
-              <p className="mt-4 text-white text-xl">
-                Let's catch up over a cup of coffee !
-              </p>
-
-              <div className="mt-10 space-y-4">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <input
-                    placeholder="Full Name"
-                    className="h-12 rounded-md px-4 bg-white"
-                  />
-
-                  <input
-                    placeholder="Email"
-                    className="h-12 rounded-md px-4 bg-white"
-                  />
-                </div>
-
-                <div className="grid md:grid-cols-2 gap-4">
-                  <input
-                    placeholder="Company Name"
-                    className="h-12 rounded-md px-4 bg-white"
-                  />
-
-                  <input
-                    placeholder="Phone Number"
-                    className="h-12 rounded-md px-4 bg-white"
-                  />
-                </div>
-
-                <textarea
-                  placeholder="What solution are you looking for?"
-                  rows={4}
-                  className="w-full rounded-md p-4 bg-white"
-                />
-
-                <button className="w-full rounded-full border border-white/30 bg-white/20 py-3 font-semibold text-white">
-                  Let's Connect
-                </button>
-              </div>
-            </div>
-
-            <div className="flex justify-center">
-              <img
-                src="/assets/knowledgecorner/coffee-cups.png"
-                alt="Coffee"
-                className="max-w-[340px]"
-              />
-            </div>
-          </div>
-        </div>
-      </section> */}
+     
       <ContactSection />
     </main>
   );

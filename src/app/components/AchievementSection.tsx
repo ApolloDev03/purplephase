@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 // "use client";
 
 // import { useEffect, useState } from "react";
@@ -209,6 +211,7 @@
 //     );
 // }
 
+>>>>>>> origin/main
 "use client";
 
 import { useEffect, useState } from "react";
@@ -252,13 +255,22 @@ const CounterItem = ({ value, label }: CounterItemProps) => {
   }, [count, numericTarget, rounded]);
 
   return (
+<<<<<<< HEAD
+    <div className="flex flex-col items-center justify-between text-center">
+      <h3 className="text-white text-[30px] sm:text-[38px] md:text-[54px] lg:text-[75px] 2xl:text-[100px] font-semibold leading-none">
+=======
     <div className="flex flex-col items-center justify-center text-center">
       <h3 className="text-white text-[30px] sm:text-[38px] md:text-[54px] lg:text-[56px] font-semibold leading-none">
+>>>>>>> origin/main
         {displayValue}
         {suffix}
       </h3>
 
+<<<<<<< HEAD
+      <p className="mt-2 text-white text-[13px] sm:text-[15px] md:text-[20px] 2xl:text-[29px] font-normal leading-none">
+=======
       <p className="mt-2 text-white text-[13px] sm:text-[15px] md:text-[20px] font-normal leading-none">
+>>>>>>> origin/main
         {label}
       </p>
     </div>
@@ -315,6 +327,24 @@ export default function AchievementSection() {
   const currentTestimonial = testimonials[testIndex];
 
   return (
+<<<<<<< HEAD
+    <section className="relative overflow-hidden py-16 font-sans bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]">
+      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-20 2xl:px-32">
+      
+
+   <div className="counter-box group mb-14 md:mb-16 lg:mb-20 bg-[#D9D9D933] border-2 border-white">
+  <div className="counter-content">
+    <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-10">
+      <CounterItem value="15+" label="Successful Years" />
+      <CounterItem value="20+" label="Industries Served" />
+      <CounterItem value="500+" label="Satisfied Clients" />
+      <CounterItem value="3000+" label="Completed Projects" />
+    </div>
+  </div>
+</div>
+        {/* Title */}
+        <h2 className="text-white  mb-8 md:mb-11 tracking-wide">
+=======
     <section className="relative overflow-hidden py-14 md:py-16 lg:py-20 font-sans bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]">
       <div className="max-w-[1140px] mx-auto px-4 sm:px-6 md:px-8 lg:px-0">
         {/* Counter Box */}
@@ -332,6 +362,7 @@ export default function AchievementSection() {
         </div>
         {/* Title */}
         <h2 className="text-white text-[28px] sm:text-[34px] md:text-[42px] font-semibold mb-8 md:mb-11 tracking-wide">
+>>>>>>> origin/main
           Pat on the Back
         </h2>
 
@@ -372,7 +403,11 @@ export default function AchievementSection() {
                     exit={{ opacity: 0, x: -50 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
                   >
+<<<<<<< HEAD
+                    <p className="text-[16px] md:text-[21px] leading-[1.45]  font-normal">
+=======
                     <p className="text-[16px] md:text-[21px] leading-[1.45] max-w-[820px] font-normal">
+>>>>>>> origin/main
                       {currentTestimonial.description}
                     </p>
 

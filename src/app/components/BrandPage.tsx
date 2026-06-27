@@ -1,3 +1,5 @@
+<<<<<<< HEAD
+=======
 // "use client";
 
 // import { useEffect, useRef, useState } from "react";
@@ -265,6 +267,7 @@
 //     );
 // }
 
+>>>>>>> origin/main
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -365,6 +368,39 @@ export default function BrandPage() {
   });
 
   // Smooth scroll animation
+<<<<<<< HEAD
+const smoothProgress = useSpring(scrollYProgress, {
+  stiffness: 45,
+  damping: 30,
+  mass: 1,
+});
+
+  return (
+    <main className="bg-[#e5e5e5] font-sans py-16 px-4 sm:px-6 lg:px-20 2xl:px-32">
+      <section
+        ref={sectionRef}
+        className="relative mb-10"
+        style={{
+          height: loading || TOTAL === 0
+  ? "100vh"
+  : `${TOTAL * 90}vh`,
+        }}
+      >
+        <div className="sticky top-0 h-screen overflow-hidden ">
+        <div className="mb-6 flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+            <div>
+            <h2 className="
+leading-none
+text-primary">
+                Story Behind Brand Building
+              </h2>
+
+              <p className="mt-4 text-lg xl:text-2xl text-black ">
+                Explore the process behind crafting memorable brand experiences.
+              </p>
+            </div>
+        
+=======
   const smoothProgress = useSpring(scrollYProgress, {
     stiffness: 45,
     damping: 22,
@@ -397,18 +433,27 @@ export default function BrandPage() {
                 Scroll to explore
               </p>
             )}
+>>>>>>> origin/main
           </div>
 
           {loading ? (
             <div className="flex h-[calc(100vh-150px)] items-center justify-center">
+<<<<<<< HEAD
+              <div className="h-12 w-12 animate-spin rounded-full  border-t-[#A62666]" />
+=======
               <div className="h-12 w-12 animate-spin rounded-full border-4 border-[#A62666]/20 border-t-[#A62666]" />
+>>>>>>> origin/main
             </div>
           ) : TOTAL === 0 ? (
             <div className="flex h-[calc(100vh-150px)] items-center justify-center">
               <p className="text-[#626262]">No case studies found.</p>
             </div>
           ) : (
+<<<<<<< HEAD
+            <div className="relative mt-8 bg-[#e5e5e5] h-[calc(100vh-100px)] overflow-hidden">
+=======
             <div className="relative h-[calc(100vh-180px)] sm:h-[calc(100vh-160px)] md:h-[calc(100vh-145px)] overflow-visible">
+>>>>>>> origin/main
               {brandStories.map((item, i) => (
                 <ScrollSlide
                   key={item.id}
@@ -421,6 +466,20 @@ export default function BrandPage() {
             </div>
           )}
         </div>
+<<<<<<< HEAD
+      <div className="absolute -bottom-16 left-0  z-[999]">
+      <Link
+        href="/CaseStudies"
+        className="inline-flex items-center gap-2 rounded-full bg-[#A62666] px-6 py-3 font-medium text-white hover:bg-[#8d2157]"
+      >
+        View All
+        <MoveUpRight className="h-5 w-5" />
+      </Link>
+    </div>
+      </section>
+
+      {/* View All Button */}
+=======
       </section>
 
       {/* View All Button */}
@@ -433,6 +492,7 @@ export default function BrandPage() {
           <MoveUpRight className="h-5 w-5" />
         </Link>
       </div>
+>>>>>>> origin/main
     </main>
   );
 }
@@ -454,6 +514,25 @@ function ScrollSlide({
   const step = 1 / total;
 
   const start = index * step;
+<<<<<<< HEAD
+ const mid = start + step * 0.6;
+  const end = start + step;
+
+const inputRange = [
+  Math.max(0, start - step * 0.6),
+  start,
+  mid,
+  Math.min(1, end + step * 0.1),
+];
+
+const y = useTransform(
+  progress,
+  inputRange,
+  isFirst
+    ? ["0%", "0%", "-4%", "-8%"]
+    : ["100%", "0%", "-4%", "-8%"]
+);
+=======
   const mid = start + step * 0.7;
   const end = start + step;
 
@@ -471,6 +550,7 @@ function ScrollSlide({
       ? ["0%", "0%", isLast ? "0%" : "-10%", isLast ? "0%" : "-16%"]
       : ["115%", "0%", isLast ? "0%" : "-10%", isLast ? "0%" : "-16%"]
   );
+>>>>>>> origin/main
 
   const scale = useTransform(
     progress,
@@ -508,13 +588,21 @@ function ScrollSlide({
         // opacity,
         zIndex: index + 1,
       }}
+<<<<<<< HEAD
+      className="absolute inset-0 origin-top "
+=======
       className="absolute inset-0 origin-top"
+>>>>>>> origin/main
     >
       <Link
         href={`/case-study-detail?slug=${encodeURIComponent(item.slug)}`}
         className="group block h-full"
       >
+<<<<<<< HEAD
+        <div className="relative h-full overflow-hidden rounded-2xl ">
+=======
         <div className="relative h-full overflow-hidden rounded-[20px] sm:rounded-[30px] md:rounded-[42px] shadow-[0_30px_80px_rgba(0,0,0,0.18)]">
+>>>>>>> origin/main
           <motion.img
             src={item.hero_image}
             alt={item.title}

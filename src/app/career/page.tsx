@@ -3,11 +3,12 @@
 import { useEffect, useState, ChangeEvent, FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import axios from "axios";
-import { RotateCcw, Plus, Minus } from "lucide-react";
+import { RotateCcw } from "lucide-react";
 import { toast } from "react-toastify";
-import Breadcrumb from "../components/breadcrumb";
 import { apiUrl } from "../config";
 import { useRouter } from "next/navigation";
+import { ChevronLeft, ChevronRight, X } from "lucide-react";
+
 
 type CareerItem = {
   id: number;
@@ -44,7 +45,16 @@ export default function CareerPage() {
   const [openCareerId, setOpenCareerId] = useState<number | null>(null);
 
   const [captchaCode, setCaptchaCode] = useState<string>("8227");
+const careerImages = [
+  "/assets/career/life-1.png",
+  "/assets/career/life-2.png",
+  "/assets/career/life-3.jpg",
+  "/assets/career/life-4.png",
+  "/assets/career/life-5.jpg",
+];
 
+const [galleryOpen, setGalleryOpen] = useState(false);
+const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [formData, setFormData] = useState<FormDataType>({
     first_name: "",
     last_name: "",
@@ -225,9 +235,28 @@ export default function CareerPage() {
     }
   };
 
+  const openGallery = (index: number) => {
+  setActiveImageIndex(index);
+  setGalleryOpen(true);
+};
+
+const closeGallery = () => {
+  setGalleryOpen(false);
+};
+
+const handlePrevImage = () => {
+  setActiveImageIndex((prev) =>
+    prev === 0 ? careerImages.length - 1 : prev - 1
+  );
+};
+
+const handleNextImage = () => {
+  setActiveImageIndex((prev) =>
+    prev === careerImages.length - 1 ? 0 : prev + 1
+  );
+};
   return (
     <>
-      {/* <Breadcrumb /> */}
 
       <section className="bg-[#eeeeee] font-body text-[#3d3d3d]">
         {/* HERO */}
@@ -247,7 +276,7 @@ export default function CareerPage() {
         </div>
 
         {/* INTRO CONTENT */}
-        <div className="bg-[#eeeeee]">
+        <div className="bg-white">
           <div className="mx-auto max-w-[1440px] px-6 py-12 md:px-20 lg:px-[25px]">
             <h1 className="max-w-[1050px] font-heading text-[25px] font-bold uppercase leading-[1.25] tracking-[0.02em] text-[#a20d69] md:text-[32px] lg:text-[36px]">
               We Believe Great Brands Are Built By People{" "}
@@ -286,55 +315,82 @@ export default function CareerPage() {
         </div>
 
         {/* LIFE SECTION + OPENINGS */}
-        <div className="bg-[#eeeeee]">
+        <div className="bg-white">
           <div className="mx-auto max-w-[1440px] px-6 pb-14 md:px-20 lg:px-[25px]">
             <h2 className="mb-8 font-heading text-[26px] font-bold uppercase tracking-[0.03em] text-[#a20d69] md:text-[32px]">
               Life @ Purple Phase
             </h2>
 
             {/*COLLAGE */}
-            <div className="relative hidden h-[400px] w-full overflow-hidden md:block">
-              {/* Top left big image */}
-              <img
-                src="/assets/career/life-1.png"
-                alt="Life at Purple Phase"
-                className="absolute left-0 top-0 h-[200px] w-[31%] rounded-md object-cover object-[center_35%]"
-              />
+             <div className="relative hidden h-[400px] w-full overflow-hidden md:block">
 
-              {/* Top small image */}
-              <img
-                src="/assets/career/life-2.png"
-                alt="Life at Purple Phase"
-                className="absolute left-[32%] top-0 h-[200px] w-[15%] rounded-md object-cover object-[center_35%]"
-              />
+  {/* Top Left */}
+  <div
+    onClick={() => openGallery(0)}
+    className="group absolute left-0 top-0 h-[200px] w-[31%] cursor-pointer overflow-hidden rounded-md"
+  >
+    <img
+      src="/assets/career/life-1.png"
+      alt=""
+      className="h-full w-full object-cover object-[center_35%] transition-transform duration-500 group-hover:scale-110"
+    />
+  </div>
 
-              {/* Bottom left grey box */}
-              <div className="absolute left-0 top-[205px] h-[190px] w-[16.5%] rounded-md bg-[#d7d7d7]" />
+  {/* Top Middle */}
+  <div
+    onClick={() => openGallery(1)}
+    className="group absolute left-[32%] top-0 h-[200px] w-[15%] cursor-pointer overflow-hidden rounded-md"
+  >
+    <img
+      src="/assets/career/life-2.png"
+      alt=""
+      className="h-full w-full object-cover object-[center_35%] transition-transform duration-500 group-hover:scale-110"
+    />
+  </div>
 
-              {/* Bottom middle group image */}
-              <img
-                src="/assets/career/life-5.jpg"
-                alt="Life at Purple Phase"
-                className="absolute left-[17.4%] top-[205px] h-[190px] w-[29.6%] rounded-md object-cover object-[center_20%]"
-              />
+  {/* Bottom Left Grey */}
+  <div className="absolute left-0 top-[205px] h-[190px] w-[16.5%] rounded-md bg-[#d7d7d7]" />
 
-              {/* Center cartoon */}
-              <img
-                src="/assets/career/life-3.jpg"
-                alt="Life at Purple Phase"
-                className="absolute left-[48%] top-0 h-[400px] w-[20.5%] rounded-md object-cover object-center"
-              />
+  {/* Bottom Middle */}
+  <div
+    onClick={() => openGallery(2)}
+    className="group absolute left-[17.4%] top-[205px] h-[190px] w-[29.6%] cursor-pointer overflow-hidden rounded-md"
+  >
+    <img
+      src="/assets/career/life-5.jpg"
+      alt=""
+      className="h-full w-full object-cover object-[center_20%] transition-transform duration-500 group-hover:scale-110"
+    />
+  </div>
 
-              {/* Top right grey box */}
-              <div className="absolute left-[69.5%] top-0 h-[200px] w-[30.5%] rounded-md bg-[#d7d7d7]" />
+  {/* Center Image */}
+  <div
+    onClick={() => openGallery(3)}
+    className="group absolute left-[48%] top-0 h-[400px] w-[20.5%] cursor-pointer overflow-hidden rounded-md"
+  >
+    <img
+      src="/assets/career/life-3.jpg"
+      alt=""
+      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+    />
+  </div>
 
-              {/* Bottom right image */}
-              <img
-                src="/assets/career/life-4.png"
-                alt="Life at Purple Phase"
-                className="absolute left-[69.5%] top-[205px] h-[190px] w-[30.5%] rounded-md object-cover object-[center_85%]"
-              />
-            </div>
+  {/* Top Right Grey */}
+  <div className="absolute left-[69.5%] top-0 h-[200px] w-[30.5%] rounded-md bg-[#d7d7d7]" />
+
+  {/* Bottom Right */}
+  <div
+    onClick={() => openGallery(4)}
+    className="group absolute left-[69.5%] top-[205px] h-[190px] w-[30.5%] cursor-pointer overflow-hidden rounded-md"
+  >
+    <img
+      src="/assets/career/life-4.png"
+      alt=""
+      className="h-full w-full object-cover object-[center_85%] transition-transform duration-500 group-hover:scale-110"
+    />
+  </div>
+
+</div>
 
             {/* MOBILE COLLAGE */}
             <div className="grid grid-cols-1 gap-3 md:hidden">
@@ -437,128 +493,207 @@ export default function CareerPage() {
         </div>
 
         {/* APPLY FORM */}
-        <div className="bg-gradient-to-r from-[#bf2f86] to-[#720040]">
-          <div
-            className="mx-auto grid max-w-[1440px]
-    grid-cols-1
-    items-center
-    gap-4
-    px-6 py-10
-    md:grid-cols-[1.15fr_0.85fr]
-    md:px-20"
-          >
-            <div>
-              <h2 className="font-heading text-[28px] font-bold text-white md:text-[40px]">
-                Ready to Build Brands with Us?
-              </h2>
+       
+<div className="bg-gradient-to-r from-[#c52d87] via-[#98105f] to-[#6d003d]">
+  <div className="mx-auto grid max-w-[1440px] grid-cols-1 items-center px-6 py-14 md:grid-cols-12 md:px-16">
 
-              <p className="mt-3 text-[18px] text-white/90">
-                We would love to hear from you.
-              </p>
+    {/* Left Content */}
+    <div className="md:col-span-7">
+      <h2 className="font-heading text-[36px] font-bold leading-tight text-white md:text-[58px]">
+        Ready to Build Brands with Us?
+      </h2>
 
-              <form onSubmit={handleSubmit} className="mt-7 max-w-[700px]">
-                <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
-                  <input
-                    type="text"
-                    name="first_name"
-                    value={formData.first_name}
-                    onChange={handleChange}
-                    placeholder="First Name"
-                    className="h-[40px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#858585]"
-                  />
+      <p className="mt-3 text-[22px] text-white/90">
+        We would love to hear from you.
+      </p>
 
-                  <input
-                    type="text"
-                    name="last_name"
-                    value={formData.last_name}
-                    onChange={handleChange}
-                    placeholder="Last Name"
-                    className="h-[40px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#858585]"
-                  />
+      <form onSubmit={handleSubmit} className="mt-10">
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
 
-                  <input
-                    type="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    placeholder="Email"
-                    className="h-[40px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#858585]"
-                  />
+          <input
+            type="text"
+            name="first_name"
+            value={formData.first_name}
+            onChange={handleChange}
+            placeholder="Full Name"
+            className="h-[48px] w-full rounded-md border border-white/20 bg-white px-4 text-[14px] text-[#333] outline-none placeholder:text-[#8b8b8b]"
+          />
 
-                  <input
-                    type="text"
-                    name="contact_no"
-                    value={formData.contact_no}
-                    onChange={handleChange}
-                    placeholder="Phone Number"
-                    className="h-[40px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#858585]"
-                  />
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Email"
+            className="h-[48px] w-full rounded-md border border-white/20 bg-white px-4 text-[14px] text-[#333] outline-none placeholder:text-[#8b8b8b]"
+          />
 
-                  <input
-                    type="text"
-                    name="qualification"
-                    value={formData.qualification}
-                    onChange={handleChange}
-                    placeholder="Qualification"
-                    className="h-[40px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#858585]"
-                  />
+          <input
+            type="text"
+            name="qualification"
+            value={formData.qualification}
+            onChange={handleChange}
+            placeholder="Qualification"
+            className="h-[48px] w-full rounded-md border border-white/20 bg-white px-4 text-[14px] text-[#333] outline-none placeholder:text-[#8b8b8b]"
+          />
 
-                  <div className="flex h-[40px] items-center overflow-hidden rounded-md bg-white px-3">
-                    <input
-                      id="resume"
-                      type="file"
-                      name="resume"
-                      onChange={handleFileChange}
-                      accept=".pdf,.doc,.docx"
-                      className="w-full text-[12px] text-[#333] file:mr-3 file:rounded-sm file:border-0 file:bg-[#efefef] file:px-3 file:py-1 file:text-[11px] file:text-[#333]"
-                    />
-                  </div>
+          <input
+            type="text"
+            name="contact_no"
+            value={formData.contact_no}
+            onChange={handleChange}
+            placeholder="Phone Number"
+            className="h-[48px] w-full rounded-md border border-white/20 bg-white px-4 text-[14px] text-[#333] outline-none placeholder:text-[#8b8b8b]"
+          />
 
-                  <div className="flex h-[40px] overflow-hidden rounded-md bg-white">
-                    <div className="flex flex-1 items-center justify-center text-[14px] font-bold tracking-[0.25em] text-[#a20d69]">
-                      {captchaCode}
-                    </div>
+          {/* Applied For */}
+      
+<div className="relative w-full">
+  <select
+    className="h-[48px] w-full appearance-none rounded-md border border-white/20 bg-white px-4 pr-12 text-[14px] text-[#333] outline-none"
+  >
+    <option value="">Applied for</option>
 
-                    <button
-                      type="button"
-                      onClick={generateCaptcha}
-                      className="flex w-[38px] items-center justify-center text-[#a20d69]"
-                      aria-label="Refresh captcha"
-                    >
-                      <RotateCcw size={15} />
-                    </button>
-                  </div>
+    {careers.map((career) => (
+      <option key={career.id} value={career.id}>
+        {career.title}
+      </option>
+    ))}
+  </select>
 
-                  <input
-                    type="text"
-                    name="captcha"
-                    value={formData.captcha}
-                    onChange={handleChange}
-                    placeholder="Enter Captcha"
-                    className="h-[40px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#858585]"
-                  />
-                </div>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#666]"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+  >
+    <path
+      fillRule="evenodd"
+      d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z"
+      clipRule="evenodd"
+    />
+  </svg>
+</div>
 
-                <button
-                  type="submit"
-                  disabled={submitLoading}
-                  className="mt-3 h-[42px] w-full rounded-full border border-white/30 bg-white/25 text-[14px] font-semibold text-white transition hover:bg-white/35"
-                >
-                  {submitLoading ? "Submitting..." : "Submit"}
-                </button>
-              </form>
-            </div>
 
-            <div className="hidden md:flex items-center justify-center">
-              <img
-                src="/assets/career/apply-people.png"
-                alt="Ready to Build Brands"
-                className="w-[600px] object-contain"
-              />
-            </div>
+          {/* Resume */}
+          <div className="flex h-[48px] items-center overflow-hidden rounded-md border border-white/20 bg-white px-3">
+            <input
+              id="resume"
+              type="file"
+              name="resume"
+              onChange={handleFileChange}
+              accept=".pdf,.doc,.docx"
+              className="w-full text-[12px] text-[#555] file:mr-3 file:rounded file:border-0 file:bg-[#ececec] file:px-3 file:py-1.5 file:text-[12px]"
+            />
           </div>
+
+          {/* Captcha */}
+          <div className="flex h-[48px] overflow-hidden rounded-md border border-white/20 bg-white">
+            <div className="flex flex-1 items-center justify-center text-[15px] font-bold tracking-[0.25em] text-[#A61D67]">
+              {captchaCode}
+            </div>
+
+            <button
+              type="button"
+              onClick={generateCaptcha}
+              className="flex w-[46px] items-center justify-center text-[#A61D67]"
+            >
+              <RotateCcw size={18} />
+            </button>
+          </div>
+
+          <input
+            type="text"
+            name="captcha"
+            value={formData.captcha}
+            onChange={handleChange}
+            placeholder="Enter Captcha"
+            className="h-[48px] w-full rounded-md border border-white/20 bg-white px-4 text-[14px] text-[#333] outline-none placeholder:text-[#8b8b8b]"
+          />
+
         </div>
+
+        <button
+          type="submit"
+          disabled={submitLoading}
+          className="mt-5 h-[52px] w-full rounded-full border border-white/40 bg-white/15 text-[16px] font-semibold text-white backdrop-blur-sm transition-all duration-300 hover:bg-white/25"
+        >
+          {submitLoading ? "Submitting..." : "Submit"}
+        </button>
+      </form>
+    </div>
+
+    {/* Right Image */}
+    <div className=" md:col-span-5 ">
+      <img
+        src="/assets/career/apply-people.png"
+        alt="Ready to Build Brands"
+        className=" object-contain"
+      />
+    </div>
+
+  </div>
+</div>
+
+
       </section>
+    <AnimatePresence>
+  {galleryOpen && (
+    <motion.div
+      className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={closeGallery}
+    >
+      {/* Close Button */}
+      <button
+        onClick={closeGallery}
+        className="absolute right-8 top-8 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-primary"
+      >
+        <X size={22} />
+      </button>
+
+      {/* Left Arrow */}
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          handlePrevImage();
+        }}
+        className="absolute left-8 top-1/2 z-30 -translate-y-1/2 rounded-full bg-white/90 p-3 shadow-lg transition hover:bg-white"
+      >
+        <ChevronLeft size={30} className="text-[#A61D67]" />
+      </button>
+
+      {/* Image */}
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={careerImages[activeImageIndex]}
+          src={careerImages[activeImageIndex]}
+          alt=""
+          className="max-h-[90vh] max-w-[90vw] object-contain"
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -40 }}
+          transition={{ duration: 0.3 }}
+          onClick={(e) => e.stopPropagation()}
+        />
+      </AnimatePresence>
+
+      {/* Right Arrow */}
+      <button
+        onClick={(e) => {
+          e.stopPropagation();
+          handleNextImage();
+        }}
+        className="absolute right-8 top-1/2 z-30 -translate-y-1/2 rounded-full bg-white/90 p-3 shadow-lg transition hover:bg-white"
+      >
+        <ChevronRight size={30} className="text-[#A61D67]" />
+      </button>
+    </motion.div>
+  )}
+</AnimatePresence>
     </>
   );
 }
