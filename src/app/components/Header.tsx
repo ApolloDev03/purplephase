@@ -89,22 +89,13 @@ export default function Header() {
 
     return (
         <>
-<<<<<<< HEAD
             <div className="sticky top-0 z-99 w-full  bg-white font-sans backdrop-blur-md">
                 <div className="mx-auto flex w-full items-center justify-between px-4 py-4 sm:px-6 lg:px-20 2xl:px-32">
-=======
-            <div className="sticky top-0 z-99999 w-full bg-white font-sans backdrop-blur-md">
-                <div className="mx-auto flex w-full items-center justify-between px-4 py-4 sm:px-6 lg:px-16">
->>>>>>> origin/main
                     <a href="/" className="flex items-center gap-3">
                         <img
                             src={logo.src}
                             alt="Purple Phase"
-<<<<<<< HEAD
                             className="w-[198px] h-[95px] object-contain "
-=======
-                            className="h-16 w-auto object-contain sm:h-24 2xl:h-28"
->>>>>>> origin/main
                         />
                     </a>
 
@@ -369,17 +360,10 @@ function ContactPopup({
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={onClose}
-<<<<<<< HEAD
                         className="fixed inset-0 z-[999] bg-black/60 backdrop-blur-sm"
                     />
 
                     <div className="fixed inset-0 z-9999 flex items-center justify-center overflow-hidden px-4 py-6">
-=======
-                        className="fixed inset-0 z-[90] bg-black/60 backdrop-blur-sm"
-                    />
-
-                    <div className="fixed inset-0 z-[100] flex items-center justify-center overflow-hidden px-4 py-6">
->>>>>>> origin/main
                         <motion.div
                             initial={{ opacity: 0, scale: 0.92, y: 30 }}
                             animate={{ opacity: 1, scale: 1, y: 0 }}
