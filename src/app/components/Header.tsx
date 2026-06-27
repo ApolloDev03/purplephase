@@ -89,13 +89,13 @@ export default function Header() {
 
     return (
         <>
-            <div className="sticky top-0 z-99 w-full bg-white font-sans backdrop-blur-md">
-                <div className="mx-auto flex w-full items-center justify-between px-4 py-4 sm:px-6 lg:px-16">
+            <div className="sticky top-0 z-99 w-full  bg-white font-sans backdrop-blur-md">
+                <div className="mx-auto flex w-full items-center justify-between px-4 py-4 sm:px-6 lg:px-20 2xl:px-32">
                     <a href="/" className="flex items-center gap-3">
                         <img
                             src={logo.src}
                             alt="Purple Phase"
-                            className="h-16 w-auto object-contain sm:h-24 2xl:h-28"
+                            className="w-[198px] h-[95px] object-contain "
                         />
                     </a>
 

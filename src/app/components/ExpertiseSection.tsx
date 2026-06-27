@@ -9,7 +9,8 @@ type ServiceItem = {
   image: string | null;
 };
 
-const ITEM_HEIGHT = 58;
+const ITEM_HEIGHT = 74;
+const ITEM_GAP = 5;
 const VISIBLE_OFFSETS = [-2, -1, 0, 1, 2];
 
 export default function ExpertiseSection() {
@@ -96,7 +97,6 @@ export default function ExpertiseSection() {
     >;
   }, [activeIndex, expertiseData]);
 
-  const activeItem = expertiseData[activeIndex];
 return (
   <section
     ref={sectionRef}
@@ -107,83 +107,87 @@ return (
   >
     <div
       ref={stickyRef}
-      className="sticky top-0 flex h-screen items-center overflow-hidden bg-white"
+      className="sticky top-0 flex pt-20 pb-16 items-center overflow-hidden bg-white"
     >
-      <div
-        className="
-          mx-auto
-          w-full
-          max-w-[1700px]
-          grid
-          grid-cols-1
-          lg:grid-cols-[45%_55%]
-          items-center
-          gap-2
-          lg:gap-4
-          px-6
-          md:px-8
-          xl:px-10
-        "
-      >
+    <div
+  className="
+    mx-auto
+    w-full
+    max-w-full
+    grid
+    grid-cols-1
+    lg:grid-cols-[55%_45%]
+    items-center
+    gap-10
+    px-8
+    md:px-16
+    xl:px-24
+    2xl:px-32
+  "
+>
         {/* Left Content */}
-        <div className="flex w-full flex-col justify-center px-6 ">
-          <motion.h2
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7 }}
-            className="mb-6 text-[34px] sm:text-[42px] md:text-[48px] lg:text-[58px] font-semibold leading-none text-primary"
+        <div className="flex w-full flex-col justify-center ">
+          <h2
+           
+           className="
+mb-10
+leading-none
+text-primary
+"
           >
             Expertise
-          </motion.h2>
+          </h2>
 
-          <div className="relative w-full max-w-[720px] px-10 overflow-hidden">
-            <div
-              className="relative"
-              style={{
-                height: `${ITEM_HEIGHT * VISIBLE_OFFSETS.length}px`,
-              }}
-            >
+         <div className="relative w-full max-w-[760px] overflow-hidden">
+            
+           <div
+  className="relative"
+  style={{
+    height: `${(ITEM_HEIGHT + ITEM_GAP) * VISIBLE_OFFSETS.length}px`,
+  }}
+>
               <AnimatePresence initial={false}>
                 {visibleItems.map(({ id, service_name, offset, index }) => {
                   const isActive = offset === 0;
                   const distance = Math.abs(offset);
 
                   return (
-                    <motion.button
-                      key={id}
-                      type="button"
-                      onClick={() => setActiveIndex(index)}
-                      initial={false}
-                      animate={{
-                        y: offset * ITEM_HEIGHT + ITEM_HEIGHT * 2,
-                        opacity:
-                          distance === 0
-                            ? 1
-                            : distance === 1
-                            ? 0.45
-                            : 0.12,
-                      }}
-                      transition={{
-                        duration: 0.35,
-                        ease: "easeOut",
-                      }}
-                      style={{
-                        height: ITEM_HEIGHT,
-                      }}
-                      className="absolute left-0 top-0 flex w-full items-center"
-                    >
-                      <motion.span
-                        layout
-                        className={`inline-flex items-center text-center justify-center rounded-full uppercase tracking-[0.08em] transition-all duration-300 whitespace-nowrap ${
-                          isActive
-                            ? "h-[56px] px-4 bg-gradient-to-r from-[#C22C86] to-[#760052] text-white text-[22px] font-semibold shadow-lg"
-                            : "text-[#D2D2D2] text-[20px] font-medium px-4"
-                        }`}
-                      >
-                        {service_name}
-                      </motion.span>
-                    </motion.button>
+                   <motion.div
+  key={id}
+ 
+  onClick={() => setActiveIndex(index)}
+  initial={false}
+  animate={{
+    y:
+      offset * (ITEM_HEIGHT + ITEM_GAP) +
+      (ITEM_HEIGHT + ITEM_GAP) * 2,
+    opacity:
+      distance === 0
+        ? 1
+        : distance === 1
+        ? 0.45
+        : 0.12,
+  }}
+  transition={{
+    duration: 0.35,
+    ease: "easeOut",
+  }}
+  style={{
+    height: ITEM_HEIGHT + ITEM_GAP,
+  }}
+  className="absolute left-0 top-0 flex w-full items-center justify-center"
+>
+  <motion.span
+    layout
+    className={`inline-flex h-[74px] min-w-[720px] items-center justify-center rounded-full uppercase tracking-[0.08em] whitespace-nowrap transition-all duration-300 ${
+      isActive
+        ? "bg-gradient-to-r from-[#C22C86] to-[#760052] text-white text-[26px] lg:text-[28px] 2xl:text-[32px] font-semibold shadow-lg"
+        : "text-[#CFCFCF] text-[26px] lg:text-[28px] 2xl:text-[32px] font-semibold"
+    }`}
+  >
+    {service_name}
+  </motion.span>
+</motion.div>
                   );
                 })}
               </AnimatePresence>
@@ -200,19 +204,18 @@ return (
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
-          className="relative flex h-full items-center justify-start"
+          className="relative flex h-full items-center justify-end"
         >
           <img
-            src="/assets/Homepage banner/Expertisegif.gif"
+            src="/assets/Homepage banner/Expertisegif1.gif"
             alt="Expertise Animation"
-            className="
-              w-full
-              max-w-[950px]
-                            xl:max-w-[1100px]
-              2xl:max-w-[1200px]
-              h-auto
-              object-contain
-            "
+         className="
+w-full
+max-w-[300px]
+2xl:max-w-[350px]
+h-auto
+object-contain
+"
           />
         </motion.div>
       </div>

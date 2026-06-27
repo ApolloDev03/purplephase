@@ -236,7 +236,7 @@ export default function ContactPage() {
         {/* CONTACT DETAILS */}
         <div className="bg-[#f4f4f4]">
           <div className="mx-auto max-w-[1440px] px-6 py-14 md:px-20 lg:px-[26px]">
-            <div className="grid grid-cols-1 gap-x-20 gap-y-8 md:grid-cols-[330px_330px]">
+            <div className="grid grid-cols-1 gap-x-20 gap-y-8 md:grid-cols-3">
               <div className="flex items-start gap-4">
                 <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#a20d69] text-[#a20d69]">
                   <Phone size={18} />

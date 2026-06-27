@@ -42,12 +42,12 @@ const CounterItem = ({ value, label }: CounterItemProps) => {
 
   return (
     <div className="flex flex-col items-center justify-between text-center">
-      <h3 className="text-white text-[30px] sm:text-[38px] md:text-[54px] lg:text-[85px] font-semibold leading-none">
+      <h3 className="text-white text-[30px] sm:text-[38px] md:text-[54px] lg:text-[75px] 2xl:text-[100px] font-semibold leading-none">
         {displayValue}
         {suffix}
       </h3>
 
-      <p className="mt-2 text-white text-[13px] sm:text-[15px] md:text-[20px] font-normal leading-none">
+      <p className="mt-2 text-white text-[13px] sm:text-[15px] md:text-[20px] 2xl:text-[29px] font-normal leading-none">
         {label}
       </p>
     </div>
@@ -104,23 +104,11 @@ export default function AchievementSection() {
   const currentTestimonial = testimonials[testIndex];
 
   return (
-    <section className="relative overflow-hidden py-14 md:py-16 lg:py-20 font-sans bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]">
-      <div className="max-w-full mx-auto px-4 sm:px-6  lg:px-16">
-        {/* Counter Box */}
-        {/* <div className="group relative mb-14 overflow-hidden rounded-[28px] md:rounded-full border border-white/25 bg-white/10 backdrop-blur-xl shadow-[0_8px_32px_rgba(0,0,0,0.18)] transition-all duration-500 ease-out hover:-translate-y-1 hover:border-white/40 hover:bg-white/15 hover:shadow-[0_12px_40px_rgba(255,255,255,0.12)] md:mb-16 lg:mb-20">
-          <div className="gradient-spin absolute inset-[-150%] opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-          <div className="absolute inset-0  bg-gradient-to-b from-white/20 via-transparent to-transparent group-hover:from-white/30 transition-all duration-500" />
-          <div className="relative z-10 px-4 py-6 sm:px-6 md:px-12 md:py-10 lg:px-20">
-            <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-10">
-              <CounterItem value="15+" label="Successful Years" />
-              <CounterItem value="20+" label="Industries Served" />
-              <CounterItem value="500+" label="Satisfied Clients" />
-              <CounterItem value="3000+" label="Completed Projects" />
-            </div>
-          </div>
-        </div> */}
+    <section className="relative overflow-hidden py-16 font-sans bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]">
+      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-20 2xl:px-32">
+      
 
-   <div className="counter-box group mb-14 md:mb-16 lg:mb-20">
+   <div className="counter-box group mb-14 md:mb-16 lg:mb-20 bg-[#D9D9D933] border-2 border-white">
   <div className="counter-content">
     <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-10">
       <CounterItem value="15+" label="Successful Years" />
@@ -131,7 +119,7 @@ export default function AchievementSection() {
   </div>
 </div>
         {/* Title */}
-        <h2 className="text-white text-[28px] sm:text-[34px] md:text-[42px] font-semibold mb-8 md:mb-11 tracking-wide">
+        <h2 className="text-white  mb-8 md:mb-11 tracking-wide">
           Pat on the Back
         </h2>
 
