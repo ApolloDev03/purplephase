@@ -5,7 +5,9 @@ import axios from "axios";
 import logo from "../assets/coffee cups.png";
 import { toast } from "react-toastify";
 import { apiUrl } from "../config";
-
+import {
+  motion
+} from "framer-motion";
 export function ContactSection() {
   const [formData, setFormData] = useState({
     full_name: "",
@@ -89,7 +91,7 @@ export function ContactSection() {
             Let’s catch up over a cup of coffee !
           </span>
 
-        <div className="grid grid-cols-1 items-center mt-4foote lg:grid-cols-12">
+        <div className="grid grid-cols-1 items-center mt-4 foote lg:grid-cols-12">
           {/* Form */}
           <div className="lg:col-span-7">
             <form
@@ -166,13 +168,13 @@ export function ContactSection() {
   />
 
   {/* Button */}
-  <button
+  <motion.button
     type="submit"
     disabled={loading}
-    className="contact-gradient-btn h-[44px] w-full rounded-full font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
+    className="motion-shine !text-[18px] contact-gradient-btn h-[44px] w-full rounded-full font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
   >
     {loading ? "Submitting..." : "Let's Connect"}
-  </button>
+  </motion.button>
 </div>
             </form>
           </div>
@@ -190,40 +192,7 @@ export function ContactSection() {
         </div>
       </div>
 
-      <style jsx global>{`
-        .contact-gradient-btn {
-          position: relative;
-          overflow: hidden;
-          background: rgba(255, 255, 255, 0.14);
-          box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
-        }
-
-        .contact-gradient-btn::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          border-radius: 9999px;
-          padding: 1px;
-          background: linear-gradient(
-            90deg,
-            rgba(255, 255, 255, 0.75) 0%,
-            rgba(255, 255, 255, 0.75) 25%,
-            rgba(255, 255, 255, 0) 50%,
-            rgba(255, 255, 255, 0.75) 75%,
-            rgba(255, 255, 255, 0.75) 100%
-          );
-          pointer-events: none;
-
-          -webkit-mask: linear-gradient(#fff 0 0) content-box,
-            linear-gradient(#fff 0 0);
-          -webkit-mask-composite: xor;
-          mask-composite: exclude;
-        }
-
-        .contact-gradient-btn:hover {
-          background: rgba(255, 255, 255, 0.22);
-        }
-      `}</style>
+      
     </section>
   );
 }

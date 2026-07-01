@@ -12,6 +12,8 @@ import axios from "axios";
 import { apiUrl } from "../config";
 import Link from "next/link";
 import { MoveUpRight } from "lucide-react";
+import { HiArrowUpRight } from "react-icons/hi2";
+import { useRouter } from "next/navigation";
 
 type SectionImage = {
   id: number;
@@ -55,6 +57,7 @@ type CaseStudyResponse = {
 
 export default function BrandPage() {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const router=useRouter();
 
   const [brandStories, setBrandStories] = useState<CaseStudyItem[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -153,14 +156,24 @@ text-primary">
             </div>
           )}
         </div>
-      <div className="absolute -bottom-16 left-0  z-[999]">
-      <Link
-        href="/CaseStudies"
-        className="inline-flex items-center gap-2 rounded-full bg-[#A62666] px-6 py-3 font-medium text-white hover:bg-[#8d2157]"
-      >
-        View All
-        <MoveUpRight className="h-5 w-5" />
-      </Link>
+      <div className="absolute -bottom-16 left-0 z-50">
+           <motion.div
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                onClick={()=> router.push("/CaseStudies")}
+                                transition={{ duration: 0.5, delay: 0.45 }}
+                                className="mt-9 flex justify-center lg:justify-start"
+                            >
+                                <button className="motion-shine group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+                                   View All
+        
+                                    <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                                        <HiArrowUpRight className="h-5 w-5" />
+                                    </span>
+                                </button>
+                            </motion.div>
+   
     </div>
       </section>
 

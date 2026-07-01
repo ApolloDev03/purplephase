@@ -5,8 +5,8 @@ import axios from "axios";
 import { Phone, Mail, Send, RotateCcw, MapPin } from "lucide-react";
 import { toast } from "react-toastify";
 import { apiUrl } from "../config";
-import Breadcrumb from "../components/breadcrumb";
 import { useRouter } from "next/navigation";
+import { motion } from "framer-motion";
 
 type ServiceItem = {
   id: number;
@@ -225,7 +225,7 @@ export default function ContactPage() {
             backgroundImage: "url('/assets/contact/contact-hero.jpg')",
           }}
         >
-          <div className="mx-auto flex h-full max-w-[1440px] items-center px-6 md:px-20 lg:px-[30px]">
+          <div className="mx-auto flex h-full max-w-full items-center px-4 sm:px-6 lg:px-20 2xl:px-32">
             <h1 className="relative z-10 max-w-[560px] font-heading text-[30px] font-bold leading-[1.15] text-[#a20d69] md:text-[40px] lg:text-[46px]">
               Let’s Talk About Your <br />
               Brand’s Next Phase
@@ -233,287 +233,295 @@ export default function ContactPage() {
           </div>
         </div>
 
-        {/* CONTACT DETAILS */}
-        <div className="bg-[#f4f4f4]">
-          <div className="mx-auto max-w-[1440px] px-6 py-14 md:px-20 lg:px-[26px]">
-            <div className="grid grid-cols-1 gap-x-20 gap-y-8 md:grid-cols-3">
-              <div className="flex items-start gap-4">
-                <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#a20d69] text-[#a20d69]">
-                  <Phone size={18} />
-                </div>
-
-                <div>
-                  <h3 className="mb-2 font-heading text-[19px] font-bold uppercase tracking-wide text-[#ff7a00]">
-                    Call Us
-                  </h3>
-
-                  <p className="text-[15px] leading-relaxed text-[#4a4a4a]">
-                    <span className="font-semibold text-[#2f2f2f]">
-                      Mr. Prerak Shah
-                    </span>{" "}
-                    <span className="text-[13px]">- Founder</span>
-                    <br />
-                    <a
-                      href="tel:+919999610505"
-                      className="underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69]"
-                    >
-                      +91 99986 10505
-                    </a>
-                    {"  "}
-                    <a
-                      href="tel:+919327009400"
-                      className="underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69]"
-                    >
-                      +91 93270 09400
-                    </a>
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#a20d69] text-[#a20d69]">
-                  <Mail size={18} />
-                </div>
-
-                <div>
-                  <h3 className="mb-2 font-heading text-[19px] font-bold uppercase tracking-wide text-[#ff7a00]">
-                    Email Id
-                  </h3>
-
-                  <a
-                    href="mailto:info.purplephase@gmail.com"
-                    className="break-all text-[15px] text-[#4a4a4a] underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69]"
-                  >
-                    info.purplephase@gmail.com
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-14 grid grid-cols-1 gap-x-12 gap-y-12 md:grid-cols-3">
-              <div className="flex items-start gap-4">
-                <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#a20d69] text-[#a20d69]">
-                  <MapPin size={18} />
-                </div>
-
-                <div>
-                  <h3 className="mb-2 font-heading text-[19px] font-bold uppercase tracking-wide text-[#ff7a00]">
-                    Ahmedabad
-                  </h3>
-
-                  <p className="text-[15px] leading-[1.55] text-[#4a4a4a]">
-                    1st Floor, 2 Opera Society, Part 2, Beside Aangi Flats, Opp.
-                    Annapurna Hall, New Vikasgruh Road, Paldi, Ahmedabad,
-                    Gujarat - 380007.
-                  </p>
-
-                  <a
-                    href="tel:+919999610505"
-                    className="mt-3 inline-block text-[15px] text-[#4a4a4a] underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69]"
-                  >
-                    +91 99986 10505
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#a20d69] text-[#a20d69]">
-                  <MapPin size={18} />
-                </div>
-
-                <div>
-                  <h3 className="mb-2 font-heading text-[19px] font-bold uppercase tracking-wide text-[#ff7a00]">
-                    Mumbai
-                  </h3>
-
-                  <p className="text-[15px] leading-[1.55] text-[#4a4a4a]">
-                    Lorem Ipsum, Lorem Ipsum, Lorem Ipsum, Lorem Ipsum, Lorem
-                    Ipsum, Lorem Ipsum, Lorem Ipsum, Lorem Ipsum.
-                  </p>
-
-                  <a
-                    href="tel:+919999610505"
-                    className="mt-3 inline-block text-[15px] text-[#4a4a4a] underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69]"
-                  >
-                    +91 99986 10505
-                  </a>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#a20d69] text-[#a20d69]">
-                  <MapPin size={18} />
-                </div>
-
-                <div>
-                  <h3 className="mb-2 font-heading text-[19px] font-bold uppercase tracking-wide text-[#ff7a00]">
-                    U.K.
-                  </h3>
-
-                  <p className="text-[15px] leading-[1.55] text-[#4a4a4a]">
-                    Lorem Ipsum, Lorem Ipsum, Lorem Ipsum, Lorem Ipsum.
-                  </p>
-
-                  <a
-                    href="tel:+919999610505"
-                    className="mt-3 inline-block text-[15px] text-[#4a4a4a] underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69]"
-                  >
-                    +91 99986 10505
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
+    {/* CONTACT DETAILS */}
+<div className="bg-[#f4f4f4]">
+  <div className="mx-auto max-w-full px-6 py-16 sm:px-8 lg:px-20 2xl:px-32">
+    {/* FIRST ROW */}
+    <div className="grid grid-cols-1 gap-x-14 gap-y-12 md:grid-cols-3">
+      <div className="flex items-start gap-4">
+        <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#a20d69] text-[#a20d69]">
+          <Phone size={18} />
         </div>
 
-        {/* FORM */}
-        <div className="bg-[#dedede]">
-          <div className="mx-auto max-w-[1440px] px-6 py-12 md:px-20 lg:px-[26px]">
-            <div className="mb-7">
-              <h2 className="font-heading text-[27px] font-bold leading-tight text-[#a20d69] md:text-[34px]">
-                No decks. No jargon. Just an Honest Conversation.
-              </h2>
+        <div>
+          <h3 className="mb-3 font-heading text-[24px] font-bold uppercase tracking-wide text-[#ff7a00] md:text-[28px]">
+            Call Us
+          </h3>
 
-              <p className="mt-3 text-[19px] font-medium text-[#454545]">
-                Let’s catch up over a cup of coffee !
-              </p>
-            </div>
+          <p className="text-[16px] leading-relaxed text-[#4a4a4a] md:text-[18px]">
+            <span className="font-semibold text-[#2f2f2f]">
+              Mr. Prerak Shah
+            </span>{" "}
+            <span className="text-[13px]">- Founder</span>
+            <br />
+            <a
+              href="tel:+919999610505"
+              className="underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69]"
+            >
+              +91 99986 10505
+            </a>
+            {"  "}
+            <a
+              href="tel:+919327009400"
+              className="underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69]"
+            >
+              +91 93270 09400
+            </a>
+          </p>
+        </div>
+      </div>
 
-            <form onSubmit={handleSubmit}>
-              <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                <input
-                  type="text"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Full Name"
-                  className="h-[38px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
-                />
-
-                <input
-                  type="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="Email"
-                  className="h-[38px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
-                />
-
-                <input
-                  type="text"
-                  name="company"
-                  value={formData.company}
-                  onChange={handleChange}
-                  placeholder="Company Name"
-                  className="h-[38px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
-                />
-
-                <input
-                  type="text"
-                  name="contact_no"
-                  value={formData.contact_no}
-                  onChange={handleChange}
-                  placeholder="Contact Number"
-                  className="h-[38px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
-                />
-              </div>
-
-              <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
-                <input
-                  type="text"
-                  placeholder="Country"
-                  className="h-[38px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
-                />
-
-                <input
-                  type="text"
-                  placeholder="State"
-                  className="h-[38px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
-                />
-
-                <input
-                  type="text"
-                  placeholder="District"
-                  className="h-[38px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
-                />
-              </div>
-
-              <div className="mt-5">
-                <h3 className="mb-4 text-[14px] font-semibold text-[#4c4c4c]">
-                  Interested Services
-                </h3>
-
-                {loadingServices ? (
-                  <p className="text-[14px] text-[#555]">Loading services...</p>
-                ) : services.length > 0 ? (
-                  <div className="grid grid-cols-1 gap-x-10 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
-                    {services.map((service) => (
-                      <label
-                        key={service.id}
-                        className="flex cursor-pointer items-center gap-3 text-[13px] text-[#606060]"
-                      >
-                        <input
-                          type="checkbox"
-                          checked={formData.services.includes(service.id)}
-                          onChange={() => handleServiceChange(service.id)}
-                          className="h-[18px] w-[18px] rounded border border-[#b72a82] bg-transparent accent-[#b72a82]"
-                        />
-
-                        <span>{service.service_name}</span>
-                      </label>
-                    ))}
-                  </div>
-                ) : (
-                  <p className="text-[14px] text-[#555]">No services found.</p>
-                )}
-              </div>
-
-              <textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                rows={5}
-                placeholder="Tell us about your project..."
-                className="mt-5 w-full resize-none rounded-md border-0 bg-white px-4 py-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
-              />
-
-              <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-[190px_240px_1fr]">
-                <div className="flex h-[38px] overflow-hidden rounded-md bg-white">
-                  <div className="flex flex-1 items-center justify-center font-heading text-[15px] font-bold tracking-[0.28em] text-[#555]">
-                    {captchaCode}
-                  </div>
-
-                  <button
-                    type="button"
-                    onClick={generateCaptcha}
-                    className="flex h-full w-[42px] items-center justify-center text-[#a20d69] transition-opacity hover:opacity-80"
-                    aria-label="Refresh captcha"
-                  >
-                    <RotateCcw size={17} />
-                  </button>
-                </div>
-
-                <input
-                  type="text"
-                  name="captcha"
-                  value={formData.captcha}
-                  onChange={handleChange}
-                  placeholder="Enter Captcha"
-                  className="h-[38px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
-                />
-
-                <button
-                  type="submit"
-                  disabled={submitLoading}
-                  className="h-[38px] w-full rounded-full bg-gradient-to-r from-[#c22c86] to-[#780040] text-[13px] font-bold text-white transition-all hover:shadow-md active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60"
-                >
-                  {submitLoading ? "Sending..." : "Let’s Connect"}
-                </button>
-              </div>
-            </form>
-          </div>
+      <div className="flex items-start gap-4">
+        <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#a20d69] text-[#a20d69]">
+          <Mail size={18} />
         </div>
 
+        <div>
+          <h3 className="mb-3 font-heading text-[24px] font-bold uppercase tracking-wide text-[#ff7a00] md:text-[28px]">
+            Email Id
+          </h3>
+
+          <a
+            href="mailto:info.purplephase@gmail.com"
+            className="break-all text-[16px] text-[#4a4a4a] underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69] md:text-[18px]"
+          >
+            info.purplephase@gmail.com
+          </a>
+        </div>
+      </div>
+    </div>
+
+    {/* SECOND ROW */}
+    <div className="mt-16 grid grid-cols-1 gap-x-14 gap-y-12 md:grid-cols-3">
+      <div className="flex items-start gap-4">
+        <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#a20d69] text-[#a20d69]">
+          <MapPin size={18} />
+        </div>
+
+        <div>
+          <h3 className="mb-3 font-heading text-[24px] font-bold uppercase tracking-wide text-[#ff7a00] md:text-[28px]">
+            Ahmedabad
+          </h3>
+
+          <p className="text-[16px] leading-[1.6] text-[#4a4a4a]">
+            1st Floor, 2 Opera Society, Part 2, Beside Aangi Flats, Opp.
+            Annapurna Hall, New Vikasgruh Road, Paldi, Ahmedabad, Gujarat -
+            380007.
+          </p>
+
+          <a
+            href="tel:+919999610505"
+            className="mt-4 inline-block text-[15px] text-[#4a4a4a] underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69]"
+          >
+            +91 99986 10505
+          </a>
+        </div>
+      </div>
+
+      <div className="flex items-start gap-4">
+        <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#a20d69] text-[#a20d69]">
+          <MapPin size={18} />
+        </div>
+
+        <div>
+          <h3 className="mb-3 font-heading text-[24px] font-bold uppercase tracking-wide text-[#ff7a00] md:text-[28px]">
+            Mumbai
+          </h3>
+
+          <p className="text-[16px] leading-[1.6] text-[#4a4a4a]">
+            Lorem Ipsum, Lorem Ipsum, Lorem Ipsum, Lorem Ipsum, Lorem Ipsum,
+            Lorem Ipsum, Lorem Ipsum, Lorem Ipsum.
+          </p>
+
+          <a
+            href="tel:+919999610505"
+            className="mt-4 inline-block text-[15px] text-[#4a4a4a] underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69]"
+          >
+            +91 99986 10505
+          </a>
+        </div>
+      </div>
+
+      <div className="flex items-start gap-4">
+        <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#a20d69] text-[#a20d69]">
+          <MapPin size={18} />
+        </div>
+
+        <div>
+          <h3 className="mb-3 font-heading text-[24px] font-bold uppercase tracking-wide text-[#ff7a00] md:text-[28px]">
+            U.K.
+          </h3>
+
+          <p className="text-[16px] leading-[1.6] text-[#4a4a4a]">
+            Lorem Ipsum, Lorem Ipsum, Lorem Ipsum, Lorem Ipsum.
+          </p>
+
+          <a
+            href="tel:+919999610505"
+            className="mt-4 inline-block text-[15px] text-[#4a4a4a] underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69]"
+          >
+            +91 99986 10505
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{/* FORM */}
+<div className="bg-[#dedede]">
+  <div className="mx-auto max-w-full px-6 py-16 sm:px-8 lg:px-20 2xl:px-32">
+    <div className="mb-8">
+      <h2 className="font-heading text-[28px] font-bold leading-tight text-[#a20d69] md:text-[34px] lg:text-[38px]">
+        No decks. No jargon. Just an Honest Conversation.
+      </h2>
+
+      <p className="mt-3 text-[19px] font-medium text-[#454545] md:text-[22px]">
+        Let’s catch up over a cup of coffee !
+      </p>
+    </div>
+
+    <form onSubmit={handleSubmit}>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <input
+          type="text"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          placeholder="Full Name"
+          className="h-[42px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+        />
+
+        <input
+          type="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          placeholder="Email"
+          className="h-[42px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+        />
+
+        <input
+          type="text"
+          name="company"
+          value={formData.company}
+          onChange={handleChange}
+          placeholder="Company Name"
+          className="h-[42px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+        />
+
+        <input
+          type="text"
+          name="contact_no"
+          value={formData.contact_no}
+          onChange={handleChange}
+          placeholder="Contact Number"
+          className="h-[42px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+        />
+      </div>
+
+      <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
+        <input
+          type="text"
+          placeholder="Country"
+          className="h-[42px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+        />
+
+        <input
+          type="text"
+          placeholder="State"
+          className="h-[42px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+        />
+
+        <input
+          type="text"
+          placeholder="District"
+          className="h-[42px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+        />
+      </div>
+
+      <div className="mt-6">
+        <h3 className="mb-4 text-[15px] font-semibold text-[#4c4c4c]">
+          Interested Services
+        </h3>
+
+        {loadingServices ? (
+          <p className="text-[14px] text-[#555]">Loading services...</p>
+        ) : services.length > 0 ? (
+          <div className="grid grid-cols-1 gap-x-10 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
+            {services.map((service) => (
+              <label
+                key={service.id}
+                className="flex cursor-pointer items-center gap-3 text-[14px] text-[#606060]"
+              >
+                <input
+                  type="checkbox"
+                  checked={formData.services.includes(service.id)}
+                  onChange={() => handleServiceChange(service.id)}
+                  className="h-[18px] w-[18px] rounded border border-[#b72a82] bg-transparent accent-[#b72a82]"
+                />
+
+                <span>{service.service_name}</span>
+              </label>
+            ))}
+          </div>
+        ) : (
+          <p className="text-[14px] text-[#555]">No services found.</p>
+        )}
+      </div>
+
+      <textarea
+        name="message"
+        value={formData.message}
+        onChange={handleChange}
+        rows={5}
+        placeholder="Tell us about your project..."
+        className="mt-6 w-full resize-none rounded-md border-0 bg-white px-4 py-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+      />
+
+      <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-[190px_240px_1fr]">
+        <div className="flex h-[42px] overflow-hidden rounded-md bg-white">
+          <div className="flex flex-1 items-center justify-center font-heading text-[15px] font-bold tracking-[0.28em] text-[#555]">
+            {captchaCode}
+          </div>
+
+          <button
+            type="button"
+            onClick={generateCaptcha}
+            className="flex h-full w-[42px] items-center justify-center text-[#a20d69] transition-opacity hover:opacity-80"
+            aria-label="Refresh captcha"
+          >
+            <RotateCcw size={17} />
+          </button>
+        </div>
+
+        <input
+          type="text"
+          name="captcha"
+          value={formData.captcha}
+          onChange={handleChange}
+          placeholder="Enter Captcha"
+          className="h-[42px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+        />
+<motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.45 }}
+                             
+                        className=""
+                    >
+                        <button   type="submit" disabled={submitLoading} className="motion-shine w-full  rounded-full  bg-gradient-to-r from-[#c22c86] to-[#780040] px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+                           {submitLoading ? "Sending..." : "Let’s Connect"}
+
+                           
+                        </button>
+                    </motion.div>
+     
+      </div>
+    </form>
+  </div>
+</div>
         {/* MAP */}
         <div className="h-[335px] w-full overflow-hidden">
           <iframe

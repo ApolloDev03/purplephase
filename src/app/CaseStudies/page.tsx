@@ -7,6 +7,8 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { apiUrl } from "../config";
+import { HiArrowUpRight } from "react-icons/hi2";
+import { useRouter } from "next/navigation";
 
 type SectionImage = {
   id: number;
@@ -46,6 +48,7 @@ export default function CaseStudyPage() {
   const [caseStudies, setCaseStudies] = useState<CaseStudyItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
+  const router=useRouter();
 
   const makeSlug = (text: string) => {
     return text
@@ -92,12 +95,12 @@ export default function CaseStudyPage() {
       {/* <Breadcrumb /> */}
 
       <main className="bg-[#eeeeee] font-body text-[#333333]">
-        <section className="mx-auto max-w-[1440px] px-6 py-10 md:px-20 lg:px-[25px]">
+        <section className="mx-auto max-w-full px-4 py-16  sm:px-6 lg:px-20 2xl:px-32">
           {/* Page Title */}
           <div className="mb-7">
-            <h1 className="font-heading text-[20px] font-bold text-[#a20d69] md:text-[26px]">
+            <h2 className="text-[#a20d69] ">
               Story Behind Brand Building
-            </h1>
+            </h2>
           </div>
 
           {/* Loading */}
@@ -162,14 +165,23 @@ export default function CaseStudyPage() {
           {/* View More */}
           {!loading && !error && caseStudies.length > 0 && (
             <div className="mt-8 flex justify-center">
-              <motion.button
-                whileHover={{ scale: 1.03 }}
-                whileTap={{ scale: 0.97 }}
-                className="inline-flex w-auto min-w-[120px] items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#a20d69] px-6 py-3 text-[12px] font-bold leading-none text-white transition hover:bg-[#7b0043]"
-              >
-                <span className="leading-none">View More</span>
-                <ArrowUpRight size={14} className="shrink-0" />
-              </motion.button>
+                <motion.div
+                                      initial={{ opacity: 0, y: 20 }}
+                                      whileInView={{ opacity: 1, y: 0 }}
+                                      viewport={{ once: true }}
+                                      transition={{ duration: 0.5, delay: 0.45 }}
+                                      // onClick={()=>router.push("/about-us")}
+                                      className=" flex justify-center lg:justify-start"
+                                  >
+                                      <button className="motion-shine group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+                                           view More
+              
+                                          <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                                              <HiArrowUpRight className="h-5 w-5" />
+                                          </span>
+                                      </button>
+                                  </motion.div>
+          
             </div>
           )}
         </section>
@@ -177,17 +189,26 @@ export default function CaseStudyPage() {
         {/* CTA Section */}
         <section className="bg-gradient-to-r from-[#bf2f86] to-[#730041]">
           <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-center px-6 py-9 text-center md:px-20 lg:px-[115px]">
-            <p className="font-bold uppercase tracking-wide text-white text-3xl md:text-5xl lg:text-3xl">
+            <h3 className="font-bold uppercase tracking-wide text-white text-3xl md:text-5xl lg:text-3xl">
               Want to scale your brand ?
-            </p>
-
-            <Link
-              href="/contact"
-              className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#720048] px-7 py-3 text-[12px] font-bold text-white transition hover:bg-[#720048]"
-            >
-              Get A Quote
-              <ArrowUpRight size={14} />
-            </Link>
+            </h3>
+   <motion.div
+                                      initial={{ opacity: 0, y: 20 }}
+                                      whileInView={{ opacity: 1, y: 0 }}
+                                      viewport={{ once: true }}
+                                      transition={{ duration: 0.5, delay: 0.45 }}
+                                      onClick={()=>router.push("/contact")}
+                                      className="mt-5 flex justify-center lg:justify-start"
+                                  >
+                                      <button className="motion-shine group inline-flex items-center gap-3 rounded-full bg-[#720048] px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+                                           Get A Quote
+              
+                                          <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                                              <HiArrowUpRight className="h-5 w-5" />
+                                          </span>
+                                      </button>
+                                  </motion.div>
+         
           </div>
         </section>
       </main>

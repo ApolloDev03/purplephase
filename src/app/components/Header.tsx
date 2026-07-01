@@ -101,9 +101,9 @@ export default function Header() {
 
                     <div className="flex items-center gap-3">
                         <button
-                            type="button"
-                            onClick={() => setIsSidebarOpen(true)}
-                            className="flex h-14 w-14 items-center justify-center rounded-full transition-all duration-300 lg:h-16 lg:w-16"
+                           type="button"
+                            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+                            className="flex cursor-pointer h-14 w-14 items-center justify-center rounded-full transition-all duration-300 lg:h-16 lg:w-16"
                         >
                             <IoMenuOutline className="text-4xl text-gray-800 lg:text-5xl" />
                         </button>
@@ -111,7 +111,7 @@ export default function Header() {
                         <button
                             type="button"
                             onClick={handleContactPopupOpen}
-                            className="group flex h-14 w-14 items-center justify-center rounded-full transition-all duration-300 lg:h-16 lg:w-16"
+                            className="group cursor-pointer flex h-14 w-14 items-center justify-center rounded-full transition-all duration-300 lg:h-16 lg:w-16"
                         >
                             <BsArrowUpRightCircleFill className="text-4xl text-primary transition-transform duration-300 group-hover:rotate-45 lg:text-5xl" />
                         </button>

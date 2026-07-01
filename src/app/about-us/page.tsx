@@ -7,6 +7,8 @@ import { ContactSection } from "../components/ContactSection";
 import { AnimatePresence, motion } from "framer-motion";
 import axios from "axios";
 import { apiUrl } from "../config";
+import { HiArrowUpRight } from "react-icons/hi2";
+import { useRouter } from "next/navigation";
 
 export default function AboutPage() {
   interface Member {
@@ -21,7 +23,7 @@ export default function AboutPage() {
 
   const [members, setMembers] = useState<Member[]>([]);
   const [current, setCurrent] = useState(0);
-  const [hovered, setHovered] = useState<number | null>(null);
+  const router =useRouter();
 
   const insights = [
     {
@@ -110,7 +112,7 @@ export default function AboutPage() {
     <>
       {/* ================= HERO ================= */}
 
-      <section className="relative h-[420px] sm:h-[500px] lg:h-[550px] overflow-hidden bg-[#dedede]">
+      <section className="relative h-[420px] sm:h-[500px] lg:h-[550px] 2xl:h-[720px] overflow-hidden bg-[#dedede]">
         {/* GIF */}
         <div className="absolute right-0 top-0 h-full w-[100%]">
           <img
@@ -123,7 +125,7 @@ export default function AboutPage() {
         {/* Content */}
         <div className="relative z-10 flex h-full items-center">
           <div className="px-5 sm:px-8 lg:ml-[90px]">
-            <div className="h-[250px] overflow-hidden">
+            <div className="h-[300px] overflow-hidden">
               <motion.div
                 animate={{
                   y: -(index * 56),
@@ -138,27 +140,46 @@ export default function AboutPage() {
                     (i - index + items.length) % items.length === 2;
 
                   return (
-                    <h3
+                    <h1
                       key={i}
-                      className={`h-[44px] sm:h-[56px] text-[26px] sm:text-[32px] lg:text-[38px] 2xl:text-[64px] font-bold leading-[1.08]
+                      className={`h-[44px] sm:h-[56px] text-[26px] sm:text-[32px] lg:text-[38px]  font-bold leading-[1.09]
                 transition-all duration-500
 
                 ${center
-                          ? "text-[#9C1367] opacity-100"
-                          : "text-white opacity-20"
+                          ? "text-[#9C1367] opacity-100 2xl:text-[60px]"
+                          : "text-white opacity-20 2xl:text-[64px]"
                         }
                 `}
                     >
                       {text}
-                    </h3>
+                    </h1>
                   );
                 })}
               </motion.div>
             </div>
 
-            <button className=" rounded-full bg-[#9C1367] px-3 2xl:px-4 py-2 text-lg 2xl:text-[24px] font-semibold text-white">
-              Meet The Team ↗
-            </button>
+          
+       <motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.5, delay: 0.45 }}
+  onClick={() => {
+    document.getElementById("team")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }}
+  className="flex justify-center lg:justify-start"
+>
+  <button className="motion-shine group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+    Meet The Team
+
+    <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+      <HiArrowUpRight className="h-5 w-5" />
+    </span>
+  </button>
+</motion.div>
           </div>
         </div>
       </section>
@@ -167,7 +188,7 @@ export default function AboutPage() {
 
       {/* ================= PURPLE POTENTIAL ================= */}
 
-      <section className="bg-white py-16 mx-auto max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
+      <section className="bg-white py-10 mx-auto max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
        
           <div className="grid lg:grid-cols-[40%_60%] items-center gap-10 ">
 
@@ -184,7 +205,7 @@ export default function AboutPage() {
 
             {/* Content */}
             <div className="">
-              <h2 className="mb-6   uppercase  text-[#9c1367]">
+              <h2 className="mb-6 uppercase  text-[#9c1367]">
                 Unlock Your Brand&apos;s
                 <br />
                 Greatest Potential
@@ -196,10 +217,10 @@ export default function AboutPage() {
                 Phase.
               </p>
 
-              <p className="text-[18px] sm:text-[22px] 2xl:text-[36px] font-bold uppercase  text-[#f28c00]">
+              <h3 className="text-[18px] sm:text-[22px] 2xl:text-[36px] font-bold uppercase  text-[#f28c00]">
                 We are your branding partner in this journey of transformation from
                 a raw gold brand into gleaming gold brand.
-              </p>
+              </h3>
             </div>
 
           </div>
@@ -241,11 +262,22 @@ export default function AboutPage() {
             <h3 className="pt-4 text-[20px] 2xl:text-[36px] font-bold uppercase text-[#F28C00]">
               WHAT IS YOUR BRAND STORY?
             </h3>
-
-            <button className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#9c1367] px-5 py-2 text-lg font-semibold text-white">
-              Tell Your Story
-              <MoveUpRight className="h-5 w-5" />
-            </button>
+ <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.45 }}
+                        onClick={()=>router.push("/about-us")}
+                        className=" flex justify-center lg:justify-start"
+                    >
+                        <button className="motion-shine group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+                              Tell Your Story
+                            <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                                <HiArrowUpRight className="h-5 w-5" />
+                            </span>
+                        </button>
+                    </motion.div>
+          
           </div>
         </div>
       </section>
@@ -312,10 +344,27 @@ export default function AboutPage() {
             <h3 className="mt-8  uppercase tracking-[0.4px] text-[#F28C00] leading-[1.45]">
               SO FOR US, PRECISION HAS NEVER BEEN ABOUT SKILL, BUT A BASIC INSTINCT.
             </h3>
-<button className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#9c1367] px-5 py-2 text-lg font-semibold text-white">
-              Leverage Legacy
-              <MoveUpRight className="h-5 w-5" />
-            </button>            
+                   <motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.5, delay: 0.45 }}
+  onClick={() => {
+    document.getElementById("team")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }}
+  className="flex justify-center lg:justify-start"
+>
+  <button className="motion-shine mt-5 group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+   Leverage Legacy
+    <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+      <HiArrowUpRight className="h-5 w-5" />
+    </span>
+  </button>
+</motion.div>
+          
           </div>
         </div>
       </section>
@@ -358,11 +407,27 @@ export default function AboutPage() {
                   does is helps our team to sharpen insights, explore possibilities,
                   and move brands with greater speed and precision.
                 </p>
-
-                <button className="inline-flex items-center gap-2 rounded-full bg-[#9C1367] px-6 py-3 text-[18px] font-semibold text-white">
-                  Get AI Edge
-                  <MoveUpRight className="h-5 w-5" />
-                </button>
+                   <motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.5, delay: 0.45 }}
+  onClick={() => {
+    document.getElementById("team")?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }}
+  className="flex justify-center lg:justify-start"
+>
+  <button className="motion-shine mt-5 group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+   Get AI Edge
+    <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+      <HiArrowUpRight className="h-5 w-5" />
+    </span>
+  </button>
+</motion.div>
+              
               </div>
 
             </div>
@@ -437,7 +502,7 @@ export default function AboutPage() {
 
      
 
-        <section className="overflow-hidden bg-white ">
+        <section id="team" className="overflow-hidden bg-white ">
   <div className="max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
     <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
       {/* Left Content */}

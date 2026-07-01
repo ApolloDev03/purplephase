@@ -6,6 +6,9 @@ import axios from "axios";
 import { MoveUpRight } from "lucide-react";
 import Link from "next/link";
 import { apiUrl } from "../config";
+import { motion } from "framer-motion";
+import { HiArrowUpRight } from "react-icons/hi2";
+import { useRouter } from "next/navigation";
 
 type PortfolioImage = {
   id: number;
@@ -36,7 +39,7 @@ const PortfolioSection = () => {
   const [portfolioList, setPortfolioList] = useState<PortfolioItem[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
+const router=useRouter()
   const fetchPortfolioList = async () => {
     try {
       setLoading(true);
@@ -114,9 +117,9 @@ leading-none
   )}
 
   <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent px-5 py-5">
-    <h3 className="text-lg font-medium text-white">
+    <h4 className="text-lg  text-white">
       {item.title}
-    </h3>
+    </h4>
   </div>
 </div>
               );
@@ -126,13 +129,23 @@ leading-none
 
         {/* Filter Navigation Bar */}
         <div className="mt-7 flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
-          <Link
-            href="/Portfolio"
-            className="inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[16px] sm:text-[18px] 2xl:text-[28px] font-bold tracking-wide text-white shadow-sm transition-all duration-300 hover:bg-[#86145e]"
-          >
-            Browse Projects
-            <MoveUpRight className="h-5 w-5" />
-          </Link>
+          <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.5, delay: 0.45 }}
+                        onClick={()=>router.push("/about-us")}
+                        className=" flex justify-center lg:justify-start"
+                    >
+                        <button className="motion-shine group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+                             Browse Projects
+
+                            <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                                <HiArrowUpRight className="h-5 w-5" />
+                            </span>
+                        </button>
+                    </motion.div>
+      
 
           <div className="flex flex-wrap justify-center lg:justify-end items-center gap-y-3 text-primary">  
             {filters.map((filter, index) => (

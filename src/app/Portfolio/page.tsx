@@ -5,6 +5,8 @@ import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { apiUrl } from "../config";
+import Image from "next/image";
+import { HiArrowUpRight } from "react-icons/hi2";
 
 type PortfolioImage = {
   id: number;
@@ -135,8 +137,8 @@ export default function PortfolioSection() {
   return (
     <>
 
-      <section className="w-full bg-[#f3f3f3] px-4 py-16 sm:px-6 lg:px-16">
-        <div className="mx-auto max-w-full">
+      <section className="w-full bg-[#f3f3f3] ">
+        <div className="mx-auto max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
           <div className="mb-10">
             <h2 className="mb-4 text-[34px] font-medium text-[#666666] md:text-[42px]">
               Portfolio
@@ -193,13 +195,48 @@ export default function PortfolioSection() {
                 </p>
               </div>
             )}
+  {!loading && !error && (
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {visibleProjects.map((item) => {
+              const firstImage = item.images?.[0]?.image_url;
 
-            {!loading && !error && visibleProjects.length > 0 && (
+              return (
+                <div
+  key={item.id}
+  onClick={() => openGallery(item)}
+  className="group relative cursor-pointer h-[360px] overflow-hidden rounded-xl bg-white shadow-sm"
+>
+  {firstImage && (
+    <Image
+      src={firstImage}
+      alt={item.title}
+      fill
+      sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
+      className="object-cover transition-transform duration-500 group-hover:scale-105"
+      priority
+    />
+  )}
+  <div className="absolute left-5 top-5 z-10">
+                            <span className="rounded-full bg-white/90 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-primary shadow-sm backdrop-blur">
+                              {item?.service?.service_name || "Portfolio"}
+                            </span>
+                          </div>
+  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent px-5 py-5">
+    <h4 className="text-lg  text-white">
+      {item.title}
+    </h4>
+  </div>
+</div>
+              );
+            })}
+          </div>
+        )}
+            {/* {!loading && !error && visibleProjects.length > 0 && (
               <motion.div
                 layout
                 className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3"
               >
-                <AnimatePresence mode="popLayout">
+               <AnimatePresence mode="popLayout">
                   {visibleProjects.map((project, index) => {
                     const sortedImages = getSortedImages(project);
                     const firstImage = sortedImages?.[0]?.image_url || "";
@@ -237,13 +274,11 @@ export default function PortfolioSection() {
                           </div>
 
                           <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-primary via-primary/65 to-transparent p-6 opacity-0 transition-all duration-500 group-hover:opacity-100">
-                            <p className="mb-2 translate-y-4 text-xs font-semibold uppercase tracking-widest text-white/80 transition-transform duration-500 group-hover:translate-y-0">
-                              {project?.service?.service_name || "Portfolio"}
-                            </p>
+                       
 
-                            <h3 className="translate-y-4 text-xl font-bold leading-tight text-white transition-transform duration-500 group-hover:translate-y-0 sm:text-2xl">
+                            <p className="translate-y-4 text-xl font-bold leading-tight text-white transition-transform duration-500 group-hover:translate-y-0 sm:text-2xl">
                               {project.title}
-                            </h3>
+                            </p>
 
                             {project.description && (
                               <p className="mt-2 line-clamp-2 translate-y-4 text-sm leading-6 text-white/90 transition-transform duration-500 group-hover:translate-y-0">
@@ -257,17 +292,26 @@ export default function PortfolioSection() {
                   })}
                 </AnimatePresence>
               </motion.div>
-            )}
+            )} */}
 
             {!loading && visibleCount < filteredProjects.length && (
-              <div className="mt-12 text-center">
-                <button
-                  onClick={handleViewMore}
-                  className="rounded-md bg-[#A61D67] px-8 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#8d1557]"
-                >
-                  View More
-                </button>
-              </div>
+              <motion.div
+                                                    initial={{ opacity: 0, y: 20 }}
+                                                    whileInView={{ opacity: 1, y: 0 }}
+                                                    viewport={{ once: true }}
+                                                    transition={{ duration: 0.5, delay: 0.45 }}
+                                                     onClick={handleViewMore}
+                                                    className="mt-5 flex justify-center"
+                                                >
+                                                    <button className="motion-shine group inline-flex items-center gap-3 rounded-full bg-[#720048] px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+                                                        View More
+                            
+                                                        <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                                                            <HiArrowUpRight className="h-5 w-5" />
+                                                        </span>
+                                                    </button>
+                                                </motion.div>
+              
             )}
           </div>
         </div>
@@ -290,12 +334,12 @@ export default function PortfolioSection() {
               transition={{ duration: 0.25 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <button
+              <span
                 onClick={closeGallery}
-                className="absolute right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-[#A61D67] text-white shadow-lg transition hover:bg-[#8d1557]"
+                className="absolute cursor-pointer right-4 top-4 z-20 flex h-10 w-10 items-center justify-center rounded-full bg-[#A61D67] text-white shadow-lg transition hover:bg-[#8d1557]"
               >
                 <X size={20} />
-              </button>
+              </span>
 
               <div className="mb-4 pr-12">
                 <p className="text-xs font-semibold uppercase tracking-widest text-[#A61D67]">
@@ -343,26 +387,7 @@ export default function PortfolioSection() {
                 )}
               </div>
 
-              {/* {selectedImages.length > 1 && (
-                <div className="mt-4 flex gap-3 overflow-x-auto pb-1">
-                  {selectedImages.map((img, index) => (
-                    <button
-                      key={img.id}
-                      onClick={() => setActiveImageIndex(index)}
-                      className={`h-16 w-20 flex-shrink-0 overflow-hidden rounded-xl border-2 bg-[#f3f3f3] transition md:h-20 md:w-28 ${activeImageIndex === index
-                        ? "border-[#A61D67]"
-                        : "border-transparent"
-                        }`}
-                    >
-                      <img
-                        src={img.image_url}
-                        alt={`${selectedProject.title} ${index + 1}`}
-                        className="h-full w-full object-contain p-1"
-                      />
-                    </button>
-                  ))}
-                </div>
-              )} */}
+             
             </motion.div>
           </motion.div>
         )}

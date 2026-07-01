@@ -11,15 +11,18 @@ import {
 } from 'react-icons/fa';
 import Image from 'next/image';
 import logo from '../assets/ppc-combined-logo.png';
+import { VscTwitter } from "react-icons/vsc";
+import { FaXTwitter } from 'react-icons/fa6';
 
 const Footer = () => {
     const socialLinks = [
-        { name: 'Facebook', icon: <FaFacebookF />, href: 'https://www.facebook.com/PurplePhaseCommunications/' },
+        { name: 'Behance', icon: <FaBehance />, href: 'https://www.behance.net/purple_phase' },
+        { name: 'Pinterest', icon: <FaPinterestP />, href: 'https://in.pinterest.com/purple_phase_communications' },
         { name: 'Instagram', icon: <FaInstagram />, href: 'https://www.instagram.com/purple_phase_communications/' },
         { name: 'LinkedIn', icon: <FaLinkedinIn />, href: 'https://www.linkedin.com/company/purple-phase-communications' },
+        { name: 'Facebook', icon: <FaFacebookF />, href: 'https://www.facebook.com/PurplePhaseCommunications/' },
+        { name: 'Twitter', icon: <FaXTwitter />, href: 'https://www.facebook.com/PurplePhaseCommunications/' },
         { name: 'Youtube', icon: <FaYoutube />, href: 'https://www.youtube.com/@purplephasecommunications' },
-        { name: 'Behance', icon: <FaBehance />, href: 'https://www.behance.net/purple_phase' },
-        { name: 'Pinterest', icon: <FaPinterestP />, href: 'https://in.pinterest.com/purple_phase_communications' }
     ];
 
     const navLinks = [
@@ -40,7 +43,7 @@ const Footer = () => {
     };
 
     return (
-        <footer className="bg-white py-16 text-[13px] 2xl:text-[20px] font-sans selection:bg-primary/10 px-6  md:px-12 lg:px-20 2xl:px-32">
+        <footer className="bg-white text-[20px] py-16 text-[13px] 2xl:text-[20px] font-sans selection:bg-primary/10 px-6  md:px-12 lg:px-20 2xl:px-32">
             <div className="max-w-full  mx-auto  grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-0">
 
                 {/* Left Side: Branding & Contact (Spans 6 columns) */}
@@ -149,25 +152,32 @@ const Footer = () => {
                     </motion.div>
 
                     {/* Column 3: Social Media (Far Right alignment) */}
-                    <motion.div
-                        {...fadeInUp}
-                        transition={{ delay: 0.2 }}
-                        className="flex flex-col lg:min-w-[150px]"
-                    >
-                        <h4 className=" text-[#626262] mb-2 ">Follow Us</h4>
-                        <ul className="space-y-2">
-                            {socialLinks.map((social) => (
-                                <li key={social.name}>
-                                    <a href={social.href} className="flex items-center gap-4  text-black group transition-all duration-300 hover:translate-x-1">
-                                        <span className="w-4 flex justify-center text-black group-hover:text-primary transition-colors duration-300">
-                                            {social.icon}
-                                        </span>
-                                        <span className="group-hover:text-primary transition-colors">{social.name}</span>
-                                    </a>
-                                </li>
-                            ))}
-                        </ul>
-                    </motion.div>
+<motion.div
+  {...fadeInUp}
+  transition={{ delay: 0.2 }}
+  className="flex flex-col lg:min-w-[150px]"
+>
+  <h4 className="text-[#626262] mb-2 text-[20px]">Follow Us</h4>
+
+  <ul className="space-y-2">
+    {socialLinks.map((social) => (
+      <li key={social.name}>
+        <a
+          href={social.href}
+          className="flex !text-[14px] items-center gap-4 text-black group transition-all duration-300 hover:translate-x-1"
+        >
+          <span className="w-4 flex justify-center !text-[14px] text-black group-hover:text-primary transition-colors duration-300">
+            {social.icon}
+          </span>
+
+          <span className="group-hover:text-primary transition-colors">
+            {social.name}
+          </span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</motion.div>
                 </div>
             </div>
 
@@ -176,16 +186,16 @@ const Footer = () => {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="max-w-full mx-auto pt-10 grid grid-cols-1 gap-10 lg:grid-cols-2 text-[#575757]  "
+                className="max-w-full mx-auto pt-10 grid grid-cols-1 gap-10 lg:grid-cols-12 text-[#575757]  "
             >
-                <div className=" text-center items-center lg:text-left">
+                <div className="col-span-6 text-center items-center lg:text-left">
                     <span className="">
                         Copyright © {new Date().getFullYear()}. All rights reserved Purple Phase Communications
                     </span>
                 </div>
 
 
-                <div className="grid grid-cols-1 sm:grid-cols-2  lg:justify-items-end">
+                <div className="col-span-6 grid grid-cols-1 sm:grid-cols-2  lg:justify-items-end">
                     <div className="flex flex-col lg:min-w-[150px] ">
                         <a href="#" className="hover:text-primary transition-colors ">Terms & Conditions</a>
                     </div>
