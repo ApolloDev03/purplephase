@@ -2,16 +2,13 @@
 
 import { useEffect, useState, ChangeEvent, FormEvent } from "react";
 import axios from "axios";
-import { Phone, Mail, Send, RotateCcw, MapPin } from "lucide-react";
+import { Phone, Mail, Send, RotateCcw, MapPin, Check } from "lucide-react";
 import { toast } from "react-toastify";
 import { apiUrl } from "../config";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
-type ServiceItem = {
-  id: number;
-  service_name: string;
-};
+
 
 type FormDataType = {
   name: string;
@@ -22,11 +19,26 @@ type FormDataType = {
   message: string;
   captcha: string;
 };
+type ExpertiseItem = {
+  id: number;
+  expertise_name: string;
+  short_description: string;
+  image: string;
+  sequence_number: number;
+  show_home_page: number;
+  status: number;
+  meta_title: string;
+  meta_keyword: string;
+  meta_description: string;
+  head: string;
+  body: string;
+  created_at: string;
+};
 
-type ServiceListResponse = {
+type ExpertiseListResponse = {
   success: boolean;
   message: string;
-  data: ServiceItem[];
+  data: ExpertiseItem[];
 };
 
 type ContactResponse = {
@@ -35,8 +47,8 @@ type ContactResponse = {
 };
 
 export default function ContactPage() {
-  const [services, setServices] = useState<ServiceItem[]>([]);
-  const [loadingServices, setLoadingServices] = useState<boolean>(false);
+const [expertiseList, setExpertiseList] = useState<ExpertiseItem[]>([]);
+const [loadingExpertise, setLoadingExpertise] = useState<boolean>(false);
   const [submitLoading, setSubmitLoading] = useState<boolean>(false);
 
   const [captchaCode, setCaptchaCode] = useState<string>("8227");
@@ -52,33 +64,37 @@ export default function ContactPage() {
   });
 
   useEffect(() => {
-    fetchServices();
+   fetchExpertiseList();
     generateCaptcha();
   }, []);
 
   const router = useRouter();
 
-  const fetchServices = async (): Promise<void> => {
-    try {
-      setLoadingServices(true);
+const fetchExpertiseList = async (): Promise<void> => {
+  try {
+    setLoadingExpertise(true);
 
-      const res = await axios.post<ServiceListResponse>(
-        `${apiUrl}/serviceList`,
-        {}
-      );
+    const res = await axios.post<ExpertiseListResponse>(
+      `${apiUrl}/expertiseList`,
+      {}
+    );
 
-      if (res.data?.success) {
-        setServices(res.data.data || []);
-      } else {
-        toast.error(res.data?.message || "Service list not found.");
-      }
-    } catch (error) {
-      console.error("Service list error:", error);
-      toast.error("Failed to load services.");
-    } finally {
-      setLoadingServices(false);
+    if (res.data?.success) {
+      const activeExpertise = (res.data.data || [])
+        .filter((item) => item.status === 1)
+        .sort((a, b) => a.sequence_number - b.sequence_number);
+
+      setExpertiseList(activeExpertise);
+    } else {
+      toast.error(res.data?.message || "Expertise list not found.");
     }
-  };
+  } catch (error) {
+    console.error("Expertise list error:", error);
+    toast.error("Failed to load expertise list.");
+  } finally {
+    setLoadingExpertise(false);
+  }
+};
 
   const generateCaptcha = (): void => {
     const randomCode = Math.floor(1000 + Math.random() * 9000).toString();
@@ -101,18 +117,18 @@ export default function ContactPage() {
     }));
   };
 
-  const handleServiceChange = (serviceId: number): void => {
-    setFormData((prev) => {
-      const alreadySelected = prev.services.includes(serviceId);
+const handleServiceChange = (serviceId: number): void => {
+  setFormData((prev) => {
+    const alreadySelected = prev.services.includes(serviceId);
 
-      return {
-        ...prev,
-        services: alreadySelected
-          ? prev.services.filter((id) => id !== serviceId)
-          : [...prev.services, serviceId],
-      };
-    });
-  };
+    return {
+      ...prev,
+      services: alreadySelected
+        ? prev.services.filter((id) => id !== serviceId)
+        : [...prev.services, serviceId],
+    };
+  });
+};
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
     e.preventDefault();
@@ -188,10 +204,7 @@ export default function ContactPage() {
         });
 
         generateCaptcha();
-
-        setTimeout(() => {
-          router.push("/inquiry-thank-you");
-        }, 1500);
+               router.push("/inquiry-thank-you");       
       } else {
         toast.error(
           res.data?.message || "Something went wrong. Please try again."
@@ -376,9 +389,9 @@ export default function ContactPage() {
         No decks. No jargon. Just an Honest Conversation.
       </h2>
 
-      <p className="mt-3 text-[19px] font-medium text-[#454545] md:text-[22px]">
+      <h1 className="mt-3 text-[28px] xl:text-[32px] 2xl:text-[36px]  text-[#454545]">
         Let’s catch up over a cup of coffee !
-      </p>
+      </h1>
     </div>
 
     <form onSubmit={handleSubmit}>
@@ -440,35 +453,51 @@ export default function ContactPage() {
         />
       </div>
 
-      <div className="mt-6">
-        <h3 className="mb-4 text-[15px] font-semibold text-[#4c4c4c]">
-          Interested Services
-        </h3>
+   <div className="mt-8">
+  <h1 className="mb-7 text-[22px] font-bold text-[#555] md:text-[26px]">
+    Interested Services
+  </h1>
 
-        {loadingServices ? (
-          <p className="text-[14px] text-[#555]">Loading services...</p>
-        ) : services.length > 0 ? (
-          <div className="grid grid-cols-1 gap-x-10 gap-y-4 sm:grid-cols-2 lg:grid-cols-3">
-            {services.map((service) => (
-              <label
-                key={service.id}
-                className="flex cursor-pointer items-center gap-3 text-[14px] text-[#606060]"
-              >
-                <input
-                  type="checkbox"
-                  checked={formData.services.includes(service.id)}
-                  onChange={() => handleServiceChange(service.id)}
-                  className="h-[18px] w-[18px] rounded border border-[#b72a82] bg-transparent accent-[#b72a82]"
-                />
+  {loadingExpertise ? (
+    <p className="text-[16px] text-[#555]">Loading services...</p>
+  ) : expertiseList.length > 0 ? (
+    <div className="grid grid-cols-1 gap-x-20 gap-y-7 md:grid-cols-3">
+      {expertiseList.map((expertise) => {
+        const isSelected = formData.services.includes(expertise.id);
 
-                <span>{service.service_name}</span>
-              </label>
-            ))}
-          </div>
-        ) : (
-          <p className="text-[14px] text-[#555]">No services found.</p>
-        )}
-      </div>
+        return (
+          <label
+            key={expertise.id}
+            className="flex cursor-pointer items-center gap-3 text-[#666]"
+          >
+            <input
+              type="checkbox"
+              checked={isSelected}
+              onChange={() => handleServiceChange(expertise.id)}
+              className="hidden"
+            />
+
+            <span
+              className={`flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-[10px] border-2 transition-all duration-300 ${
+                isSelected
+                  ? "border-[#a20d69] bg-[#a20d69]"
+                  : "border-[#a20d69] bg-transparent"
+              }`}
+            >
+              {isSelected && <Check size={22} className="text-white" />}
+            </span>
+
+            <span className="text-[20px] font-normal leading-[1.3] text-[#666] ">
+              {expertise.expertise_name}
+            </span>
+          </label>
+        );
+      })}
+    </div>
+  ) : (
+    <p className="text-[16px] text-[#555]">No services found.</p>
+  )}
+</div>
 
       <textarea
         name="message"

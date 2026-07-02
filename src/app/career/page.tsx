@@ -30,7 +30,7 @@
 
   type FormDataType = {
     first_name: string;
-    last_name: string;
+     career_id: string;
     email: string;
     contact_no: string;
     qualification: string;
@@ -60,7 +60,7 @@ const correctCaptcha = "8";
   const [activeImageIndex, setActiveImageIndex] = useState(0);
     const [formData, setFormData] = useState<FormDataType>({
       first_name: "",
-      last_name: "",
+    career_id: "",
       email: "",
       contact_no: "",
       qualification: "",
@@ -102,9 +102,12 @@ const correctCaptcha = "8";
 
    
 
-    const handleChange = (e: ChangeEvent<HTMLInputElement>): void => {
+  
+    const handleChange = (
+      e: ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    ): void => {
       const { name, value } = e.target;
-
+    
       setFormData((prev) => ({
         ...prev,
         [name]: value,
@@ -119,7 +122,6 @@ const correctCaptcha = "8";
         resume: file,
       }));
     };
-
     const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
       e.preventDefault();
 
@@ -127,11 +129,10 @@ const correctCaptcha = "8";
         toast.error("Please enter first name.");
         return;
       }
-
-      if (!formData.last_name.trim()) {
-        toast.error("Please enter last name.");
-        return;
-      }
+if (!formData.career_id) {
+  toast.error("Please select applied for.");
+  return;
+}
 
       if (!formData.email.trim()) {
         toast.error("Please enter email.");
@@ -161,14 +162,14 @@ if (captchaAnswer.trim() !== correctCaptcha) {
 
         const payload = new FormData();
         payload.append("first_name", formData.first_name);
-        payload.append("last_name", formData.last_name);
+        payload.append("career_id", formData.career_id);
         payload.append("email", formData.email);
         payload.append("contact_no", formData.contact_no);
         payload.append("qualification", formData.qualification);
         payload.append("resume", formData.resume);
 
         const res = await axios.post<CareerFormResponse>(
-          `${apiUrl}/careerform`,
+          `${apiUrl}/careerFormStore`,
           payload,
           {
             headers: {
@@ -185,7 +186,7 @@ if (captchaAnswer.trim() !== correctCaptcha) {
 
           setFormData({
             first_name: "",
-            last_name: "",
+            career_id: "",
             email: "",
             contact_no: "",
             qualification: "",
@@ -543,32 +544,35 @@ if (captchaAnswer.trim() !== correctCaptcha) {
 
             {/* Applied For */}
         
-  <div className="relative w-full">
-    <select
-      className="h-[48px] w-full appearance-none rounded-md border border-white/20 bg-white px-4 pr-12 text-[14px] text-[#333] outline-none"
-    >
-      <option value="">Applied for</option>
+<div className="relative w-full">
+  <select
+    name="career_id"
+    value={formData.career_id}
+    onChange={handleChange}
+    className="h-[48px] w-full appearance-none rounded-md border border-white/20 bg-white px-4 pr-12 text-[14px] text-[#333] outline-none"
+  >
+    <option value="">Applied for</option>
 
-      {careers.map((career) => (
-        <option key={career.id} value={career.id}>
-          {career.title}
-        </option>
-      ))}
-    </select>
+    {careers.map((career) => (
+      <option key={career.id} value={career.id}>
+        {career.title}
+      </option>
+    ))}
+  </select>
 
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#666]"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-    >
-      <path
-        fillRule="evenodd"
-        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z"
-        clipRule="evenodd"
-      />
-    </svg>
-  </div>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className="pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#666]"
+    viewBox="0 0 20 20"
+    fill="currentColor"
+  >
+    <path
+      fillRule="evenodd"
+      d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z"
+      clipRule="evenodd"
+    />
+  </svg>
+</div>
 
 
             {/* Resume */}
@@ -630,124 +634,7 @@ if (captchaAnswer.trim() !== correctCaptcha) {
           
                 
               </section>
-        {/* <section className="bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]">
-
-    <div className="mx-auto grid max-w-full grid-cols-1 items-center md:grid-cols-12 px-4  sm:px-6 lg:px-20 2xl:px-32">
-
-    
-      <div className="md:col-span-7">
-           <h4 className="mb-3 text-[28px] font-semibold leading-tight tracking-wide text-white md:text-[38px] lg:text-[40px] 2xl:text-[50px]">
-         Ready to Build Brands with Us?
-          </h4>
-
-          <span className=" text-[22px] font-normal leading-tight text-white md:text-[28px] 2xl:text-[36px]">
-           We would love to hear from you.
-          </span>
-
-      
-
-        <form onSubmit={handleSubmit} className="mt-10">
-          <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-
-            <input
-              type="text"
-              name="first_name"
-              value={formData.first_name}
-              onChange={handleChange}
-              placeholder="Full Name"
-              className="h-[48px] w-full rounded-md border border-white/20 bg-white px-4 text-[14px] text-[#333] outline-none placeholder:text-[#8b8b8b]"
-            />
-
-            <input
-              type="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Email"
-              className="h-[48px] w-full rounded-md border border-white/20 bg-white px-4 text-[14px] text-[#333] outline-none placeholder:text-[#8b8b8b]"
-            />
-
-            <input
-              type="text"
-              name="qualification"
-              value={formData.qualification}
-              onChange={handleChange}
-              placeholder="Qualification"
-              className="h-[48px] w-full rounded-md border border-white/20 bg-white px-4 text-[14px] text-[#333] outline-none placeholder:text-[#8b8b8b]"
-            />
-
-            <input
-              type="text"
-              name="contact_no"
-              value={formData.contact_no}
-              onChange={handleChange}
-              placeholder="Phone Number"
-              className="h-[48px] w-full rounded-md border border-white/20 bg-white px-4 text-[14px] text-[#333] outline-none placeholder:text-[#8b8b8b]"
-            />
-
-          
-        
-  <div className="relative w-full">
-    <select
-      className="h-[48px] w-full appearance-none rounded-md border border-white/20 bg-white px-4 pr-12 text-[14px] text-[#333] outline-none"
-    >
-      <option value="">Applied for</option>
-
-      {careers.map((career) => (
-        <option key={career.id} value={career.id}>
-          {career.title}
-        </option>
-      ))}
-    </select>
-
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#666]"
-      viewBox="0 0 20 20"
-      fill="currentColor"
-    >
-      <path
-        fillRule="evenodd"
-        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.24 4.5a.75.75 0 01-1.08 0l-4.24-4.5a.75.75 0 01.02-1.06z"
-        clipRule="evenodd"
-      />
-    </svg>
-  </div>
-
-
            
-            <div className="flex h-[48px] items-center overflow-hidden rounded-md border border-white/20 bg-white px-3">
-              <input
-                id="resume"
-                type="file"
-                name="resume"
-                onChange={handleFileChange}
-                accept=".pdf,.doc,.docx"
-                className="w-full text-[12px] text-[#555] file:mr-3 file:rounded file:border-0 file:bg-[#ececec] file:px-3 file:py-1.5 file:text-[12px]"
-              />
-            </div>
-
-    
- 
-          </div>
-
-              </form>
-      </div>
-
-    
-      <div className=" md:col-span-5 ">
-        <img
-          src="/assets/career/apply-people.png"
-          alt="Ready to Build Brands"
-          className=" object-contain"
-        />
-      </div>
-
-    </div>
-          </section> */}
-
-
-    
       <AnimatePresence>
     {galleryOpen && (
       <motion.div

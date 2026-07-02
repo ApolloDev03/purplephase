@@ -8,6 +8,7 @@ import { apiUrl } from "../config";
 import {
   motion
 } from "framer-motion";
+import { useRouter } from "next/navigation";
 export function ContactSection() {
   const [formData, setFormData] = useState({
     full_name: "",
@@ -16,7 +17,7 @@ export function ContactSection() {
     phone_number: "",
     solution: "",
   });
-
+const router = useRouter();
   const [captchaAnswer, setCaptchaAnswer] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -62,6 +63,8 @@ export function ContactSection() {
         });
 
         setCaptchaAnswer("");
+
+         router.push("/inquiry-thank-you");
       } else {
         toast.error(res.data?.message || "Failed to submit inquiry.");
       }

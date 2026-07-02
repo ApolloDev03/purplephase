@@ -9,6 +9,7 @@ import axios from "axios";
 import { apiUrl } from "../config";
 import { HiArrowUpRight } from "react-icons/hi2";
 import { useRouter } from "next/navigation";
+import ContactPopup from "../components/ContactPopup";
 
 export default function AboutPage() {
   interface Member {
@@ -20,6 +21,11 @@ export default function AboutPage() {
     sequence_no: number;
     created_at: string;
   }
+    const [isContactPopupOpen, setIsContactPopupOpen] = useState(false);
+
+    const handleContactPopupOpen = () => {
+        setIsContactPopupOpen(true);
+    };
 
   const [members, setMembers] = useState<Member[]>([]);
   const [current, setCurrent] = useState(0);
@@ -267,7 +273,7 @@ export default function AboutPage() {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.45 }}
-                        onClick={()=>router.push("/about-us")}
+                        onClick={()=>handleContactPopupOpen()}
                         className=" flex justify-center lg:justify-start"
                     >
                         <button className="motion-shine group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
@@ -349,12 +355,7 @@ export default function AboutPage() {
   whileInView={{ opacity: 1, y: 0 }}
   viewport={{ once: true }}
   transition={{ duration: 0.5, delay: 0.45 }}
-  onClick={() => {
-    document.getElementById("team")?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  }}
+  onClick={()=>handleContactPopupOpen()}
   className="flex justify-center lg:justify-start"
 >
   <button className="motion-shine mt-5 group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
@@ -412,12 +413,7 @@ export default function AboutPage() {
   whileInView={{ opacity: 1, y: 0 }}
   viewport={{ once: true }}
   transition={{ duration: 0.5, delay: 0.45 }}
-  onClick={() => {
-    document.getElementById("team")?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  }}
+ onClick={()=>handleContactPopupOpen()}
   className="flex justify-center lg:justify-start"
 >
   <button className="motion-shine mt-5 group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
@@ -606,6 +602,10 @@ export default function AboutPage() {
       {/* ================= CONTACT ================= */}
 
       <ContactSection />
+      <ContactPopup
+                      isOpen={isContactPopupOpen}
+                      onClose={() => setIsContactPopupOpen(!isContactPopupOpen)}
+                  />
     </>
   );
 }

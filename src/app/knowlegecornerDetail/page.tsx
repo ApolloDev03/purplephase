@@ -17,7 +17,8 @@ import {
   FaYoutube,
 } from "react-icons/fa";
 
-import { FaXTwitter } from "react-icons/fa6";
+import { FaArrowDownLong, FaArrowUpLong, FaXTwitter } from "react-icons/fa6";
+import { HiArrowUpRight } from "react-icons/hi2";
 
 type BlogDetailResponse = {
   message: string;
@@ -172,62 +173,84 @@ function BlogDetailContent() {
   return (
     <main className="min-h-screen bg-[#ECECEC]">
       {/* TOP AREA */}
-      <section className="mx-auto max-w-[1440px] px-6 md:px-20 lg:px-[30px] pt-10">
-        <h1 className="text-[32px] font-bold text-[#A62666]">
+      <section className="mx-auto w-full max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32 py-16">
+        <h2 className=" text-[#A62666]">
           {blog.blogTitle}
-        </h1>
+        </h2>
 
         <div className="mt-8">
           <img
             src={getImageUrl(blog.blogImage)}
             alt={blog.blogTitle}
-            className="w-full object-cover h-[500px]"
+            className="w-full object-cover h-[836px]"
           />
         </div>
 
         <div className="mt-8">
-          <p className="text-[14px] leading-[15px] text-[#666] whitespace-pre-line">
+          <p className=" leading-[10px] text-[#424242] whitespace-pre-line">
             {showFullText
               ? blog.blogDescription
               : `${blog.blogDescription.slice(0, 500)}...`}
           </p>
         </div>
 
-        <div className="mt-10 flex justify-center">
-          {blog.blogDescription.length > 500 && (
-            <div className="mt-10 flex justify-center">
-              <button
-                onClick={() => setShowFullText(!showFullText)}
-                className="rounded-full bg-[#A62666] px-8 py-2 text-xs font-semibold text-white"
-              >
-                {showFullText ? "Read Less" : "Read More"}
-              </button>
-            </div>
-          )}
-        </div>
+    {blog.blogDescription.length > 500 && (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5, delay: 0.45 }}
+    className="mt-10 flex justify-center"
+  >
+    <button
+      onClick={() => setShowFullText(!showFullText)}
+      className="motion-shine group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30 lg:text-[20px] 2xl:text-[24px]"
+    >
+      {showFullText ? "Read Less" : "Read More"}
+
+      <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+        {showFullText ? (
+          <FaArrowUpLong className="h-4 w-4" />
+        ) : (
+          <FaArrowDownLong className="h-4 w-4" />
+        )}
+      </span>
+    </button>
+  </motion.div>
+)}
       </section>
 
       {/* CTA */}
-      <section className="mt-16 bg-gradient-to-r from-[#B92D7A] to-[#730046] py-10">
-        <div className="text-center">
-          <h2 className="text-[28px] font-bold uppercase text-white">
-            Curious About Brand Strategy ?
-          </h2>
-
-          <button
-            onClick={() => setIsPopupOpen(true)}
-            className="glass-btn mt-6 inline-flex h-[44px] items-center justify-center gap-2 rounded-full px-8 font-semibold text-white"
-          >
-            Stay Connected
-            <span>↗</span>
-          </button>
-        </div>
-      </section>
+          <section className="bg-gradient-to-r from-[#bf2f86] to-[#730041]">
+                <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-center px-6 py-9 text-center md:px-20 lg:px-[115px]">
+                  <h3 className="font-bold uppercase tracking-wide text-white text-3xl md:text-5xl lg:text-3xl">
+                   Curious About Brand Strategy ?
+                  </h3>
+         <motion.div
+                                            initial={{ opacity: 0, y: 20 }}
+                                            whileInView={{ opacity: 1, y: 0 }}
+                                            viewport={{ once: true }}
+                                            transition={{ duration: 0.5, delay: 0.45 }}
+                                           onClick={() => setIsPopupOpen(true)}
+                                            className="mt-5 flex justify-center lg:justify-start"
+                                        >
+                                            <button className="motion-shine group inline-flex items-center gap-3 rounded-full bg-[#720048] px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+                                               Stay Connected
+                    
+                                                <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                                                    <HiArrowUpRight className="h-5 w-5" />
+                                                </span>
+                                            </button>
+                                        </motion.div>
+               
+                </div>
+              </section>
+   
       <AnimatePresence>
         {isPopupOpen && (
           <>
             <motion.div
-              className="fixed inset-0 z-[90] bg-black/60 backdrop-blur-sm"
+              className="fixed inset-0 z-999 bg-black/60 backdrop-blur-sm"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -238,7 +261,7 @@ function BlogDetailContent() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="fixed left-1/2 top-1/2 z-[100] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-3xl bg-white p-8 shadow-2xl"
+              className="fixed left-1/2 top-1/2 z-999 w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-3xl bg-white p-8 shadow-2xl"
             >
               <button
                 onClick={() => setIsPopupOpen(false)}

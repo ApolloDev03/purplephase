@@ -30,7 +30,7 @@ const ITEMS_PER_PAGE = 6;
 
 export default function PortfolioSection() {
   const [portfolioList, setPortfolioList] = useState<PortfolioItem[]>([]);
-  const [filter, setFilter] = useState("Show All");
+  const [filter, setFilter] = useState("");
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -55,11 +55,19 @@ export default function PortfolioSection() {
         }
       );
 
-      if (res.data?.success) {
-        setPortfolioList(res.data?.data || []);
-      } else {
-        setError(res.data?.message || "Failed to fetch portfolio list.");
-      }
+    if (res.data?.success) {
+  const data = res.data?.data || [];
+
+  setPortfolioList(data);
+
+  const firstService = data.find(
+    (item: PortfolioItem) => item?.service?.service_name
+  )?.service?.service_name;
+
+  setFilter(firstService || "Show All");
+} else {
+  setError(res.data?.message || "Failed to fetch portfolio list.");
+}
       console.log(res.data.data[0]);
     } catch (err) {
       console.error("Portfolio API Error:", err);
@@ -73,13 +81,13 @@ export default function PortfolioSection() {
     fetchPortfolioList();
   }, []);
 
-  const categories = useMemo(() => {
-    const serviceNames = portfolioList
-      .map((item) => item?.service?.service_name)
-      .filter(Boolean) as string[];
+const categories = useMemo(() => {
+  const serviceNames = portfolioList
+    .map((item) => item?.service?.service_name)
+    .filter(Boolean) as string[];
 
-    return [...new Set(serviceNames), "Show All"];
-  }, [portfolioList]);
+  return [...new Set(serviceNames), "Show All"];
+}, [portfolioList]);
 
   const filteredProjects = useMemo(() => {
     if (filter === "Show All") return portfolioList;
@@ -138,38 +146,44 @@ export default function PortfolioSection() {
     <>
 
       <section className="w-full bg-[#f3f3f3] ">
-        <div className="mx-auto max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
+        <div className="mx-auto max-w-full my-16 px-4 sm:px-6 lg:px-20 2xl:px-32">
           <div className="mb-10">
-            <h2 className="mb-4 text-[34px] font-medium text-[#666666] md:text-[42px]">
-              Portfolio
-            </h2>
+                    <h2 className="
+leading-none
+text-primary max-w-2xl">
+               Ideas That Moved People Work That Moved Markets
+              </h2>
 
-            <p className="max-w-3xl text-sm leading-7 text-[#6d6d6d] md:text-[15px]">
-              A brand is ultimately shaped by customer experience. We create
-              work to make that experience purposeful, powerful and memorable.
+            <p className=" leading-7 mt-3 text-[#6d6d6d] ">
+             A brand is ultimately what a customer experiences.
+             <br/>
+The work in this portfolio aims to make that experience purposeful,powerful, and impossible to forget.
             </p>
 
-            {!loading && portfolioList.length > 0 && (
-              <div className="my-10 flex flex-wrap justify-center gap-2">
-                {categories.map((cat) => {
-                  const isActive = filter === cat;
+{!loading && portfolioList.length > 0 && (
+  <div className="my-10 flex flex-wrap justify-center gap-2">
+    {categories.map((cat) => {
+      const isActive = filter === cat;
+      const isShowAll = cat === "Show All";
 
-                  return (
-                    <button
-                      key={cat}
-                      onClick={() => handleFilterChange(cat)}
-                      className={`rounded-md px-4 py-2 font-medium transition-all duration-200 ${
-                        isActive
-                          ? "bg-[#A61D67] text-white"
-                          : "bg-[#6B6B6B] text-white hover:bg-[#595959]"
-                      }`}
-                    >
-                      {cat}
-                    </button>
-                  );
-                })}
-              </div>
-            )}
+      return (
+        <button
+          key={cat}
+          onClick={() => handleFilterChange(cat)}
+          className={`rounded-md px-4 py-2 text-[14px] font-semibold text-white transition-all duration-300 ${
+            isActive && !isShowAll
+              ? "bg-primary"
+              : isShowAll
+              ? "bg-secondary hover:bg-primary"
+              : "bg-[#6B6B6B] hover:bg-primary"
+          }`}
+        >
+          {cat}
+        </button>
+      );
+    })}
+  </div>
+)}
 
             {loading && (
               <div className="grid justify-center gap-5 md:grid-cols-2 xl:grid-cols-3">
@@ -231,69 +245,7 @@ export default function PortfolioSection() {
             })}
           </div>
         )}
-            {/* {!loading && !error && visibleProjects.length > 0 && (
-              <motion.div
-                layout
-                className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3"
-              >
-               <AnimatePresence mode="popLayout">
-                  {visibleProjects.map((project, index) => {
-                    const sortedImages = getSortedImages(project);
-                    const firstImage = sortedImages?.[0]?.image_url || "";
-
-                    return (
-                      <motion.div
-                        key={project.id}
-                        layout
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.9 }}
-                        transition={{ duration: 0.5, delay: index * 0.05 }}
-                        className="group relative cursor-pointer"
-                        onClick={() => openGallery(project)}
-                      >
-                        <div className="relative  overflow-hidden rounded-[24px] bg-white shadow-[0_10px_35px_-18px_rgba(0,0,0,0.35)] transition-all duration-500 hover:-translate-y-1 group-hover:shadow-[0_24px_60px_-25px_rgba(166,29,103,0.45)] h-[259px]">
-                          <div className="flex h-full w-full items-center justify-center">
-                            {firstImage ? (
-                              <img
-                                src={firstImage}
-                                alt={project.title}
-                                className="h-full w-full object-contain transition-transform duration-700 ease-out group-hover:scale-105"
-                              />
-                            ) : (
-                              <div className="flex h-full w-full items-center justify-center rounded-2xl bg-gray-100 text-sm text-gray-400">
-                                No Image
-                              </div>
-                            )}
-                          </div>
-
-                          <div className="absolute left-5 top-5 z-10">
-                            <span className="rounded-full bg-white/90 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-primary shadow-sm backdrop-blur">
-                              {project?.service?.service_name || "Portfolio"}
-                            </span>
-                          </div>
-
-                          <div className="absolute inset-0 flex flex-col justify-end bg-gradient-to-t from-primary via-primary/65 to-transparent p-6 opacity-0 transition-all duration-500 group-hover:opacity-100">
-                       
-
-                            <p className="translate-y-4 text-xl font-bold leading-tight text-white transition-transform duration-500 group-hover:translate-y-0 sm:text-2xl">
-                              {project.title}
-                            </p>
-
-                            {project.description && (
-                              <p className="mt-2 line-clamp-2 translate-y-4 text-sm leading-6 text-white/90 transition-transform duration-500 group-hover:translate-y-0">
-                                {project.description}
-                              </p>
-                            )}
-                          </div>
-                        </div>
-                      </motion.div>
-                    );
-                  })}
-                </AnimatePresence>
-              </motion.div>
-            )} */}
-
+            
             {!loading && visibleCount < filteredProjects.length && (
               <motion.div
                                                     initial={{ opacity: 0, y: 20 }}

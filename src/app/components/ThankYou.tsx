@@ -12,7 +12,7 @@ export default function ThankYou({
   return (
     <main className="flex-1 bg-[#efefef]">
       <section className="min-h-[70vh] flex items-center justify-center px-6">
-        <div className="text-center max-w-4xl">
+        <div className="text-center max-w-full">
           <div className="flex justify-center mb-8">
             <div className="w-24 h-24 rounded-full border-[5px] border-[#9b1c71] flex items-center justify-center">
               <Check
@@ -31,9 +31,9 @@ export default function ThankYou({
             {message}
           </p>
 
-          <h2 className="text-3xl font-semibold text-[#444]">
+          <h1 className="text:xl xl:text-[40px] font-bold text-[#444]">
             {tagline}
-          </h2>
+          </h1>
         </div>
       </section>
     </main>

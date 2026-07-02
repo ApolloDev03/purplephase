@@ -9,6 +9,7 @@ import Link from "next/link";
 import { apiUrl } from "../config";
 import { HiArrowUpRight } from "react-icons/hi2";
 import { useRouter } from "next/navigation";
+import ContactPopup from "../components/ContactPopup";
 
 type SectionImage = {
   id: number;
@@ -49,7 +50,11 @@ export default function CaseStudyPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const router=useRouter();
+  const [isContactPopupOpen, setIsContactPopupOpen] = useState(false);
 
+    const handleContactPopupOpen = () => {
+        setIsContactPopupOpen(true);
+    };
   const makeSlug = (text: string) => {
     return text
       ?.toLowerCase()
@@ -170,7 +175,7 @@ export default function CaseStudyPage() {
                                       whileInView={{ opacity: 1, y: 0 }}
                                       viewport={{ once: true }}
                                       transition={{ duration: 0.5, delay: 0.45 }}
-                                      // onClick={()=>router.push("/about-us")}
+                                      //  onClick={()=>handleContactPopupOpen()}
                                       className=" flex justify-center lg:justify-start"
                                   >
                                       <button className="motion-shine group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
@@ -197,11 +202,11 @@ export default function CaseStudyPage() {
                                       whileInView={{ opacity: 1, y: 0 }}
                                       viewport={{ once: true }}
                                       transition={{ duration: 0.5, delay: 0.45 }}
-                                      onClick={()=>router.push("/contact")}
+                                     onClick={()=>handleContactPopupOpen()}
                                       className="mt-5 flex justify-center lg:justify-start"
                                   >
                                       <button className="motion-shine group inline-flex items-center gap-3 rounded-full bg-[#720048] px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
-                                           Get A Quote
+                                         Lets Discuss
               
                                           <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
                                               <HiArrowUpRight className="h-5 w-5" />
@@ -212,6 +217,10 @@ export default function CaseStudyPage() {
           </div>
         </section>
       </main>
+       <ContactPopup
+                            isOpen={isContactPopupOpen}
+                            onClose={() => setIsContactPopupOpen(!isContactPopupOpen)}
+                        />
     </>
   );
 }

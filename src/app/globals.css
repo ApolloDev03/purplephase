@@ -319,3 +319,72 @@ button {
 .expertise-scroll::-webkit-scrollbar {
   display: none;
 }
+.counter-item-card {
+  position: relative;
+  width: 100%;
+  border-radius: 28px;
+  padding: 2px;
+  overflow: hidden;
+  isolation: isolate;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.counter-item-card::before {
+  content: "";
+  position: absolute;
+  inset: -80%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg,
+    transparent 90deg,
+    rgba(255, 255, 255, 0.95) 140deg,
+    rgba(255, 255, 255, 0.25) 180deg,
+    transparent 230deg,
+    transparent 360deg
+  );
+  animation: counterItemBorderRotate 3s linear infinite;
+  z-index: -2;
+}
+
+.counter-item-card::after {
+  content: "";
+  position: absolute;
+  inset: 2px;
+  border-radius: 26px;
+  background: rgba(217, 217, 217, 0.18);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: -1;
+}
+
+.counter-item-content {
+  min-height: 150px;
+  padding: 30px 20px;
+  border-radius: 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes counterItemBorderRotate {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .counter-item-card {
+    border-radius: 22px;
+  }
+
+  .counter-item-card::after {
+    border-radius: 20px;
+  }
+
+  .counter-item-content {
+    min-height: 120px;
+    padding: 24px 14px;
+    border-radius: 20px;
+  }
+}

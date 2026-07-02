@@ -1,96 +1,292 @@
+// "use client";
+
 // import Link from "next/link";
-// import { blogs } from "../components/blog";
+// import { useEffect, useState } from "react";
+// import axios from "axios";
+// import { apiUrl } from "../config";
+// import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+// import { ContactSection } from "../components/ContactSection";
+
+// type BlogItem = {
+//   blogId: number;
+//   blogTitle: string;
+//   slugname: string;
+//   blogDescription: string;
+//   date: string;
+//   blogImage: string;
+// };
+
+// type BlogResponse = {
+//   message: string;
+//   success: boolean;
+//   data: BlogItem[];
+// };
 
 // export default function BlogPage() {
+//   const [blogs, setBlogs] = useState<BlogItem[]>([]);
+//   const [loading, setLoading] = useState(true);
+//   const [currentIndex, setCurrentIndex] = useState(0);
+
+//   const containerClass =
+//     "mx-auto max-w-full my-16 px-4 sm:px-6 lg:px-20 2xl:px-32";
+
+//   const featuredBlog = blogs[currentIndex];
+
+//   const sideBlogs =
+//     blogs.length > 1
+//       ? Array.from(
+//           { length: Math.min(3, blogs.length - 1) },
+//           (_, index) => blogs[(currentIndex + index + 1) % blogs.length]
+//         )
+//       : [];
+
+//   const fetchBlogs = async () => {
+//     try {
+//       setLoading(true);
+
+//       const res = await axios.post<BlogResponse>(
+//         `${apiUrl}/blogs`,
+//         {},
+//         {
+//           headers: {
+//             Accept: "application/json",
+//           },
+//         }
+//       );
+
+//       if (res.data?.success) {
+//         setBlogs(res.data.data || []);
+//       }
+//     } catch (error) {
+//       console.error("Blog API Error:", error);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
+
+//   useEffect(() => {
+//     fetchBlogs();
+//   }, []);
+
+//   const handleNext = () => {
+//     if (blogs.length === 0) return;
+//     setCurrentIndex((prev) => (prev + 1) % blogs.length);
+//   };
+
+//   const handlePrev = () => {
+//     if (blogs.length === 0) return;
+//     setCurrentIndex((prev) => (prev === 0 ? blogs.length - 1 : prev - 1));
+//   };
+
 //   return (
-//     <main className="min-h-screen bg-[#f8f3f6] text-[#1f1f1f]">
-//       <section className="relative overflow-hidden bg-[#e5e5e5] px-4 py-16 sm:px-6 lg:px-8">
+//     <main className="bg-[#efefef]">
+//       {/* HERO */}
+//       <section className="relative w-full overflow-hidden bg-[#f7f5f6]">
+//         <img
+//           src="/assets/knowledgecorner/book.png"
+//           alt="Playbook To Build Your Brand"
+//           className="block w-full"
+//         />
 
-//         <div className="relative mx-auto max-w-6xl text-center">
-//           <span className="mb-4 inline-flex rounded-full border border-primary/20 bg-white px-5 py-2 text-sm font-semibold uppercase tracking-[0.25em] text-primary">
-//             Knowledge Corner
-//           </span>
+//         <div className="absolute inset-0 flex items-center">
+//           <div className="mx-auto w-full max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
+//             <div className="max-w-[600px]">
+//               <h1 className="text-[32px] font-bold leading-[1.1] text-[#a20d69] md:text-[50px] lg:text-[64px]">
+//                 Playbook To Build Your Brand
+//               </h1>
 
-//           <h1 className="mx-auto max-w-4xl text-4xl font-bold leading-tight text-[#2b1230] sm:text-5xl lg:text-7xl">
-//             Ideas, Insights & Brand Stories
-//           </h1>
-
-//           <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-gray-600 sm:text-lg">
-//             Explore branding, creative design, marketing, and business growth
-//             insights crafted for modern brands.
-//           </p>
+//               <p className="mt-8 text-[16px] leading-relaxed text-[#4d4d4d] md:text-[20px]">
+//                 Your Go-To Corner For Everything That Makes Brands Sharper,
+//                 Stronger, And Smarter.
+//               </p>
+//             </div>
+//           </div>
 //         </div>
 //       </section>
 
-//       <section className="px-4 py-16 sm:px-6 lg:px-16">
-//         <div className="mx-auto max-w-full">
-//           <div className="mb-10 flex flex-wrap items-end justify-between gap-4 border-b border-primary/15 pb-6">
-//             <div>
-//               <p className="text-sm font-semibold uppercase tracking-[0.25em] text-secondary">
-//                 Latest Articles
-//               </p>
-//               <h2 className="mt-2 text-3xl font-bold text-[#2b1230]">
-//                 Stories Behind Brand Building
-//               </h2>
-//             </div>
-
-//             <Link
-//               href="/"
-//               className="rounded-full bg-primary px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#6f214d]"
-//             >
-//               Back To Home
-//             </Link>
-//           </div>
-
-//           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-//             {blogs.map((blog) => (
-//               <article
-//                 key={blog.id}
-//                 className="group overflow-hidden rounded-[28px] border border-white/80 bg-white shadow-sm transition duration-300 hover:-translate-y-2 hover:shadow-2xl"
+//       {/* CATEGORY CARDS */}
+//       <section>
+//         <div className={containerClass}>
+//           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+//             {[
+//               {
+//                 title: "BRAND STRATEGY",
+//                 desc: "Build brands on impactful ideas, insight, and strategy.",
+//                 active: true,
+//               },
+//               {
+//                 title: "CONSUMER BEHAVIOUR",
+//                 desc: "Decode how consumers think, choose, connect, and stay loyal.",
+//               },
+//               {
+//                 title: "DESIGN THINKING",
+//                 desc: "See how thoughtful design influences brand perception and value.",
+//               },
+//               {
+//                 title: "DIGITAL & AI EDGE",
+//                 desc: "Harness digital and AI to keep your brand relevant and ready for tomorrow.",
+//               },
+//               {
+//                 title: "BRAND STORIES",
+//                 desc: "Draw inspiration from remarkable stories of branding.",
+//               },
+//               {
+//                 title: "BRAND CONSULTING",
+//                 desc: "Solve branding challenges with insights for founders and marketing leaders.",
+//               },
+//             ].map((item, index) => (
+//               <Link
+//                 href="#"
+//                 key={index}
+//                 className={`group relative rounded-2xl border p-7 transition-all duration-300 hover:-translate-y-1 ${
+//                   item.active
+//                     ? "border-transparent bg-gradient-to-r from-[#c92f8d] to-[#730042] text-white"
+//                     : "border-[#c92f8d] bg-transparent hover:border-transparent hover:bg-gradient-to-r hover:from-[#c92f8d] hover:to-[#730042] hover:text-white"
+//                 }`}
 //               >
-//                 <Link href={`/knowlegecornerDetail?slug=${blog.slug}`}>
-//                   <div className="relative h-64 overflow-hidden">
-//                     <img
-//                       src={blog.image}
-//                       alt={blog.title}
-//                       className="h-full w-full object-cover transition duration-700 group-hover:scale-110"
-//                     />
+//                 <h3
+//                   className={`text-lg font-bold tracking-wide transition-colors duration-300 ${
+//                     item.active
+//                       ? "text-white"
+//                       : "text-black group-hover:text-white"
+//                   }`}
+//                 >
+//                   {item.title}
+//                 </h3>
 
-//                     <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/10 to-transparent" />
+//                 <p
+//                   className={`mt-4 text-sm leading-7 transition-colors duration-300 ${
+//                     item.active
+//                       ? "text-white/90"
+//                       : "text-[#5b5b5b] group-hover:text-white/90"
+//                   }`}
+//                 >
+//                   {item.desc}
+//                 </p>
 
-//                     <span className="absolute left-5 top-5 rounded-full bg-white px-4 py-2 text-xs font-bold uppercase tracking-wider text-primary">
-//                       {blog.category}
-//                     </span>
-//                   </div>
-
-//                   <div className="p-6">
-//                     <div className="mb-4 flex items-center gap-3 text-xs font-medium uppercase tracking-wider text-gray-500">
-//                       <span>{blog.date}</span>
-//                       <span className="h-1 w-1 rounded-full bg-secondary" />
-//                       <span>{blog.readTime}</span>
-//                     </div>
-
-//                     <h3 className="text-2xl font-bold leading-snug text-[#2b1230] transition group-hover:text-primary">
-//                       {blog.title}
-//                     </h3>
-
-//                     <p className="mt-4 line-clamp-3 text-sm leading-6 text-gray-600">
-//                       {blog.shortDescription}
-//                     </p>
-
-//                     <div className="mt-6 inline-flex items-center gap-2 text-sm font-bold uppercase tracking-wider text-secondary">
-//                       Read More
-//                       <span className="transition group-hover:translate-x-1">
-//                         →
-//                       </span>
-//                     </div>
-//                   </div>
-//                 </Link>
-//               </article>
+//                 <div className="absolute bottom-5 right-5">
+//                   <ArrowUpRight
+//                     size={18}
+//                     className={`transition-colors duration-300 ${
+//                       item.active
+//                         ? "text-white"
+//                         : "text-[#555] group-hover:text-white"
+//                     }`}
+//                   />
+//                 </div>
+//               </Link>
 //             ))}
 //           </div>
 //         </div>
 //       </section>
+
+//       {/* BLOG SECTION */}
+//       <section className="overflow-hidden">
+//         <div className="py-16">
+//           {loading ? (
+//             <div className="flex justify-center py-20">
+//               <div className="h-12 w-12 animate-spin rounded-full border-4 border-primary/20 border-t-primary" />
+//             </div>
+//           ) : blogs.length > 0 ? (
+//             <div className="grid items-start gap-8 lg:grid-cols-[52%_48%] xl:gap-10">
+//               {/* LEFT BIG IMAGE */}
+//               <div className="relative z-10 w-full overflow-hidden rounded-[10px]">
+//                 <div className="relative aspect-[700/600] w-full overflow-hidden rounded-[10px]">
+//                   <img
+//                     src={
+//                       featuredBlog?.blogImage ||
+//                       "/assets/knowledgecorner/blog-main.png"
+//                     }
+//                     alt={featuredBlog?.blogTitle}
+//                     className="h-full w-full object-cover"
+//                   />
+
+//                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+                  
+
+//                   <div className="absolute bottom-6 right-7 z-20 flex gap-8">
+//                     <button
+//                       onClick={handlePrev}
+//                       className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-white text-white transition hover:bg-white hover:text-primary"
+//                     >
+//                       <ArrowLeft size={17} />
+//                     </button>
+
+//                     <button
+//                       onClick={handleNext}
+//                       className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-white text-white transition hover:bg-white hover:text-primary"
+//                     >
+//                       <ArrowRight size={17} />
+//                     </button>
+//                   </div>
+//                 </div>
+//               </div>
+
+//               {/* RIGHT CONTENT */}
+//               <div className="relative z-20 pt-2 lg:pt-3 ">
+//                 <h3 className="text-[18px] font-bold uppercase text-secondary md:text-[20px] pr-32">
+//                   {featuredBlog?.blogTitle}
+//                 </h3>
+
+//                 <p className="mt-4  leading-7 text-[#666] line-clamp-4 pr-32 ">
+//                   {featuredBlog?.blogDescription}
+//                 </p>
+
+//                 <Link
+//                   href={`/knowlegecornerDetail?slug=${featuredBlog?.slugname}`}
+//                   className="mt-10 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-[14px] font-semibold text-white transition hover:bg-secondary"
+//                 >
+//                   Read More
+//                   <ArrowUpRight size={16} />
+//                 </Link>
+
+//                 {/* SMALL BLOG CARDS */}
+//                 {sideBlogs.length > 0 && (
+//                   <div
+//                     className="
+//                       mt-10
+//                       grid
+//                       grid-cols-1
+//                       gap-4
+//                       sm:grid-cols-3
+//                       lg:-ml-[110px]
+//                       lg:w-[calc(100%+110px)]
+//                       xl:-ml-[200px]
+//                       xl:w-[calc(100%+150px)]
+//                       2xl:-ml-[250px]
+//                       2xl:w-[calc(100%+190px)]
+//                     "
+//                   >
+//                     {sideBlogs.map((blog, index) => (
+//                       <Link
+//                         href={`/knowlegecornerDetail?slug=${blog.slugname}`}
+//                         key={`${blog.blogId}-${index}`}
+//                         className="group overflow-hidden rounded-[10px] border-2 border-white shadow-md"
+//                       >
+//                         <div className="relative aspect-[600/500] w-full ">
+//                           <img
+//                             src={blog.blogImage}
+//                             alt={blog.blogTitle}
+//                             className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+//                           />                          
+                         
+//                         </div>
+//                       </Link>
+//                     ))}
+//                   </div>
+//                 )}
+//               </div>
+//             </div>
+//           ) : (
+//             <div className="rounded-3xl bg-white py-20 text-center">
+//               <h3 className="text-3xl font-bold">No Blogs Found</h3>
+//             </div>
+//           )}
+//         </div>
+//       </section>
+
+//       <ContactSection />
 //     </main>
 //   );
 // }
@@ -119,25 +315,64 @@ type BlogResponse = {
   data: BlogItem[];
 };
 
+const categoryCards = [
+  {
+    title: "BRAND STRATEGY",
+    desc: "Build brands on impactful ideas, insight, and strategy.",
+  },
+  {
+    title: "CONSUMER BEHAVIOUR",
+    desc: "Decode how consumers think, choose, connect, and stay loyal.",
+  },
+  {
+    title: "DESIGN THINKING",
+    desc: "See how thoughtful design influences brand perception and value.",
+  },
+  {
+    title: "DIGITAL & AI EDGE",
+    desc: "Harness digital and AI to keep your brand relevant and ready for tomorrow.",
+  },
+  {
+    title: "BRAND STORIES",
+    desc: "Draw inspiration from remarkable stories of branding.",
+  },
+  {
+    title: "BRAND CONSULTING",
+    desc: "Solve branding challenges with insights for founders and marketing leaders.",
+  },
+];
+
 export default function BlogPage() {
   const [blogs, setBlogs] = useState<BlogItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  const [selectedCategory, setSelectedCategory] = useState(categoryCards[0].title);
+  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+
+  const containerClass =
+    "mx-auto max-w-full my-16 px-4 sm:px-6 lg:px-20 2xl:px-32";
+
   const featuredBlog = blogs[currentIndex];
-  const sideBlogs = [];
 
-  for (let i = 1; i <= 3; i++) {
-    sideBlogs.push(blogs[(currentIndex + i) % blogs.length]);
-  }
+  const sideBlogs =
+    blogs.length > 1
+      ? Array.from(
+          { length: Math.min(3, blogs.length - 1) },
+          (_, index) => blogs[(currentIndex + index + 1) % blogs.length]
+        )
+      : [];
 
-  const fetchBlogs = async () => {
+  const fetchBlogs = async (categoryName: string) => {
     try {
       setLoading(true);
+      setCurrentIndex(0);
 
       const res = await axios.post<BlogResponse>(
         `${apiUrl}/blogs`,
-
+        {
+          expertise_id: categoryName, // name as it is pass thase
+        },
         {
           headers: {
             Accept: "application/json",
@@ -147,54 +382,33 @@ export default function BlogPage() {
 
       if (res.data?.success) {
         setBlogs(res.data.data || []);
+      } else {
+        setBlogs([]);
       }
-      // if (res.data?.success) {
-      //   const testBlogs = [
-      //     ...res.data.data,
-      //     {
-      //       blogId: 100,
-      //       blogTitle: "Test Blog 4",
-      //       slugname: "test-blog-4",
-      //       blogDescription: "Test description 4",
-      //       date: "2026-01-01",
-      //       blogImage: res.data.data[0]?.blogImage,
-      //     },
-      //     {
-      //       blogId: 101,
-      //       blogTitle: "Test Blog 5",
-      //       slugname: "test-blog-5",
-      //       blogDescription: "Test description 5",
-      //       date: "2026-01-02",
-      //       blogImage: res.data.data[0]?.blogImage,
-      //     },
-      //     {
-      //       blogId: 102,
-      //       blogTitle: "Test Blog 6",
-      //       slugname: "test-blog-6",
-      //       blogDescription: "Test description 6",
-      //       date: "2026-01-03",
-      //       blogImage: res.data.data[0]?.blogImage,
-      //     },
-      //   ];
-
-      //   setBlogs(testBlogs);
-      // }
     } catch (error) {
       console.error("Blog API Error:", error);
+      setBlogs([]);
     } finally {
       setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchBlogs();
+    fetchBlogs(categoryCards[0].title);
   }, []);
 
+  const handleCategoryClick = (categoryName: string) => {
+    setSelectedCategory(categoryName);
+    fetchBlogs(categoryName);
+  };
+
   const handleNext = () => {
+    if (blogs.length === 0) return;
     setCurrentIndex((prev) => (prev + 1) % blogs.length);
   };
 
   const handlePrev = () => {
+    if (blogs.length === 0) return;
     setCurrentIndex((prev) => (prev === 0 ? blogs.length - 1 : prev - 1));
   };
 
@@ -208,193 +422,172 @@ export default function BlogPage() {
           className="block w-full"
         />
 
-        <div className="absolute inset-0 mx-auto flex max-w-[1440px] items-center px-6 md:px-20 lg:px-[30px]">
-          <div className="max-w-[600px]">
-            <h1 className="text-[#a20d69] text-[32px] md:text-[50px] lg:text-[64px] font-bold leading-[1.1]">
-              Playbook To Build Your Brand
-            </h1>
+        <div className="absolute inset-0 flex items-center">
+          <div className="mx-auto w-full max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
+            <div className="max-w-[600px]">
+              <h1 className="text-[32px] font-bold leading-[1.1] text-[#a20d69] md:text-[50px] lg:text-[64px]">
+                Playbook To Build Your Brand
+              </h1>
 
-            <p className="mt-8 text-[#4d4d4d] text-[16px] md:text-[20px] leading-relaxed">
-              Your Go-To Corner For Everything That Makes Brands Sharper,
-              Stronger, And Smarter.
-            </p>
+              <p className="mt-8 text-[16px] leading-relaxed text-[#4d4d4d] md:text-[20px]">
+                Your Go-To Corner For Everything That Makes Brands Sharper,
+                Stronger, And Smarter.
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* CATEGORY CARDS */}
-      <section className="py-14">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-6">
+      <section>
+        <div className={containerClass}>
           <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                title: "BRAND STRATEGY",
-                desc: "Build brands on impactful ideas, insight, and strategy.",
-                active: true,
-              },
-              {
-                title: "CONSUMER BEHAVIOUR",
-                desc: "Decode how consumers think, choose, connect, and stay loyal.",
-              },
-              {
-                title: "DESIGN THINKING",
-                desc: "See how thoughtful design influences brand perception and value.",
-              },
-              {
-                title: "DIGITAL & AI EDGE",
-                desc: "Harness digital and AI to keep your brand relevant and ready for tomorrow.",
-              },
-              {
-                title: "BRAND STORIES",
-                desc: "Draw inspiration from remarkable stories of branding.",
-              },
-              {
-                title: "BRAND CONSULTING",
-                desc: "Solve branding challenges with insights for founders and marketing leaders.",
-              },
-            ].map((item, index) => (
-              <Link
-                href="#"
-                key={index}
-                className={`group relative rounded-2xl border p-7 transition-all duration-300 hover:-translate-y-1 ${
-                  item.active
-                    ? "bg-gradient-to-r from-[#c92f8d] to-[#730042] text-white border-transparent"
-                    : "border-[#c92f8d] bg-transparent hover:border-transparent hover:bg-gradient-to-r hover:from-[#c92f8d] hover:to-[#730042] hover:text-white"
-                }`}
-              >
-                <h3
-                  className={`text-lg font-bold tracking-wide transition-colors duration-300 ${
-                    item.active
-                      ? "text-white"
-                      : "text-black group-hover:text-white"
+            {categoryCards.map((item, index) => {
+              const isActive = hoveredCategory
+                ? hoveredCategory === item.title
+                : selectedCategory === item.title;
+
+              return (
+                <button
+                  type="button"
+                  key={index}
+                  onClick={() => handleCategoryClick(item.title)}
+                  onMouseEnter={() => setHoveredCategory(item.title)}
+                  onMouseLeave={() => setHoveredCategory(null)}
+                  className={`group relative rounded-2xl border p-7 text-left transition-all duration-300 hover:-translate-y-1 ${
+                    isActive
+                      ? "border-transparent bg-gradient-to-r from-[#c92f8d] to-[#730042] text-white"
+                      : "border-[#c92f8d] bg-transparent text-black"
                   }`}
                 >
-                  {item.title}
-                </h3>
-
-                <p
-                  className={`mt-4 text-sm leading-7 transition-colors duration-300 ${
-                    item.active
-                      ? "text-white/90"
-                      : "text-[#5b5b5b] group-hover:text-white/90"
-                  }`}
-                >
-                  {item.desc}
-                </p>
-
-                <div className="absolute bottom-5 right-5">
-                  <ArrowUpRight
-                    size={18}
-                    className={`transition-colors duration-300 ${
-                      item.active
-                        ? "text-white"
-                        : "text-[#555] group-hover:text-white"
+                  <h3
+                    className={`text-lg font-bold tracking-wide transition-colors duration-300 ${
+                      isActive ? "text-white" : "text-black"
                     }`}
-                  />
-                </div>
-              </Link>
-            ))}
+                  >
+                    {item.title}
+                  </h3>
+
+                  <p
+                    className={`mt-4 text-sm leading-7 transition-colors duration-300 ${
+                      isActive ? "text-white/90" : "text-[#5b5b5b]"
+                    }`}
+                  >
+                    {item.desc}
+                  </p>
+
+                  <div className="absolute bottom-5 right-5">
+                    <ArrowUpRight
+                      size={18}
+                      className={`transition-colors duration-300 ${
+                        isActive ? "text-white" : "text-[#555]"
+                      }`}
+                    />
+                  </div>
+                </button>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* BLOG SECTION */}
-      <section className="pb-20">
-        <div className="mx-auto max-w-[1440px] px-6 lg:px-16">
+      <section className="overflow-hidden">
+        <div className="py-16">
           {loading ? (
             <div className="flex justify-center py-20">
               <div className="h-12 w-12 animate-spin rounded-full border-4 border-primary/20 border-t-primary" />
             </div>
           ) : blogs.length > 0 ? (
-            <>
-              <div className="grid lg:grid-cols-[520px_1fr] gap-10 items-start">
-                {/* LEFT SIDE */}
-                <div className="relative">
-                  {/* Current blog image */}
+            <div className="grid items-start gap-8 lg:grid-cols-[52%_48%] xl:gap-10">
+              {/* LEFT BIG IMAGE */}
+              <div className="relative z-10 w-full overflow-hidden rounded-[10px]">
+                <div className="relative aspect-[700/600] w-full overflow-hidden rounded-[10px]">
                   <img
                     src={
                       featuredBlog?.blogImage ||
                       "/assets/knowledgecorner/blog-main.png"
                     }
                     alt={featuredBlog?.blogTitle}
-                    className="h-[550px] w-full rounded-md object-cover"
+                    className="h-full w-full object-cover"
                   />
 
-                  {/* Overlay */}
-                  <div className="absolute inset-0 rounded-md bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
-                  {/* Title inside big image */}
-                  <div className="absolute bottom-12 left-8 z-20 max-w-[380px]">
-                    <h2 className="line-clamp-2 text-[26px] font-bold leading-[1.15] text-white">
-                      {featuredBlog?.blogTitle}
-                    </h2>
-                  </div>
-
-                  {/* Arrows */}
-                  <div className="absolute bottom-3 left-[75%] z-20 flex gap-4">
+                  <div className="absolute bottom-6 right-7 z-20 flex gap-8">
                     <button
+                      type="button"
                       onClick={handlePrev}
-                      className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white text-white transition hover:bg-white hover:text-[#0d4f72]"
+                      className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-white text-white transition hover:bg-white hover:text-primary"
                     >
-                      <ArrowLeft size={18} />
+                      <ArrowLeft size={17} />
                     </button>
 
                     <button
+                      type="button"
                       onClick={handleNext}
-                      className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-white text-white transition hover:bg-white hover:text-[#0d4f72]"
+                      className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-white text-white transition hover:bg-white hover:text-primary"
                     >
-                      <ArrowRight size={18} />
+                      <ArrowRight size={17} />
                     </button>
                   </div>
                 </div>
+              </div>
 
-                {/* RIGHT SIDE */}
-                <div>
-                  <h2 className="text-[#ff7a00] text-xl font-bold uppercase">
-                    {featuredBlog?.blogTitle}
-                  </h2>
+              {/* RIGHT CONTENT */}
+              <div className="relative z-20 pt-2 lg:pt-3">
+                <h3 className="pr-32 text-[18px] font-bold uppercase text-secondary md:text-[20px]">
+                  {featuredBlog?.blogTitle}
+                </h3>
 
-                  <p className="mt-4 text-[#666] text-lg line-clamp-4">
-                    {featuredBlog?.blogDescription}
-                  </p>
+                <p className="mt-4 pr-32 leading-7 text-[#666] line-clamp-4">
+                  {featuredBlog?.blogDescription}
+                </p>
 
-                  <Link
-                    href={`/knowlegecornerDetail?slug=${featuredBlog?.slugname}`}
-                    className="mt-10 inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-[#c92f8d] to-[#730042] px-7 py-3 font-semibold text-white"
+                <Link
+                  href={`/knowlegecornerDetail?slug=${featuredBlog?.slugname}`}
+                  className="mt-10 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-[14px] font-semibold text-white transition hover:bg-secondary"
+                >
+                  Read More
+                  <ArrowUpRight size={16} />
+                </Link>
+
+                {/* SMALL BLOG CARDS */}
+                {sideBlogs.length > 0 && (
+                  <div
+                    className="
+                      mt-10
+                      grid
+                      grid-cols-1
+                      gap-4
+                      sm:grid-cols-3
+                      lg:-ml-[110px]
+                      lg:w-[calc(100%+110px)]
+                      xl:-ml-[200px]
+                      xl:w-[calc(100%+150px)]
+                      2xl:-ml-[250px]
+                      2xl:w-[calc(100%+190px)]
+                    "
                   >
-                    Read More
-                    <ArrowUpRight size={16} />
-                  </Link>
-
-                  {/* BLOG CARDS */}
-                  <div className="-ml-28 mt-5 grid grid-cols-3 gap-4">
                     {sideBlogs.map((blog, index) => (
                       <Link
                         href={`/knowlegecornerDetail?slug=${blog.slugname}`}
                         key={`${blog.blogId}-${index}`}
-                        className="group overflow-hidden rounded-md"
+                        className="group overflow-hidden rounded-[10px] border-2 border-white shadow-md"
                       >
-                        <div className="relative h-[220px]">
+                        <div className="relative aspect-[600/500] w-full">
                           <img
                             src={blog.blogImage}
                             alt={blog.blogTitle}
                             className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                           />
-
-                          <div className="absolute inset-0 bg-black/35" />
-
-                          <div className="absolute bottom-4 left-4 right-4">
-                            <p className="line-clamp-3 text-lg font-semibold leading-snug text-white">
-                              {blog.blogTitle}
-                            </p>
-                          </div>
                         </div>
                       </Link>
                     ))}
                   </div>
-                </div>
+                )}
               </div>
-            </>
+            </div>
           ) : (
             <div className="rounded-3xl bg-white py-20 text-center">
               <h3 className="text-3xl font-bold">No Blogs Found</h3>
@@ -403,7 +596,6 @@ export default function BlogPage() {
         </div>
       </section>
 
-     
       <ContactSection />
     </main>
   );
