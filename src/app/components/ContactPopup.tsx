@@ -562,7 +562,8 @@ export default function ContactPopup({
 
       if (res.data?.success) {
         toast.success(
-          res.data.message || "Your inquiry has been submitted successfully."
+        //   res.data.message || "Your inquiry has been submitted successfully."
+         res.data.message || "Your inquiry has been submitted successfully."
         );
 
         setFormData({
