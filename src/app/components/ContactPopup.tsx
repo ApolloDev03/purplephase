@@ -366,7 +366,7 @@
 "use client";
 
 import { useEffect, useState, ChangeEvent, FormEvent } from "react";
-import { RotateCcw } from "lucide-react";
+import { Check, RotateCcw } from "lucide-react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { apiUrl } from "../config";
@@ -396,10 +396,12 @@ type FormDataType = {
   contact_no: string;
   company: string;
   services: number[];
+  country: string;
+  state: string;
+  district: string;
   message: string;
   captcha: string;
 };
-
 type ExpertiseListResponse = {
   success: boolean;
   message: string;
@@ -425,16 +427,18 @@ export default function ContactPopup({
   const [submitLoading, setSubmitLoading] = useState(false);
   const [captchaCode, setCaptchaCode] = useState("8227");
 
-  const [formData, setFormData] = useState<FormDataType>({
-    name: "",
-    email: "",
-    contact_no: "",
-    company: "",
-    services: [],
-    message: "",
-    captcha: "",
-  });
-
+ const [formData, setFormData] = useState<FormDataType>({
+  name: "",
+  email: "",
+  contact_no: "",
+  company: "",
+  services: [],
+  country: "",
+  state: "",
+  district: "",
+  message: "",
+  captcha: "",
+});
   useEffect(() => {
     if (isOpen) {
       fetchExpertiseList();
@@ -532,7 +536,20 @@ export default function ContactPopup({
       toast.error("Please select at least one interested expertise.");
       return;
     }
+if (!formData.country.trim()) {
+  toast.error("Please enter your country.");
+  return;
+}
 
+if (!formData.state.trim()) {
+  toast.error("Please enter your state.");
+  return;
+}
+
+if (!formData.district.trim()) {
+  toast.error("Please enter your district.");
+  return;
+}
     if (!formData.message.trim()) {
       toast.error("Please enter your message.");
       return;
@@ -546,19 +563,23 @@ export default function ContactPopup({
     try {
       setSubmitLoading(true);
 
-      const payload = {
-        name: formData.name,
-        email: formData.email,
-        contact_no: formData.contact_no,
-        company: formData.company,
-        services: formData.services,
-        message: formData.message,
-      };
+   const payload = {
+  name: formData.name.trim(),
+  email: formData.email.trim(),
+  contact_no: formData.contact_no.trim(),
+  company: formData.company.trim(),
+  services: formData.services,
+  country: formData.country.trim(),
+  state: formData.state.trim(),
+  district: formData.district.trim(),
+  message: formData.message.trim(),
+};
 
-      const res = await axios.post<ContactResponse>(
-        `${apiUrl}/contact`,
-        payload
-      );
+const res = await axios.post<ContactResponse>(
+  `${apiUrl}/contactUsStore`,
+  payload
+);
+     
 
       if (res.data?.success) {
         toast.success(
@@ -566,15 +587,18 @@ export default function ContactPopup({
          res.data.message || "Your inquiry has been submitted successfully."
         );
 
-        setFormData({
-          name: "",
-          email: "",
-          contact_no: "",
-          company: "",
-          services: [],
-          message: "",
-          captcha: "",
-        });
+      setFormData({
+  name: "",
+  email: "",
+  contact_no: "",
+  company: "",
+  services: [],
+  country: "",
+  state: "",
+  district: "",
+  message: "",
+  captcha: "",
+});
 
         generateCaptcha();
         onClose();
@@ -678,40 +702,78 @@ export default function ContactPopup({
                     />
                   </div>
 
+<div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+  <input
+    type="text"
+    name="country"
+    value={formData.country}
+    onChange={handleChange}
+    placeholder="Country*"
+    className="h-14 w-full border-b-2 border-gray-200 bg-transparent px-2 text-gray-900 outline-none transition-colors focus:border-primary"
+  />
+
+  <input
+    type="text"
+    name="state"
+    value={formData.state}
+    onChange={handleChange}
+    placeholder="State*"
+    className="h-14 w-full border-b-2 border-gray-200 bg-transparent px-2 text-gray-900 outline-none transition-colors focus:border-primary"
+  />
+
+  <input
+    type="text"
+    name="district"
+    value={formData.district}
+    onChange={handleChange}
+    placeholder="District*"
+    className="h-14 w-full border-b-2 border-gray-200 bg-transparent px-2 text-gray-900 outline-none transition-colors focus:border-primary"
+  />
+</div>
                   <div className="pt-2">
-                    <h3 className="font-heading mb-5 text-[18px] font-semibold text-gray-800">
+                    <h1 className="font-heading mb-5  font-semibold text-gray-800">
                       Interested Expertise
-                    </h3>
+                    </h1>
 
-                    {loadingExpertise ? (
-                      <p className="text-[15px] text-gray-500">
-                        Loading expertise...
-                      </p>
-                    ) : expertiseList.length > 0 ? (
-                      <div className="grid grid-cols-1 gap-x-10 gap-y-4 md:grid-cols-2">
-                        {expertiseList.map((expertise) => (
-                          <label
-                            key={expertise.id}
-                            className="group flex cursor-pointer items-center gap-3 text-[15px] text-gray-600 transition-colors hover:text-primary"
-                          >
-                            <input
-                              type="checkbox"
-                              checked={formData.services.includes(expertise.id)}
-                              onChange={() =>
-                                handleExpertiseChange(expertise.id)
-                              }
-                              className="h-5 w-5 rounded border-gray-300 accent-primary"
-                            />
+                   {loadingExpertise ? (
+    <p className="text-[16px] text-[#555]">Loading services...</p>
+  ) : expertiseList.length > 0 ? (
+    <div className="grid grid-cols-1 gap-x-20 gap-y-7 md:grid-cols-3">
+      {expertiseList.map((expertise) => {
+        const isSelected = formData.services.includes(expertise.id);
 
-                            <span>{expertise.expertise_name}</span>
-                          </label>
-                        ))}
-                      </div>
-                    ) : (
-                      <p className="text-[15px] text-gray-500">
-                        No expertise found.
-                      </p>
-                    )}
+        return (
+          <label
+            key={expertise.id}
+            className="flex cursor-pointer items-center gap-3 text-[#666]"
+          >
+            <input
+              type="checkbox"
+              checked={isSelected}
+              onChange={() => handleExpertiseChange(expertise.id)}
+              className="hidden"
+            />
+
+            <span
+              className={`flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-[10px] border-2 transition-all duration-300 ${
+                isSelected
+                  ? "border-[#a20d69] bg-[#a20d69]"
+                  : "border-[#a20d69] bg-transparent"
+              }`}
+            >
+              {isSelected && <Check size={22} className="text-white" />}
+            </span>
+
+            <span className="font-normal leading-[1.3] text-[#666] ">
+              {expertise.expertise_name}
+            </span>
+          </label>
+        );
+      })}
+    </div>
+  ) : (
+    <p className="text-[16px] text-[#555]">No services found.</p>
+  )}
                   </div>
 
                   <textarea

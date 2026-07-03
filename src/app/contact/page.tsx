@@ -8,14 +8,15 @@ import { apiUrl } from "../config";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 
-
-
 type FormDataType = {
   name: string;
   email: string;
   contact_no: string;
   company: string;
   services: number[];
+  country: string;
+  state: string;
+  district: string;
   message: string;
   captcha: string;
 };
@@ -53,15 +54,18 @@ const [loadingExpertise, setLoadingExpertise] = useState<boolean>(false);
 
   const [captchaCode, setCaptchaCode] = useState<string>("8227");
 
-  const [formData, setFormData] = useState<FormDataType>({
-    name: "",
-    email: "",
-    contact_no: "",
-    company: "",
-    services: [],
-    message: "",
-    captcha: "",
-  });
+const [formData, setFormData] = useState<FormDataType>({
+  name: "",
+  email: "",
+  contact_no: "",
+  company: "",
+  services: [],
+  country: "",
+  state: "",
+  district: "",
+  message: "",
+  captcha: "",
+});
 
   useEffect(() => {
    fetchExpertiseList();
@@ -130,101 +134,119 @@ const handleServiceChange = (serviceId: number): void => {
   });
 };
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
-    e.preventDefault();
+ const handleSubmit = async (e: FormEvent<HTMLFormElement>): Promise<void> => {
+  e.preventDefault();
 
-    if (!formData.name.trim()) {
-      toast.error("Please enter your name.");
-      return;
-    }
+  if (!formData.name.trim()) {
+    toast.error("Please enter your name.");
+    return;
+  }
 
-    if (!formData.email.trim()) {
-      toast.error("Please enter your email.");
-      return;
-    }
+  if (!formData.email.trim()) {
+    toast.error("Please enter your email.");
+    return;
+  }
 
-    if (!formData.contact_no.trim()) {
-      toast.error("Please enter your contact number.");
-      return;
-    }
+  if (!formData.contact_no.trim()) {
+    toast.error("Please enter your contact number.");
+    return;
+  }
 
-    if (!formData.company.trim()) {
-      toast.error("Please enter your company name.");
-      return;
-    }
+  if (!formData.company.trim()) {
+    toast.error("Please enter your company name.");
+    return;
+  }
 
-    if (formData.services.length === 0) {
-      toast.error("Please select at least one interested service.");
-      return;
-    }
+  if (!formData.country.trim()) {
+    toast.error("Please enter your country.");
+    return;
+  }
 
-    if (!formData.message.trim()) {
-      toast.error("Please enter your message.");
-      return;
-    }
+  if (!formData.state.trim()) {
+    toast.error("Please enter your state.");
+    return;
+  }
 
-    if (formData.captcha.trim() !== captchaCode) {
-      toast.error("Invalid captcha. Please try again.");
-      return;
-    }
+  if (!formData.district.trim()) {
+    toast.error("Please enter your district.");
+    return;
+  }
 
-    try {
-      setSubmitLoading(true);
+  if (formData.services.length === 0) {
+    toast.error("Please select at least one interested service.");
+    return;
+  }
 
-      const payload = {
-        name: formData.name,
-        email: formData.email,
-        contact_no: formData.contact_no,
-        company: formData.company,
-        services: formData.services,
-        message: formData.message,
-      };
+  if (!formData.message.trim()) {
+    toast.error("Please enter your message.");
+    return;
+  }
 
-      console.log(`${apiUrl}/contact`);
-      console.log(payload);
+  if (formData.captcha.trim() !== captchaCode) {
+    toast.error("Invalid captcha. Please try again.");
+    return;
+  }
 
-      const res = await axios.post<ContactResponse>(
-        `${apiUrl}/contact`,
-        payload
+  try {
+    setSubmitLoading(true);
+
+    const payload = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      contact_no: formData.contact_no.trim(),
+      company: formData.company.trim(),
+      services: formData.services,
+      country: formData.country.trim(),
+      state: formData.state.trim(),
+      district: formData.district.trim(),
+      message: formData.message.trim(),
+    };
+
+    const res = await axios.post<ContactResponse>(
+      `${apiUrl}/contactUsStore`,
+      payload
+    );
+
+    if (res.data?.success) {
+      toast.success(
+        res.data.message || "Your inquiry has been submitted successfully."
       );
 
-      if (res.data?.success) {
-        toast.success(
-          res.data.message || "Your inquiry has been submitted successfully."
-        );
+      setFormData({
+        name: "",
+        email: "",
+        contact_no: "",
+        company: "",
+        services: [],
+        country: "",
+        state: "",
+        district: "",
+        message: "",
+        captcha: "",
+      });
 
-        setFormData({
-          name: "",
-          email: "",
-          contact_no: "",
-          company: "",
-          services: [],
-          message: "",
-          captcha: "",
-        });
-
-        generateCaptcha();
-               router.push("/inquiry-thank-you");       
-      } else {
-        toast.error(
-          res.data?.message || "Something went wrong. Please try again."
-        );
-      }
-    } catch (error: unknown) {
-      console.error("Contact submit error:", error);
-
-      if (axios.isAxiosError(error)) {
-        toast.error(
-          error.response?.data?.message ||
-            "Something went wrong. Please try again."
-        );
-      } else {
-        toast.error("Something went wrong. Please try again.");
-      }
-    } finally {
-      setSubmitLoading(false);
+      generateCaptcha();
+      router.push("/inquiry-thank-you");
+    } else {
+      toast.error(
+        res.data?.message || "Something went wrong. Please try again."
+      );
     }
-  };
+  } catch (error: unknown) {
+    console.error("Contact submit error:", error);
+
+    if (axios.isAxiosError(error)) {
+      toast.error(
+        error.response?.data?.message ||
+          "Something went wrong. Please try again."
+      );
+    } else {
+      toast.error("Something went wrong. Please try again.");
+    }
+  } finally {
+    setSubmitLoading(false);
+  }
+};
 
   return (
     <>
@@ -433,26 +455,34 @@ const handleServiceChange = (serviceId: number): void => {
         />
       </div>
 
-      <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
-        <input
-          type="text"
-          placeholder="Country"
-          className="h-[42px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
-        />
+    <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-3">
+  <input
+    type="text"
+    name="country"
+    value={formData.country}
+    onChange={handleChange}
+    placeholder="Country"
+    className="h-[42px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+  />
 
-        <input
-          type="text"
-          placeholder="State"
-          className="h-[42px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
-        />
+  <input
+    type="text"
+    name="state"
+    value={formData.state}
+    onChange={handleChange}
+    placeholder="State"
+    className="h-[42px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+  />
 
-        <input
-          type="text"
-          placeholder="District"
-          className="h-[42px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
-        />
-      </div>
-
+  <input
+    type="text"
+    name="district"
+    value={formData.district}
+    onChange={handleChange}
+    placeholder="District"
+    className="h-[42px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+  />
+</div>
    <div className="mt-8">
   <h1 className="mb-7 text-[22px] font-bold text-[#555] md:text-[26px]">
     Interested Services

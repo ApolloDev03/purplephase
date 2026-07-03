@@ -13,7 +13,6 @@ const VideoSection = () => {
         await videoRef.current.play();
         setIsPlaying(true);
     };
-
     return (
         <section className="relative flex w-full flex-col items-center ">
             <div               
