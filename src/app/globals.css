@@ -129,11 +129,11 @@ button {
 /* lg */
 @media (min-width: 1024px) {
   h2 {
-    font-size: 45px;
+    font-size: 35px;
   }
 
   h3 {
-    font-size: 30px;
+    font-size: 28px;
   }
 
   p {
