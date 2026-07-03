@@ -157,22 +157,23 @@ text-primary">
           )}
         </div>
       <div className="absolute -bottom-16 left-0 z-50">
-           <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                onClick={()=> router.push("/CaseStudies")}
-                                transition={{ duration: 0.5, delay: 0.45 }}
-                                className="mt-9 flex justify-center lg:justify-start"
-                            >
-                                <button className="motion-shine group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
-                                   Case Studies
-        
-                                    <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                                        <HiArrowUpRight className="h-5 w-5" />
-                                    </span>
-                                </button>
-                            </motion.div>
+         <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.45 }}
+            onClick={()=> router.push("/CaseStudies")}
+            className="mt-7 flex justify-center sm:mt-9 lg:justify-start"
+          >
+            <button className="motion-shine group inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-[14px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30 sm:gap-3 sm:px-6 sm:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[24px]">
+              Case Studies
+
+              <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                <HiArrowUpRight className="h-4 w-4 lg:h-5 lg:w-5" />
+              </span>
+            </button>
+          </motion.div>
+          
    
     </div>
       </section>
