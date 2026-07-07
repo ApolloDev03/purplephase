@@ -11,7 +11,6 @@ import {
 } from 'react-icons/fa';
 import Image from 'next/image';
 import logo from '../assets/ppc-combined-logo.png';
-import { VscTwitter } from "react-icons/vsc";
 import { FaXTwitter } from 'react-icons/fa6';
 
 const Footer = () => {
@@ -108,7 +107,7 @@ const Footer = () => {
     </div>
 
     {/* UK */}
-    <div className="flex flex-col">
+    {/* <div className="flex flex-col">
         <div className="flex items-center gap-2 mb-2">
             <FaMapMarkerAlt className="text-primary text-sm" />
             <h4 className="font-medium  text-[#4A4A4A]">
@@ -122,7 +121,7 @@ const Footer = () => {
         >
             +44 00000 00000
         </a>
-    </div>
+    </div> */}
 
 </div>
                     </div>

@@ -2,10 +2,10 @@
 
 import { motion } from "framer-motion";
 import { useEffect, useState, Suspense } from "react";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
 import { apiUrl } from "../config";
-import { HiArrowUpRight } from "react-icons/hi2";
+import { LuMoveUpRight } from "react-icons/lu";
 import { FaAnglesLeft, FaAnglesRight } from "react-icons/fa6";
 import ContactPopup from "../components/ContactPopup";
 
@@ -38,6 +38,8 @@ type CaseStudyItem = {
   body: string;
   award_title: string;
   award_image: string;
+  previous_slug: string | null;
+  next_slug: string | null;
   section_images: SectionImage[];
   more_images: MoreImage[];
   created_at: string;
@@ -45,6 +47,7 @@ type CaseStudyItem = {
 
 function CaseStudyDetailContent() {
   const searchParams = useSearchParams();
+  const router = useRouter();
   const slug = searchParams.get("slug");
   const [isContactPopupOpen, setIsContactPopupOpen] = useState(false);
 
@@ -126,9 +129,21 @@ function CaseStudyDetailContent() {
     moreStart += count;
     rowNumber++;
   }
+  const handleProjectChange = (projectSlug: string | null) => {
+  if (!projectSlug) return;
+
+  router.push(`/case-study-detail?slug=${projectSlug}`);
+
+  setTimeout(() => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  }, 100);
+};
   return (
     <>
-    <main className=" font-sans text-[#242424] ">
+    <main className="py-16 font-sans text-[#242424] ">
       {/* HERO */}
       <section className="mx-auto w-full max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
         <motion.div
@@ -260,12 +275,20 @@ function CaseStudyDetailContent() {
         </section>
       )}
 
-      {/* PREV NEXT */}
-     <section className="mx-auto w-full max-w-full px-4 py-10 sm:px-6 lg:px-20 2xl:px-32">
-  <div className="flex items-center justify-between gap-4 border-t border-[#ddd] pt-8">
-    
+{/* PREV NEXT */}
+<section className="mx-auto w-full max-w-full px-4 py-10 sm:px-6 lg:px-20 2xl:px-32">
+  <div className="flex flex-col items-center justify-between gap-5 border-t border-[#ddd] pt-8 sm:flex-row">
     {/* Previous Button */}
-    <button className="inline-flex items-center gap-2 text-sm font-medium text-[#666] transition hover:text-[#A62666] sm:text-base">
+    <button
+      type="button"
+      onClick={() => handleProjectChange(caseStudy.previous_slug)}
+      disabled={!caseStudy.previous_slug}
+      className={`inline-flex items-center gap-2 text-sm font-medium transition sm:text-base ${
+        caseStudy.previous_slug
+          ? "cursor-pointer text-[#666] hover:text-[#A62666]"
+          : "cursor-not-allowed text-gray-300"
+      }`}
+    >
       <FaAnglesLeft className="text-[13px]" />
       <span>Previous Project</span>
     </button>
@@ -278,20 +301,32 @@ function CaseStudyDetailContent() {
       transition={{ duration: 0.5, delay: 0.45 }}
       className="flex justify-center"
     >
-      <button className="motion-shine group inline-flex items-center justify-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30 lg:text-[20px] 2xl:text-[24px]">
+      <button
+        type="button"
+        onClick={() => router.push("/case-study")}
+        className="motion-shine group inline-flex items-center justify-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30 lg:text-[20px] 2xl:text-[24px]"
+      >
         Explore More
         <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                <HiArrowUpRight className="h-5 w-5" />
-              </span>
+          <LuMoveUpRight className="h-5 w-5" />
+        </span>
       </button>
     </motion.div>
 
     {/* Next Button */}
-    <button className="inline-flex items-center gap-2 text-sm font-medium text-[#666] transition hover:text-[#A62666] sm:text-base">
+    <button
+      type="button"
+      onClick={() => handleProjectChange(caseStudy.next_slug)}
+      disabled={!caseStudy.next_slug}
+      className={`inline-flex items-center gap-2 text-sm font-medium transition sm:text-base ${
+        caseStudy.next_slug
+          ? "cursor-pointer text-[#666] hover:text-[#A62666]"
+          : "cursor-not-allowed text-gray-300"
+      }`}
+    >
       <span>Next Project</span>
       <FaAnglesRight className="text-[13px]" />
     </button>
-
   </div>
 </section>
 
@@ -313,7 +348,7 @@ function CaseStudyDetailContent() {
               Let&apos;s Discuss 
 
               <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                <HiArrowUpRight className="h-5 w-5" />
+                <LuMoveUpRight className="h-5 w-5" />
               </span>
             </button>
           </motion.div>

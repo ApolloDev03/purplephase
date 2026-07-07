@@ -4,7 +4,7 @@
 // import { AnimatePresence, motion } from "framer-motion";
 // import { apiUrl } from "../config";
 // import axios from "axios";
-// import { HiArrowUpRight } from "react-icons/hi2";
+//import { LuMoveUpRight } from "react-icons/lu";
 // import { useRouter } from "next/navigation";
 
 // export default function HeaderHero() {
@@ -157,7 +157,7 @@
 //               {activeSlide.button_title || "Let's Build"}
 
 //               <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-//                 <HiArrowUpRight className="h-5 w-5" />
+//                 <LuMoveUpRight className="h-5 w-5" />
 //               </span>
 //             </button>
 //           </motion.div>
@@ -192,7 +192,7 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { apiUrl } from "../config";
 import axios from "axios";
-import { HiArrowUpRight } from "react-icons/hi2";
+import { LuMoveUpRight } from "react-icons/lu";
 import { useRouter } from "next/navigation";
 
 export default function HeaderHero() {
@@ -346,7 +346,7 @@ export default function HeaderHero() {
               {activeSlide.button_title || "Let's Build"}
 
               <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                <HiArrowUpRight className="h-5 w-5" />
+                <LuMoveUpRight className="h-5 w-5" />
               </span>
             </button>
           </motion.div>

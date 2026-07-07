@@ -5,7 +5,7 @@
 // import axios from "axios";
 // import { apiUrl } from "../config";
 // import { motion } from "framer-motion";
-// import { HiArrowUpRight } from "react-icons/hi2";
+//import { LuMoveUpRight } from "react-icons/lu";
 // import { useRouter } from "next/navigation";
 
 // type PortfolioImage = {
@@ -139,7 +139,7 @@
 //                              Browse Projects
 
 //                             <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-//                                 <HiArrowUpRight className="h-5 w-5" />
+//                                 <LuMoveUpRight className="h-5 w-5" />
 //                             </span>
 //                         </button>
 //                     </motion.div>
@@ -168,6 +168,7 @@
 
 // export default PortfolioSection;
 
+
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -175,7 +176,7 @@ import Image from "next/image";
 import axios from "axios";
 import { apiUrl } from "../config";
 import { motion } from "framer-motion";
-import { HiArrowUpRight } from "react-icons/hi2";
+import { LuMoveUpRight } from "react-icons/lu";
 import { useRouter } from "next/navigation";
 
 type PortfolioImage = {
@@ -247,7 +248,7 @@ const PortfolioSection = () => {
 
   return (
     <section className="w-full overflow-hidden bg-white">
-      <div className="mx-auto max-w-[1680px] px-4 py-10 sm:px-6 sm:py-12 md:px-10 lg:px-20 lg:py-16 2xl:px-32">
+      <div className="mx-auto max-w-full px-4 py-10 2xl:py-[85px] sm:px-6 sm:py-12 md:px-10 lg:px-20 lg:py-16 2xl:px-32">
         {/* Section Heading */}
         <div className="mb-6 text-center sm:mb-8 lg:text-left">
           <h2 className="mb-0 text-[34px] leading-[1.05] tracking-tight text-primary sm:text-[46px] md:text-[58px] lg:text-[72px] xl:text-[84px] 2xl:text-[96px]">
@@ -314,24 +315,24 @@ const PortfolioSection = () => {
             onClick={() => router.push("/about-us")}
             className="flex justify-center lg:justify-start"
           >
-            <button className="motion-shine group inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-[14px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30 sm:gap-3 sm:px-6 sm:text-[16px] lg:text-[20px] 2xl:text-[24px]">
+            <button className="motion-shine group inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-[14px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30 sm:gap-4 sm:px-6 sm:text-[16px] lg:text-[20px] 2xl:text-[24px]">
               Browse Projects
 
               <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                <HiArrowUpRight className="h-5 w-5" />
+                <LuMoveUpRight className="h-5 w-5" />
               </span>
             </button>
           </motion.div>
 
-          <div className="flex flex-wrap items-center justify-center gap-2 text-primary lg:max-w-[70%] lg:justify-end">
+          <div className="flex flex-wrap items-center justify-center gap-2 text-primary  lg:justify-end">
             {filters.map((filter, index) => (
               <React.Fragment key={filter}>
-                <span className="rounded-full border border-primary/20 px-3 py-2 text-[13px] font-normal leading-none text-primary sm:border-0 sm:px-2 sm:py-0 sm:text-[15px] md:text-[17px] lg:text-[18px] xl:text-[20px] 2xl:text-[28px]">
+                <span className="rounded-full border border-primary/20 px-3 py-2 text-[13px] leading-none text-primary sm:border-0 sm:px-2 sm:py-0 sm:text-[15px] md:text-[17px] lg:text-[18px] xl:text-[20px] 2xl:text-[28px]">
                   {filter}
                 </span>
 
                 {index !== filters.length - 1 && (
-                  <span className="hidden text-[22px] font-light text-slate-400 sm:inline-block">
+                  <span className="hidden text-[22px] font-light text-[#424242] sm:inline-block">
                     |
                   </span>
                 )}

@@ -12,7 +12,7 @@ import axios from "axios";
 import { apiUrl } from "../config";
 import Link from "next/link";
 import { MoveUpRight } from "lucide-react";
-import { HiArrowUpRight } from "react-icons/hi2";
+import { LuMoveUpRight } from "react-icons/lu";
 import { useRouter } from "next/navigation";
 
 type SectionImage = {
@@ -108,7 +108,7 @@ const smoothProgress = useSpring(scrollYProgress, {
 });
 
   return (
-    <main className="bg-[#e5e5e5] font-sans py-16 px-4 sm:px-6 lg:px-20 2xl:px-32">
+    <main className="bg-[#f6f6f6] font-sans py-16 px-4 sm:px-6 lg:px-20 2xl:px-32 xl:py-[85px]">
       <section
         ref={sectionRef}
         className="relative mb-10"
@@ -127,7 +127,7 @@ text-primary">
                 Story Behind Brand Building
               </h2>
 
-              <p className="mt-4 text-lg xl:text-2xl text-black ">
+              <p className="mt-5 text-lg xl:text-2xl text-black ">
                 Explore the process behind crafting memorable brand experiences.
               </p>
             </div>
@@ -143,7 +143,7 @@ text-primary">
               <p className="text-[#626262]">No case studies found.</p>
             </div>
           ) : (
-            <div className="relative mt-8 bg-[#e5e5e5] h-[calc(100vh-100px)] overflow-hidden">
+            <div className="relative mt-8 bg-[#f6f6f6] h-[calc(100vh-100px)] overflow-hidden">
               {brandStories.map((item, i) => (
                 <ScrollSlide
                   key={item.id}
@@ -163,13 +163,13 @@ text-primary">
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.45 }}
             onClick={()=> router.push("/CaseStudies")}
-            className="mt-7 flex justify-center sm:mt-9 lg:justify-start"
+            className="mt-10 flex justify-center  lg:justify-start"
           >
-            <button className="motion-shine group inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-[14px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30 sm:gap-3 sm:px-6 sm:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[24px]">
+            <button className="motion-shine group inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-[14px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30 sm:gap-[25px] sm:px-6 sm:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[24px]">
               Case Studies
 
               <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                <HiArrowUpRight className="h-4 w-4 lg:h-5 lg:w-5" />
+                <LuMoveUpRight className="h-5 w-5 " />
               </span>
             </button>
           </motion.div>
@@ -178,7 +178,6 @@ text-primary">
     </div>
       </section>
 
-      {/* View All Button */}
     </main>
   );
 }
@@ -260,7 +259,7 @@ const y = useTransform(
         href={`/case-study-detail?slug=${encodeURIComponent(item.slug)}`}
         className="group block h-full"
       >
-        <div className="relative h-full overflow-hidden rounded-2xl ">
+        <div className="relative h-full overflow-hidden rounded-xl ">
           <motion.img
             src={item.hero_image}
             alt={item.title}

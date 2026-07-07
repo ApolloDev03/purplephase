@@ -131,7 +131,7 @@ export default function AchievementSection() {
           <div className="text-white text-lg">No testimonials found.</div>
         ) : (
           <div>
-            <div className="grid grid-cols-1 md:grid-cols-[275px_1fr] gap-6 md:gap-12 items-center">
+            <div className="grid grid-cols-1 md:grid-cols-[385px_1fr] gap-6 md:gap-12 items-start">
               {/* Image Card */}
               <AnimatePresence mode="wait">
                 <motion.div
@@ -140,7 +140,7 @@ export default function AchievementSection() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -25 }}
                   transition={{ duration: 0.45 }}
-                  className="relative mx-auto md:mx-0 w-full max-w-[275px] h-[185px] rounded-[20px] border border-white/75 bg-white/15 flex items-center justify-center overflow-hidden shadow-[0_15px_30px_rgba(0,0,0,0.22)]"
+                  className="relative mx-auto md:mx-0 w-full max-w-[385px] h-[257px] rounded-[20px] border border-white/75 bg-white/15 flex items-center justify-center overflow-hidden shadow-[0_15px_30px_rgba(0,0,0,0.22)]"
                 >
                   <img
                     src={currentTestimonial.image}
@@ -160,7 +160,7 @@ export default function AchievementSection() {
                     exit={{ opacity: 0, x: -50 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
                   >
-                    <p className="text-[16px] md:text-[21px] leading-[1.45]  font-normal">
+                    <p className="">
                       {currentTestimonial.description}
                     </p>
 
