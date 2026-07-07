@@ -165,16 +165,16 @@ export default function StickyActions() {
                     }`}
             >
                 {/* Header */}
-                <div className="flex items-center justify-between px-5 py-4 border-b">
-                    <h2 className="text-xl font-bold">FAQs</h2>
+                <div className="flex items-center justify-between px-5 py-4 border-b border-primary">
+                    <h4 className="text-3xl font-bold">FAQs</h4>
                     <button onClick={() => setFaqOpen(false)}>
                         <X className="w-6 h-6" />
                     </button>
                 </div>
 
                 {/* Search */}
-                <div className="p-4 border-b">
-                    <div className="flex items-center gap-2 border rounded-lg px-3 py-2">
+                <div className="p-4 border-b border-primary">
+                    <div className="flex items-center gap-2 border border-primary rounded-lg px-3 py-2">
                         <Search className="w-5 h-5 text-gray-500" />
                         <input
                             type="text"
@@ -192,15 +192,15 @@ export default function StickyActions() {
                         filteredFaqs.map((faq, index) => (
                             <div
                                 key={index}
-                                className="p-4 rounded-xl border hover:border-[#F58220] transition"
+                                className="p-4 rounded-xl border border-primary transition"
                             >
-                                <h3 className="text-[16px] font-bold text-black mb-2">
+                                <h4 className="text-[16px] font-bold text-black mb-2">
                                     {faq.question}
-                                </h3>
+                                </h4>
 
-                                <p className="text-sm text-gray-600 leading-relaxed">
+                                <span className="text-sm text-gray-600 leading-relaxed">
                                     {faq.answer}
-                                </p>
+                                </span>
                             </div>
                         ))
                     ) : (

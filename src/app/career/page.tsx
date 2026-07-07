@@ -495,7 +495,7 @@ if (captchaAnswer.trim() !== correctCaptcha) {
                       We would love to hear from you.
                     </span>
           
-                  <div className="mt-7 grid grid-cols-1 items-center  lg:grid-cols-12">
+                  <div className="m grid grid-cols-1 items-center  lg:grid-cols-12">
                     {/* Form */}
                     <div className="lg:col-span-8">
                       <form
@@ -604,14 +604,24 @@ if (captchaAnswer.trim() !== correctCaptcha) {
   />
 
   {/* Button */}
-    <button
+  <div className="animated-btn-wrapper">
+ {/* <button
     type="submit"
     disabled={submitLoading}
     className="motion-shine !text-[18px] contact-gradient-btn h-[61px] w-full rounded-full font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
   >
     {submitLoading ? "Submitting..." : "Let's Connect"}
+  </button> */}
+    <button
+    type="submit"
+    disabled={submitLoading}
+    className="animated-btn h-[61px] w-full"
+  >
+    {submitLoading ? "Submitting..." : "Let's Connect"}
   </button>
 </div>
+</div>
+ 
                       </form>
                     </div>
           

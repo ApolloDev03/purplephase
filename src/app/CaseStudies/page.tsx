@@ -102,7 +102,7 @@ export default function CaseStudyPage() {
       <main className="bg-[#f6f6f6] font-body text-[#333333]">
         <section className="mx-auto max-w-full px-4 py-16 xl:py-[85px] sm:px-6 lg:px-20 2xl:px-32">
           {/* Page Title */}
-          <div className="mb-7">
+          <div className="">
             <h2 className="text-[#a20d69] ">
               Story Behind Brand Building
             </h2>
@@ -124,7 +124,7 @@ export default function CaseStudyPage() {
 
           {/* Case Studies */}
           {!loading && !error && (
-            <div className="space-y-9">
+            <div className="space-y-9 mt-14">
               {caseStudies.map((study, idx) => {
                 const detailSlug = study.slug || makeSlug(study.title);
 
@@ -143,7 +143,7 @@ export default function CaseStudyPage() {
                       )}`}
                       className="block"
                     >
-                      <div className="overflow-hidden rounded-md bg-white">
+                      <div className="overflow-hidden rounded-xl bg-white">
                         <img
                           src={study.hero_image}
                           alt={study.award_title || study.title}
@@ -194,7 +194,10 @@ export default function CaseStudyPage() {
         {/* CTA Section */}
         <section className="bg-gradient-to-r from-[#bf2f86] to-[#730041]">
           <div className="mx-auto flex max-w-full flex-col items-center justify-center px-6 py-9 xl:py-[85px] text-center md:px-20 lg:px-[115px]">
-            <h3 className="font-bold uppercase tracking-wide text-white text-3xl md:text-5xl lg:text-3xl">
+            <h3 style={{
+            fontVariantCaps: "all-small-caps",
+            fontFeatureSettings: '"smcp", "c2sc"',
+          }}  className="font-bold  tracking-wide text-white ">
               Want to scale your brand ?
             </h3>
    <motion.div

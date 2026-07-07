@@ -279,7 +279,10 @@ const handleServiceChange = (serviceId: number): void => {
         </div>
 
         <div>
-          <h3 className="mb-3 font-heading text-[24px] font-bold uppercase tracking-wide text-[#ff7a00] md:text-[28px]">
+          <h3 style={{
+            fontVariantCaps: "all-small-caps",
+            fontFeatureSettings: '"smcp", "c2sc"',
+          }}   className="mb-3 font-heading text-[24px] font-bold uppercase tracking-wide text-[#ff7a00] md:text-[28px]">
             Call Us
           </h3>
 
@@ -312,7 +315,10 @@ const handleServiceChange = (serviceId: number): void => {
         </div>
 
         <div>
-          <h3 className="mb-3 font-heading text-[24px] font-bold uppercase tracking-wide text-[#ff7a00] md:text-[28px]">
+          <h3 style={{
+            fontVariantCaps: "all-small-caps",
+            fontFeatureSettings: '"smcp", "c2sc"',
+          }}   className="mb-3 font-heading text-[24px] font-bold uppercase tracking-wide text-[#ff7a00] md:text-[28px]">
             Email Id
           </h3>
 
@@ -334,7 +340,10 @@ const handleServiceChange = (serviceId: number): void => {
         </div>
 
         <div>
-          <h3 className="mb-3 font-heading text-[24px] font-bold uppercase tracking-wide text-[#ff7a00] md:text-[28px]">
+          <h3  style={{
+            fontVariantCaps: "all-small-caps",
+            fontFeatureSettings: '"smcp", "c2sc"',
+          }}   className="mb-3 font-heading text-[24px] font-bold uppercase tracking-wide text-[#ff7a00] md:text-[28px]">
             Ahmedabad
           </h3>
 
@@ -359,7 +368,10 @@ const handleServiceChange = (serviceId: number): void => {
         </div>
 
         <div>
-          <h3 className="mb-3 font-heading text-[24px] font-bold uppercase tracking-wide text-[#ff7a00] md:text-[28px]">
+          <h3 style={{
+            fontVariantCaps: "all-small-caps",
+            fontFeatureSettings: '"smcp", "c2sc"',
+          }}   className="mb-3 font-heading text-[24px] font-bold uppercase tracking-wide text-[#ff7a00] md:text-[28px]">
             Mumbai
           </h3>
 
@@ -407,9 +419,9 @@ const handleServiceChange = (serviceId: number): void => {
 <div className="bg-[#dedede]">
   <div className="mx-auto max-w-full px-6 py-16 sm:px-8 lg:px-20 2xl:px-32">
   
-  <h2 className="text-[28px] font-bold leading-tight text-[#a20d69] md:text-[34px] lg:text-[38px]">
+  <h1 className="text-[28px] font-semibold leading-tight text-[#a20d69] md:text-[34px] lg:text-[50px]">
   No decks. No jargon. Just an Honest Conversation.
-</h2>
+</h1>
 
 <span className="mt-5 font-medium text-[28px] text-[#424242] xl:text-[32px] 2xl:text-[36px]">
   Let’s catch up over a cup of coffee !

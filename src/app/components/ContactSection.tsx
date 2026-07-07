@@ -94,7 +94,7 @@ const router = useRouter();
             Let’s catch up over a cup of coffee !
           </span>
 
-        <div className="grid grid-cols-1 items-center mt-7 foote lg:grid-cols-12">
+        <div className="grid grid-cols-1 items-center mt-3  lg:grid-cols-12">
           {/* Form */}
           <div className="lg:col-span-7 ">
             <form
@@ -171,13 +171,22 @@ const router = useRouter();
   />
 
   {/* Button */}
+<div className="animated-btn-wrapper">
+ {/* <button
+  type="submit"
+  disabled={loading}
+  className="motion-shine contact-gradient-btn h-[61px] w-full font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
+>
+  {loading ? "Submitting..." : "Let's Connect"}
+</button> */}
   <button
     type="submit"
     disabled={loading}
-    className="motion-shine  contact-gradient-btn h-[61px] w-full  font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
+    className="animated-btn h-[61px] w-full"
   >
     {loading ? "Submitting..." : "Let's Connect"}
   </button>
+</div>
 </div>
             </form>
           </div>

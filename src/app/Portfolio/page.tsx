@@ -7,6 +7,7 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { apiUrl } from "../config";
 import Image from "next/image";
 import { LuMoveUpRight } from "react-icons/lu";
+import ContactPopup from "../components/ContactPopup";
 
 type PortfolioImage = {
   id: number;
@@ -39,7 +40,11 @@ export default function PortfolioSection() {
     null
   );
   const [activeImageIndex, setActiveImageIndex] = useState(0);
+  const [isContactPopupOpen, setIsContactPopupOpen] = useState(false);
 
+    const handleContactPopupOpen = () => {
+        setIsContactPopupOpen(true);
+    };
   const fetchPortfolioList = async () => {
     try {
       setLoading(true);
@@ -146,22 +151,22 @@ const categories = useMemo(() => {
     <>
 
       <section className="w-full bg-[#f3f3f3] ">
-        <div className="mx-auto max-w-full my-16 px-4 sm:px-6 lg:px-20 2xl:px-32">
+        <div className="mx-auto max-w-full py-16 px-4 2xl:py-[85px] sm:px-6 lg:px-20 2xl:px-32">
           <div className="mb-10">
                     <h2 className="
 leading-none
-text-primary max-w-2xl">
-               Ideas That Moved People Work That Moved Markets
+text-primary ">
+               Ideas That Moved People <br/> Work That Moved Markets
               </h2>
 
-            <p className=" leading-7 mt-3 text-[#6d6d6d] ">
+            <p className=" leading-7 mt-5 text-[#6d6d6d] ">
              A brand is ultimately what a customer experiences.
              <br/>
 The work in this portfolio aims to make that experience purposeful,powerful, and impossible to forget.
             </p>
 
 {!loading && portfolioList.length > 0 && (
-  <div className="my-10 flex flex-wrap justify-center gap-2">
+  <div className="my-16 flex flex-wrap justify-center gap-3">
     {categories.map((cat) => {
       const isActive = filter === cat;
       const isShowAll = cat === "Show All";
@@ -170,7 +175,7 @@ The work in this portfolio aims to make that experience purposeful,powerful, and
         <button
           key={cat}
           onClick={() => handleFilterChange(cat)}
-          className={`rounded-md px-4 py-2 text-[14px] font-semibold text-white transition-all duration-300 ${
+          className={`rounded-lg p-3 text-[14px] font-semibold text-white transition-all duration-300 ${
             isActive && !isShowAll
               ? "bg-primary"
               : isShowAll
@@ -268,7 +273,33 @@ The work in this portfolio aims to make that experience purposeful,powerful, and
           </div>
         </div>
       </section>
-
+  <section className="bg-gradient-to-r from-[#bf2f86] to-[#730041]">
+          <div className="mx-auto flex max-w-full flex-col items-center justify-center px-6 py-9 xl:py-[85px] text-center md:px-20 lg:px-[115px]">
+            <h3 style={{
+            fontVariantCaps: "all-small-caps",
+            fontFeatureSettings: '"smcp", "c2sc"',
+          }}  className="font-bold  tracking-wide text-white ">
+              Need impactful branding solutions ?
+            </h3>
+   <motion.div
+                                      initial={{ opacity: 0, y: 20 }}
+                                      whileInView={{ opacity: 1, y: 0 }}
+                                      viewport={{ once: true }}
+                                      transition={{ duration: 0.5, delay: 0.45 }}
+                                     onClick={()=>handleContactPopupOpen()}
+                                      className="mt-10 flex justify-center lg:justify-start"
+                                  >
+                                      <button className="motion-shine group inline-flex items-center gap-4 rounded-full bg-[#720048] px-8 py-5 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+                                         Get A Quote
+              
+                                          <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                                              <LuMoveUpRight className="h-5 w-5" />
+                                          </span>
+                                      </button>
+                                  </motion.div>
+         
+          </div>
+        </section>
       <AnimatePresence>
         {selectedProject && (
           <motion.div
@@ -344,6 +375,10 @@ The work in this portfolio aims to make that experience purposeful,powerful, and
           </motion.div>
         )}
       </AnimatePresence>
+        <ContactPopup
+                                  isOpen={isContactPopupOpen}
+                                  onClose={() => setIsContactPopupOpen(!isContactPopupOpen)}
+                              />
     </>
   );
 }
