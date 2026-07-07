@@ -7,7 +7,7 @@ import { ContactSection } from "../components/ContactSection";
 import { AnimatePresence, motion } from "framer-motion";
 import axios from "axios";
 import { apiUrl } from "../config";
-import { HiArrowUpRight } from "react-icons/hi2";
+import { LuMoveUpRight } from "react-icons/lu";
 import { useRouter } from "next/navigation";
 import ContactPopup from "../components/ContactPopup";
 
@@ -182,7 +182,7 @@ export default function AboutPage() {
     Meet The Team
 
     <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-      <HiArrowUpRight className="h-5 w-5" />
+      <LuMoveUpRight className="h-5 w-5" />
     </span>
   </button>
 </motion.div>
@@ -279,7 +279,7 @@ export default function AboutPage() {
                         <button className="motion-shine group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
                               Tell Your Story
                             <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                                <HiArrowUpRight className="h-5 w-5" />
+                                <LuMoveUpRight className="h-5 w-5" />
                             </span>
                         </button>
                     </motion.div>
@@ -361,7 +361,7 @@ export default function AboutPage() {
   <button className="motion-shine mt-5 group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
    Leverage Legacy
     <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-      <HiArrowUpRight className="h-5 w-5" />
+      <LuMoveUpRight className="h-5 w-5" />
     </span>
   </button>
 </motion.div>
@@ -419,7 +419,7 @@ export default function AboutPage() {
   <button className="motion-shine mt-5 group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
    Get AI Edge
     <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-      <HiArrowUpRight className="h-5 w-5" />
+      <LuMoveUpRight className="h-5 w-5" />
     </span>
   </button>
 </motion.div>

@@ -18,7 +18,7 @@ import {
 } from "react-icons/fa";
 
 import { FaArrowDownLong, FaArrowUpLong, FaXTwitter } from "react-icons/fa6";
-import { HiArrowUpRight } from "react-icons/hi2";
+import { LuMoveUpRight } from "react-icons/lu";
 
 type BlogDetailResponse = {
   message: string;
@@ -238,7 +238,7 @@ function BlogDetailContent() {
                                                Stay Connected
                     
                                                 <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                                                    <HiArrowUpRight className="h-5 w-5" />
+                                                    <LuMoveUpRight className="h-5 w-5" />
                                                 </span>
                                             </button>
                                         </motion.div>

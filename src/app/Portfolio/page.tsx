@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 import { apiUrl } from "../config";
 import Image from "next/image";
-import { HiArrowUpRight } from "react-icons/hi2";
+import { LuMoveUpRight } from "react-icons/lu";
 
 type PortfolioImage = {
   id: number;
@@ -259,7 +259,7 @@ The work in this portfolio aims to make that experience purposeful,powerful, and
                                                         View More
                             
                                                         <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                                                            <HiArrowUpRight className="h-5 w-5" />
+                                                            <LuMoveUpRight className="h-5 w-5" />
                                                         </span>
                                                     </button>
                                                 </motion.div>

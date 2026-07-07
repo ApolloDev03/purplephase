@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Link from "next/link";
 import { apiUrl } from "../config";
-import { HiArrowUpRight } from "react-icons/hi2";
+import { LuMoveUpRight } from "react-icons/lu";
 import { useRouter } from "next/navigation";
 import ContactPopup from "../components/ContactPopup";
 
@@ -182,7 +182,7 @@ export default function CaseStudyPage() {
                                            view More
               
                                           <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                                              <HiArrowUpRight className="h-5 w-5" />
+                                              <LuMoveUpRight className="h-5 w-5" />
                                           </span>
                                       </button>
                                   </motion.div>
@@ -209,7 +209,7 @@ export default function CaseStudyPage() {
                                          Lets Discuss
               
                                           <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                                              <HiArrowUpRight className="h-5 w-5" />
+                                              <LuMoveUpRight className="h-5 w-5" />
                                           </span>
                                       </button>
                                   </motion.div>
