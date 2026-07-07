@@ -36,7 +36,7 @@ const ProcessSection = () => {
 
         {/* Right Content */}
         <div className="text-center lg:text-left">
-          <h2 className="  font-semibold lowercase [font-variant-caps:small-caps]! text-primary ">
+          <h2 className="text-[58px]  font-semibold lowercase [font-variant-caps:small-caps]! text-primary ">
             We Listen, Before We Advise.
           </h2>
           {/* <h2 className="font-semibold lowercase ![font-variant-caps:small-caps]  text-primary">

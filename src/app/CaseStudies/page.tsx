@@ -99,8 +99,8 @@ export default function CaseStudyPage() {
     <>
       {/* <Breadcrumb /> */}
 
-      <main className="bg-[#eeeeee] font-body text-[#333333]">
-        <section className="mx-auto max-w-full px-4 py-16  sm:px-6 lg:px-20 2xl:px-32">
+      <main className="bg-[#f6f6f6] font-body text-[#333333]">
+        <section className="mx-auto max-w-full px-4 py-16 xl:py-[85px] sm:px-6 lg:px-20 2xl:px-32">
           {/* Page Title */}
           <div className="mb-7">
             <h2 className="text-[#a20d69] ">
@@ -135,7 +135,7 @@ export default function CaseStudyPage() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.2 }}
                     transition={{ duration: 0.45, delay: idx * 0.06 }}
-                    className="w-full"
+                    className="w-full mt-10"
                   >
                     <Link
                       href={`/case-study-detail?slug=${encodeURIComponent(
@@ -147,16 +147,16 @@ export default function CaseStudyPage() {
                         <img
                           src={study.hero_image}
                           alt={study.award_title || study.title}
-                          className="h-auto w-full rounded-md object-cover"
+                          className="h-auto w-full rounded-xl object-cover"
                         />
                       </div>
 
-                      <div className="mt-3">
+                      <div className="mt-5">
                         <h2 className="font-heading text-[16px] font-bold text-[#202020] md:text-[18px]">
                           {study.title}
                         </h2>
 
-                        <p className="mt-1 text-[12px] leading-relaxed text-[#5f5f5f] md:text-[13px]">
+                        <p className="mt-4 text-[12px] leading-relaxed text-[#5f5f5f] md:text-[13px]">
                           {study.description}
                         </p>
                       </div>
@@ -193,7 +193,7 @@ export default function CaseStudyPage() {
 
         {/* CTA Section */}
         <section className="bg-gradient-to-r from-[#bf2f86] to-[#730041]">
-          <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-center px-6 py-9 text-center md:px-20 lg:px-[115px]">
+          <div className="mx-auto flex max-w-full flex-col items-center justify-center px-6 py-9 xl:py-[85px] text-center md:px-20 lg:px-[115px]">
             <h3 className="font-bold uppercase tracking-wide text-white text-3xl md:text-5xl lg:text-3xl">
               Want to scale your brand ?
             </h3>
@@ -203,9 +203,9 @@ export default function CaseStudyPage() {
                                       viewport={{ once: true }}
                                       transition={{ duration: 0.5, delay: 0.45 }}
                                      onClick={()=>handleContactPopupOpen()}
-                                      className="mt-5 flex justify-center lg:justify-start"
+                                      className="mt-10 flex justify-center lg:justify-start"
                                   >
-                                      <button className="motion-shine group inline-flex items-center gap-3 rounded-full bg-[#720048] px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+                                      <button className="motion-shine group inline-flex items-center gap-4 rounded-full bg-[#720048] px-8 py-5 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
                                          Lets Discuss
               
                                           <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">

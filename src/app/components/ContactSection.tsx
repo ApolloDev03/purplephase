@@ -94,7 +94,7 @@ const router = useRouter();
             Let’s catch up over a cup of coffee !
           </span>
 
-        <div className="grid grid-cols-1 items-center mt-10 foote lg:grid-cols-12">
+        <div className="grid grid-cols-1 items-center mt-7 foote lg:grid-cols-12">
           {/* Form */}
           <div className="lg:col-span-7 ">
             <form

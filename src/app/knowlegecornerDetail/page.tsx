@@ -174,7 +174,7 @@ function BlogDetailContent() {
     <main className="min-h-screen bg-[#ECECEC]">
       {/* TOP AREA */}
       <section className="mx-auto w-full max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32 py-16">
-        <h2 className=" text-[#A62666]">
+        <h2 className="font-semibold text-[#A62666]">
           {blog.blogTitle}
         </h2>
 
@@ -204,7 +204,7 @@ function BlogDetailContent() {
   >
     <button
       onClick={() => setShowFullText(!showFullText)}
-      className="motion-shine group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30 lg:text-[20px] 2xl:text-[24px]"
+      className="motion-shine group inline-flex items-center gap-6 rounded-full bg-primary px-6 py-3 text-[15px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30 lg:text-[20px] 2xl:text-[24px]"
     >
       {showFullText ? "Read Less" : "Read More"}
 
@@ -221,30 +221,31 @@ function BlogDetailContent() {
       </section>
 
       {/* CTA */}
-          <section className="bg-gradient-to-r from-[#bf2f86] to-[#730041]">
-                <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-center px-6 py-9 text-center md:px-20 lg:px-[115px]">
-                  <h3 className="font-bold uppercase tracking-wide text-white text-3xl md:text-5xl lg:text-3xl">
-                   Curious About Brand Strategy ?
-                  </h3>
-         <motion.div
-                                            initial={{ opacity: 0, y: 20 }}
-                                            whileInView={{ opacity: 1, y: 0 }}
-                                            viewport={{ once: true }}
-                                            transition={{ duration: 0.5, delay: 0.45 }}
-                                           onClick={() => setIsPopupOpen(true)}
-                                            className="mt-5 flex justify-center lg:justify-start"
-                                        >
-                                            <button className="motion-shine group inline-flex items-center gap-3 rounded-full bg-[#720048] px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
-                                               Stay Connected
-                    
-                                                <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                                                    <LuMoveUpRight className="h-5 w-5" />
-                                                </span>
-                                            </button>
-                                        </motion.div>
-               
-                </div>
-              </section>
+       <section className="bg-gradient-to-r from-[#bf2f86] to-[#730041]">
+          <div className="mx-auto flex max-w-full flex-col items-center justify-center px-6 py-9 xl:py-[85px] text-center md:px-20 lg:px-[115px]">
+            <h3 className="font-bold uppercase tracking-wide text-white text-3xl md:text-5xl lg:text-3xl">
+             Curious About Brand Strategy ?
+            </h3>
+   <motion.div
+                                      initial={{ opacity: 0, y: 20 }}
+                                      whileInView={{ opacity: 1, y: 0 }}
+                                      viewport={{ once: true }}
+                                      transition={{ duration: 0.5, delay: 0.45 }}
+                                      onClick={() => setIsPopupOpen(true)}
+                                      className="mt-10 flex justify-center lg:justify-start"
+                                  >
+                                      <button className="motion-shine group inline-flex items-center gap-4 rounded-full bg-[#720048] px-8 py-5 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+                                        Stay Connected
+              
+                                          <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                                              <LuMoveUpRight className="h-5 w-5" />
+                                          </span>
+                                      </button>
+                                  </motion.div>
+         
+          </div>
+        </section>
+      
    
       <AnimatePresence>
         {isPopupOpen && (

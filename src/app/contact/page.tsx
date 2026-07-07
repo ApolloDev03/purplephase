@@ -272,7 +272,7 @@ const handleServiceChange = (serviceId: number): void => {
 <div className="bg-[#f4f4f4]">
   <div className="mx-auto max-w-full px-6 py-16 sm:px-8 lg:px-20 2xl:px-32">
     {/* FIRST ROW */}
-    <div className="grid grid-cols-1 gap-x-14 gap-y-12 md:grid-cols-3">
+    <div className="grid grid-cols-1 gap-x-2 gap-y-12 md:grid-cols-3">
       <div className="flex items-start gap-4">
         <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#a20d69] text-[#a20d69]">
           <Phone size={18} />
@@ -287,7 +287,7 @@ const handleServiceChange = (serviceId: number): void => {
             <span className="font-semibold text-[#2f2f2f]">
               Mr. Prerak Shah
             </span>{" "}
-            <span className="text-[13px]">- Founder</span>
+            <span className="">- Founder</span>
             <br />
             <a
               href="tel:+919999610505"
@@ -327,7 +327,7 @@ const handleServiceChange = (serviceId: number): void => {
     </div>
 
     {/* SECOND ROW */}
-    <div className="mt-16 grid grid-cols-1 gap-x-14 gap-y-12 md:grid-cols-3">
+    <div className="mt-16 grid grid-cols-1 gap-x-2 gap-y-12 md:grid-cols-3">
       <div className="flex items-start gap-4">
         <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#a20d69] text-[#a20d69]">
           <MapPin size={18} />
@@ -346,7 +346,7 @@ const handleServiceChange = (serviceId: number): void => {
 
           <a
             href="tel:+919999610505"
-            className="mt-4 inline-block text-[15px] text-[#4a4a4a] underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69]"
+            className="mt-4 inline-block  text-[#4a4a4a] underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69]"
           >
             +91 99986 10505
           </a>
@@ -377,7 +377,7 @@ const handleServiceChange = (serviceId: number): void => {
         </div>
       </div>
 
-      <div className="flex items-start gap-4">
+      {/* <div className="flex items-start gap-4">
         <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#a20d69] text-[#a20d69]">
           <MapPin size={18} />
         </div>
@@ -398,7 +398,7 @@ const handleServiceChange = (serviceId: number): void => {
             +91 99986 10505
           </a>
         </div>
-      </div>
+      </div> */}
     </div>
   </div>
 </div>
@@ -406,25 +406,24 @@ const handleServiceChange = (serviceId: number): void => {
 {/* FORM */}
 <div className="bg-[#dedede]">
   <div className="mx-auto max-w-full px-6 py-16 sm:px-8 lg:px-20 2xl:px-32">
-    <div className="mb-8">
-      <h2 className="font-heading text-[28px] font-bold leading-tight text-[#a20d69] md:text-[34px] lg:text-[38px]">
-        No decks. No jargon. Just an Honest Conversation.
-      </h2>
+  
+  <h2 className="text-[28px] font-bold leading-tight text-[#a20d69] md:text-[34px] lg:text-[38px]">
+  No decks. No jargon. Just an Honest Conversation.
+</h2>
 
-      <h1 className="mt-3 text-[28px] xl:text-[32px] 2xl:text-[36px]  text-[#454545]">
-        Let’s catch up over a cup of coffee !
-      </h1>
-    </div>
+<span className="mt-5 font-medium text-[28px] text-[#424242] xl:text-[32px] 2xl:text-[36px]">
+  Let’s catch up over a cup of coffee !
+</span>
 
     <form onSubmit={handleSubmit}>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
         <input
           type="text"
           name="name"
           value={formData.name}
           onChange={handleChange}
           placeholder="Full Name"
-          className="h-[42px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+          className="h-[61px] w-full rounded-md border-0 bg-white px-4 text-[18px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
         />
 
         <input
@@ -433,7 +432,7 @@ const handleServiceChange = (serviceId: number): void => {
           value={formData.email}
           onChange={handleChange}
           placeholder="Email"
-          className="h-[42px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+          className="h-[61px] w-full rounded-md border-0 bg-white px-4 text-[18px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
         />
 
         <input
@@ -442,7 +441,7 @@ const handleServiceChange = (serviceId: number): void => {
           value={formData.company}
           onChange={handleChange}
           placeholder="Company Name"
-          className="h-[42px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+          className="h-[61px] w-full rounded-md border-0 bg-white px-4 text-[18px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
         />
 
         <input
@@ -451,7 +450,7 @@ const handleServiceChange = (serviceId: number): void => {
           value={formData.contact_no}
           onChange={handleChange}
           placeholder="Contact Number"
-          className="h-[42px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+          className="h-[61px] w-full rounded-md border-0 bg-white px-4 text-[18px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
         />
       </div>
 
@@ -462,7 +461,7 @@ const handleServiceChange = (serviceId: number): void => {
     value={formData.country}
     onChange={handleChange}
     placeholder="Country"
-    className="h-[42px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+    className="h-[61px] w-full rounded-md border-0 bg-white px-4 text-[18px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
   />
 
   <input
@@ -471,7 +470,7 @@ const handleServiceChange = (serviceId: number): void => {
     value={formData.state}
     onChange={handleChange}
     placeholder="State"
-    className="h-[42px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+    className="h-[61px] w-full rounded-md border-0 bg-white px-4 text-[18px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
   />
 
   <input
@@ -480,18 +479,18 @@ const handleServiceChange = (serviceId: number): void => {
     value={formData.district}
     onChange={handleChange}
     placeholder="District"
-    className="h-[42px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+    className="h-[61px] w-full rounded-md border-0 bg-white px-4 text-[18px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
   />
 </div>
    <div className="mt-8">
-  <h1 className="mb-7 text-[22px] font-bold text-[#555] md:text-[26px]">
+  <h1 className="mb-7 text-[20px] font-bold text-[#555] ">
     Interested Services
   </h1>
 
   {loadingExpertise ? (
-    <p className="text-[16px] text-[#555]">Loading services...</p>
+    <p className=" text-[#555]">Loading services...</p>
   ) : expertiseList.length > 0 ? (
-    <div className="grid grid-cols-1 gap-x-20 gap-y-7 md:grid-cols-3">
+    <div className="grid mt-2 grid-cols-1 gap-3 md:grid-cols-3">
       {expertiseList.map((expertise) => {
         const isSelected = formData.services.includes(expertise.id);
 
@@ -517,7 +516,7 @@ const handleServiceChange = (serviceId: number): void => {
               {isSelected && <Check size={22} className="text-white" />}
             </span>
 
-            <span className="text-[20px] font-normal leading-[1.3] text-[#666] ">
+            <span className="text-[20px] text-[#666] ">
               {expertise.expertise_name}
             </span>
           </label>
@@ -538,9 +537,9 @@ const handleServiceChange = (serviceId: number): void => {
         className="mt-6 w-full resize-none rounded-md border-0 bg-white px-4 py-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
       />
 
-      <div className="mt-5 grid grid-cols-1 gap-5 md:grid-cols-[190px_240px_1fr]">
-        <div className="flex h-[42px] overflow-hidden rounded-md bg-white">
-          <div className="flex flex-1 items-center justify-center font-heading text-[15px] font-bold tracking-[0.28em] text-[#555]">
+      <div className="mt-3 grid grid-cols-1 gap-5 md:grid-cols-[264px_300px_1fr]">
+        <div className="flex h-[61px] overflow-hidden rounded-md bg-white">
+          <div className="flex flex-1 items-center justify-center font-heading text-[18px] font-bold tracking-[0.28em] text-[#555]">
             {captchaCode}
           </div>
 
@@ -560,7 +559,7 @@ const handleServiceChange = (serviceId: number): void => {
           value={formData.captcha}
           onChange={handleChange}
           placeholder="Enter Captcha"
-          className="h-[42px] w-full rounded-md border-0 bg-white px-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+          className="h-[61px] w-full rounded-md border-0 bg-white px-4 text-[18px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
         />
 <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -570,7 +569,7 @@ const handleServiceChange = (serviceId: number): void => {
                              
                         className=""
                     >
-                        <button   type="submit" disabled={submitLoading} className="motion-shine w-full  rounded-full  bg-gradient-to-r from-[#c22c86] to-[#780040] px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+                        <button   type="submit" disabled={submitLoading} className="motion-shine w-full h-[61px]  rounded-full  bg-gradient-to-r from-[#c22c86] to-[#780040] px-6 py-3 text-[18px]  font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
                            {submitLoading ? "Sending..." : "Let’s Connect"}
 
                            
@@ -582,7 +581,7 @@ const handleServiceChange = (serviceId: number): void => {
   </div>
 </div>
         {/* MAP */}
-        <div className="h-[335px] w-full overflow-hidden">
+        <div className="h-[606px] w-full overflow-hidden">
           <iframe
             src="https://www.google.com/maps?q=23.009938,72.553248&z=16&output=embed"
             width="100%"

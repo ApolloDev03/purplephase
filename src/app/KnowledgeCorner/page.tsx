@@ -297,8 +297,11 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { apiUrl } from "../config";
+import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import { ContactSection } from "../components/ContactSection";
+import { LuMoveUpRight } from "react-icons/lu";
+import { useRouter } from "next/navigation";
 
 type BlogItem = {
   blogId: number;
@@ -343,6 +346,7 @@ const categoryCards = [
 ];
 
 export default function BlogPage() {
+  const router=useRouter();
   const [blogs, setBlogs] = useState<BlogItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -413,83 +417,87 @@ export default function BlogPage() {
   };
 
   return (
-    <main className="bg-[#efefef]">
+    <>
       {/* HERO */}
-      <section className="relative w-full overflow-hidden bg-[#f7f5f6]">
-        <img
-          src="/assets/knowledgecorner/book.png"
-          alt="Playbook To Build Your Brand"
-          className="block w-full"
-        />
+   <section className="relative w-full overflow-hidden bg-[#f7f5f6]">
+  <div className="relative mx-auto h-[720px] w-full max-w-[1920px] overflow-hidden">
+    {/* Background Image */}
+    <img
+      src="/assets/knowledgecorner/book.png"
+      alt="Playbook To Build Your Brand"
+      className="absolute inset-0 h-full w-full object-cover"
+    />
 
-        <div className="absolute inset-0 flex items-center">
-          <div className="mx-auto w-full max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
-            <div className="max-w-[600px]">
-              <h1 className="text-[32px] font-bold leading-[1.1] text-[#a20d69] md:text-[50px] lg:text-[64px]">
-                Playbook To Build Your Brand
-              </h1>
+    {/* Left Text */}
+    <div className="absolute inset-0 z-10 flex items-center">
+      <div className="w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
+        <div className="">
+          <h2 className="font-heading text-[28px] font-bold leading-tight text-[#a20d69] md:text-[38px] lg:text-[48px] xl:text-[56px]">
+            Playbook To Build Your Brand
+          </h2>
 
-              <p className="mt-8 text-[16px] leading-relaxed text-[#4d4d4d] md:text-[20px]">
-                Your Go-To Corner For Everything That Makes Brands Sharper,
-                Stronger, And Smarter.
+          <p className="mt-6  text-[15px] leading-relaxed text-[#4d4d4d] md:text-[18px] lg:text-[20px]">
+            Your Go-To Corner For Everything That Makes <br/> Brands Sharper,
+            Stronger, And Smarter.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+      <section className="bg-white max-w-full overflow-hidden py-12 md:py-16 lg:py-20 max-auto  px-4 sm:px-6 lg:px-20 xl:px-32 ">
+    <div className="grid  gap-5 lg:grid-cols-3">
+      {categoryCards.map((item, index) => {
+        const isActive = hoveredCategory
+          ? hoveredCategory === item.title
+          : selectedCategory === item.title;
+
+        return (
+          <button
+            type="button"
+            key={index}
+            onClick={() => handleCategoryClick(item.title)}
+            onMouseEnter={() => setHoveredCategory(item.title)}
+            onMouseLeave={() => setHoveredCategory(null)}
+            className={`group relative h-[309px] w-full rounded-[23px] border p-8 text-left transition-all duration-300   ${
+              isActive
+                ? "border-transparent bg-gradient-to-r from-[#c92f8d] to-[#730042] text-white"
+                : "border-[#c92f8d] bg-[#EEEEEE] text-black"
+            }`}
+          >
+            <div className="flex h-full flex-col">
+              <h4
+                className={`text-[18px] leading-[130%] font-semibold lowercase [font-variant-caps:small-caps]!  transition-colors duration-300 md:text-[20px] lg:text-[22px] xl:text-[32px] ${
+                  isActive ? "text-white" : "text-[#333333]"
+                }`}
+              >
+                {item.title}
+              </h4>
+
+              <p
+                className={`mt-5 max-w-[390px] text-[14px] leading-7 transition-colors duration-300 md:text-[15px] lg:text-[28px] ${
+                  isActive ? "text-white/90" : "text-[#5b5b5b]"
+                }`}
+              >
+                {item.desc}
               </p>
             </div>
-          </div>
-        </div>
-      </section>
 
-      {/* CATEGORY CARDS */}
-      <section>
-        <div className={containerClass}>
-          <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {categoryCards.map((item, index) => {
-              const isActive = hoveredCategory
-                ? hoveredCategory === item.title
-                : selectedCategory === item.title;
-
-              return (
-                <button
-                  type="button"
-                  key={index}
-                  onClick={() => handleCategoryClick(item.title)}
-                  onMouseEnter={() => setHoveredCategory(item.title)}
-                  onMouseLeave={() => setHoveredCategory(null)}
-                  className={`group relative rounded-2xl border p-7 text-left transition-all duration-300 hover:-translate-y-1 ${
-                    isActive
-                      ? "border-transparent bg-gradient-to-r from-[#c92f8d] to-[#730042] text-white"
-                      : "border-[#c92f8d] bg-transparent text-black"
-                  }`}
-                >
-                  <h3
-                    className={`text-lg font-bold tracking-wide transition-colors duration-300 ${
-                      isActive ? "text-white" : "text-black"
-                    }`}
-                  >
-                    {item.title}
-                  </h3>
-
-                  <p
-                    className={`mt-4 text-sm leading-7 transition-colors duration-300 ${
-                      isActive ? "text-white/90" : "text-[#5b5b5b]"
-                    }`}
-                  >
-                    {item.desc}
-                  </p>
-
-                  <div className="absolute bottom-5 right-5">
-                    <ArrowUpRight
-                      size={18}
-                      className={`transition-colors duration-300 ${
-                        isActive ? "text-white" : "text-[#555]"
-                      }`}
-                    />
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      </section>
+            <div
+              className={`absolute bottom-5 right-5 flex h-9 w-9 items-center justify-center rounded-full border transition-colors duration-300 ${
+                isActive
+                  ? "border-white text-white"
+                  : "border-[#555555] text-[#555555]"
+              }`}
+            >
+              <ArrowUpRight size={18} />
+            </div>
+          </button>
+        );
+      })}
+    </div>
+</section>
 
       {/* BLOG SECTION */}
       <section className="overflow-hidden">
@@ -502,7 +510,7 @@ export default function BlogPage() {
             <div className="grid items-start gap-8 lg:grid-cols-[52%_48%] xl:gap-10">
               {/* LEFT BIG IMAGE */}
               <div className="relative z-10 w-full overflow-hidden rounded-[10px]">
-                <div className="relative aspect-[700/600] w-full overflow-hidden rounded-[10px]">
+                <div className="relative aspect-[600/700] w-full overflow-hidden rounded-[10px]">
                   <img
                     src={
                       featuredBlog?.blogImage ||
@@ -536,21 +544,33 @@ export default function BlogPage() {
 
               {/* RIGHT CONTENT */}
               <div className="relative z-20 pt-2 lg:pt-3">
-                <h3 className="pr-32 text-[18px] font-bold uppercase text-secondary md:text-[20px]">
+                <h3 className="pr-32 text-[18px] font-bold lowercase [font-variant-caps:small-caps]! text-secondary ">
                   {featuredBlog?.blogTitle}
                 </h3>
 
-                <p className="mt-4 pr-32 leading-7 text-[#666] line-clamp-4">
+                <p className="mt-4 pr-32 leading-7 !text-[#424242] ">
                   {featuredBlog?.blogDescription}
                 </p>
+   <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.45 }}
+            className="mt-9 flex justify-center lg:justify-start"
+          >
+            <button
+              type="button"
+              onClick={() => router.push(`/knowlegecornerDetail?slug=${featuredBlog?.slugname}`)}
+              className="motion-shine group inline-flex items-center gap-3 sm:gap-[25px] rounded-full bg-primary px-6 py-3 text-[15px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30 lg:text-[20px] 2xl:text-[24px]"
+            >
+            Read More
 
-                <Link
-                  href={`/knowlegecornerDetail?slug=${featuredBlog?.slugname}`}
-                  className="mt-10 inline-flex items-center gap-2 rounded-full bg-primary px-7 py-3 text-[14px] font-semibold text-white transition hover:bg-secondary"
-                >
-                  Read More
-                  <ArrowUpRight size={16} />
-                </Link>
+              <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                <LuMoveUpRight className="h-5 w-5" />
+              </span>
+            </button>
+          </motion.div>
+              
 
                 {/* SMALL BLOG CARDS */}
                 {sideBlogs.length > 0 && (
@@ -597,6 +617,6 @@ export default function BlogPage() {
       </section>
 
       <ContactSection />
-    </main>
+    </>
   );
 }
