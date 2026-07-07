@@ -373,6 +373,7 @@ import { apiUrl } from "../config";
 import { AnimatePresence, motion } from "framer-motion";
 import { IoCloseOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
+import { LuMoveUpRight } from "react-icons/lu";
 
 type ExpertiseItem = {
   id: number;
@@ -642,13 +643,16 @@ const res = await axios.post<ContactResponse>(
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.92, y: 30 }}
               transition={{ type: "spring", stiffness: 240, damping: 28 }}
-              className="max-h-[90vh] w-full max-w-4xl overflow-y-auto rounded-3xl bg-white p-6 shadow-2xl md:p-10 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
+              className="max-h-[90vh] w-full max-w-5xl overflow-y-auto rounded-3xl bg-white p-6 shadow-2xl md:p-10 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <h2 className="font-heading text-3xl font-semibold uppercase tracking-[0.12em] text-gray-900 md:text-4xl">
+                  <h3 style={{
+            fontVariantCaps: "all-small-caps",
+            fontFeatureSettings: '"smcp", "c2sc"',
+          }}  className=" font-semibold uppercase tracking-[0.12em] text-gray-900 md:text-4xl">
                     Contact <span className="text-primary">Us</span>
-                  </h2>
+                  </h3>
                 </div>
 
                 <button
@@ -738,7 +742,7 @@ const res = await axios.post<ContactResponse>(
                    {loadingExpertise ? (
     <p className="text-[16px] text-[#555]">Loading services...</p>
   ) : expertiseList.length > 0 ? (
-    <div className="grid grid-cols-1 gap-x-20 gap-y-7 md:grid-cols-3">
+    <div className="grid grid-cols-1 gap-2  gap-y-7 md:grid-cols-3">
       {expertiseList.map((expertise) => {
         const isSelected = formData.services.includes(expertise.id);
 
@@ -809,14 +813,22 @@ const res = await axios.post<ContactResponse>(
                       className="h-12 w-full max-w-50 border-b-2 border-gray-200 bg-transparent px-2 text-gray-900 outline-none focus:border-primary"
                     />
                   </div>
+       <motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.5, delay: 0.45 }}
 
-                  <button
-                    type="submit"
-                    disabled={submitLoading}
-                    className="bg-primary px-12 py-4 font-heading text-sm font-bold uppercase tracking-widest text-white transition-all hover:shadow-lg active:scale-95 disabled:cursor-not-allowed disabled:opacity-60"
-                  >
-                    {submitLoading ? "Sending..." : "Send Message"}
-                  </button>
+  className="flex justify-center lg:justify-start"
+>
+  <button type="submit" disabled={submitLoading} className="motion-shine mt-5 group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-semibold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+  {submitLoading ? "Sending..." : "Send Message"}
+    <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+      <LuMoveUpRight className="h-5 w-5" />
+    </span>
+  </button>
+</motion.div>
+                
                 </form>
               </div>
             </motion.div>

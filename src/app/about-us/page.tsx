@@ -194,52 +194,65 @@ export default function AboutPage() {
 
       {/* ================= PURPLE POTENTIAL ================= */}
 
-      <section className="bg-white py-10 mx-auto max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
-       
-          <div className="grid lg:grid-cols-[40%_60%] items-center gap-10 ">
+    <section className="w-full bg-white py-[85px]">
+  <div className="mx-auto max-w-full px-4 sm:px-8 lg:px-16 xl:px-20 2xl:px-24">
+    <div className="grid items-center gap-10 lg:grid-cols-[52%_48%] lg:gap-0">
+      
+      {/* Image */}
+      <div className="relative flex h-[260px] w-full items-center justify-center sm:h-[330px] md:h-[380px] lg:h-[420px]">
+        <Image
+          src="/assets/about/chess.png"
+          alt="Unlock Brand Potential"
+          width={560}
+          height={420}
+          className="h-auto w-full max-w-[360px] object-contain sm:max-w-[450px] lg:max-w-[520px]"
+          priority
+        />
+      </div>
 
-            {/* Image */}
-            <div className="relative w-full h-[250px] sm:h-[320px] md:h-[400px] lg:h-[550px]">
-              <Image
-                src="/assets/about/chess.png"
-                alt="Unlock Brand Potential"
-                fill
-                className="object-contain"
-                priority
-              />
-            </div>
+      {/* Content */}
+      <div className=" lg:pl-4 xl:pl-8">
+        <h2
+          className="mb-6 text-[34px] font-semibold !leading-none tracking-[0.03em] text-[#9c1367] sm:text-[42px] md:text-[48px] lg:text-[58px]"
+          style={{
+            fontVariantCaps: "all-small-caps",
+            fontFeatureSettings: '"smcp", "c2sc"',
+          }}
+        >
+          Unlock Your Brand&apos;s <br />
+          Greatest Potential
+        </h2>
 
-            {/* Content */}
-            <div className="">
-             <h2
-  className="mb-6 leading-0   font-semibold  tracking-[0em] text-[#9c1367] text-[34px] md:text-[44px] lg:text-[58px]"
-  style={{
-    fontVariantCaps: "all-small-caps",
-    fontFeatureSettings: '"smcp", "c2sc"',
-  }}
->
-  Unlock Your Brand&apos;s 
-  Greatest Potential
-</h2>
-              <p className="mb-6 text-[16px] sm:text-[18px] lg:text-[20px] 2xl:text-[28px] leading-[1.6] text-[#555555]">
-                In alchemy, before raw gold turns into gleaming gold,<br/> there is a
-                phase when it turns Purple. This phase of <br/> transformation is Purple
-                Phase.
-              </p>
+        <p className="mb-7  text-[16px] font-normal leading-[1.55] tracking-[0.01em] text-[#555555] sm:text-[18px] lg:text-[20px]">
+          In alchemy, before raw gold turns into gleaming gold,
+          <br  />
+          there is a phase when it turns Purple. This phase of
+          <br  />
+          transformation is Purple Phase.
+        </p>
 
-              <h3 className="text-[18px] sm:text-[22px] 2xl:text-[36px] font-bold lowercase [font-variant-caps:small-caps]!  text-[#f28c00]">
-                We are your branding partner in this <br/> journey of transformation from
-                a raw <br/> gold brand into gleaming gold brand.
-              </h3>
-            </div>
-
-          </div>
-      </section>
+        <h3
+          className="max-w-[680px] text-[18px] font-bold leading-[1.45] tracking-[0.04em] text-[#f28c00] sm:text-[21px] lg:text-[26px]"
+          style={{
+            fontVariantCaps: "all-small-caps",
+            fontFeatureSettings: '"smcp", "c2sc"',
+          }}
+        >
+          We are your branding partner in this
+          <br className="hidden lg:block" />
+          journey of transformation from a raw
+          <br className="hidden lg:block" />
+          gold brand into gleaming gold brand.
+        </h3>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* ================= WE ARE PURPLE PHASE ================= */}
 
       <section className=" bg-[#f4f4f4]">
-        <div className="py-16 mx-auto max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
+        <div className="py-16 2xl:py-[85px] mx-auto max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
           <h2 className="mb-10  leading-[1.05] text-[#9c1367]">
             We are Purple Phase
           </h2>
@@ -269,7 +282,10 @@ export default function AboutPage() {
               Every time we start with the same question.
             </p>
 
-            <h3 className="pt-4 text-[20px] 2xl:text-[36px] font-bold uppercase text-[#F28C00]">
+            <h3  style={{
+            fontVariantCaps: "all-small-caps",
+            fontFeatureSettings: '"smcp", "c2sc"',
+          }} className="pt-4 text-[20px] 2xl:text-[36px] font-bold uppercase text-[#F28C00]">
               WHAT IS YOUR BRAND STORY?
             </h3>
  <motion.div
@@ -294,14 +310,14 @@ export default function AboutPage() {
 
       {/* ================= LEGACY ================= */}
       <section className="bg-white ">
-        <div className="py-16 mx-auto max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
+        <div className="py-16 2xl:py-[85px] mx-auto max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
           <h2 className="mb-8  leading-[1.05] text-[#9c1367]">
             Your brand isn't a project to us
             <br />
             It's a story we help write
           </h2>
 
-          <p className=" 2xl:w-[926px] leading-[1.5] text-[#5A5A5A]">
+          <p className=" 2xl:w-[926px] leading-[1.6] text-[#424242]">
             Stories that intrigue, excite, shock, dare, inspire, bring a smile,
             compel to think & act, and more than anything touch consumers in a
             way which elevates their lives.
@@ -351,7 +367,10 @@ export default function AboutPage() {
               At that time, we used to hand-paint advertisements, posters and billboards for some of India’s biggest brands. Even 60 feet billboards were painstakingly hand painted. Of course there was no CTRL+Z. One mistake and you have to redo the entire thing.
             </p>
 
-            <h3 className="mt-8  uppercase tracking-[0.4px] text-[#F28C00] leading-[1.45]">
+            <h3  style={{
+            fontVariantCaps: "all-small-caps",
+            fontFeatureSettings: '"smcp", "c2sc"',
+          }} className="mt-8   tracking-[0.4px] text-[#F28C00] leading-[1.45]">
               SO FOR US, PRECISION HAS NEVER BEEN ABOUT SKILL, BUT A BASIC INSTINCT.
             </h3>
                    <motion.div
@@ -360,9 +379,9 @@ export default function AboutPage() {
   viewport={{ once: true }}
   transition={{ duration: 0.5, delay: 0.45 }}
   onClick={()=>handleContactPopupOpen()}
-  className="flex justify-center lg:justify-start"
+  className="flex mt-6 justify-center lg:justify-start"
 >
-  <button className="motion-shine mt-5 group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+  <button className="motion-shine  group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
    Leverage Legacy
     <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
       <LuMoveUpRight className="h-5 w-5" />
@@ -380,7 +399,7 @@ export default function AboutPage() {
         <div className="relative min-h-[638px]">
 
           {/* Right Side Background Image */}
-          <div className="absolute top-0 right-0 h-full w-full lg:w-[55%]">
+          <div className="absolute top-0 right-0 h-full w-full lg:w-[50%]">
             <Image
               src="/assets/about/menvsrobochess.png"
               alt="Human Thinking AI Edge"
@@ -392,25 +411,25 @@ export default function AboutPage() {
 
           {/* White Overlay Content */}
           <div className="relative z-10 flex  items-center">
-            <div className="max-w-full lg:w-[50%] bg-white px-4 sm:px-6 lg:px-20 2xl:px-32  py-16">
+            <div className="max-w-full lg:w-[60%] bg-white px-4 sm:px-6 lg:px-20 2xl:px-32 py-16">
 
               <div className="">
-                <h2 className="mb-6  leading-[1.1] text-[#9C1367]">
+                <h2 className="mb-6   text-[#9C1367]">
                   Human Thinking,
-                  <br />
+                
                   AI Edge
                 </h2>
 
-                <p className="mb-6 text-[18px] lg:text-[20px] leading-[1.6] text-[#5A5A5A]">
-                  We thoughtfully deploy AI capabilities where it adds real value
-                  across research, strategy, content, design, media planning and
+                <p className="mb-8  leading-[1.6] text-[#424242]">
+                  We thoughtfully deploy AI capabilities where it adds <br/> real value
+                  across research, strategy, content, design,<br/> media planning and
                   digital marketing.
                 </p>
 
-                <p className="mb-8 text-[18px] lg:text-[20px] leading-[1.6] text-[#5A5A5A]">
-                  Human thinking and judgement is absolutely irreplaceable. What AI
-                  does is helps our team to sharpen insights, explore possibilities,
-                  and move brands with greater speed and precision.
+                <p className="mb-8  leading-[1.6] text-[#424242]">
+                  Human thinking and judgement is absolutely <br/> irreplaceable. What AI
+                  does is helps our team to <br/> sharpen insights, explore possibilities,
+                  and move brands <br/> with greater speed and precision.
                 </p>
                    <motion.div
   initial={{ opacity: 0, y: 20 }}
@@ -420,7 +439,7 @@ export default function AboutPage() {
  onClick={()=>handleContactPopupOpen()}
   className="flex justify-center lg:justify-start"
 >
-  <button className="motion-shine mt-5 group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+  <button className="motion-shine mt-5 group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-semibold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
    Get AI Edge
     <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
       <LuMoveUpRight className="h-5 w-5" />
@@ -482,11 +501,14 @@ export default function AboutPage() {
     cursor-pointer
   "
 >
-  <h3 className="font-semibold uppercase text-[#9C1367] transition-colors duration-500 group-hover:text-white">
+  <h3  style={{
+            fontVariantCaps: "all-small-caps",
+            fontFeatureSettings: '"smcp", "c2sc"',
+          }} className="font-semibold uppercase text-[#9C1367] transition-colors duration-500 group-hover:text-white">
     {item.title}
   </h3>
 
-  <span className="mt-2 block text-[18px] 2xl:text-[28px] text-[#5F5F5F] transition-colors duration-500 group-hover:text-white">
+  <span className="mt-2 block text-[18px] 2xl:text-[28px] text-[#424242] transition-colors duration-500 group-hover:text-white">
     {item.desc}
   </span>
 </motion.div>
@@ -506,8 +528,8 @@ export default function AboutPage() {
   <div className="max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
     <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
       {/* Left Content */}
-<div className="w-full  flex flex-col justify-center">
-    <h2 className="text-[34px] lg:text-[40px] font-semibold leading-[1.08] text-primary">
+<div className="w-full flex flex-col justify-center">
+    <h2 className=" font-semibold leading-[1.08] text-primary">
       We Are The Team Behind Your Team Dedicated To Build Your Brand
     </h2>
 
@@ -527,11 +549,17 @@ export default function AboutPage() {
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            <h3 className=" text-primary">
+            <h3  style={{
+            fontVariantCaps: "all-small-caps",
+            fontFeatureSettings: '"smcp", "c2sc"',
+          }} className=" text-primary">
               {member.name}
             </h3>
 
-            <h3 className="mt-5 tracking-[1px] text-primary">
+            <h3  style={{
+            fontVariantCaps: "all-small-caps",
+            fontFeatureSettings: '"smcp", "c2sc"',
+          }} className="mt-5 tracking-[1px] text-primary">
               {member.designation}
             </h3>
 

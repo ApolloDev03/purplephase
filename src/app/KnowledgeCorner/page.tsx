@@ -477,7 +477,7 @@ export default function BlogPage() {
 
               <p
                 className={`mt-5 max-w-[390px] text-[14px] leading-7 transition-colors duration-300 md:text-[15px] lg:text-[28px] ${
-                  isActive ? "text-white/90" : "text-[#5b5b5b]"
+                  isActive ? "text-white/90!" : "text-[#5b5b5b]"
                 }`}
               >
                 {item.desc}
@@ -544,7 +544,10 @@ export default function BlogPage() {
 
               {/* RIGHT CONTENT */}
               <div className="relative z-20 pt-2 lg:pt-3">
-                <h3 className="pr-32 text-[18px] font-bold lowercase [font-variant-caps:small-caps]! text-secondary ">
+                <h3  style={{
+            fontVariantCaps: "all-small-caps",
+            fontFeatureSettings: '"smcp", "c2sc"',
+          }} className="pr-32  text-secondary ">
                   {featuredBlog?.blogTitle}
                 </h3>
 

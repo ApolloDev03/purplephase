@@ -160,7 +160,7 @@ export default function AchievementSection() {
                     exit={{ opacity: 0, x: -50 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
                   >
-                    <p className="">
+                    <p className="text-white!">
                       {currentTestimonial.description}
                     </p>
 
@@ -169,9 +169,9 @@ export default function AchievementSection() {
                     </h4>
 
                     {currentTestimonial.designation && (
-                      <p className="mt-1 text-white/80 text-sm md:text-base">
+                      <span className="mt-1 text-white! text-sm md:text-base">
                         {currentTestimonial.designation}
-                      </p>
+                      </span>
                     )}
                   </motion.div>
                 </AnimatePresence>

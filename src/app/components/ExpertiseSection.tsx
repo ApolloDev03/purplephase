@@ -32,9 +32,9 @@ type ResponsiveSizes = {
 const getResponsiveSizes = (): ResponsiveSizes => {
   if (typeof window === "undefined") {
     return {
-      itemHeight: 74,
+      itemHeight: 52,
       itemGap: 16,
-      listHeight: 74 * 3 + 16 * 2,
+      listHeight: 226,
     };
   }
 
@@ -42,97 +42,44 @@ const getResponsiveSizes = (): ResponsiveSizes => {
 
   if (width < 640) {
     return {
-      itemHeight: 44,
-      itemGap: 8,
-      listHeight: 44 * 3 + 8 * 2,
+      itemHeight: 42,
+      itemGap: 10,
+      listHeight: 170,
     };
   }
 
   if (width < 768) {
     return {
-      itemHeight: 50,
-      itemGap: 10,
-      listHeight: 50 * 3 + 10 * 2,
+      itemHeight: 46,
+      itemGap: 12,
+      listHeight: 185,
     };
   }
 
   if (width < 1024) {
     return {
-      itemHeight: 40,
-      itemGap: 12,
-      listHeight: 40 * 3 + 12 * 2,
+      itemHeight: 50,
+      itemGap: 14,
+      listHeight: 205,
     };
   }
 
   return {
-    itemHeight: 40,
+    itemHeight: 52,
     itemGap: 16,
-    listHeight: 40 * 3 + 16 * 2,
+    listHeight: 226,
   };
 };
-// const getResponsiveSizes = (): ResponsiveSizes => {
-//   if (typeof window === "undefined") {
-//     return {
-//       itemHeight: 55,
-//       itemGap: 10,
-//       listHeight: 430,
-//     };
-//   }
 
-//   const width = window.innerWidth;
-
-//   // Mobile
-//   if (width < 640) {
-//     return {
-//       itemHeight: 44,
-//       itemGap: 6,
-//       listHeight: 155, // ✅ mobile height small
-//     };
-//   }
-
-//   // Small tablet
-//   if (width < 768) {
-//     return {
-//       itemHeight: 48,
-//       itemGap: 8,
-//       listHeight: 200,
-//     };
-//   }
-
-//   // Tablet
-//   if (width < 1024) {
-//     return {
-//       itemHeight: 52,
-//       itemGap: 10,
-//       listHeight: 300,
-//     };
-//   }
-
-//   // Laptop
-//   if (width < 1536) {
-//     return {
-//       itemHeight: 55,
-//       itemGap: 10,
-//       listHeight: 430,
-//     };
-//   }
-
-//   return {
-//     itemHeight: 60,
-//     itemGap: 12,
-//     listHeight: 460,
-//   };
-// };
 export default function ExpertiseSection() {
   const [expertiseData, setExpertiseData] = useState<ExpertiseItem[]>([]);
   const [activeIndex, setActiveIndex] = useState(0);
   const [loading, setLoading] = useState(false);
-  const [sizes, setSizes] = useState<ResponsiveSizes>({
-    itemHeight: 40,
-    itemGap: 10,
-    listHeight: 430,
-  });
-
+const [sizes, setSizes] = useState<ResponsiveSizes>({
+  itemHeight: 52,
+  itemGap: 16,
+  listHeight: 226,
+});
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
 
@@ -284,145 +231,119 @@ export default function ExpertiseSection() {
           2xl:px-32
         "
       >
-        {/* Left Content */}
-        <div className="flex h-full w-full flex-col justify-center lg:justify-start">
-        <h2 className="mb-4 text-center text-[30px] leading-none text-primary sm:mb-6 sm:text-[42px] md:text-[58px] lg:text-left lg:text-[70px] xl:text-[82px] 2xl:mb-10 2xl:text-[96px]">
-  Expertise
-</h2>
+      {/* Left Content */}
+<div className="flex h-full w-full flex-col items-start justify-center lg:justify-start">
+  <div className="w-full max-w-[722px]">
+    <h2 className="mb-4 text-left text-[30px] leading-none text-primary sm:mb-6 sm:text-[42px] md:text-[58px] lg:text-[70px] xl:text-[82px] 2xl:mb-10 2xl:text-[96px]">
+      Expertise
+    </h2>
 
-          <div className="relative w-full max-w-[722px] overflow-hidden">
-            {loading ? (
-              <div
-                className="flex w-full items-center justify-center text-[18px] font-semibold text-[#ababab] sm:text-[20px] lg:text-[22px]"
-                style={{
-                  height: `${sizes.listHeight}px`,
-                }}
-              >
-                Loading...
-              </div>
-            ) : expertiseData.length === 0 ? (
-              <div
-                className="flex w-full items-center justify-center text-[18px] font-semibold text-[#ababab] sm:text-[20px] lg:text-[22px]"
-                style={{
-                  height: `${sizes.listHeight}px`,
-                }}
-              >
-                No expertise found
-              </div>
-            ) : (
-              <>
-               <div
-  ref={scrollRef}
-  className="
-    expertise-scroll
-    relative
-    w-full
-    overflow-hidden
-    scroll-smooth
-    [scrollbar-width:none]
-    [&::-webkit-scrollbar]:hidden
-  "
-  style={{
-    height: `${sizes.listHeight}px`,
-    scrollSnapType: "y mandatory",
-  }}
->
-                  <div
-                    className="w-full"
+    <div className="relative w-full overflow-hidden">
+      {loading ? (
+        <div
+          className="flex w-full items-center justify-center text-[18px] font-semibold text-[#ababab] sm:text-[20px] lg:text-[22px]"
+          style={{
+            height: `${sizes.listHeight}px`,
+          }}
+        >
+          Loading...
+        </div>
+      ) : expertiseData.length === 0 ? (
+        <div
+          className="flex w-full items-center justify-center text-[18px] font-semibold text-[#ababab] sm:text-[20px] lg:text-[22px]"
+          style={{
+            height: `${sizes.listHeight}px`,
+          }}
+        >
+          No expertise found
+        </div>
+      ) : (
+        <>
+          <div
+            ref={scrollRef}
+            className="expertise-scroll relative w-full overflow-hidden scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            style={{
+              height: `${sizes.listHeight}px`,
+              scrollSnapType: "y mandatory",
+            }}
+          >
+            <div
+              className="w-full"
+              style={{
+                paddingTop: `${listPadding}px`,
+                paddingBottom: `${listPadding}px`,
+              }}
+            >
+              {expertiseData.map((item, index) => {
+                const isActive = activeIndex === index;
+                const distance = Math.abs(activeIndex - index);
+
+                return (
+                  <motion.button
+                    key={item.id}
+                    type="button"
+                    onClick={() => scrollToItem(index)}
+                    animate={{
+                      opacity: distance === 0 ? 1 : distance === 1 ? 0.45 : 0.18,
+                      scale: isActive ? 1 : 0.96,
+                      y: isActive ? 0 : distance * 2,
+                    }}
+                    transition={{
+                      duration: 0.45,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    className="flex w-full cursor-pointer items-center justify-start border-0 bg-transparent p-0"
                     style={{
-                      paddingTop: `${listPadding}px`,
-                      paddingBottom: `${listPadding}px`,
+                      height: `${sizes.itemHeight}px`,
+                      marginBottom: `${sizes.itemGap}px`,
+                      scrollSnapAlign: "center",
                     }}
                   >
-                    {expertiseData.map((item, index) => {
-                      const isActive = activeIndex === index;
-                      const distance = Math.abs(activeIndex - index);
-
-                      return (
-                        <motion.button
-                          key={item.id}
-                          type="button"
-                          onClick={() => scrollToItem(index)}
-                          animate={{
-                            opacity:
-                              distance === 0
-                                ? 1
-                                : distance === 1
-                                ? 0.45
-                                : 0.18,
-                            scale: isActive ? 1 : 0.96,
-                            y: isActive ? 0 : distance * 2,
-                          }}
-                          transition={{
-                            duration: 0.45,
-                            ease: [0.22, 1, 0.36, 1],
-                          }}
-                       className="
-   flex
-  w-full
-  cursor-pointer
-  items-center
-  justify-center
-  border-0
-  bg-transparent
-  p-0
-"
-                          style={{
-                            height: `${sizes.itemHeight}px`,
-                            marginBottom: `${sizes.itemGap}px`,
-                            scrollSnapAlign: "center",
-                          }}
-                        >
-                          <span
-                            className={`
-                              inline-flex
-                              h-full
-                              w-full
-                              max-w-[760px]
-                              min-w-0
-                              items-center
-                              justify-center
-                              rounded-full
-                              px-4
-                              text-center
-                              text-[14px]
-                              uppercase
-                              leading-tight
-                              tracking-[0.04em]
-                              transition-all
-                              duration-500
-                              ease-out
-                              sm:px-6
-                              sm:text-[17px]
-                              sm:tracking-[0.06em]
-                              md:text-[20px]
-                              lg:px-8
-                              lg:text-[22px]
-                              xl:text-[24px]
-                              2xl:text-[28px]
-                             ${
-  isActive
-    ? "bg-primary font-semibold text-white shadow-lg"
-    : "font-semibold text-[#ababab]"
-}
-                            `}
-                          >
-                            <span className="block w-full truncate">
-                              {item.expertise_name}
-                            </span>
-                          </span>
-                        </motion.button>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* <div className="pointer-events-none absolute inset-x-0 top-0 h-10 bg-gradient-to-b from-white to-transparent sm:h-12" />
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 h-10 bg-gradient-to-t from-white to-transparent sm:h-12" /> */}
-              </>
-            )}
+                    <span
+                      className={`
+                        inline-flex
+                        h-full
+                        w-full
+                        max-w-[632px]
+                        min-w-0
+                        items-center
+                        justify-center
+                        rounded-full
+                        px-8
+                        text-center
+                        text-[15px]
+                        font-semibold
+                        uppercase
+                        leading-none
+                        tracking-[0.04em]
+                        transition-all
+                        duration-500
+                        ease-out
+                        sm:text-[16px]
+                        md:text-[18px]
+                        lg:text-[20px]
+                        xl:text-[22px]
+                        ${
+                          isActive
+                            ? "bg-[linear-gradient(90deg,#C0358D_0%,#7B0D52_100%)] text-white shadow-sm"
+                            : "bg-transparent text-[#BDBDBD]"
+                        }
+                      `}
+                    >
+                      <span className="block w-full truncate">
+                        {item.expertise_name}
+                      </span>
+                    </span>
+                  </motion.button>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        </>
+      )}
+    </div>
+  </div>
+</div>
 
         {/* Right GIF */}
         <motion.div
