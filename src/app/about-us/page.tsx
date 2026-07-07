@@ -130,7 +130,7 @@ export default function AboutPage() {
 
         {/* Content */}
         <div className="relative z-10 flex h-full items-center">
-          <div className="px-5 sm:px-8 lg:ml-[90px]">
+          <div className="px-5 sm:px-8 lg:ml-[50px]">
             <div className="h-[300px] overflow-hidden">
               <motion.div
                 animate={{
@@ -153,7 +153,7 @@ export default function AboutPage() {
 
                 ${center
                           ? "text-[#9C1367] opacity-100 2xl:text-[60px]"
-                          : "text-white opacity-20 2xl:text-[64px]"
+                          : "text-white opacity-0 2xl:text-[64px]"
                         }
                 `}
                     >
@@ -176,7 +176,7 @@ export default function AboutPage() {
       block: "start",
     });
   }}
-  className="flex justify-center lg:justify-start"
+  className="flex mt-10 justify-center lg:justify-start"
 >
   <button className="motion-shine group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
     Meet The Team
@@ -211,21 +211,25 @@ export default function AboutPage() {
 
             {/* Content */}
             <div className="">
-              <h2 className="mb-6 uppercase  text-[#9c1367]">
-                Unlock Your Brand&apos;s
-                <br />
-                Greatest Potential
-              </h2>
-
+             <h2
+  className="mb-6 leading-0   font-semibold  tracking-[0em] text-[#9c1367] text-[34px] md:text-[44px] lg:text-[58px]"
+  style={{
+    fontVariantCaps: "all-small-caps",
+    fontFeatureSettings: '"smcp", "c2sc"',
+  }}
+>
+  Unlock Your Brand&apos;s 
+  Greatest Potential
+</h2>
               <p className="mb-6 text-[16px] sm:text-[18px] lg:text-[20px] 2xl:text-[28px] leading-[1.6] text-[#555555]">
-                In alchemy, before raw gold turns into gleaming gold, there is a
-                phase when it turns Purple. This phase of transformation is Purple
+                In alchemy, before raw gold turns into gleaming gold,<br/> there is a
+                phase when it turns Purple. This phase of <br/> transformation is Purple
                 Phase.
               </p>
 
-              <h3 className="text-[18px] sm:text-[22px] 2xl:text-[36px] font-bold uppercase  text-[#f28c00]">
-                We are your branding partner in this journey of transformation from
-                a raw gold brand into gleaming gold brand.
+              <h3 className="text-[18px] sm:text-[22px] 2xl:text-[36px] font-bold lowercase [font-variant-caps:small-caps]!  text-[#f28c00]">
+                We are your branding partner in this <br/> journey of transformation from
+                a raw <br/> gold brand into gleaming gold brand.
               </h3>
             </div>
 

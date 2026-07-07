@@ -252,7 +252,7 @@ if (captchaAnswer.trim() !== correctCaptcha) {
       <>
 
         <section className="bg-[#eeeeee] font-body text-[#3d3d3d]">
-          {/* HERO */}
+       
           <div className="relative w-full overflow-hidden bg-[#f7f5f6]">
             <img
               src="/assets/career/career-hero.jpg"
@@ -267,34 +267,30 @@ if (captchaAnswer.trim() !== correctCaptcha) {
               </h1>
             </div>
           </div>
-
-          {/* INTRO CONTENT */}
           </section>
-          <section className="bg-white mx-auto  max-w-full px-4 py-16  sm:px-6 lg:px-20 2xl:px-32">
-            
-        
-            <div className="">
-              <h2 className=" font-heading uppercase leading-[1.25] tracking-[0.02em] text-[#a20d69] ">
+          <section className="bg-white max-w-full   py-16 xl:py-[85px] sm:px-6 lg:px-20 2xl:px-32">
+                        <div className="">
+              <h2 className="font-semibold [font-variant-caps:all-small-caps]! text-primary">
                 We Believe Great Brands Are Built By People{" "}
-                <br className="hidden md:block" />
+                <br  />
                 Who Never Stop Learning.
               </h2>
 
-              <div className="mt-7  space-y-6  text-[#555] ">
+              <div className="mt-7  space-y-6  text-[#424242] ">
                 <p>
                   Some of us started when billboards were painted by hand. Some of
-                  us work with AI every day. Together, we combine legacy with new
+                  us work with AI every day. <br/> Together, we combine legacy with new
                   thinking.
                 </p>
 
                 <p>
                   Here, curiosity matters more than hierarchy. Ideas matter more
-                  than titles. Creative freedom, meaningful growth, exciting
+                  than titles. Creative freedom,<br/> meaningful growth, exciting
                   assignments, and a culture where a thousand no&apos;s shape a
-                  single yes are all part of the journey.
+                  single<br/> yes are all part of the journey.
                 </p>
 
-                <h3 className="font-bold uppercase leading-[1.55] text-[#ff7900] text-[20px]">
+                <h3 className="font-bold [font-variant-caps:all-small-caps]!  text-secondary text-[20px]">
                   We Are Ambitious, Opinionated, <br />
                   And Hungry To Do The Best Work... Every Time.
                 </h3>
@@ -312,7 +308,7 @@ if (captchaAnswer.trim() !== correctCaptcha) {
           {/* LIFE SECTION + OPENINGS */}
         
             <div className="my-10">
-              <h2 className="mb-8 font-heading text-[26px] font-bold uppercase tracking-[0.03em] text-[#a20d69] md:text-[32px]">
+              <h2 className="mb-8 font-heading text-[26px] font-bold [font-variant-caps:all-small-caps]! text-[#a20d69] md:text-[32px]">
                 Life @ Purple Phase
               </h2>
 
@@ -488,20 +484,20 @@ if (captchaAnswer.trim() !== correctCaptcha) {
             </section>
 
           {/* APPLY FORM */}
-           <section className="relative overflow-hidden bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)] py-16">
+           <section className="relative overflow-hidden bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)] py-16 xl:py-[85px]">
                 <div className="mx-auto max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
                   {/* Heading */}
                     <h4 className="mb-3 text-[28px] font-semibold leading-tight tracking-wide text-white md:text-[38px] lg:text-[40px] 2xl:text-[50px]">
-                      No decks. No jargon. Just an Honest Conversation.
+                     Ready to Build Brands with Us?
                     </h4>
           
                     <span className=" text-[22px] font-normal leading-tight text-white md:text-[28px] 2xl:text-[36px]">
-                      Let’s catch up over a cup of coffee !
+                      We would love to hear from you.
                     </span>
           
-                  <div className="grid grid-cols-1 items-center foote lg:grid-cols-12">
+                  <div className="mt-7 grid grid-cols-1 items-center  lg:grid-cols-12">
                     {/* Form */}
-                    <div className="lg:col-span-7">
+                    <div className="lg:col-span-8">
                       <form
                         onSubmit={handleSubmit}
                         className="grid grid-cols-1 gap-3 md:grid-cols-2"
@@ -512,7 +508,7 @@ if (captchaAnswer.trim() !== correctCaptcha) {
               value={formData.first_name}
               onChange={handleChange}
               placeholder="Full Name"
-              className="h-[48px] w-full rounded-md border border-white/20 bg-white px-4 text-[14px] text-[#333] outline-none placeholder:text-[#8b8b8b]"
+              className="h-[61px] w-full rounded-md border border-white/20 bg-white px-4 text-[18px] text-[#333] outline-none placeholder:text-[#8b8b8b]"
             />
 
             <input
@@ -521,7 +517,7 @@ if (captchaAnswer.trim() !== correctCaptcha) {
               value={formData.email}
               onChange={handleChange}
               placeholder="Email"
-              className="h-[48px] w-full rounded-md border border-white/20 bg-white px-4 text-[14px] text-[#333] outline-none placeholder:text-[#8b8b8b]"
+              className="h-[61px] w-full rounded-md border border-white/20 bg-white px-4 text-[18px] text-[#333] outline-none placeholder:text-[#8b8b8b]"
             />
 
             <input
@@ -530,7 +526,7 @@ if (captchaAnswer.trim() !== correctCaptcha) {
               value={formData.qualification}
               onChange={handleChange}
               placeholder="Qualification"
-              className="h-[48px] w-full rounded-md border border-white/20 bg-white px-4 text-[14px] text-[#333] outline-none placeholder:text-[#8b8b8b]"
+              className="h-[61px] w-full rounded-md border border-white/20 bg-white px-4 text-[18px] text-[#333] outline-none placeholder:text-[#8b8b8b]"
             />
 
             <input
@@ -539,7 +535,7 @@ if (captchaAnswer.trim() !== correctCaptcha) {
               value={formData.contact_no}
               onChange={handleChange}
               placeholder="Phone Number"
-              className="h-[48px] w-full rounded-md border border-white/20 bg-white px-4 text-[14px] text-[#333] outline-none placeholder:text-[#8b8b8b]"
+              className="h-[61px] w-full rounded-md border border-white/20 bg-white px-4 text-[18px] text-[#333] outline-none placeholder:text-[#8b8b8b]"
             />
 
             {/* Applied For */}
@@ -549,7 +545,7 @@ if (captchaAnswer.trim() !== correctCaptcha) {
     name="career_id"
     value={formData.career_id}
     onChange={handleChange}
-    className="h-[48px] w-full appearance-none rounded-md border border-white/20 bg-white px-4 pr-12 text-[14px] text-[#333] outline-none"
+    className="h-[61px] w-full appearance-none rounded-md border border-white/20 bg-white px-4 pr-12 text-[18px] text-[#333] outline-none"
   >
     <option value="">Applied for</option>
 
@@ -576,23 +572,23 @@ if (captchaAnswer.trim() !== correctCaptcha) {
 
 
             {/* Resume */}
-            <div className="flex h-[48px] items-center overflow-hidden rounded-md border border-white/20 bg-white px-3">
+            <div className="flex h-[61px] items-center  overflow-hidden rounded-md border border-white/20 bg-white px-3">
               <input
                 id="resume"
                 type="file"
                 name="resume"
                 onChange={handleFileChange}
                 accept=".pdf,.doc,.docx"
-                className="w-full text-[12px] text-[#555] file:mr-3 file:rounded file:border-0 file:bg-[#ececec] file:px-3 file:py-1.5 file:text-[12px]"
+                className="w-full text-[18px] text-[#555] file:mr-3 file:rounded file:border-0 file:bg-[#ececec] file:px-3 file:py-1.5 file:text-[12px]"
               />
             </div>
           
                         {/* Captcha same as it is */}
                               <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:col-span-2">
   {/* Captcha */}
-  <div className="flex h-[44px] items-center rounded-[6px] border border-white/70 bg-white/10 px-4 text-[14px] text-white">
+  <div className="flex h-[61px] items-center rounded-[6px] border border-white/70 bg-white/10 px-4 text-[18px] text-white">
     <span className="font-medium">Captcha:</span>
-    <span className="ml-1 font-semibold">
+    <span className="ml-1 ">
       {captchaQuestion} = ?
     </span>
   </div>
@@ -604,14 +600,14 @@ if (captchaAnswer.trim() !== correctCaptcha) {
     onChange={(e) => setCaptchaAnswer(e.target.value)}
     placeholder="Enter answer"
     required
-    className="h-[44px] w-full rounded-[6px] bg-white px-4 text-[14px] text-black outline-none placeholder:text-[#8f8f8f]"
+    className="h-[61px] w-full rounded-[6px] bg-white px-4 text-[18px] text-black outline-none placeholder:text-[#8f8f8f]"
   />
 
   {/* Button */}
     <button
     type="submit"
     disabled={submitLoading}
-    className="motion-shine !text-[18px] contact-gradient-btn h-[44px] w-full rounded-full font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
+    className="motion-shine !text-[18px] contact-gradient-btn h-[61px] w-full rounded-full font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
   >
     {submitLoading ? "Submitting..." : "Let's Connect"}
   </button>
@@ -620,15 +616,16 @@ if (captchaAnswer.trim() !== correctCaptcha) {
                     </div>
           
                     {/* Coffee Image */}
-                    <div className="flex justify-center lg:col-span-5 lg:justify-end">
-                      <div className="relative w-full max-w-[320px] xl:max-w-[500px] 2xl:max-w-[700px]">
-                        <img
-                          src={logo.src}
-                          alt="Coffee Illustration"
-                          className="h-auto w-full drop-shadow-2xl"
-                        />
-                      </div>
-                    </div>
+                     <div className="flex justify-center lg:col-span-4 lg:justify-end">
+                                <div className="relative w-full max-w-[320px] xl:max-w-[600px] 2xl:max-w-[700px]">
+                                  <img
+                                    src={logo.src}
+                                    alt="Coffee Illustration"
+                                    className="h-auto w-full drop-shadow-2xl"
+                                  />
+                                </div>
+                              </div>
+              
                   </div>
                 </div>
           

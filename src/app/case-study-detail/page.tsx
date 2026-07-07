@@ -197,7 +197,7 @@ function CaseStudyDetailContent() {
 
       {/* SECTION IMAGES */}
       {sortedSections.length > 0 && (
-        <section className="mx-auto w-full max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
+        <section className=" mx-auto w-full max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
           {sortedSections.map((section, index) => {
             const images = [
               section.image_1,
@@ -212,7 +212,7 @@ function CaseStudyDetailContent() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="w-full"
+                className="w-full my-4"
               >
                 <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
                   {images.map((img, i) => (
@@ -229,7 +229,7 @@ function CaseStudyDetailContent() {
                   ))}
                 </div>
                 {(section.mu_title || section.description) && (
-                  <p className="my-4 ">
+                  <p className="mt-5 ">
                     <span className=" font-bold text-[#242424]">
                       {section.mu_title}</span> : <span className="text-[#424242]">{section.description}</span>
 
@@ -277,7 +277,7 @@ function CaseStudyDetailContent() {
 
 {/* PREV NEXT */}
 <section className="mx-auto w-full max-w-full px-4 py-10 sm:px-6 lg:px-20 2xl:px-32">
-  <div className="flex flex-col items-center justify-between gap-5 border-t border-[#ddd] pt-8 sm:flex-row">
+  <div className="flex flex-col items-center justify-between gap-5  pt-5 sm:flex-row">
     {/* Previous Button */}
     <button
       type="button"
@@ -331,32 +331,31 @@ function CaseStudyDetailContent() {
 </section>
 
       {/* CTA */}
-      <section className="bg-gradient-to-r from-[#bf2f86] to-[#730041]">
-        <div className="mx-auto flex max-w-[1440px] flex-col items-center justify-center px-6 py-14 text-center md:px-20 lg:px-[115px]">
-          <h3 className="font-bold uppercase tracking-wide text-white text-3xl md:text-5xl lg:text-3xl">
+          <section className="bg-gradient-to-r from-[#bf2f86] to-[#730041]">
+          <div className="mx-auto flex max-w-full flex-col items-center justify-center px-6 py-9 xl:py-[85px] text-center md:px-20 lg:px-[115px]">
+            <h3 className="font-bold uppercase tracking-wide text-white text-3xl md:text-5xl lg:text-3xl">
             WANT TO EXPAND YOUR BUSINESS ?
-          </h3>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.45 }}
-             onClick={()=>handleContactPopupOpen()}
-            className="mt-5 flex justify-center lg:justify-start"
-          >
-            <button className="motion-shine group inline-flex items-center gap-3 rounded-full bg-[#720048] px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
-              Let&apos;s Discuss 
-
-              <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                <LuMoveUpRight className="h-5 w-5" />
-              </span>
-            </button>
-          </motion.div>
-
-        </div>
-      </section>
-
-    </main>
+            </h3>
+   <motion.div
+                                      initial={{ opacity: 0, y: 20 }}
+                                      whileInView={{ opacity: 1, y: 0 }}
+                                      viewport={{ once: true }}
+                                      transition={{ duration: 0.5, delay: 0.45 }}
+                                     onClick={()=>handleContactPopupOpen()}
+                                      className="mt-10 flex justify-center lg:justify-start"
+                                  >
+                                      <button className="motion-shine group inline-flex items-center gap-4 rounded-full bg-[#720048] px-8 py-5 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+                                         Lets Discuss
+              
+                                          <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                                              <LuMoveUpRight className="h-5 w-5" />
+                                          </span>
+                                      </button>
+                                  </motion.div>
+         
+          </div>
+        </section>
+        </main>
       <ContactPopup
                           isOpen={isContactPopupOpen}
                           onClose={() => setIsContactPopupOpen(!isContactPopupOpen)}
