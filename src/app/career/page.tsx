@@ -261,16 +261,16 @@ if (captchaAnswer.trim() !== correctCaptcha) {
             />
 
             <div className="absolute  inset-0 mx-auto max-w-full flex  items-center px-4 sm:px-6 lg:px-20 2xl:px-32">
-              <h1 className="font-heading text-[26px] font-bold leading-[1.18] text-[#a20d69] md:text-[34px] lg:text-[42px]">
+              <h2 className=" leading-[130%] text-[#a20d69] ">
                 Great Work Needs <br />
                 Great People
-              </h1>
+              </h2>
             </div>
           </div>
           </section>
           <section className="bg-white max-w-full   py-16 xl:py-[85px] sm:px-6 lg:px-20 2xl:px-32">
                         <div className="">
-              <h2 className="font-semibold [font-variant-caps:all-small-caps]! text-primary">
+              <h2 className="leading-[120%] font-semibold [font-variant-caps:all-small-caps]! text-primary">
                 We Believe Great Brands Are Built By People{" "}
                 <br  />
                 Who Never Stop Learning.
@@ -313,75 +313,85 @@ if (captchaAnswer.trim() !== correctCaptcha) {
               </h2>
 
               {/*COLLAGE */}
-              <div className="relative hidden h-[400px] w-full overflow-hidden md:block">
-
-    {/* Top Left */}
-    <div
-      onClick={() => openGallery(0)}
-      className="group absolute left-0 top-0 h-[200px] w-[31%] cursor-pointer overflow-hidden rounded-md"
-    >
-      <img
-        src="/assets/career/life-1.png"
-        alt=""
-        className="h-full w-full object-cover object-[center_35%] transition-transform duration-500 group-hover:scale-110"
-      />
-    </div>
-
-    {/* Top Middle */}
-    <div
-      onClick={() => openGallery(1)}
-      className="group absolute left-[32%] top-0 h-[200px] w-[15%] cursor-pointer overflow-hidden rounded-md"
-    >
-      <img
-        src="/assets/career/life-2.png"
-        alt=""
-        className="h-full w-full object-cover object-[center_35%] transition-transform duration-500 group-hover:scale-110"
-      />
-    </div>
-
-    {/* Bottom Left Grey */}
-    <div className="absolute left-0 top-[205px] h-[190px] w-[16.5%] rounded-md bg-[#d7d7d7]" />
-
-    {/* Bottom Middle */}
-    <div
-      onClick={() => openGallery(2)}
-      className="group absolute left-[17.4%] top-[205px] h-[190px] w-[29.6%] cursor-pointer overflow-hidden rounded-md"
-    >
-      <img
-        src="/assets/career/life-5.jpg"
-        alt=""
-        className="h-full w-full object-cover object-[center_20%] transition-transform duration-500 group-hover:scale-110"
-      />
-    </div>
-
-    {/* Center Image */}
-    <div
-      onClick={() => openGallery(3)}
-      className="group absolute left-[48%] top-0 h-[400px] w-[20.5%] cursor-pointer overflow-hidden rounded-md"
-    >
-      <img
-        src="/assets/career/life-3.jpg"
-        alt=""
-        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-      />
-    </div>
-
-    {/* Top Right Grey */}
-    <div className="absolute left-[69.5%] top-0 h-[200px] w-[30.5%] rounded-md bg-[#d7d7d7]" />
-
-    {/* Bottom Right */}
-    <div
-      onClick={() => openGallery(4)}
-      className="group absolute left-[69.5%] top-[205px] h-[190px] w-[30.5%] cursor-pointer overflow-hidden rounded-md"
-    >
-      <img
-        src="/assets/career/life-4.png"
-        alt=""
-        className="h-full w-full object-cover object-[center_85%] transition-transform duration-500 group-hover:scale-110"
-      />
-    </div>
-
+<div
+  className="
+    relative
+    hidden
+    h-[570px]
+    w-full
+    grid-cols-[16.5fr_13.1fr_15fr_20.5fr_30.5fr]
+    grid-rows-[279px_279px]
+    gap-3
+    overflow-hidden
+    md:grid
+  "
+>
+  {/* Top Left */}
+  <div
+    onClick={() => openGallery(0)}
+    className="group col-span-2 cursor-pointer overflow-hidden rounded-md"
+  >
+    <img
+      src="/assets/career/life-1.png"
+      alt=""
+      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+    />
   </div>
+
+  {/* Top Middle */}
+  <div
+    onClick={() => openGallery(1)}
+    className="group cursor-pointer overflow-hidden rounded-md"
+  >
+    <img
+      src="/assets/career/life-2.png"
+      alt=""
+      className="h-full w-full object-cover object-[center_35%] transition-transform duration-500 group-hover:scale-110"
+    />
+  </div>
+
+  {/* Center Image */}
+  <div
+    onClick={() => openGallery(3)}
+    className="group row-span-2 cursor-pointer overflow-hidden rounded-md"
+  >
+    <img
+      src="/assets/career/life-3.jpg"
+      alt=""
+      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+    />
+  </div>
+
+  {/* Top Right Grey */}
+  <div className="rounded-md bg-[#d7d7d7]" />
+
+  {/* Bottom Left Grey */}
+  <div className="rounded-md bg-[#d7d7d7]" />
+
+  {/* Bottom Middle */}
+  <div
+    onClick={() => openGallery(2)}
+    className="group col-span-2 cursor-pointer overflow-hidden rounded-md"
+  >
+    <img
+      src="/assets/career/life-5.jpg"
+      alt=""
+      className="h-full w-full object-cover object-[center_20%] transition-transform duration-500 group-hover:scale-110"
+    />
+  </div>
+
+  {/* Bottom Right */}
+  <div
+    onClick={() => openGallery(4)}
+    className="group cursor-pointer overflow-hidden rounded-md"
+  >
+    <img
+      src="/assets/career/life-4.png"
+      alt=""
+      className="h-full w-full object-cover object-[center_85%] transition-transform duration-500 group-hover:scale-110"
+    />
+  </div>
+</div>
 
               {/* MOBILE COLLAGE */}
               <div className="grid grid-cols-1 gap-3 md:hidden">
@@ -487,7 +497,7 @@ if (captchaAnswer.trim() !== correctCaptcha) {
            <section className="relative overflow-hidden bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)] py-16 xl:py-[85px]">
                 <div className="mx-auto max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
                   {/* Heading */}
-                    <h4 className="mb-3 text-[28px] font-semibold leading-tight tracking-wide text-white md:text-[38px] lg:text-[40px] 2xl:text-[50px]">
+                    <h4 className="mb-4 text-[28px] font-semibold leading-tight tracking-wide text-white md:text-[38px] lg:text-[40px] 2xl:text-[50px]">
                      Ready to Build Brands with Us?
                     </h4>
           
@@ -495,7 +505,7 @@ if (captchaAnswer.trim() !== correctCaptcha) {
                       We would love to hear from you.
                     </span>
           
-                  <div className="m grid grid-cols-1 items-center  lg:grid-cols-12">
+                  <div className=" grid grid-cols-1 items-center  lg:grid-cols-12">
                     {/* Form */}
                     <div className="lg:col-span-8">
                       <form

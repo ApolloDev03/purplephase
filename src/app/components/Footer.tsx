@@ -42,7 +42,7 @@ const Footer = () => {
     };
 
     return (
-        <footer className="bg-white text-[20px] py-16 text-[13px] 2xl:text-[20px] font-sans selection:bg-primary/10 px-6  md:px-12 lg:px-20 2xl:px-32">
+        <footer className="bg-[#f6f6f6] text-[20px] py-16 text-[13px] 2xl:text-[20px] font-sans selection:bg-primary/10 px-6  md:px-12 lg:px-20 2xl:px-32">
             <div className="max-w-full  mx-auto  grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-0">
 
                 {/* Left Side: Branding & Contact (Spans 6 columns) */}

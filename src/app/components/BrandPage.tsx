@@ -143,7 +143,7 @@ text-primary">
               <p className="text-[#626262]">No case studies found.</p>
             </div>
           ) : (
-            <div className="relative mt-8 bg-[#f6f6f6] h-[calc(100vh-100px)] overflow-hidden">
+            <div className="relative rounded-xl  mt-8 bg-[#f6f6f6] h-[calc(100vh-100px)] overflow-hidden">
               {brandStories.map((item, i) => (
                 <ScrollSlide
                   key={item.id}
@@ -156,14 +156,14 @@ text-primary">
             </div>
           )}
         </div>
-      <div className="absolute -bottom-16 left-0 z-50">
+      <div className="absolute -bottom-20 left-0 z-50">
          <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.45 }}
             onClick={()=> router.push("/CaseStudies")}
-            className="mt-10 flex justify-center  lg:justify-start"
+            className="mt-14 flex justify-center  lg:justify-start"
           >
             <button className="motion-shine group inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-[14px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30 sm:gap-[25px] sm:px-6 sm:text-[16px] lg:text-[18px] xl:text-[20px] 2xl:text-[24px]">
               Case Studies
@@ -225,19 +225,7 @@ const y = useTransform(
       : [0.95, 1, isLast ? 1 : 0.97, isLast ? 1 : 0.95]
   );
 
-  const rotate = useTransform(
-    progress,
-    inputRange,
-    isFirst
-      ? [0, 0, isLast ? 0 : -0.8, isLast ? 0 : -1.2]
-      : [1.2, 0, isLast ? 0 : -0.8, isLast ? 0 : -1.2]
-  );
 
-  const opacity = useTransform(
-    progress,
-    inputRange,
-    isFirst ? [1, 1, 1, isLast ? 1 : 0.95] : [0, 1, 1, isLast ? 1 : 0.95]
-  );
 
   const imageScale = useTransform(
     progress,
@@ -250,26 +238,25 @@ const y = useTransform(
       style={{
         y,
         scale,
-        // opacity,
         zIndex: index + 1,
       }}
-      className="absolute inset-0 origin-top "
+      className="absolute inset-0 origin-top rounded-xl "
     >
       <Link
         href={`/case-study-detail?slug=${encodeURIComponent(item.slug)}`}
-        className="group block h-full"
+        className="group block h-full rounded-xl "
       >
         <div className="relative h-full overflow-hidden rounded-xl ">
           <motion.img
             src={item.hero_image}
             alt={item.title}
-            className="absolute inset-0 h-full w-full object-cover object-top"
+            className="absolute inset-0 h-full w-full object-cover object-top rounded-xl "
             style={{
               scale: imageScale,
             }}
           />
 
-          <div className="absolute left-0 right-0 top-0 flex items-start justify-between gap-4 p-5 md:p-7 lg:p-8">
+          <div className="absolute  rounded-xl  left-0 right-0 top-0 flex items-start justify-between gap-4 p-5 md:p-7 lg:p-8">
           <h3 className="max-w-[80%] text-lg font-bold uppercase leading-tight text-white sm:text-xl md:text-3xl lg:text-4xl 2xl:text-5xl">
               {item.title}
             </h3>

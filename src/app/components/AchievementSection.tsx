@@ -104,20 +104,19 @@ export default function AchievementSection() {
   const currentTestimonial = testimonials[testIndex];
 
   return (
-    <section className="relative overflow-hidden py-16 font-sans bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]">
+    <section className="relative overflow-hidden py-16 xl:py-[85px] font-sans bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]">
       <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-20 2xl:px-32">
       
 
-   <div className="counter-box group mb-14 md:mb-16 lg:mb-20 bg-[#D9D9D933] border-2 border-white">
-  <div className="counter-content">
-    <div className="grid grid-cols-2 gap-8 md:grid-cols-4 md:gap-10">
-      <CounterItem value="15+" label="Successful Years" />
-      <CounterItem value="20+" label="Industries Served" />
-      <CounterItem value="500+" label="Satisfied Clients" />
-      <CounterItem value="3000+" label="Completed Projects" />
-    </div>
+<div className="counter-border-pill mb-10">
+  <div className="grid w-full grid-cols-2 gap-8 md:grid-cols-4 md:gap-10">
+    <CounterItem value="15+" label="Successful Years" />
+    <CounterItem value="20+" label="Industries Served" />
+    <CounterItem value="500+" label="Satisfied Clients" />
+    <CounterItem value="3000+" label="Completed Projects" />
   </div>
 </div>
+
         {/* Title */}
         <h2 className="text-white  mb-8 md:mb-11 tracking-wide">
           Pat on the Back
@@ -160,7 +159,7 @@ export default function AchievementSection() {
                     exit={{ opacity: 0, x: -50 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
                   >
-                    <p className="text-white!">
+                    <p className="text-white! text-[21px]!">
                       {currentTestimonial.description}
                     </p>
 
@@ -199,43 +198,7 @@ export default function AchievementSection() {
         )}
       </div>
 
-      <style jsx>{`
-        .counter-gradient-border {
-          position: relative;
-          border-radius: 9999px;
-          background: transparent;
-          overflow: visible;
-        }
-
-        .counter-gradient-border::before {
-          content: "";
-          position: absolute;
-          inset: 0;
-          border-radius: inherit;
-          padding: 2px;
-          background: linear-gradient(
-            90deg,
-            rgba(255, 255, 255, 0.9) 0%,
-            rgba(255, 255, 255, 0.25) 35%,
-            rgba(255, 255, 255, 0.85) 70%,
-            rgba(255, 255, 255, 0.35) 100%
-          );
-
-          -webkit-mask: linear-gradient(#fff 0 0) content-box,
-            linear-gradient(#fff 0 0);
-          -webkit-mask-composite: xor;
-          mask-composite: exclude;
-
-          pointer-events: none;
-          z-index: 0;
-        }
-
-        @media (max-width: 767px) {
-          .counter-gradient-border {
-            border-radius: 32px;
-          }
-        }
-      `}</style>
+      
     </section>
   );
 }

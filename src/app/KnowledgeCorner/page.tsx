@@ -436,7 +436,7 @@ export default function BlogPage() {
             Playbook To Build Your Brand
           </h2>
 
-          <p className="mt-6  text-[15px] leading-relaxed text-[#4d4d4d] md:text-[18px] lg:text-[20px]">
+          <p className="mt-6  text-[15px] leading-[150%] text-[#4d4d4d] md:text-[18px] lg:text-[20px]">
             Your Go-To Corner For Everything That Makes <br/> Brands Sharper,
             Stronger, And Smarter.
           </p>
@@ -547,11 +547,11 @@ export default function BlogPage() {
                 <h3  style={{
             fontVariantCaps: "all-small-caps",
             fontFeatureSettings: '"smcp", "c2sc"',
-          }} className="pr-32  text-secondary ">
+          }} className="pr-32  text-secondary text-[40px]!">
                   {featuredBlog?.blogTitle}
                 </h3>
 
-                <p className="mt-4 pr-32 leading-7 !text-[#424242] ">
+                <p className="mt-4 pr-34 line-clamp-4 leading-7 !text-[#424242] text-[24px]!">
                   {featuredBlog?.blogDescription}
                 </p>
    <motion.div

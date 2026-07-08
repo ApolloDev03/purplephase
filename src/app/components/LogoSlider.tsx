@@ -24,7 +24,7 @@ function LogoRow({
     const marqueeItems = [...items, ...items, ...items, ...items];
 
     return (
-        <div className="relative w-full overflow-hidden py-2">
+        <div className="relative w-full overflow-hidden py-4">
             <motion.div
                 initial={{ opacity: 0, x: reverse ? -80 : 80 }}
                 animate={trigger ? { opacity: 1, x: 0 } : {}}

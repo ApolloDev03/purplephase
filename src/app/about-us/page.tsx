@@ -148,12 +148,16 @@ export default function AboutPage() {
                   return (
                     <h1
                       key={i}
-                      className={`h-[44px] sm:h-[56px] text-[26px] sm:text-[32px] lg:text-[38px]  font-bold leading-[1.09]
+                       style={{
+            fontVariantCaps: "all-small-caps",
+            fontFeatureSettings: '"smcp", "c2sc"',
+          }}
+                      className={`h-[44px] sm:h-[56px] text-[26px] sm:text-[32px] lg:text-[38px] xl:text-[60px]  font-extrabold leading-[1.09]
                 transition-all duration-500
 
                 ${center
                           ? "text-[#9C1367] opacity-100 2xl:text-[60px]"
-                          : "text-white opacity-0 2xl:text-[64px]"
+                          : "text-[#9C1367] opacity-0 2xl:text-[64px]"
                         }
                 `}
                     >
@@ -213,7 +217,7 @@ export default function AboutPage() {
       {/* Content */}
       <div className=" lg:pl-4 xl:pl-8">
         <h2
-          className="mb-6 text-[34px] font-semibold !leading-none tracking-[0.03em] text-[#9c1367] sm:text-[42px] md:text-[48px] lg:text-[58px]"
+          className=" text-[34px] font-semibold !leading-none tracking-[0.03em] text-[#9c1367] sm:text-[42px] md:text-[48px] lg:text-[58px]"
           style={{
             fontVariantCaps: "all-small-caps",
             fontFeatureSettings: '"smcp", "c2sc"',
@@ -223,7 +227,7 @@ export default function AboutPage() {
           Greatest Potential
         </h2>
 
-        <p className="mb-7  text-[16px] font-normal leading-[1.55] tracking-[0.01em] text-[#555555] sm:text-[18px] lg:text-[20px]">
+        <p className="my-7  text-[16px] font-normal leading-[1.55] tracking-[0.01em] text-[#555555] sm:text-[18px] lg:text-[20px]">
           In alchemy, before raw gold turns into gleaming gold,
           <br  />
           there is a phase when it turns Purple. This phase of
@@ -253,7 +257,7 @@ export default function AboutPage() {
 
       <section className=" bg-[#f4f4f4]">
         <div className="py-16 2xl:py-[85px] mx-auto max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
-          <h2 className="mb-10  leading-[1.05] text-[#9c1367]">
+          <h2 className="mb-6  leading-[1.05] text-[#9c1367]">
             We are Purple Phase
           </h2>
 
@@ -278,14 +282,14 @@ export default function AboutPage() {
               industries, categories, and markets.
             </p>
 
-            <p >
+            <p className="mb-4">
               Every time we start with the same question.
             </p>
 
             <h3  style={{
             fontVariantCaps: "all-small-caps",
             fontFeatureSettings: '"smcp", "c2sc"',
-          }} className="pt-4 text-[20px] 2xl:text-[36px] font-bold uppercase text-[#F28C00]">
+          }} className=" text-[20px] 2xl:text-[36px] font-bold uppercase text-[#F28C00]">
               WHAT IS YOUR BRAND STORY?
             </h3>
  <motion.div
@@ -311,15 +315,15 @@ export default function AboutPage() {
       {/* ================= LEGACY ================= */}
       <section className="bg-white ">
         <div className="py-16 2xl:py-[85px] mx-auto max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
-          <h2 className="mb-8  leading-[1.05] text-[#9c1367]">
+          <h2 className="mb-8  leading-[120%] text-[#9c1367]">
             Your brand isn't a project to us
             <br />
             It's a story we help write
           </h2>
 
           <p className=" 2xl:w-[926px] leading-[1.6] text-[#424242]">
-            Stories that intrigue, excite, shock, dare, inspire, bring a smile,
-            compel to think & act, and more than anything touch consumers in a
+            Stories that intrigue, excite, shock, dare, inspire, bring a smile,<br/>
+            compel to think & act, and more than anything touch consumers <br/> in a
             way which elevates their lives.
           </p>
         </div>
@@ -356,21 +360,21 @@ export default function AboutPage() {
 
           {/* Content */}
           <div className="mt-8 ">
-            <p className=" leading-[1.75] ">
+            <p className="text-justify leading-[1.75] ">
               When there was no AI, no social media, no design tools, no internet…in
               fact no computer and mobile phone… when even rotary dial phones (what’s
               that? Look up in Google) were a luxury…our story began back then in
               1953.
             </p>
 
-            <p className="mt-7 ">
+            <p className="mt-7 text-justify leading-[1.75] ">
               At that time, we used to hand-paint advertisements, posters and billboards for some of India’s biggest brands. Even 60 feet billboards were painstakingly hand painted. Of course there was no CTRL+Z. One mistake and you have to redo the entire thing.
             </p>
 
             <h3  style={{
             fontVariantCaps: "all-small-caps",
             fontFeatureSettings: '"smcp", "c2sc"',
-          }} className="mt-8   tracking-[0.4px] text-[#F28C00] leading-[1.45]">
+          }} className="mt-4   tracking-[0.4px] text-[#F28C00] leading-[1.45]">
               SO FOR US, PRECISION HAS NEVER BEEN ABOUT SKILL, BUT A BASIC INSTINCT.
             </h3>
                    <motion.div
@@ -414,9 +418,8 @@ export default function AboutPage() {
             <div className="max-w-full lg:w-[60%] bg-white px-4 sm:px-6 lg:px-20 2xl:px-32 py-16">
 
               <div className="">
-                <h2 className="mb-6   text-[#9C1367]">
-                  Human Thinking,
-                
+                <h2 className="mb-2   text-[#9C1367]">
+                  Human Thinking,                
                   AI Edge
                 </h2>
 
@@ -472,7 +475,7 @@ export default function AboutPage() {
         {/* Content */}
         <div className="relative  ">
           <div className="max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32 ">
-            <h2 className="mb-10 text-[36px] md:text-[48px]   font-semibold leading-[1.05] text-[#9c1367]">
+            <h2 className="mb-10 text-[36px] md:text-[48px]   font-semibold leading-[120%] text-[#9c1367]">
               We don't position brands on instinct
               <br />
               We position them on evidence
@@ -480,10 +483,8 @@ export default function AboutPage() {
 
             <div className="space-y-2">
               {insights.map((item, i) => {
-                const isActive = active === i;
-
                 return (
-                <div className="group">
+                <div className="">
  <motion.div
   key={i}
   layout
@@ -495,18 +496,18 @@ export default function AboutPage() {
     hover:bg-gradient-to-r
     hover:from-[#A11772]
     hover:to-[#6C0A4D]
-    hover:min-w-[300px]
-    hover:sm:min-w-[420px]
-    hover:lg:min-w-[520px]
+    group-hover:min-w-[300px]
+    group-hover:sm:min-w-[420px]
+    group-hover:lg:min-w-[520px]
     cursor-pointer
   "
 >
-  <h3  style={{
+  <h4  style={{
             fontVariantCaps: "all-small-caps",
             fontFeatureSettings: '"smcp", "c2sc"',
-          }} className="font-semibold uppercase text-[#9C1367] transition-colors duration-500 group-hover:text-white">
+          }} className="text-[36px] font-semibold  text-[#9C1367] transition-colors duration-500 group-hover:text-white">
     {item.title}
-  </h3>
+  </h4>
 
   <span className="mt-2 block text-[18px] 2xl:text-[28px] text-[#424242] transition-colors duration-500 group-hover:text-white">
     {item.desc}
@@ -529,10 +530,9 @@ export default function AboutPage() {
     <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
       {/* Left Content */}
 <div className="w-full flex flex-col justify-center">
-    <h2 className=" font-semibold leading-[1.08] text-primary">
+    <h2 className=" font-semibold leading-[120%] text-primary">
       We Are The Team Behind Your Team Dedicated To Build Your Brand
     </h2>
-
     {/* Fixed Height */}
     <div className="relative mt-24 min-h-[230px] ">
 

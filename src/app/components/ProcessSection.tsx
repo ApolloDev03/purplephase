@@ -13,7 +13,7 @@ const ProcessSection = () => {
 
   return (
     <section className="relative max-w-full overflow-hidden bg-white px-6 py-[85px] sm:px-8 lg:px-20 2xl:px-32">
-      <div className="mx-auto grid grid-cols-1 items-center gap-10 lg:grid-cols-[50%_55%]">
+      <div className="mx-auto grid grid-cols-1 items-center gap-10 lg:grid-cols-[45%_55%]">
         {/* Left Image */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -36,19 +36,16 @@ const ProcessSection = () => {
 
         {/* Right Content */}
         <div className="text-center lg:text-left">
-          <h2 className="text-[58px]  font-semibold lowercase [font-variant-caps:small-caps]! text-primary ">
+          <h2 className="text-[58px] leading-32.5!  lowercase [font-variant-caps:small-caps]! text-primary ">
             We Listen, Before We Advise.
           </h2>
-          {/* <h2 className="font-semibold lowercase ![font-variant-caps:small-caps]  text-primary">
-  We Listen, Before We Advise.
-</h2> */}
-
+     
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className="my-6 max-w-[850px] !space-y-7 font-body text-[17px] font-light leading-[1.38] text-[#424242] sm:text-[20px] lg:text-[28px]"
+            className=" max-w-[850px] leading-1 !space-y-7 font-body text-[17px] font-light leading-[1.38] text-[#424242] sm:text-[20px] lg:text-[28px]"
           >
             <p>
               We understand your business, your pain points and your
@@ -65,7 +62,7 @@ const ProcessSection = () => {
             <p>We say thousand No&apos;s to a single Yes!</p>
           </motion.div>
 
-          <h3 className="mt-8  font-bold lowercase [font-variant-caps:small-caps]!  text-secondary ">
+          <h3 className=" mt-4 font-bold lowercase [font-variant-caps:small-caps]!  text-secondary ">
             That&apos;s How We Build Your Brand...
             <br />
             From Idea To Execution...
