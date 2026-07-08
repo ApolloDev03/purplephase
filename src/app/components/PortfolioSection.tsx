@@ -269,41 +269,43 @@ const PortfolioSection = () => {
         )}
 
         {/* Portfolio Grid */}
-        {!loading && !error && (
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-5 lg:grid-cols-3 lg:gap-3 xl:gap-5">
-            {filteredItems.map((item, index) => {
-              const firstImage = item.images?.[0]?.image_url;
+      {!loading && !error && (
+  <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    {filteredItems.map((item, index) => {
+      const firstImage = item.images?.[0]?.image_url;
 
-              return (
-                <div
-                  key={item.id}
-                  className="group relative h-[245px] overflow-hidden rounded-xl bg-slate-100 shadow-sm sm:h-[300px] md:h-[340px] lg:h-[360px] xl:h-[420px] 2xl:h-[520px]"
-                >
-                  {firstImage ? (
-                    <Image
-                      src={firstImage}
-                      alt={item.title}
-                      fill
-                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      priority={index === 0}
-                    />
-                  ) : (
-                    <div className="flex h-full w-full items-center justify-center text-sm text-slate-400">
-                      No Image
-                    </div>
-                  )}
+      return (
+        <div
+          key={item.id}
+          className="group relative h-[354px] w-full overflow-hidden rounded-xl bg-white shadow-md"
+        >
+          {firstImage ? (
+            <div className="absolute inset-0 flex items-center justify-center ">
+              <Image
+                src={firstImage}
+                alt={item.title}
+                fill
+                sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                className="object-contain transition-transform duration-700 ease-out group-hover:scale-105"
+                priority={index === 0}
+              />
+            </div>
+          ) : (
+            <div className="flex h-full w-full items-center justify-center text-sm text-slate-400">
+              No Image
+            </div>
+          )}
 
-                  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/45 to-transparent px-4 py-4 sm:px-5 sm:py-5 md:px-6 md:py-6">
-                    <h4 className="line-clamp-2 text-[17px] font-medium leading-tight text-white sm:text-[19px] md:text-[22px] xl:text-[26px] 2xl:text-[32px]">
-                      {item.title}
-                    </h4>
-                  </div>
-                </div>
-              );
-            })}
+          <div className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/90 via-black/55 to-transparent px-4 py-4">
+            <p className="text-white! text-[16px] font-medium leading-[1.3]">
+              {item.title}
+            </p>
           </div>
-        )}
+        </div>
+      );
+    })}
+  </div>
+)}
 
         {/* Bottom Button + Filter Navigation */}
         <div className="mt-7 flex flex-col gap-6 sm:mt-8 lg:flex-row lg:items-center lg:justify-between">

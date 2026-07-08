@@ -215,6 +215,8 @@ export default function Header() {
     setIsSidebarOpen(false);
     setIsContactPopupOpen(true);
   };
+  const cn = (...classes: (string | false | null | undefined)[]) =>
+  classes.filter(Boolean).join(" ").replace(/\s+/g, " ").trim();
 
   return (
     <>
@@ -224,12 +226,17 @@ export default function Header() {
             <img
               src={logo.src}
               alt="Purple Phase"
-              className="
-                h-[58px] w-[125px] object-contain
-                sm:h-[70px] sm:w-[155px]
-                md:h-[78px] md:w-[170px]
-                lg:h-[90px] lg:w-[198px]
-              "
+              // className="
+              //   h-[58px] w-[125px] object-contain
+              //   sm:h-[70px] sm:w-[155px]
+              //   md:h-[78px] md:w-[170px]
+              //   lg:h-[90px] lg:w-[198px]
+              // "
+                className={cn(
+    "h-[58px] w-[125px] object-contain",
+    "sm:h-[70px] sm:w-[155px]",
+    "md:h-[78px] md:w-[175px]"
+  )}
             />
           </a>
 
@@ -238,12 +245,16 @@ export default function Header() {
               type="button"
               onClick={() => setIsSidebarOpen(!isSidebarOpen)}
               aria-label="Open menu"
-              className="
-                flex h-10 w-10 cursor-pointer items-center justify-center rounded-full
-                transition-all duration-300
-                sm:h-12 sm:w-12
-                lg:h-16 lg:w-16
-              "
+              // className="
+              //   flex h-10 w-10 cursor-pointer items-center justify-center rounded-full
+              //   transition-all duration-300
+              //   sm:h-12 sm:w-12
+              //   lg:h-16 lg:w-16
+              // "
+              className={cn(
+    "flex h-10 w-10 cursor-pointer items-center justify-center",
+    "rounded-full text-[#111827] transition"
+  )}
             >
               <IoMenuOutline className="text-3xl text-gray-800 sm:text-4xl lg:text-5xl" />
             </button>

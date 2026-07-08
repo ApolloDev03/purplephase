@@ -255,16 +255,16 @@ const handleServiceChange = (serviceId: number): void => {
       <section className="font-body text-[#4d4d4d]">
         {/* HERO */}
         <div
-          className="relative h-[360px] w-full overflow-hidden bg-[#f8f6f7] bg-cover bg-center bg-no-repeat md:h-[420px] lg:h-[470px]"
+          className="relative h-[360px] w-full overflow-hidden bg-[#f8f6f7] bg-cover bg-center bg-no-repeat md:h-[420px] lg:h-[470px] xl:h-[720px]"
           style={{
             backgroundImage: "url('/assets/contact/contact-hero.jpg')",
           }}
         >
           <div className="mx-auto flex h-full max-w-full items-center px-4 sm:px-6 lg:px-20 2xl:px-32">
-            <h1 className="relative z-10 max-w-[560px] font-heading text-[30px] font-bold leading-[1.15] text-[#a20d69] md:text-[40px] lg:text-[46px]">
+            <h2 className="relative z-10  leading-[130%] text-[#a20d69] ">
               Let’s Talk About Your <br />
               Brand’s Next Phase
-            </h1>
+            </h2>
           </div>
         </div>
 
@@ -286,7 +286,7 @@ const handleServiceChange = (serviceId: number): void => {
             Call Us
           </h3>
 
-          <p className="text-[16px] leading-relaxed text-[#4a4a4a] md:text-[18px]">
+          <p className="text-[16px] leading-relaxed text-[#4a4a4a] md:text-[18px] lg:text-[20px]">
             <span className="font-semibold text-[#2f2f2f]">
               Mr. Prerak Shah
             </span>{" "}
@@ -324,7 +324,7 @@ const handleServiceChange = (serviceId: number): void => {
 
           <a
             href="mailto:info.purplephase@gmail.com"
-            className="break-all text-[16px] text-[#4a4a4a] underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69] md:text-[18px]"
+            className="break-all text-[16px] text-[#4a4a4a] underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69] md:text-[18px] lg:text-[20px]"
           >
             info.purplephase@gmail.com
           </a>
@@ -355,7 +355,7 @@ const handleServiceChange = (serviceId: number): void => {
 
           <a
             href="tel:+919999610505"
-            className="mt-4 inline-block  text-[#4a4a4a] underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69]"
+            className="mt-4 inline-block text-[24px] text-[#4a4a4a] underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69]"
           >
             +91 99986 10505
           </a>
@@ -382,7 +382,7 @@ const handleServiceChange = (serviceId: number): void => {
 
           <a
             href="tel:+919999610505"
-            className="mt-4 inline-block text-[15px] text-[#4a4a4a] underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69]"
+            className="mt-4 inline-block text-[24px] text-[#4a4a4a] underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69]"
           >
             +91 99986 10505
           </a>
@@ -419,16 +419,16 @@ const handleServiceChange = (serviceId: number): void => {
 <div className="bg-[#dedede]">
   <div className="mx-auto max-w-full px-6 py-16 sm:px-8 lg:px-20 2xl:px-32">
   
-  <h1 className="text-[28px] font-semibold leading-tight text-[#a20d69] md:text-[34px] lg:text-[50px]">
+  <h1 className="text-[28px] mb-1 font-semibold leading-tight text-[#a20d69] md:text-[34px] lg:text-[50px]">
   No decks. No jargon. Just an Honest Conversation.
 </h1>
 
-<span className="mt-5 font-medium text-[28px] text-[#424242] xl:text-[32px] 2xl:text-[36px]">
+<span className=" font-medium text-[28px] text-[#424242] xl:text-[32px] 2xl:text-[36px]">
   Let’s catch up over a cup of coffee !
 </span>
 
     <form onSubmit={handleSubmit}>
-      <div className="mt-10 grid grid-cols-1 gap-4 md:grid-cols-2">
+      <div className="mt-7 grid grid-cols-1 gap-4 md:grid-cols-2">
         <input
           type="text"
           name="name"
@@ -494,8 +494,8 @@ const handleServiceChange = (serviceId: number): void => {
     className="h-[61px] w-full rounded-md border-0 bg-white px-4 text-[18px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
   />
 </div>
-   <div className="mt-8">
-  <h1 className="mb-7 text-[20px] font-bold text-[#555] ">
+   <div className="mt-7">
+  <h1 className="mb-5 text-[20px] font-bold text-[#555] ">
     Interested Services
   </h1>
 
@@ -546,25 +546,31 @@ const handleServiceChange = (serviceId: number): void => {
         onChange={handleChange}
         rows={5}
         placeholder="Tell us about your project..."
-        className="mt-6 w-full resize-none rounded-md border-0 bg-white px-4 py-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+        className="mt-7 w-full resize-none rounded-md border-0 bg-white px-4 py-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
       />
 
-      <div className="mt-3 grid grid-cols-1 gap-5 md:grid-cols-[264px_300px_1fr]">
-        <div className="flex h-[61px] overflow-hidden rounded-md bg-white">
-          <div className="flex flex-1 items-center justify-center font-heading text-[18px] font-bold tracking-[0.28em] text-[#555]">
-            {captchaCode}
-          </div>
+      <div className="mt-3 grid grid-cols-1 gap-7 md:grid-cols-[264px_340px_1fr]">
+       <div className="flex h-[61px] w-full overflow-hidden rounded-md border border-[#e8d5e1] bg-white shadow-[0_8px_22px_rgba(150,25,101,0.10)]">
+  {/* Captcha Text Box */}
+  <div className="relative flex flex-1 items-center justify-center overflow-hidden bg-[linear-gradient(135deg,#ffffff_0%,#fdf1f8_100%)]">
+    <span className="relative z-10 select-none font-heading text-[22px] font-bold tracking-[0.32em] text-[#555] drop-shadow-sm">
+      {captchaCode}
+    </span>
+  </div>
 
-          <button
-            type="button"
-            onClick={generateCaptcha}
-            className="flex h-full w-[42px] items-center justify-center text-[#a20d69] transition-opacity hover:opacity-80"
-            aria-label="Refresh captcha"
-          >
-            <RotateCcw size={17} />
-          </button>
-        </div>
-
+  {/* Refresh Button */}
+  <button
+    type="button"
+    onClick={generateCaptcha}
+    className="group flex h-full w-[60px] items-center justify-center border-l border-[#ead8e3] bg-[#fff7fb] text-[#961965] transition-all duration-300 hover:bg-[#961965] hover:text-white"
+    aria-label="Refresh captcha"
+  >
+    <RotateCcw
+      size={18}
+      className="transition-transform duration-500 group-hover:rotate-180"
+    />
+  </button>
+</div>
         <input
           type="text"
           name="captcha"
@@ -581,7 +587,7 @@ const handleServiceChange = (serviceId: number): void => {
                              
                         className=""
                     >
-                        <button   type="submit" disabled={submitLoading} className="motion-shine w-full h-[61px]  rounded-full  bg-gradient-to-r from-[#c22c86] to-[#780040] px-6 py-3 text-[18px]  font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+                        <button   type="submit" disabled={submitLoading} className="motion-shine w-full h-[61px]  rounded-md  bg-gradient-to-r from-[#c22c86] to-[#780040] px-6 py-3 text-[18px]  font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
                            {submitLoading ? "Sending..." : "Let’s Connect"}
 
                            

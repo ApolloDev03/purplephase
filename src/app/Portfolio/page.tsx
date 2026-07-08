@@ -153,8 +153,8 @@ const categories = useMemo(() => {
       <section className="w-full bg-[#f3f3f3] ">
         <div className="mx-auto max-w-full py-16 px-4 2xl:py-[85px] sm:px-6 lg:px-20 2xl:px-32">
           <div className="mb-10">
-                    <h2 className="
-leading-none
+                    <h2 className=" leading-[130%]
+
 text-primary ">
                Ideas That Moved People <br/> Work That Moved Markets
               </h2>
@@ -214,7 +214,7 @@ The work in this portfolio aims to make that experience purposeful,powerful, and
                 </p>
               </div>
             )}
-  {!loading && !error && (
+  {/* {!loading && !error && (
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {visibleProjects.map((item) => {
               const firstImage = item.images?.[0]?.image_url;
@@ -249,8 +249,54 @@ The work in this portfolio aims to make that experience purposeful,powerful, and
               );
             })}
           </div>
-        )}
-            
+        )} */}
+            {!loading && !error && (
+  <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    {visibleProjects.map((item, index) => {
+      const firstImage = item.images?.[0]?.image_url;
+
+      return (
+        <div
+          key={item.id}
+          onClick={() => openGallery(item)}
+          className="group relative h-[354px] w-full cursor-pointer overflow-hidden rounded-xl bg-white shadow-md"
+        >
+          {firstImage ? (
+            <div className="absolute inset-0 ">
+              <div className="relative h-full w-full">
+                <Image
+                  src={firstImage}
+                  alt={item.title}
+                  fill
+                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  priority={index === 0}
+                />
+              </div>
+            </div>
+          ) : (
+            <div className="flex h-full w-full items-center justify-center text-sm text-slate-400">
+              No Image
+            </div>
+          )}
+
+          {/* Service Badge */}
+          <div className="absolute left-4 top-4 z-10">
+            <span className="rounded-full bg-white/90 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-primary shadow-sm backdrop-blur">
+              {item?.service?.service_name || "Portfolio"}
+            </span>
+          </div>
+
+          {/* Bottom Title */}
+          <div className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/90 via-black/55 to-transparent px-4 py-4">
+            <p className="!text-white text-[16px] font-medium leading-[1.3]">
+              {item.title}
+            </p>
+          </div>
+        </div>
+      );
+    })}
+  </div>
+)}
             {!loading && visibleCount < filteredProjects.length && (
               <motion.div
                                                     initial={{ opacity: 0, y: 20 }}
@@ -275,12 +321,9 @@ The work in this portfolio aims to make that experience purposeful,powerful, and
       </section>
   <section className="bg-gradient-to-r from-[#bf2f86] to-[#730041]">
           <div className="mx-auto flex max-w-full flex-col items-center justify-center px-6 py-9 xl:py-[85px] text-center md:px-20 lg:px-[115px]">
-            <h3 style={{
-            fontVariantCaps: "all-small-caps",
-            fontFeatureSettings: '"smcp", "c2sc"',
-          }}  className="font-bold  tracking-wide text-white ">
+            <h1   className="uppercase text-[42px] font-bold leading-[130%]  tracking-wide text-white ">
               Need impactful branding solutions ?
-            </h3>
+            </h1>
    <motion.div
                                       initial={{ opacity: 0, y: 20 }}
                                       whileInView={{ opacity: 1, y: 0 }}
@@ -289,11 +332,11 @@ The work in this portfolio aims to make that experience purposeful,powerful, and
                                      onClick={()=>handleContactPopupOpen()}
                                       className="mt-10 flex justify-center lg:justify-start"
                                   >
-                                      <button className="motion-shine group inline-flex items-center gap-4 rounded-full bg-[#720048] px-8 py-5 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+                                      <button className="motion-shine group inline-flex items-center gap-4 rounded-full bg-[#720048] px-10 py-5 text-[15px] lg:text-[20px] xl:text-[32px]! font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
                                          Get A Quote
               
-                                          <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                                              <LuMoveUpRight className="h-5 w-5" />
+                                          <span className="flex h-8 w-8 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                                              <LuMoveUpRight className="h-8 w-8" />
                                           </span>
                                       </button>
                                   </motion.div>

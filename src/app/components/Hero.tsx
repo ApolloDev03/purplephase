@@ -332,7 +332,7 @@ export default function HeaderHero() {
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.25 }}
-            className="mt-6 flex justify-start sm:mt-8"
+            className="mt-6 flex justify-start sm:mt-10 lg:mt-14"
           >
             <button
               type="button"

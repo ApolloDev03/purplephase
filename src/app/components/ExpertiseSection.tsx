@@ -30,45 +30,23 @@ type ResponsiveSizes = {
 };
 
 const getResponsiveSizes = (): ResponsiveSizes => {
+  const createSize = (itemHeight: number, itemGap: number): ResponsiveSizes => ({
+    itemHeight,
+    itemGap,
+    listHeight: itemHeight * 3 + itemGap * 2, // only 3 listing show
+  });
+
   if (typeof window === "undefined") {
-    return {
-      itemHeight: 52,
-      itemGap: 16,
-      listHeight: 226,
-    };
+    return createSize(52, 16);
   }
 
   const width = window.innerWidth;
 
-  if (width < 640) {
-    return {
-      itemHeight: 42,
-      itemGap: 10,
-      listHeight: 170,
-    };
-  }
+  if (width < 640) return createSize(42, 10);
+  if (width < 768) return createSize(46, 12);
+  if (width < 1024) return createSize(50, 14);
 
-  if (width < 768) {
-    return {
-      itemHeight: 46,
-      itemGap: 12,
-      listHeight: 185,
-    };
-  }
-
-  if (width < 1024) {
-    return {
-      itemHeight: 50,
-      itemGap: 14,
-      listHeight: 205,
-    };
-  }
-
-  return {
-    itemHeight: 52,
-    itemGap: 16,
-    listHeight: 226,
-  };
+  return createSize(52, 16);
 };
 
 export default function ExpertiseSection() {
@@ -78,7 +56,7 @@ export default function ExpertiseSection() {
 const [sizes, setSizes] = useState<ResponsiveSizes>({
   itemHeight: 52,
   itemGap: 16,
-  listHeight: 226,
+  listHeight: 188, // 52 * 3 + 16 * 2
 });
   const scrollRef = useRef<HTMLDivElement | null>(null);
 
@@ -232,13 +210,27 @@ const [sizes, setSizes] = useState<ResponsiveSizes>({
         "
       >
       {/* Left Content */}
+{/* Left Content */}
 <div className="flex h-full w-full flex-col items-start justify-center lg:justify-start">
   <div className="w-full max-w-[722px]">
-    <h2 className="mb-4 text-left text-[30px] leading-none text-primary sm:mb-6 sm:text-[42px] md:text-[58px] lg:text-[70px] xl:text-[82px] 2xl:mb-10 2xl:text-[96px]">
+    <h2 className="mb-4 text-left leading-none text-primary 2xl:mb-10">
       Expertise
     </h2>
 
-    <div className="relative w-full overflow-hidden">
+    {/* Fixed left side height as per Figma */}
+    <div
+      className="
+        relative
+        flex
+        h-[260px]
+        w-full
+        items-center
+        justify-center
+        overflow-hidden
+        sm:h-[320px]
+         md:h-[360px]
+      "
+    >
       {loading ? (
         <div
           className="flex w-full items-center justify-center text-[18px] font-semibold text-[#ababab] sm:text-[20px] lg:text-[22px]"
@@ -258,88 +250,93 @@ const [sizes, setSizes] = useState<ResponsiveSizes>({
           No expertise found
         </div>
       ) : (
-        <>
+        <div
+          ref={scrollRef}
+          className="expertise-scroll relative mx-auto w-full overflow-hidden scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          style={{
+            height: `${sizes.listHeight}px`,
+            scrollSnapType: "y mandatory",
+          }}
+        >
           <div
-            ref={scrollRef}
-            className="expertise-scroll relative w-full overflow-hidden scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+            className="w-full"
             style={{
-              height: `${sizes.listHeight}px`,
-              scrollSnapType: "y mandatory",
+              paddingTop: `${listPadding}px`,
+              paddingBottom: `${listPadding}px`,
             }}
           >
-            <div
-              className="w-full"
-              style={{
-                paddingTop: `${listPadding}px`,
-                paddingBottom: `${listPadding}px`,
-              }}
-            >
-              {expertiseData.map((item, index) => {
-                const isActive = activeIndex === index;
-                const distance = Math.abs(activeIndex - index);
+            {expertiseData.map((item, index) => {
+              const isActive = activeIndex === index;
+              const distance = Math.abs(activeIndex - index);
 
-                return (
-                  <motion.button
-                    key={item.id}
-                    type="button"
-                    onClick={() => scrollToItem(index)}
-                    animate={{
-                      opacity: distance === 0 ? 1 : distance === 1 ? 0.45 : 0.18,
-                      scale: isActive ? 1 : 0.96,
-                      y: isActive ? 0 : distance * 2,
-                    }}
-                    transition={{
-                      duration: 0.45,
-                      ease: [0.22, 1, 0.36, 1],
-                    }}
-                    className="flex w-full cursor-pointer items-center justify-start border-0 bg-transparent p-0"
-                    style={{
-                      height: `${sizes.itemHeight}px`,
-                      marginBottom: `${sizes.itemGap}px`,
-                      scrollSnapAlign: "center",
-                    }}
-                  >
-                    <span
-                      className={`
-                        inline-flex
-                        h-full
-                        w-full
-                        max-w-[632px]
-                        min-w-0
-                        items-center
-                        justify-center
-                        rounded-full
-                        px-8
-                        text-center
-                        text-[15px]
-                        font-semibold
-                        uppercase
-                        leading-none
-                        tracking-[0.04em]
-                        transition-all
-                        duration-500
-                        ease-out
-                        sm:text-[16px]
-                        md:text-[18px]
-                        lg:text-[20px]
-                        xl:text-[22px]
-                        ${
-                          isActive
-                            ? "bg-[linear-gradient(90deg,#C0358D_0%,#7B0D52_100%)] text-white shadow-sm"
-                            : "bg-transparent text-[#BDBDBD]"
-                        }
-                      `}
-                    >
-                      <span className="block w-full truncate">
-                        {item.expertise_name}
-                      </span>
-                    </span>
-                  </motion.button>
-                );
-              })}
-            </div>
+              return (
+  <motion.button
+  key={item.id}
+  type="button"
+  onClick={() => scrollToItem(index)}
+  animate={{
+    opacity:
+      distance === 0
+        ? 1
+        : distance === 1
+        ? 0.65
+        : distance === 2
+        ? 0.22
+        : 0,
+    scale: isActive ? 1 : 0.96,
+  }}
+  transition={{
+    duration: 0.45,
+    ease: [0.22, 1, 0.36, 1],
+  }}
+  className="flex w-full cursor-pointer items-center justify-start border-0 bg-transparent p-0"
+  style={{
+    height: `${sizes.itemHeight}px`,
+    marginBottom: `${sizes.itemGap}px`,
+    scrollSnapAlign: "center",
+    pointerEvents: distance > 2 ? "none" : "auto",
+  }}
+>
+  <span
+    className={`
+      inline-flex
+      h-full
+      w-full
+      max-w-[632px]
+      min-w-0
+      items-center
+      justify-center
+      rounded-full
+      px-6
+      text-center
+      text-[15px]
+      font-semibold
+      uppercase
+      leading-none
+   
+      transition-all
+      duration-500
+      ease-out
+      sm:text-[16px]
+      md:text-[18px]
+      lg:text-[20px]
+      xl:text-[32px]
+      ${
+        isActive
+          ? "bg-primary text-white shadow-sm"
+          : "bg-transparent text-[#BDBDBD]"
+      }
+    `}
+  >
+    <span className="block w-full truncate">
+      {item.expertise_name}
+    </span>
+  </span>
+</motion.button>
+              );
+            })}
           </div>
-        </>
+        </div>
       )}
     </div>
   </div>
@@ -365,6 +362,7 @@ const [sizes, setSizes] = useState<ResponsiveSizes>({
             lg:justify-end
             lg:pt-0
             xl:-translate-x-20
+            2xl:-translate-x-28
           "
         >
           <img
@@ -379,7 +377,7 @@ const [sizes, setSizes] = useState<ResponsiveSizes>({
               md:max-w-[260px]
               lg:max-w-[280px]
               xl:max-w-[300px]
-              2xl:max-w-[350px]
+              2xl:max-w-[360px]
             "
           />
         </motion.div>
