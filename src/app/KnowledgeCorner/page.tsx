@@ -463,12 +463,12 @@ export default function BlogPage() {
             className={`group relative h-[309px] w-full rounded-[23px] border p-8 text-left transition-all duration-300   ${
               isActive
                 ? "border-transparent bg-gradient-to-r from-[#c92f8d] to-[#730042] text-white"
-                : "border-[#c92f8d] bg-[#EEEEEE] text-black"
+                : "border-[#c92f8d] bg-[#EEEEEE]"
             }`}
           >
             <div className="flex h-full flex-col">
               <h4
-                className={`text-[18px] leading-[130%] font-semibold lowercase [font-variant-caps:small-caps]!  transition-colors duration-300 md:text-[20px] lg:text-[22px] xl:text-[32px] ${
+                className={`text-[18px] leading-[130%] font-semibold lowercase [font-variant-caps:small-caps]!   md:text-[20px] lg:text-[22px] xl:text-[32px] ${
                   isActive ? "text-white" : "text-[#333333]"
                 }`}
               >
@@ -476,7 +476,7 @@ export default function BlogPage() {
               </h4>
 
               <p
-                className={`mt-5 max-w-[390px] text-[14px] leading-7 transition-colors duration-300 md:text-[15px] lg:text-[28px] ${
+                className={`mt-5 max-w-[390px] text-[14px] leading-7 md:text-[15px] lg:text-[28px] ${
                   isActive ? "text-white/90!" : "text-[#5b5b5b]"
                 }`}
               >
@@ -485,7 +485,7 @@ export default function BlogPage() {
             </div>
 
             <div
-              className={`absolute bottom-5 right-5 flex h-9 w-9 items-center justify-center rounded-full border transition-colors duration-300 ${
+              className={`absolute bottom-5 right-5 flex h-9 w-9 items-center justify-center rounded-full border  ${
                 isActive
                   ? "border-white text-white"
                   : "border-[#555555] text-[#555555]"
@@ -517,12 +517,12 @@ export default function BlogPage() {
                       "/assets/knowledgecorner/blog-main.png"
                     }
                     alt={featuredBlog?.blogTitle}
-                    className="h-full w-full object-cover"
+                    className="h-full w-full object-cover object-right"
                   />
 
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
-                  <div className="absolute bottom-6 right-7 z-20 flex gap-8">
+                  <div className="absolute bottom-10 right-7 z-20 flex gap-8">
                     <button
                       type="button"
                       onClick={handlePrev}
@@ -580,6 +580,7 @@ export default function BlogPage() {
                   <div
                     className="
                       mt-10
+                      2xl:mt-[40%]
                       grid
                       grid-cols-1
                       gap-4
@@ -588,17 +589,17 @@ export default function BlogPage() {
                       lg:w-[calc(100%+110px)]
                       xl:-ml-[200px]
                       xl:w-[calc(100%+150px)]
-                      2xl:-ml-[250px]
-                      2xl:w-[calc(100%+190px)]
+                      2xl:-ml-[300px]
+                      2xl:w-[calc(100%+200px)]
                     "
                   >
                     {sideBlogs.map((blog, index) => (
                       <Link
                         href={`/knowlegecornerDetail?slug=${blog.slugname}`}
                         key={`${blog.blogId}-${index}`}
-                        className="group overflow-hidden rounded-[10px] border-2 border-white shadow-md"
+                        className="group block h-[236px] w-[450px] overflow-hidden rounded-[10px] border-2 border-white shadow-md"
                       >
-                        <div className="relative aspect-[600/500] w-full">
+                        <div className="relative  w-full">
                           <img
                             src={blog.blogImage}
                             alt={blog.blogTitle}
