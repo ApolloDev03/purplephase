@@ -27,11 +27,17 @@ type PortfolioItem = {
   created_at: string;
 };
 
+type ServiceItem = {
+  id: number;
+  service_name: string;
+  image: string | null;
+};
 const ITEMS_PER_PAGE = 6;
 
 export default function PortfolioSection() {
   const [portfolioList, setPortfolioList] = useState<PortfolioItem[]>([]);
-  const [filter, setFilter] = useState("");
+const [serviceList, setServiceList] = useState<ServiceItem[]>([]);
+const [activeServiceId, setActiveServiceId] = useState<number | null>(null);
   const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -45,73 +51,67 @@ export default function PortfolioSection() {
     const handleContactPopupOpen = () => {
         setIsContactPopupOpen(true);
     };
-  const fetchPortfolioList = async () => {
-    try {
-      setLoading(true);
-      setError("");
-
-      const res = await axios.post(
-        `${apiUrl}/portfolioList`,
-        {},
-        {
-          headers: {
-            Accept: "application/json",
-          },
-        }
-      );
+    const fetchServiceList = async () => {
+  try {
+    const res = await axios.post(
+      `${apiUrl}/serviceList`,
+      {},
+      {
+        headers: {
+          Accept: "application/json",
+        },
+      }
+    );
 
     if (res.data?.success) {
-  const data = res.data?.data || [];
-
-  setPortfolioList(data);
-
-  const firstService = data.find(
-    (item: PortfolioItem) => item?.service?.service_name
-  )?.service?.service_name;
-
-  setFilter(firstService || "Show All");
-} else {
-  setError(res.data?.message || "Failed to fetch portfolio list.");
-}
-      console.log(res.data.data[0]);
-    } catch (err) {
-      console.error("Portfolio API Error:", err);
-      setError("Something went wrong while loading portfolio.");
-    } finally {
-      setLoading(false);
+      setServiceList(res.data?.data || []);
     }
-  };
+  } catch (err) {
+    console.error("Service API Error:", err);
+  }
+};
+const fetchPortfolioList = async () => {
+  try {
+    setLoading(true);
+    setError("");
+
+    const res = await axios.post(
+      `${apiUrl}/portfolioList`,
+      { service_id: null },
+      {
+        headers: {
+          Accept: "application/json",
+        },
+      }
+    );
+
+    if (res.data?.success) {
+      setPortfolioList(res.data?.data || []);
+    } else {
+      setError(res.data?.message || "Failed to fetch portfolio list.");
+    }
+  } catch (err) {
+    console.error("Portfolio API Error:", err);
+    setError("Something went wrong while loading portfolio.");
+  } finally {
+    setLoading(false);
+  }
+};
 
   useEffect(() => {
+      fetchServiceList();
     fetchPortfolioList();
   }, []);
 
-const categories = useMemo(() => {
-  const serviceNames = portfolioList
-    .map((item) => item?.service?.service_name)
-    .filter(Boolean) as string[];
+ const handleFilterChange = (serviceId: number | null) => {
+  setActiveServiceId(serviceId);
+  setVisibleCount(ITEMS_PER_PAGE);
+};
 
-  return [...new Set(serviceNames), "Show All"];
-}, [portfolioList]);
 
-  const filteredProjects = useMemo(() => {
-    if (filter === "Show All") return portfolioList;
-
-    return portfolioList.filter(
-      (project) => project?.service?.service_name === filter
-    );
-  }, [filter, portfolioList]);
-
-  const visibleProjects = filteredProjects.slice(0, visibleCount);
-
-  const handleFilterChange = (category: string) => {
-    setFilter(category);
-    setVisibleCount(ITEMS_PER_PAGE);
-  };
-
-  const handleViewMore = () => {
-    setVisibleCount((prev) => prev + ITEMS_PER_PAGE);
-  };
+const handleViewMore = () => {
+  setVisibleCount((prev) => prev + ITEMS_PER_PAGE);
+};
 
   const getSortedImages = (project: PortfolioItem | null) => {
     return [...(project?.images || [])].sort(
@@ -147,6 +147,56 @@ const categories = useMemo(() => {
     );
   };
 
+
+const filteredProjects = useMemo(() => {
+  if (activeServiceId === null) {
+    return portfolioList;
+  }
+
+  return portfolioList.filter(
+    (project) => Number(project?.service?.id) === Number(activeServiceId)
+  );
+}, [portfolioList, activeServiceId]);
+
+const visibleProjects = useMemo(() => {
+  return filteredProjects.slice(0, visibleCount);
+}, [filteredProjects, visibleCount]);
+useEffect(() => {
+  if (!selectedProject) return;
+
+  const imagesLength = selectedProject?.images?.length || 0;
+  if (imagesLength === 0) return;
+
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+
+      setActiveImageIndex((prev) =>
+        prev === 0 ? imagesLength - 1 : prev - 1
+      );
+    }
+
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+
+      setActiveImageIndex((prev) =>
+        prev === imagesLength - 1 ? 0 : prev + 1
+      );
+    }
+
+    if (event.key === "Escape") {
+      event.preventDefault();
+      setSelectedProject(null);
+      setActiveImageIndex(0);
+    }
+  };
+
+  window.addEventListener("keydown", handleKeyDown);
+
+  return () => {
+    window.removeEventListener("keydown", handleKeyDown);
+  };
+}, [selectedProject]);
   return (
     <>
 
@@ -165,28 +215,35 @@ text-primary ">
 The work in this portfolio aims to make that experience purposeful,powerful, and impossible to forget.
             </p>
 
-{!loading && portfolioList.length > 0 && (
+{serviceList.length > 0 && (
   <div className="my-16 flex flex-wrap justify-center gap-3">
-    {categories.map((cat) => {
-      const isActive = filter === cat;
-      const isShowAll = cat === "Show All";
+
+
+    {serviceList.map((service) => {
+      const isActive = activeServiceId === service.id;
 
       return (
         <button
-          key={cat}
-          onClick={() => handleFilterChange(cat)}
+          key={service.id}
+          onClick={() => handleFilterChange(service.id)}
           className={`rounded-lg p-3 text-[14px] font-semibold text-white transition-all duration-300 ${
-            isActive && !isShowAll
-              ? "bg-primary"
-              : isShowAll
-              ? "bg-secondary hover:bg-primary"
-              : "bg-[#6B6B6B] hover:bg-primary"
+            isActive ? "bg-primary" : "bg-[#6B6B6B] hover:bg-primary"
           }`}
         >
-          {cat}
+          {service.service_name}
         </button>
       );
     })}
+        <button
+      onClick={() => handleFilterChange(null)}
+      className={`rounded-lg p-3 text-[14px] font-semibold text-white transition-all duration-300 ${
+        activeServiceId === null
+          ? "bg-primary"
+          : "bg-secondary hover:bg-primary"
+      }`}
+    >
+      Show All
+    </button>
   </div>
 )}
 
@@ -214,42 +271,7 @@ The work in this portfolio aims to make that experience purposeful,powerful, and
                 </p>
               </div>
             )}
-  {/* {!loading && !error && (
-          <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
-            {visibleProjects.map((item) => {
-              const firstImage = item.images?.[0]?.image_url;
-
-              return (
-                <div
-  key={item.id}
-  onClick={() => openGallery(item)}
-  className="group relative cursor-pointer h-[360px] overflow-hidden rounded-xl bg-white shadow-sm"
->
-  {firstImage && (
-    <Image
-      src={firstImage}
-      alt={item.title}
-      fill
-      sizes="(max-width:768px) 100vw, (max-width:1200px) 50vw, 33vw"
-      className="object-cover transition-transform duration-500 group-hover:scale-105"
-      priority
-    />
-  )}
-  <div className="absolute left-5 top-5 z-10">
-                            <span className="rounded-full bg-white/90 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-primary shadow-sm backdrop-blur">
-                              {item?.service?.service_name || "Portfolio"}
-                            </span>
-                          </div>
-  <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent px-5 py-5">
-    <h4 className="text-lg  text-white">
-      {item.title}
-    </h4>
-  </div>
-</div>
-              );
-            })}
-          </div>
-        )} */}
+  
             {!loading && !error && (
   <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
     {visibleProjects.map((item, index) => {
@@ -297,7 +319,7 @@ The work in this portfolio aims to make that experience purposeful,powerful, and
     })}
   </div>
 )}
-            {!loading && visibleCount < filteredProjects.length && (
+            {!loading && visibleCount < portfolioList.length && (
               <motion.div
                                                     initial={{ opacity: 0, y: 20 }}
                                                     whileInView={{ opacity: 1, y: 0 }}

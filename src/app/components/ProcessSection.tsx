@@ -59,11 +59,11 @@ const ProcessSection = () => {
               storytelling and powered by impactful innovation...
             </p>
 
-            <p>We say thousand No&apos;s to a single Yes!</p>
+            <p>We say thousand No’s to a single Yes!</p>
           </motion.div>
 
           <h3 className=" mt-4 font-bold lowercase [font-variant-caps:small-caps]!  text-secondary ">
-            That&apos;s How We Build Your Brand...
+          THAT’S  How We Build Your Brand...
             <br />
             From Idea To Execution...
           </h3>

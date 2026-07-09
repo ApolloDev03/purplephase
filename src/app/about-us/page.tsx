@@ -18,6 +18,7 @@ export default function AboutPage() {
     designation: string;
     description: string;
     photo: string;
+    sub_designation:string;
     sequence_no: number;
     created_at: string;
   }
@@ -236,7 +237,7 @@ export default function AboutPage() {
         </p>
 
         <h3
-          className="max-w-[680px] text-[18px] font-bold leading-[1.45] tracking-[0.04em] text-[#f28c00] sm:text-[21px] lg:text-[26px]"
+          className="max-w-[680px] text-[18px] font-bold leading-[1.45] tracking-[0.04em] text-secondary sm:text-[21px] lg:text-[26px]"
           style={{
             fontVariantCaps: "all-small-caps",
             fontFeatureSettings: '"smcp", "c2sc"',
@@ -289,7 +290,7 @@ export default function AboutPage() {
             <h3  style={{
             fontVariantCaps: "all-small-caps",
             fontFeatureSettings: '"smcp", "c2sc"',
-          }} className=" text-[20px] 2xl:text-[36px] font-bold uppercase text-[#F28C00]">
+          }} className=" text-[20px] 2xl:text-[36px] font-bold uppercase text-secondary">
               WHAT IS YOUR BRAND STORY?
             </h3>
  <motion.div
@@ -316,9 +317,9 @@ export default function AboutPage() {
       <section className="bg-white ">
         <div className="py-16 2xl:py-[85px] mx-auto max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
           <h2 className="mb-8  leading-[120%] text-[#9c1367]">
-            Your brand isn't a project to us
+            Your brand isn’t a project to us
             <br />
-            It's a story we help write
+            It’s a story we help write
           </h2>
 
           <p className=" 2xl:w-[926px] leading-[1.6] text-[#424242]">
@@ -374,7 +375,7 @@ export default function AboutPage() {
             <h3  style={{
             fontVariantCaps: "all-small-caps",
             fontFeatureSettings: '"smcp", "c2sc"',
-          }} className="mt-4   tracking-[0.4px] text-[#F28C00] leading-[1.45]">
+          }} className="mt-4   tracking-[0.4px] text-secondary leading-[1.45]">
               SO FOR US, PRECISION HAS NEVER BEEN ABOUT SKILL, BUT A BASIC INSTINCT.
             </h3>
                    <motion.div
@@ -476,7 +477,7 @@ export default function AboutPage() {
         <div className="relative  ">
           <div className="max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32 ">
             <h2 className="mb-10 text-[36px] md:text-[48px]   font-semibold leading-[120%] text-[#9c1367]">
-              We don't position brands on instinct
+              We don’t position brands on instinct
               <br />
               We position them on evidence
             </h2>
@@ -555,11 +556,11 @@ export default function AboutPage() {
           }} className=" text-primary">
               {member.name}
             </h3>
-
+<p className="my-1 text-[21px]!">{member.sub_designation}</p>
             <h3  style={{
             fontVariantCaps: "all-small-caps",
             fontFeatureSettings: '"smcp", "c2sc"',
-          }} className="mt-5 tracking-[1px] text-primary">
+          }} className=" tracking-[1px] text-primary">
               {member.designation}
             </h3>
 

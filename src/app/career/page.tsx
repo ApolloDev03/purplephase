@@ -248,6 +248,38 @@ if (captchaAnswer.trim() !== correctCaptcha) {
       prev === careerImages.length - 1 ? 0 : prev + 1
     );
   };
+  useEffect(() => {
+  if (!galleryOpen) return;
+
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+
+      setActiveImageIndex((prev) =>
+        prev === 0 ? careerImages.length - 1 : prev - 1
+      );
+    }
+
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+
+      setActiveImageIndex((prev) =>
+        prev === careerImages.length - 1 ? 0 : prev + 1
+      );
+    }
+
+    if (event.key === "Escape") {
+      event.preventDefault();
+      setGalleryOpen(false);
+    }
+  };
+
+  window.addEventListener("keydown", handleKeyDown);
+
+  return () => {
+    window.removeEventListener("keydown", handleKeyDown);
+  };
+}, [galleryOpen, careerImages.length]);
     return (
       <>
 
@@ -474,7 +506,7 @@ if (captchaAnswer.trim() !== correctCaptcha) {
                               className="overflow-hidden rounded-b-md bg-white"
                             >
                               <div className="px-8 py-5">
-                                <p className="whitespace-pre-line text-[15px] leading-7 text-[#444]">
+                                <p className="whitespace-pre-line text-[18px]! leading-7 text-[#444]">
                                   {career.description}
                                 </p>
                               </div>

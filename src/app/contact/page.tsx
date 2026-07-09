@@ -282,7 +282,7 @@ const handleServiceChange = (serviceId: number): void => {
           <h3 style={{
             fontVariantCaps: "all-small-caps",
             fontFeatureSettings: '"smcp", "c2sc"',
-          }}   className="mb-3 font-heading text-[24px] font-bold uppercase tracking-wide text-[#ff7a00] md:text-[28px]">
+          }}   className="mb-3 font-heading text-[24px] font-bold uppercase tracking-wide text-secondary md:text-[28px]">
             Call Us
           </h3>
 
@@ -318,13 +318,13 @@ const handleServiceChange = (serviceId: number): void => {
           <h3 style={{
             fontVariantCaps: "all-small-caps",
             fontFeatureSettings: '"smcp", "c2sc"',
-          }}   className="mb-3 font-heading text-[24px] font-bold uppercase tracking-wide text-[#ff7a00] md:text-[28px]">
+          }}   className="mb-3 font-heading text-[24px] font-bold uppercase tracking-wide text-secondary md:text-[28px]">
             Email Id
           </h3>
 
           <a
             href="mailto:info.purplephase@gmail.com"
-            className="break-all text-[16px] text-[#4a4a4a] underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69] md:text-[18px] lg:text-[20px]"
+            className="break-all text-[16px] text-[#4a4a4a] underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69] md:text-[18px] lg:text-[28px]"
           >
             info.purplephase@gmail.com
           </a>
@@ -343,7 +343,7 @@ const handleServiceChange = (serviceId: number): void => {
           <h3  style={{
             fontVariantCaps: "all-small-caps",
             fontFeatureSettings: '"smcp", "c2sc"',
-          }}   className="mb-3 font-heading text-[24px] font-bold uppercase tracking-wide text-[#ff7a00] md:text-[28px]">
+          }}   className="mb-3 font-heading text-[24px] font-bold uppercase tracking-wide text-secondary md:text-[28px]">
             Ahmedabad
           </h3>
 
@@ -371,7 +371,7 @@ const handleServiceChange = (serviceId: number): void => {
           <h3 style={{
             fontVariantCaps: "all-small-caps",
             fontFeatureSettings: '"smcp", "c2sc"',
-          }}   className="mb-3 font-heading text-[24px] font-bold uppercase tracking-wide text-[#ff7a00] md:text-[28px]">
+          }}   className="mb-3 font-heading text-[24px] font-bold uppercase tracking-wide text-secondary md:text-[28px]">
             Mumbai
           </h3>
 
@@ -395,7 +395,7 @@ const handleServiceChange = (serviceId: number): void => {
         </div>
 
         <div>
-          <h3 className="mb-3 font-heading text-[24px] font-bold uppercase tracking-wide text-[#ff7a00] md:text-[28px]">
+          <h3 className="mb-3 font-heading text-[24px] font-bold uppercase tracking-wide text-secondary md:text-[28px]">
             U.K.
           </h3>
 

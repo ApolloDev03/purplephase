@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion ,AnimatePresence} from "framer-motion";
 import { useEffect, useState, Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import axios from "axios";
@@ -8,6 +8,7 @@ import { apiUrl } from "../config";
 import { LuMoveUpRight } from "react-icons/lu";
 import { FaAnglesLeft, FaAnglesRight } from "react-icons/fa6";
 import ContactPopup from "../components/ContactPopup";
+import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 type SectionImage = {
   id: number;
@@ -58,7 +59,7 @@ function CaseStudyDetailContent() {
   const [caseStudy, setCaseStudy] = useState<CaseStudyItem | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-
+const [activeMoreImageIndex, setActiveMoreImageIndex] = useState<number | null>(null);
   const fetchCaseStudyDetail = async () => {
     if (!slug) {
       setError("Case study slug not found.");
@@ -92,7 +93,43 @@ function CaseStudyDetailContent() {
   useEffect(() => {
     fetchCaseStudyDetail();
   }, [slug]);
+useEffect(() => {
+  if (activeMoreImageIndex === null) return;
 
+  const moreImagesLength = caseStudy?.more_images?.length || 0;
+  if (moreImagesLength === 0) return;
+
+  const handleKeyDown = (event: KeyboardEvent) => {
+    if (event.key === "ArrowLeft") {
+      event.preventDefault();
+
+      setActiveMoreImageIndex((prev) => {
+        if (prev === null) return 0;
+        return prev === 0 ? moreImagesLength - 1 : prev - 1;
+      });
+    }
+
+    if (event.key === "ArrowRight") {
+      event.preventDefault();
+
+      setActiveMoreImageIndex((prev) => {
+        if (prev === null) return 0;
+        return prev === moreImagesLength - 1 ? 0 : prev + 1;
+      });
+    }
+
+    if (event.key === "Escape") {
+      event.preventDefault();
+      setActiveMoreImageIndex(null);
+    }
+  };
+
+  window.addEventListener("keydown", handleKeyDown);
+
+  return () => {
+    window.removeEventListener("keydown", handleKeyDown);
+  };
+}, [activeMoreImageIndex, caseStudy?.more_images?.length]);
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-[#f3f3f3]">
@@ -141,9 +178,41 @@ function CaseStudyDetailContent() {
     });
   }, 100);
 };
+
+const openMoreImageSlider = (imageId: number) => {
+  const imageIndex = sortedMoreImages.findIndex((img) => img.id === imageId);
+  setActiveMoreImageIndex(imageIndex >= 0 ? imageIndex : 0);
+};
+
+const closeMoreImageSlider = () => {
+  setActiveMoreImageIndex(null);
+};
+
+const handlePrevMoreImage = () => {
+  if (!sortedMoreImages.length) return;
+
+  setActiveMoreImageIndex((prev) => {
+    if (prev === null) return 0;
+    return prev === 0 ? sortedMoreImages.length - 1 : prev - 1;
+  });
+};
+
+const handleNextMoreImage = () => {
+  if (!sortedMoreImages.length) return;
+
+  setActiveMoreImageIndex((prev) => {
+    if (prev === null) return 0;
+    return prev === sortedMoreImages.length - 1 ? 0 : prev + 1;
+  });
+};
+
+const activeMoreImage =
+  activeMoreImageIndex !== null ? sortedMoreImages[activeMoreImageIndex] : null;
+
+
   return (
     <>
-    <main className="py-16 font-sans text-[#242424] ">
+    <main className="py-16 bg-[#f6f6f6] font-sans text-[#242424] ">
       {/* HERO */}
       <section className="mx-auto w-full max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
         <motion.div
@@ -151,7 +220,7 @@ function CaseStudyDetailContent() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mx-auto max-w-[1550px]"
+          className=""
         >
           <div className="overflow-hidden rounded-[14px] ">
             <div className="relative">
@@ -243,7 +312,7 @@ function CaseStudyDetailContent() {
       )}
 
       {/* MORE IMAGES */}
-      {sortedMoreImages.length > 0 && (
+      {/* {sortedMoreImages.length > 0 && (
         <section className="py-5 mx-auto w-full max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
           {moreImageRows.map((row, rowIndex) => (
             <div
@@ -273,7 +342,44 @@ function CaseStudyDetailContent() {
             </div>
           ))}
         </section>
-      )}
+      )} */}
+      {/* MORE IMAGES */}
+{sortedMoreImages.length > 0 && (
+  <section className="mx-auto w-full max-w-full px-4 py-5 sm:px-6 lg:px-20 2xl:px-32">
+    {moreImageRows.map((row, rowIndex) => {
+      const isThreeGrid = row.length === 3;
+
+      return (
+        <div
+          key={rowIndex}
+          className={`mb-5 grid grid-cols-1 gap-5 ${
+            isThreeGrid ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2"
+          }`}
+        >
+          {row.map((img, index) => (
+            <motion.div
+              key={img.id}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.45, delay: index * 0.06 }}
+              onClick={() => openMoreImageSlider(img.id)}
+              className={`group cursor-pointer overflow-hidden rounded-[12px] bg-white ${
+                isThreeGrid ? "aspect-[536/335]" : "aspect-[815/509]"
+              }`}
+            >
+              <img
+                src={img.image_url}
+                alt={`More image ${rowIndex + 1}-${index + 1}`}
+                className="block h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+              />
+            </motion.div>
+          ))}
+        </div>
+      );
+    })}
+  </section>
+)}
 
 {/* PREV NEXT */}
 <section className="mx-auto w-full max-w-full px-4 py-10 sm:px-6 lg:px-20 2xl:px-32">
@@ -360,6 +466,67 @@ function CaseStudyDetailContent() {
                           isOpen={isContactPopupOpen}
                           onClose={() => setIsContactPopupOpen(!isContactPopupOpen)}
                       />
+                      <AnimatePresence>
+  {activeMoreImage && (
+    <motion.div
+      className="fixed inset-0 z-[99999] flex items-center justify-center bg-black/85 px-4 backdrop-blur-sm"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={closeMoreImageSlider}
+    >
+      <button
+        type="button"
+        onClick={closeMoreImageSlider}
+        className="absolute right-6 top-6 z-50 flex h-12 w-12 items-center justify-center rounded-full bg-white text-primary shadow-lg transition hover:bg-primary hover:text-white"
+      >
+        <X size={24} />
+      </button>
+
+      {sortedMoreImages.length > 1 && (
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            handlePrevMoreImage();
+          }}
+          className="absolute left-4 top-1/2 z-50 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white text-primary shadow-lg transition hover:bg-primary hover:text-white md:left-10"
+        >
+          <ChevronLeft size={30} />
+        </button>
+      )}
+
+      <motion.div
+        key={activeMoreImage.id}
+        className="relative flex max-h-[82vh] w-full max-w-[1100px] items-center justify-center"
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        exit={{ opacity: 0, scale: 0.96 }}
+        transition={{ duration: 0.25 }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        <img
+          src={activeMoreImage.image_url}
+          alt="Gallery preview"
+          className="max-h-[82vh] w-auto max-w-full rounded-[10px] object-contain"
+        />
+      </motion.div>
+
+      {sortedMoreImages.length > 1 && (
+        <button
+          type="button"
+          onClick={(e) => {
+            e.stopPropagation();
+            handleNextMoreImage();
+          }}
+          className="absolute right-4 top-1/2 z-50 flex h-12 w-12 -translate-y-1/2 items-center justify-center rounded-full bg-white text-primary shadow-lg transition hover:bg-primary hover:text-white md:right-10"
+        >
+          <ChevronRight size={30} />
+        </button>
+      )}
+    </motion.div>
+  )}
+</AnimatePresence>
     </>
   );
 }
