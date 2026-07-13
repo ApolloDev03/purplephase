@@ -251,7 +251,7 @@ const PortfolioSection = () => {
       <div className="mx-auto max-w-full px-4 py-10 2xl:py-[85px] sm:px-6 sm:py-12 md:px-10 lg:px-20 lg:py-16 2xl:px-32">
         {/* Section Heading */}
         <div className="mb-6 text-center sm:mb-8 lg:text-left">
-          <h2 className="mb-0 text-[34px] leading-[1.05] tracking-tight text-primary sm:text-[46px] md:text-[58px] lg:text-[72px] xl:text-[84px] 2xl:text-[96px]">
+          <h2 className="mb-0  leading-[1.05] tracking-tight text-primary ">
             Work That Works
           </h2>
         </div>
@@ -329,7 +329,7 @@ const PortfolioSection = () => {
           <div className="flex flex-wrap items-center justify-center gap-2 text-primary  lg:justify-end">
             {filters.map((filter, index) => (
               <React.Fragment key={filter}>
-                <span className="rounded-full border border-primary/20 px-3 py-2 text-[13px] leading-none text-primary sm:border-0 sm:px-2 sm:py-0 sm:text-[15px] md:text-[17px] lg:text-[18px] xl:text-[20px] 2xl:text-[28px]">
+                <span className="rounded-full border border-primary/20 px-3 py-2 text-[13px] leading-none text-primary sm:border-0 sm:px-2 sm:py-0 sm:text-[15px] md:text-[17px] lg:text-[18px] xl:text-[20px] 2xl:text-[26px]">
                   {filter}
                 </span>
 

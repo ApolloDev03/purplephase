@@ -38,7 +38,7 @@
 
   h2 {
     font-weight: 600;
-   
+    font-weight: 700;
     letter-spacing: 0;
   }
 
@@ -142,10 +142,10 @@
 
   @media (min-width: 1280px) {
       h2 {
-      font-size: 58px;
+      font-size: 56px;
     }
     h3 {
-      font-size: 36px;
+      font-size: 34px;
     }
     p {
       font-size: 20px;
@@ -161,14 +161,14 @@
   }
 
   @media (min-width: 1920px) {
-    h2 {
-      font-size: 58px;
+  h2 {
+      font-size: 56px;
     }
-
-  
-
+    h3 {
+      font-size: 34px;
+    }
     p {
-      font-size: 28px;
+      font-size: 26px;
     }
 
     button {
