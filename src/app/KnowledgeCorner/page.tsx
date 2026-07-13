@@ -501,53 +501,68 @@ export default function BlogPage() {
 
       {/* BLOG SECTION */}
       <section className="overflow-hidden">
-        <div className="py-16">
+        <div className="py-16 pr-32">
           {loading ? (
             <div className="flex justify-center py-20">
               <div className="h-12 w-12 animate-spin rounded-full border-4 border-primary/20 border-t-primary" />
             </div>
           ) : blogs.length > 0 ? (
-            <div className="grid items-start gap-8 lg:grid-cols-[52%_48%] xl:gap-10">
+            <div className="grid items-start gap-8 lg:grid-cols-[45%_55%]">
               {/* LEFT BIG IMAGE */}
-              <div className="relative z-10 w-full overflow-hidden rounded-[10px]">
-                <div className="relative aspect-[600/700] w-full overflow-hidden rounded-[10px]">
-                  <img
-                    src={
-                      featuredBlog?.blogImage ||
-                      "/assets/knowledgecorner/blog-main.png"
-                    }
-                    alt={featuredBlog?.blogTitle}
-                    className="h-full w-full object-cover object-right"
-                  />
+            {/* LEFT ACTIVE BLOG IMAGE */}
+<div className="relative z-10 flex w-full justify-center overflow-hidden lg:justify-start">
+  <div
+    className="
+      relative
+      w-full
+      max-w-[600px]
+      overflow-hidden
+      rounded-[10px]
+      aspect-[600/627]
+      lg:h-[627px]
+      lg:w-[600px]
+      lg:aspect-auto
+    "
+  >
+    <img
+      src={
+        featuredBlog?.blogImage ||
+        "/assets/knowledgecorner/blog-main.png"
+      }
+      alt={featuredBlog?.blogTitle || "Knowledge Corner Blog"}
+      className="h-full w-full object-cover"
+    />
 
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
 
-                  <div className="absolute bottom-10 right-7 z-20 flex gap-8">
-                    <button
-                      type="button"
-                      onClick={handlePrev}
-                      className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-white text-white transition hover:bg-white hover:text-primary"
-                    >
-                      <ArrowLeft size={17} />
-                    </button>
+    <div className="absolute bottom-10 right-7 z-20 flex gap-8">
+      <button
+        type="button"
+        onClick={handlePrev}
+        aria-label="Previous blog"
+        className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-white text-white transition hover:bg-white hover:text-primary"
+      >
+        <ArrowLeft size={17} />
+      </button>
 
-                    <button
-                      type="button"
-                      onClick={handleNext}
-                      className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-white text-white transition hover:bg-white hover:text-primary"
-                    >
-                      <ArrowRight size={17} />
-                    </button>
-                  </div>
-                </div>
-              </div>
+      <button
+        type="button"
+        onClick={handleNext}
+        aria-label="Next blog"
+        className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-white text-white transition hover:bg-white hover:text-primary"
+      >
+        <ArrowRight size={17} />
+      </button>
+    </div>
+  </div>
+</div>
 
               {/* RIGHT CONTENT */}
               <div className="relative z-20 pt-2 lg:pt-3">
                 <h3  style={{
             fontVariantCaps: "all-small-caps",
             fontFeatureSettings: '"smcp", "c2sc"',
-          }} className="pr-32  text-secondary text-[40px]!">
+          }} className="  text-secondary text-[40px]!">
                   {featuredBlog?.blogTitle}
                 </h3>
 

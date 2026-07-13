@@ -10,6 +10,7 @@ import { apiUrl } from "../config";
 import { LuMoveUpRight } from "react-icons/lu";
 import { useRouter } from "next/navigation";
 import ContactPopup from "../components/ContactPopup";
+import { SiH2Database } from "react-icons/si";
 
 export default function AboutPage() {
   interface Member {
@@ -262,14 +263,14 @@ export default function AboutPage() {
             We are Purple Phase
           </h2>
 
-          <div className=" space-y-8 text-[20px] 2xl:text-[28px] leading-[1.5] text-[#5A5A5A]">
+          <div className=" space-y-8  leading-[1.5] text-[#5A5A5A]">
             <p >
               A Strategic Branding & AI Native Digital Marketing Agency with a
               global vision and deep local resonance.
             </p>
 
             <p >
-              Born in 2010, we have a legacy spanning <b>70 years</b> in
+              Established in 2010, we have a legacy spanning <b>70 years</b> in
               branding & advertising. We started with a belief that a well-built
               brand is the single greatest competitive advantage any business
               can have. Not the biggest budget. Not the flashiest product. The
@@ -550,17 +551,14 @@ export default function AboutPage() {
               ease: [0.22, 1, 0.36, 1],
             }}
           >
-            <h3  style={{
-            fontVariantCaps: "all-small-caps",
-            fontFeatureSettings: '"smcp", "c2sc"',
-          }} className=" text-primary">
+            <h2 className="uppercase text-[28px]! tracking-[1px] text-primary">
               {member.name}
-            </h3>
+            </h2>
 <p className="my-1 text-[21px]!">{member.sub_designation}</p>
             <h3  style={{
             fontVariantCaps: "all-small-caps",
             fontFeatureSettings: '"smcp", "c2sc"',
-          }} className=" tracking-[1px] text-primary">
+          }} className="  text-primary">
               {member.designation}
             </h3>
 

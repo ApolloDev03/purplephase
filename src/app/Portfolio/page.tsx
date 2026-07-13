@@ -216,7 +216,7 @@ The work in this portfolio aims to make that experience purposeful,powerful, and
             </p>
 
 {serviceList.length > 0 && (
-  <div className="my-16 flex flex-wrap justify-center gap-3">
+  <div className="my-16 flex flex-wrap justify-start gap-3">
 
 
     {serviceList.map((service) => {
@@ -226,7 +226,7 @@ The work in this portfolio aims to make that experience purposeful,powerful, and
         <button
           key={service.id}
           onClick={() => handleFilterChange(service.id)}
-          className={`rounded-lg p-3 text-[14px] font-semibold text-white transition-all duration-300 ${
+          className={`rounded-lg p-3 text-[19px]! font-semibold! text-white transition-all duration-300 ${
             isActive ? "bg-primary" : "bg-[#6B6B6B] hover:bg-primary"
           }`}
         >
@@ -236,7 +236,7 @@ The work in this portfolio aims to make that experience purposeful,powerful, and
     })}
         <button
       onClick={() => handleFilterChange(null)}
-      className={`rounded-lg p-3 text-[14px] font-semibold text-white transition-all duration-300 ${
+      className={`rounded-lg p-3 text-[19px]! font-semibold! text-white transition-all duration-300 ${
         activeServiceId === null
           ? "bg-primary"
           : "bg-secondary hover:bg-primary"

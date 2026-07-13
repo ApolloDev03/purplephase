@@ -86,11 +86,11 @@ const router = useRouter();
     <section className="relative overflow-hidden bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)] py-16 xl:py-[85px]">
       <div className="mx-auto max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
         {/* Heading */}
-          <h4 className="text-[28px] mb-4 font-semibold leading-tight tracking-wide text-white md:text-[38px] lg:text-[40px] 2xl:text-[50px]">
-            No decks. No jargon. Just an Honest Conversation.
+          <h4 className="text-[28px] mb-4 font-semibold leading-tight tracking-wide text-white md:text-[38px] lg:text-[40px] 2xl:text-[48px]">
+            No decks. No jargon. Just an honest conversation.
           </h4>
 
-          <span className=" text-[22px]  font-medium leading-tight text-white md:text-[28px] 2xl:text-[36px]">
+          <span className=" text-[22px]  font-medium leading-tight text-white md:text-[28px] 2xl:text-[34px]">
             Let’s catch up over a cup of coffee !
           </span>
 

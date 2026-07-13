@@ -37,7 +37,17 @@
     resume: File | null;
     captcha: string;
   };
+type PhotoGalleryItem = {
+  seq_no: number;
+  image: string;
+  image_url: string;
+};
 
+type PhotoGalleryResponse = {
+  success: boolean;
+  message: string;
+  data: PhotoGalleryItem[];
+};
   export default function CareerPage() {
     const [careers, setCareers] = useState<CareerItem[]>([]);
     const [loadingCareers, setLoadingCareers] = useState<boolean>(false);
@@ -45,16 +55,11 @@
     const [openCareerId, setOpenCareerId] = useState<number | null>(null);
 
   const [captchaAnswer, setCaptchaAnswer] = useState("");
-
+const [careerImages, setCareerImages] = useState<string[]>([]);
+const [loadingGallery, setLoadingGallery] = useState<boolean>(false);
 const captchaQuestion = "5 + 3";
 const correctCaptcha = "8";
-  const careerImages = [
-    "/assets/career/life-1.png",
-    "/assets/career/life-2.png",
-    "/assets/career/life-3.jpg",
-    "/assets/career/life-4.png",
-    "/assets/career/life-5.jpg",
-  ];
+
 
   const [galleryOpen, setGalleryOpen] = useState(false);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -71,6 +76,7 @@ const correctCaptcha = "8";
 
     useEffect(() => {
       fetchCareers();
+      fetchPhotoGallery();
     }, []);
 
     const fetchCareers = async (): Promise<void> => {
@@ -100,7 +106,38 @@ const correctCaptcha = "8";
       }
     };
 
-   
+   const fetchPhotoGallery = async (): Promise<void> => {
+  try {
+    setLoadingGallery(true);
+
+    const res = await axios.post<PhotoGalleryResponse>(
+      `${apiUrl}/photo-gallery`,
+      {
+        headers: {
+          Accept: "application/json",
+        },
+      }
+    );
+
+    if (res.data?.success) {
+      const images = [...(res.data.data || [])]
+        .sort((a, b) => a.seq_no - b.seq_no)
+        .map((item) => item.image_url?.trim())
+        .filter((imageUrl): imageUrl is string => Boolean(imageUrl));
+
+      setCareerImages(images);
+    } else {
+      setCareerImages([]);
+      toast.error(res.data?.message || "Photo gallery not found.");
+    }
+  } catch (error) {
+    console.error("Photo gallery error:", error);
+    setCareerImages([]);
+    toast.error("Failed to load photo gallery.");
+  } finally {
+    setLoadingGallery(false);
+  }
+};
 
   
     const handleChange = (
@@ -228,26 +265,32 @@ if (captchaAnswer.trim() !== correctCaptcha) {
       }
     };
 
-    const openGallery = (index: number) => {
-    setActiveImageIndex(index);
-    setGalleryOpen(true);
-  };
+ const openGallery = (index: number): void => {
+  if (!careerImages[index]) return;
 
-  const closeGallery = () => {
-    setGalleryOpen(false);
-  };
+  setActiveImageIndex(index);
+  setGalleryOpen(true);
+};
 
-  const handlePrevImage = () => {
-    setActiveImageIndex((prev) =>
-      prev === 0 ? careerImages.length - 1 : prev - 1
-    );
-  };
+const closeGallery = (): void => {
+  setGalleryOpen(false);
+};
 
-  const handleNextImage = () => {
-    setActiveImageIndex((prev) =>
-      prev === careerImages.length - 1 ? 0 : prev + 1
-    );
-  };
+const handlePrevImage = (): void => {
+  if (careerImages.length === 0) return;
+
+  setActiveImageIndex((prev) =>
+    prev === 0 ? careerImages.length - 1 : prev - 1
+  );
+};
+
+const handleNextImage = (): void => {
+  if (careerImages.length === 0) return;
+
+  setActiveImageIndex((prev) =>
+    prev === careerImages.length - 1 ? 0 : prev + 1
+  );
+};
   useEffect(() => {
   if (!galleryOpen) return;
 
@@ -280,6 +323,39 @@ if (captchaAnswer.trim() !== correctCaptcha) {
     window.removeEventListener("keydown", handleKeyDown);
   };
 }, [galleryOpen, careerImages.length]);
+
+
+const renderGalleryTile = (
+  imageIndex: number,
+  wrapperClassName: string,
+  imageClassName = ""
+) => {
+  const imageUrl = careerImages[imageIndex];
+
+  if (!imageUrl) {
+    return (
+      <div
+        className={`${wrapperClassName} rounded-md bg-[#d7d7d7]`}
+      />
+    );
+  }
+
+  return (
+    <button
+      type="button"
+      onClick={() => openGallery(imageIndex)}
+      className={`group block cursor-pointer overflow-hidden rounded-md text-left ${wrapperClassName}`}
+      aria-label={`Open Life at Purple Phase image ${imageIndex + 1}`}
+    >
+      <img
+        src={imageUrl}
+        alt={`Life at Purple Phase ${imageIndex + 1}`}
+        loading="lazy"
+        className={`h-full w-full object-cover transition-transform duration-500 group-hover:scale-110 ${imageClassName}`}
+      />
+    </button>
+  );
+};
     return (
       <>
 
@@ -339,12 +415,29 @@ if (captchaAnswer.trim() !== correctCaptcha) {
 
           {/* LIFE SECTION + OPENINGS */}
         
-            <div className="my-10">
-              <h2 className="mb-8 font-heading text-[26px] font-bold [font-variant-caps:all-small-caps]! text-[#a20d69] md:text-[32px]">
-                Life @ Purple Phase
-              </h2>
+           {/* LIFE SECTION + OPENINGS */}
+<div className="my-10">
+  <h2 className="mb-8 font-heading text-[26px] font-bold [font-variant-caps:all-small-caps]! text-[#a20d69] md:text-[32px]">
+    Life @ Purple Phase
+  </h2>
 
-              {/*COLLAGE */}
+ {/* GALLERY */}
+{loadingGallery ? (
+  <div className="flex min-h-[300px] items-center justify-center rounded-md bg-[#f2f2f2]">
+    <p className="text-[16px] font-semibold text-[#555]">
+      Loading gallery...
+    </p>
+  </div>
+) : careerImages.length === 0 ? (
+  <div className="flex min-h-[300px] items-center justify-center rounded-md bg-[#f2f2f2]">
+    <p className="text-[16px] font-semibold text-[#555]">
+      No gallery images found.
+    </p>
+  </div>
+) : (
+  <>
+    {/* DESKTOP COLLAGE */}
+    {/* FIXED DESKTOP COLLAGE */}
 <div
   className="
     relative
@@ -358,171 +451,183 @@ if (captchaAnswer.trim() !== correctCaptcha) {
     md:grid
   "
 >
-  {/* Top Left */}
-  <div
-    onClick={() => openGallery(0)}
-    className="group col-span-2 cursor-pointer overflow-hidden rounded-md"
-  >
-    <img
-      src="/assets/career/life-1.png"
-      alt=""
-      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-    />
-  </div>
+  {[
+    {
+      className: "col-start-1 col-span-2 row-start-1",
+      imageClassName: "object-center",
+    },
+    {
+      className: "col-start-3 row-start-1",
+      imageClassName: "object-[center_35%]",
+    },
+    {
+      className: "col-start-4 row-start-1 row-span-2",
+      imageClassName: "object-center",
+    },
+    {
+      className: "col-start-5 row-start-1",
+      imageClassName: "object-center",
+    },
+    {
+      className: "col-start-1 row-start-2",
+      imageClassName: "object-center",
+    },
+    {
+      className: "col-start-2 col-span-2 row-start-2",
+      imageClassName: "object-[center_20%]",
+    },
+    {
+      className: "col-start-5 row-start-2",
+      imageClassName: "object-[center_85%]",
+    },
+  ].map((slot, index) => {
+    const imageUrl = careerImages[index];
 
-  {/* Top Middle */}
-  <div
-    onClick={() => openGallery(1)}
-    className="group cursor-pointer overflow-hidden rounded-md"
-  >
-    <img
-      src="/assets/career/life-2.png"
-      alt=""
-      className="h-full w-full object-cover object-[center_35%] transition-transform duration-500 group-hover:scale-110"
-    />
-  </div>
-
-  {/* Center Image */}
-  <div
-    onClick={() => openGallery(3)}
-    className="group row-span-2 cursor-pointer overflow-hidden rounded-md"
-  >
-    <img
-      src="/assets/career/life-3.jpg"
-      alt=""
-      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-    />
-  </div>
-
-  {/* Top Right Grey */}
-  <div className="rounded-md bg-[#d7d7d7]" />
-
-  {/* Bottom Left Grey */}
-  <div className="rounded-md bg-[#d7d7d7]" />
-
-  {/* Bottom Middle */}
-  <div
-    onClick={() => openGallery(2)}
-    className="group col-span-2 cursor-pointer overflow-hidden rounded-md"
-  >
-    <img
-      src="/assets/career/life-5.jpg"
-      alt=""
-      className="h-full w-full object-cover object-[center_20%] transition-transform duration-500 group-hover:scale-110"
-    />
-  </div>
-
-  {/* Bottom Right */}
-  <div
-    onClick={() => openGallery(4)}
-    className="group cursor-pointer overflow-hidden rounded-md"
-  >
-    <img
-      src="/assets/career/life-4.png"
-      alt=""
-      className="h-full w-full object-cover object-[center_85%] transition-transform duration-500 group-hover:scale-110"
-    />
-  </div>
+    return imageUrl ? (
+      <button
+        key={`gallery-image-${index}`}
+        type="button"
+        onClick={() => openGallery(index)}
+        className={`group block overflow-hidden rounded-md ${slot.className}`}
+        aria-label={`Open Life at Purple Phase image ${index + 1}`}
+      >
+        <img
+          src={imageUrl}
+          alt={`Life at Purple Phase ${index + 1}`}
+          loading="lazy"
+          className={`h-full w-full object-cover transition-transform duration-500 group-hover:scale-110 ${slot.imageClassName}`}
+        />
+      </button>
+    ) : (
+      <div
+        key={`gallery-placeholder-${index}`}
+        className={`rounded-md bg-[#d7d7d7] ${slot.className}`}
+      />
+    );
+  })}
 </div>
 
-              {/* MOBILE COLLAGE */}
-              <div className="grid grid-cols-1 gap-3 md:hidden">
-                <img
-                  src="/assets/career/life-1.png"
-                  alt="Life at Purple Phase"
-                  className="h-[180px] w-full rounded-md object-cover"
-                />
+    {/* EXTRA DESKTOP IMAGES */}
+    {careerImages.length > 5 && (
+      <div className="mt-3 hidden grid-cols-3 gap-3 md:grid">
+        {careerImages.slice(5).map((imageUrl, index) => {
+          const actualIndex = index + 5;
 
-                <img
-                  src="/assets/career/life-2.png"
-                  alt="Life at Purple Phase"
-                  className="h-[180px] w-full rounded-md object-cover"
-                />
+          return (
+            <button
+              key={`${imageUrl}-${actualIndex}`}
+              type="button"
+              onClick={() => openGallery(actualIndex)}
+              className="group block h-[280px] overflow-hidden rounded-md"
+              aria-label={`Open Life at Purple Phase image ${
+                actualIndex + 1
+              }`}
+            >
+              <img
+                src={imageUrl}
+                alt={`Life at Purple Phase ${actualIndex + 1}`}
+                loading="lazy"
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
+              />
+            </button>
+          );
+        })}
+      </div>
+    )}
 
-                <img
-                  src="/assets/career/life-3.jpg"
-                  alt="Life at Purple Phase"
-                  className="h-[260px] w-full rounded-md object-cover"
-                />
+    {/* MOBILE GALLERY */}
+    <div className="grid grid-cols-1 gap-3 md:hidden">
+      {careerImages.map((imageUrl, index) => (
+        <button
+          key={`${imageUrl}-${index}`}
+          type="button"
+          onClick={() => openGallery(index)}
+          className="group block h-[230px] w-full overflow-hidden rounded-md"
+          aria-label={`Open Life at Purple Phase image ${index + 1}`}
+        >
+          <img
+            src={imageUrl}
+            alt={`Life at Purple Phase ${index + 1}`}
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          />
+        </button>
+      ))}
+    </div>
+  </>
+)}
 
-                <img
-                  src="/assets/career/life-4.png"
-                  alt="Life at Purple Phase"
-                  className="h-[180px] w-full rounded-md object-cover"
-                />
-              </div>
+  {/* Career opening accordion */}
+  <div className="mt-8 space-y-[14px]">
+    {loadingCareers ? (
+      <div className="rounded-md bg-[#dedede] px-7 py-4 text-center text-[15px] font-semibold text-[#333]">
+        Loading openings...
+      </div>
+    ) : careers.length > 0 ? (
+      careers.map((career) => {
+        const isOpen = openCareerId === career.id;
 
-              {/* Career opening accordion */}
-              <div className="mt-8 space-y-[14px]">
-                {loadingCareers ? (
-                  <div className="rounded-md bg-[#dedede] px-7 py-4 text-center text-[15px] font-semibold text-[#333]">
-                    Loading openings...
+        return (
+          <div key={career.id} className="overflow-hidden rounded-md">
+            <button
+              type="button"
+              onClick={() =>
+                setOpenCareerId(isOpen ? null : career.id)
+              }
+              className={`grid w-full grid-cols-[1fr_30px] items-center rounded-md px-5 py-[15px] text-left transition md:grid-cols-[1fr_120px_120px_30px] md:px-8 ${
+                isOpen
+                  ? "bg-gradient-to-r from-[#c22c86] to-[#780040] text-white"
+                  : "bg-[#dedede] text-[#111]"
+              }`}
+            >
+              <span className="text-[17px] font-bold leading-tight md:text-[18px] md:leading-none">
+                {career.title}
+              </span>
+
+              <span className="hidden text-[15px] font-normal leading-none md:block">
+                Full Time
+              </span>
+
+              <span className="hidden text-[15px] font-normal leading-none md:block">
+                On site
+              </span>
+
+              <motion.span
+                animate={{ rotate: isOpen ? 180 : 0 }}
+                transition={{ duration: 0.25 }}
+                className="flex items-center justify-end text-[26px] font-light leading-none"
+              >
+                {isOpen ? "−" : "+"}
+              </motion.span>
+            </button>
+
+            <AnimatePresence initial={false}>
+              {isOpen && (
+                <motion.div
+                  initial={{ height: 0, opacity: 0 }}
+                  animate={{ height: "auto", opacity: 1 }}
+                  exit={{ height: 0, opacity: 0 }}
+                  transition={{ duration: 0.3 }}
+                  className="overflow-hidden rounded-b-md bg-white"
+                >
+                  <div className="px-5 py-5 md:px-8">
+                    <p className="whitespace-pre-line text-[16px]! leading-7 text-[#444] md:text-[18px]!">
+                      {career.description}
+                    </p>
                   </div>
-                ) : careers.length > 0 ? (
-                  careers.map((career) => {
-                    const isOpen = openCareerId === career.id;
-
-                    return (
-                      <div key={career.id} className="overflow-hidden rounded-md">
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setOpenCareerId(isOpen ? null : career.id)
-                          }
-                          className={`grid w-full grid-cols-[1fr_120px_120px_30px] items-center rounded-md px-8 py-[15px] text-left transition ${
-                            isOpen
-                              ? "bg-gradient-to-r from-[#c22c86] to-[#780040] text-white"
-                              : "bg-[#dedede] text-[#111]"
-                          }`}
-                        >
-                          <span className="text-[18px] font-bold leading-none">
-                            {career.title}
-                          </span>
-
-                          <span className="hidden text-[15px] font-normal leading-none md:block">
-                            Full Time
-                          </span>
-
-                          <span className="hidden text-[15px] font-normal leading-none md:block">
-                            On site
-                          </span>
-
-                          <motion.span
-                            animate={{ rotate: isOpen ? 180 : 0 }}
-                            transition={{ duration: 0.25 }}
-                            className="flex items-center justify-end text-[26px] font-light leading-none"
-                          >
-                            {isOpen ? "−" : "+"}
-                          </motion.span>
-                        </button>
-
-                        <AnimatePresence initial={false}>
-                          {isOpen && (
-                            <motion.div
-                              initial={{ height: 0, opacity: 0 }}
-                              animate={{ height: "auto", opacity: 1 }}
-                              exit={{ height: 0, opacity: 0 }}
-                              transition={{ duration: 0.3 }}
-                              className="overflow-hidden rounded-b-md bg-white"
-                            >
-                              <div className="px-8 py-5">
-                                <p className="whitespace-pre-line text-[18px]! leading-7 text-[#444]">
-                                  {career.description}
-                                </p>
-                              </div>
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    );
-                  })
-                ) : (
-                  <div className="rounded-md bg-[#dedede] px-7 py-4 text-center text-[15px] font-semibold text-[#333]">
-                    No openings found.
-                  </div>
-                )}
-              </div>
-            </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        );
+      })
+    ) : (
+      <div className="rounded-md bg-[#dedede] px-7 py-4 text-center text-[15px] font-semibold text-[#333]">
+        No openings found.
+      </div>
+    )}
+  </div>
+</div>
             </section>
 
           {/* APPLY FORM */}
