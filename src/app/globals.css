@@ -7,7 +7,7 @@
     --font-body: var(--font-montserrat);
     --font-heading: var(--font-montserrat);
 
-    --breakpoint-sm: 640px;
+    --breakpoint-sm: 375px;
     --breakpoint-md: 768px;
     --breakpoint-lg: 1024px;
     --breakpoint-xl: 1280px;
@@ -73,17 +73,17 @@
     color: #961965;
   }
 
-  @media (min-width: 640px) {
+  @media (min-width: 375px) {
     h2 {
-      font-size: 36px;
+      font-size: 28px;
     }
 
     h3 {
-      font-size: 24px;
+      font-size: 20px;
     }
 
     p {
-      font-size: 16px;
+      font-size: 15px;
     }
 
     button {
@@ -346,12 +346,11 @@
 .counter-border-pill {
   width: 100%;
   min-height: 158px;
-  padding: 42px 80px;
-
+  padding: 30px !important;
   display: flex;
   align-items: center;
   justify-content: center;
-border-radius: 999px;
+border-radius: 20px;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
 }
@@ -396,3 +395,8 @@ border-radius: 999px;
     display: none;
   }
 
+  @media (min-width: 1920px) {
+ .counter-border-pill {
+border-radius: 999px;
+}
+  }

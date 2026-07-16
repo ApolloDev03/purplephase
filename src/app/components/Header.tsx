@@ -221,21 +221,15 @@ export default function Header() {
   return (
     <>
       <header className="sticky top-0 z-[99] w-full bg-[#f6f6f6] font-sans shadow-sm backdrop-blur-md">
-        <div className=" flex w-full items-center justify-between mx-auto max-w-full py-2 lg:py-4 px-4 sm:px-6 lg:px-20 2xl:px-32">
+        <div className=" flex w-full items-center justify-between mx-auto max-w-full py-2 lg:py-4 px-4  lg:px-20 2xl:px-32">
           <a href="/" className="flex items-center">
             <img
               src={logo.src}
               alt="Purple Phase"
-              // className="
-              //   h-[58px] w-[125px] object-contain
-              //   sm:h-[70px] sm:w-[155px]
-              //   md:h-[78px] md:w-[170px]
-              //   lg:h-[90px] lg:w-[198px]
-              // "
-                className={cn(
+                            className={cn(
     "h-[58px] w-[125px] object-contain",
-    "sm:h-[70px] sm:w-[155px]",
-    "md:h-[78px] md:w-[175px]"
+    "md:h-[70px] md:w-[155px]",
+    "2xl:h-[78px] 2xl:w-[175px]"
   )}
             />
           </a>
@@ -256,7 +250,7 @@ export default function Header() {
     "rounded-full text-[#111827] transition"
   )}
             >
-              <IoMenuOutline className="text-3xl text-gray-800 sm:text-4xl lg:text-5xl" />
+              <IoMenuOutline className="text-4xl text-gray-800  lg:text-5xl" />
             </button>
 
             <button
@@ -266,7 +260,7 @@ export default function Header() {
               className="
                 group flex h-10 w-10 cursor-pointer items-center justify-center rounded-full
                 transition-all duration-300
-                sm:h-12 sm:w-12
+                md:h-12 md:w-12
                 lg:h-16 lg:w-16
               "
             >
@@ -293,9 +287,9 @@ export default function Header() {
               animate="visible"
               exit="exit"
               className="
-                fixed right-0 top-0 z-[70] flex h-full w-[88%] max-w-md flex-col
+                fixed right-0 top-0 z-[70] flex h-full w-[70%] max-w-md flex-col
                 overflow-hidden bg-white shadow-2xl
-                sm:w-full
+                lg:w-full
               "
             >
               <div className="flex items-center justify-end border-b border-gray-100 px-4 py-4 sm:px-8 sm:py-6">
@@ -306,15 +300,15 @@ export default function Header() {
                   className="
                     group rounded-full border border-gray-200 bg-gray-50 p-2
                     transition-all duration-300 hover:border-primary hover:bg-primary
-                    sm:p-2.5
+                    lg:p-2.5
                   "
                 >
                   <IoCloseOutline className="text-2xl text-gray-700 transition-colors duration-300 group-hover:text-white sm:text-3xl" />
                 </button>
               </div>
 
-              <div className="flex-1 overflow-y-auto px-4 py-6 sm:px-8 sm:py-10">
-                <nav className="flex flex-col gap-2 sm:gap-3">
+              <div className="flex-1 overflow-y-auto px-4 py-6 lg:px-8 lg:py-10">
+                <nav className="flex flex-col gap-2 lg:gap-3">
                   {navItems.map((item, i) => (
                     <motion.a
                       key={item.label}
@@ -326,12 +320,12 @@ export default function Header() {
                       onClick={() => setIsSidebarOpen(false)}
                       className="
                         group flex items-center justify-between rounded-xl border border-transparent
-                        px-3 py-3 transition-all duration-300
+                        px-3 py-1 transition-all duration-300
                         hover:border-primary/20 hover:bg-primary/5
-                        sm:rounded-2xl sm:px-4 sm:py-4
+                        lg:rounded-2xl lg:px-4 lg:py-4
                       "
                     >
-                      <span className="text-lg font-medium tracking-wide text-gray-900 sm:text-2xl">
+                      <span className="text-lg font-medium tracking-wide text-gray-900 lg:text-2xl">
                         {item.label}
                       </span>
                     </motion.a>

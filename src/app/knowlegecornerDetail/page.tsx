@@ -221,27 +221,31 @@ function BlogDetailContent() {
       </section>
 
       {/* CTA */}
-       <section className="bg-gradient-to-r from-[#bf2f86] to-[#730041]">
+       <section className="bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]">
           <div className="mx-auto flex max-w-full flex-col items-center justify-center px-6 py-9 xl:py-[85px] text-center md:px-20 lg:px-[115px]">
             <h1  className="uppercase text-[42px] font-bold leading-[130%]  tracking-wide text-white ">
              Curious About Brand Strategy ?
             </h1>
-   <motion.div
-                                      initial={{ opacity: 0, y: 20 }}
-                                      whileInView={{ opacity: 1, y: 0 }}
-                                      viewport={{ once: true }}
-                                      transition={{ duration: 0.5, delay: 0.45 }}
-                                      onClick={() => setIsPopupOpen(true)}
-                                      className="mt-10 flex justify-center lg:justify-start"
-                                  >
-                                      <button className="motion-shine group inline-flex items-center gap-4 rounded-full bg-[#720048] px-8 py-5 text-[15px] lg:text-[20px] 2xl:text-[32px]! font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
-                                        Stay Connected
-              
-                                          <span className="flex h-8 w-8 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                                              <LuMoveUpRight className="h-8 w-8" />
-                                          </span>
-                                      </button>
-                                  </motion.div>
+                <motion.div
+                                                                initial={{ opacity: 0, y: 20 }}
+                                                                whileInView={{ opacity: 1, y: 0 }}
+                                                                viewport={{ once: true }}
+                                                                transition={{ duration: 0.5, delay: 0.45 }}
+                                                                  onClick={() => setIsPopupOpen(true)}
+                                                                className="mt-5   justify-center!"
+                                                            >
+                                                              <div className="animated-btn-wrapper rounded-full! ">
+            
+                                                                <button className="animated-btn  inline-flex items-center gap-3 rounded-full! bg-[#720048] px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px]! font-bold! text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+                                                                       Stay Connected
+                                        
+                                                                    <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                                                                        <LuMoveUpRight className="h-5 w-5" />
+                                                                    </span>
+                                                                </button>
+                                                              </div>
+                                                            </motion.div>
+  
          
           </div>
         </section>

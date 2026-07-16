@@ -159,7 +159,7 @@ export default function AboutPage() {
 
                 ${center
                           ? "text-[#9C1367] opacity-100 2xl:text-[60px]"
-                          : "text-[#9C1367] opacity-0 2xl:text-[64px]"
+                          : "text-[#9C1367] opacity-0 2xl:text-[60px]"
                         }
                 `}
                     >
@@ -562,9 +562,13 @@ export default function AboutPage() {
               {member.designation}
             </h3>
 
-            <p className="mt-2 w-[500px] ">
-              {member.description}
-            </p>
+     <p className="mt-2 w-full max-w-[500px] whitespace-pre-line">
+  {member.description
+    ?.replace(/\\r\\n|\\n|\\r/g, "\n")
+    .replace(/\r\n|\r/g, "\n")
+    .replace(/\n{2,}/g, "\n")
+    .trim()}
+</p>
           </motion.div>
         )}
       </AnimatePresence>

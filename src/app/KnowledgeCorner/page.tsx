@@ -515,12 +515,12 @@ export default function BlogPage() {
     className="
       relative
       w-full
-      max-w-[600px]
+      max-w-[750px]
       overflow-hidden
       rounded-[10px]
       aspect-[600/627]
-      lg:h-[627px]
-      lg:w-[600px]
+      lg:h-[750px]
+      lg:w-[750px]
       lg:aspect-auto
     "
   >
@@ -595,7 +595,7 @@ export default function BlogPage() {
                   <div
                     className="
                       mt-10
-                      2xl:mt-[40%]
+                      2xl:mt-[5%]
                       grid
                       grid-cols-1
                       gap-4
