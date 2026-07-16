@@ -42,12 +42,12 @@ const CounterItem = ({ value, label }: CounterItemProps) => {
 
   return (
     <div className="flex flex-col items-center justify-between text-center">
-      <h4 className="text-white text-[30px] sm:text-[38px] md:text-[54px] lg:text-[75px]  font-semibold leading-none">
+      <h4 className="text-white text-[30px]  md:text-[54px] lg:text-[75px]  font-semibold leading-none">
         {displayValue}
         {suffix}
       </h4>
 
-      <span className="mt-2 text-white text-[13px] sm:text-[15px] md:text-[20px] 2xl:text-[28px] font-normal leading-none">
+      <span className="mt-2 text-white text-[13px]  md:text-[20px] 2xl:text-[28px] font-normal leading-none">
         {label}
       </span>
     </div>
@@ -104,12 +104,12 @@ export default function AchievementSection() {
   const currentTestimonial = testimonials[testIndex];
 
   return (
-    <section className="relative overflow-hidden py-16 xl:py-[85px] font-sans bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]">
-      <div className="max-w-full mx-auto px-4 sm:px-6 lg:px-20 2xl:px-32">
+    <section className="relative overflow-hidden py-10 xl:py-[85px] font-sans bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]">
+      <div className="max-w-full mx-auto px-4  lg:px-20 2xl:px-32">
       
 
-<div className="counter-border-pill mb-10">
-  <div className="grid w-full grid-cols-2 gap-8 md:grid-cols-4 md:gap-10">
+<div className="counter-border-pill mb-16">
+  <div className="grid w-full grid-cols-2 gap-5 md:grid-cols-4 md:gap-10">
     <CounterItem value="15+" label="Successful Years" />
     <CounterItem value="20+" label="Industries Served" />
     <CounterItem value="500+" label="Satisfied Clients" />
@@ -118,9 +118,9 @@ export default function AchievementSection() {
 </div>
 
         {/* Title */}
-        <h2 className="text-white  mb-8 md:mb-11 tracking-wide">
+        {/* <h2 className="text-white  mb-8 md:mb-11 tracking-wide">
           Pat on the Back
-        </h2>
+        </h2> */}
 
         {loading ? (
           <div className="min-h-[220px] flex items-center justify-center">
@@ -159,11 +159,11 @@ export default function AchievementSection() {
                     exit={{ opacity: 0, x: -50 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
                   >
-                    <p className="text-white! text-[21px]!">
+                    <p className="text-white! text-[18px] lg:text-[21px]!">
                       {currentTestimonial.description}
                     </p>
 
-                    <h4 className="mt-9 text-[18px] md:text-[21px] font-semibold">
+                    <h4 className="mt-4 lg:mt-9 text-[18px] md:text-[21px] font-semibold">
                       {currentTestimonial.name}
                     </h4>
 

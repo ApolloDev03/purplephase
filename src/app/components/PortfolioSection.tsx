@@ -248,9 +248,9 @@ const PortfolioSection = () => {
 
   return (
     <section className="w-full overflow-hidden bg-white">
-      <div className="mx-auto max-w-full px-4 py-10 2xl:py-[85px] sm:px-6 sm:py-12 md:px-10 lg:px-20 lg:py-16 2xl:px-32">
+      <div className="mx-auto max-w-full px-4 py-10 2xl:py-[85px]  md:px-10 lg:px-20 lg:py-16 2xl:px-32">
         {/* Section Heading */}
-        <div className="mb-6 text-center sm:mb-8 lg:text-left">
+        <div className="mb-6 text-center md:mb-8 lg:text-left">
           <h2 className="mb-0  leading-[1.05] tracking-tight text-primary ">
             Work That Works
           </h2>
@@ -270,14 +270,14 @@ const PortfolioSection = () => {
 
         {/* Portfolio Grid */}
       {!loading && !error && (
-  <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+  <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
     {filteredItems.map((item, index) => {
       const firstImage = item.images?.[0]?.image_url;
 
       return (
         <div
           key={item.id}
-          className="group relative h-[354px] w-full overflow-hidden rounded-xl bg-white shadow-md"
+          className="group relative h-[238px] lg:h-[354px] w-full overflow-hidden rounded-xl bg-white shadow-md"
         >
           {firstImage ? (
             <div className="absolute inset-0 flex items-center justify-center ">
@@ -286,7 +286,7 @@ const PortfolioSection = () => {
                 alt={item.title}
                 fill
                 sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                className="object-contain transition-transform duration-700 ease-out group-hover:scale-105"
+                className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                 priority={index === 0}
               />
             </div>
@@ -314,14 +314,14 @@ const PortfolioSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.25 }}
-            onClick={() => router.push("/about-us")}
+            onClick={() => router.push("/Portfolio")}
             className="flex justify-center lg:justify-start"
           >
-            <button className="motion-shine group inline-flex items-center gap-2 rounded-full bg-primary px-5 py-3 text-[14px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30 sm:gap-4 sm:px-6 sm:text-[16px] lg:text-[20px] 2xl:text-[24px]">
+            <button className="motion-shine group inline-flex items-center gap-2 rounded-full bg-primary px-3 py-2 text-[14px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30  sm:text-[16px] lg:text-[20px] 2xl:text-[24px]">
               Browse Projects
 
-              <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                <LuMoveUpRight className="h-5 w-5" />
+              <span className="flex h-4 w-4 lg:h-5 lg:w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                <LuMoveUpRight className="h-4 w-4 lg:h-5 lg:w-5" />
               </span>
             </button>
           </motion.div>

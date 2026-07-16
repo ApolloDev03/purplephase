@@ -12,8 +12,8 @@ const ProcessSection = () => {
   const router = useRouter();
 
   return (
-    <section className="relative max-w-full overflow-hidden bg-white px-6 py-[85px] sm:px-8 lg:px-20 2xl:px-32">
-      <div className="mx-auto grid grid-cols-1 items-center gap-10 lg:grid-cols-[45%_55%]">
+    <section className="relative max-w-full overflow-hidden bg-white px-4 py-[20px] 2xl:py-[85px]  lg:px-20 2xl:px-32">
+      <div className="mx-auto grid grid-cols-1 items-center lg:gap-10 lg:grid-cols-[45%_55%]">
         {/* Left Image */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -36,7 +36,7 @@ const ProcessSection = () => {
 
         {/* Right Content */}
         <div className="text-center lg:text-left">
-          <h2 className="text-[58px] leading-32.5!  lowercase [font-variant-caps:small-caps]! text-primary ">
+          <h2 className="text-[58px] leading-8 2xl:leading-32.5!  lowercase [font-variant-caps:small-caps]! text-primary ">
             We Listen, Before We Advise.
           </h2>
      
@@ -45,7 +45,7 @@ const ProcessSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, delay: 0.15 }}
-            className=" max-w-[850px] leading-1 !space-y-7 font-body text-[17px] font-light leading-[1.38] text-[#424242] sm:text-[20px] lg:text-[28px]"
+            className="mt-4 2xl:mt-0 leading-1 space-y-4 2xl:space-y-7 font-body text-[17px] font-light 2xl:leading-[1.38] text-[#424242] "
           >
             <p>
               We understand your business, your pain points and your
@@ -78,12 +78,12 @@ const ProcessSection = () => {
             <button
               type="button"
               onClick={() => router.push("/about-us")}
-              className="motion-shine group inline-flex items-center gap-3 sm:gap-[25px] rounded-full bg-primary px-6 py-3 text-[15px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30 lg:text-[20px] 2xl:text-[24px]"
+              className="motion-shine group inline-flex items-center gap-3 lg:gap-[25px] rounded-full bg-primary px-3 py-2 lg:px-6 lg:py-3 text-[15px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30 lg:text-[20px] 2xl:text-[24px]"
             >
               Decode Our DNA
 
-              <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                <LuMoveUpRight className="h-5 w-5" />
+              <span className="flex h-4 w-4 lg:h-5 lg:w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                <LuMoveUpRight className="h-4 w-4 lg:h-5 lg:w-5" />
               </span>
             </button>
           </motion.div>

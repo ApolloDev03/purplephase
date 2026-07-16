@@ -132,15 +132,15 @@ export default function StickyActions() {
                 <a
                     href="https://wa.me/+919327009400"
                     target="_blank"
-                    className="flex h-12 w-12 items-center justify-center rounded-md bg-[#25D366] shadow-lg hover:scale-105 transition"
+                    className="flex h-11 w-11 items-center justify-center rounded-md bg-[#25D366] shadow-lg hover:scale-105 transition"
                 >
-                    <FaWhatsapp className="text-white text-[38px]" />
+                    <FaWhatsapp className="text-white text-[30px]" />
                 </a>
 
                 {/* FAQ */}
                 <button
                     onClick={() => setFaqOpen(true)}
-                    className="flex h-12 w-12 items-center justify-center rounded-md bg-[#F58220] shadow-lg hover:scale-105 transition"
+                    className="flex h-11 w-11 items-center justify-center rounded-md bg-[#F58220] shadow-lg hover:scale-105 transition"
                 >
                     <img
                         src={faqsicon.src}
@@ -152,7 +152,7 @@ export default function StickyActions() {
                 {/* Top */}
                 <button
                     onClick={scrollToTop}
-                    className={`flex h-12 w-12 items-center justify-center rounded-md bg-white shadow-lg hover:scale-105 transition ${showTop ? "opacity-100" : "opacity-0 pointer-events-none"
+                    className={`flex h-11 w-11 items-center justify-center rounded-md bg-white shadow-lg hover:scale-105 transition ${showTop ? "opacity-100" : "opacity-0 pointer-events-none"
                         }`}
                 >
                     <ChevronUp className="h-10 w-10 text-gray-600" strokeWidth={3} />

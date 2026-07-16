@@ -37,9 +37,9 @@ const VideoSection = () => {
     <button
       onClick={handlePlay}
       aria-label="Play video"
-      className="group flex h-20 w-20 items-center justify-center rounded-full bg-white shadow-2xl transition-transform duration-300 hover:scale-110"
+      className="group flex h-10 w-10 lg:h-20 lg:w-20 items-center justify-center rounded-full bg-white shadow-2xl transition-transform duration-300 hover:scale-110"
     >
-      <FaPlay className="ml-1 text-2xl text-black" />
+      <FaPlay className="ml-1 text-lg lg:text-2xl text-black" />
     </button>
   </div>
 )}

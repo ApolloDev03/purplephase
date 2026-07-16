@@ -42,7 +42,7 @@ const Footer = () => {
     };
 
     return (
-        <footer className="bg-[#f6f6f6] text-[20px] py-16 text-[13px] 2xl:text-[20px] font-sans selection:bg-primary/10 px-6  md:px-12 lg:px-20 2xl:px-32">
+        <footer className="bg-[#f6f6f6] text-[18px]! py-10  2xl:text-[20px]!  font-sans selection:bg-primary/10 px-6  md:px-12 lg:px-20 2xl:px-32">
             <div className="max-w-full  mx-auto  grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-0">
 
                 {/* Left Side: Branding & Contact (Spans 6 columns) */}
@@ -63,7 +63,7 @@ const Footer = () => {
                             <span className="absolute -bottom-2 left-0 w-full h-px bg-gray-200 group-hover:bg-primary transition-colors duration-300" />
                         </a>
 
-                      <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 pt-8 w-full">
+                      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-8 w-full">
 
     {/* Ahmedabad */}
     <div className="flex flex-col ">
@@ -128,7 +128,7 @@ const Footer = () => {
                 </motion.div>
 
                 {/* Right Side Wrapper: Nav and Socials (Spans 6 columns) */}
-                <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2  lg:justify-items-end">
+                <div className="lg:col-span-6 grid grid-cols-1 md:grid-cols-2  lg:justify-items-end">
 
                     {/* Column 2: Navigation (Centered/Right alignment) */}
                     <motion.div
@@ -154,9 +154,9 @@ const Footer = () => {
 <motion.div
   {...fadeInUp}
   transition={{ delay: 0.2 }}
-  className="flex flex-col lg:min-w-[150px]"
+  className="flex flex-col mt-4 md:mt-0 lg:min-w-[150px]"
 >
-  <h4 className="text-[#626262] mb-2 text-[20px]">Follow Us</h4>
+  <h4 className="text-[#626262] mb-2 ">Follow Us</h4>
 
   <ul className="space-y-2">
     {socialLinks.map((social) => (
@@ -188,17 +188,17 @@ const Footer = () => {
                 className="max-w-full mx-auto pt-10 grid grid-cols-1 gap-10 lg:grid-cols-12 text-[#575757]  "
             >
                 <div className="col-span-6 text-center items-center lg:text-left">
-                    <span className="">
+                    <span className="text-[16px] md:text-[18px]">
                         Copyright © {new Date().getFullYear()}. All rights reserved Purple Phase Communications
                     </span>
                 </div>
 
 
-                <div className="col-span-6 grid grid-cols-1 sm:grid-cols-2  lg:justify-items-end">
-                    <div className="flex flex-col lg:min-w-[150px] ">
+                <div className="col-span-6  grid grid-cols-1 md:grid-cols-2 justify-items-center  lg:justify-items-end">
+                    <div className="flex flex-col lg:min-w-[150px] text-[16px] md:text-[18px]">
                         <a href="#" className="hover:text-primary transition-colors ">Terms & Conditions</a>
                     </div>
-                    <div className="flex flex-col lg:min-w-[150px]">
+                    <div className="flex flex-col lg:min-w-[150px] text-[16px] md:text-[18px]">
                         <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
                     </div>
                 </div>

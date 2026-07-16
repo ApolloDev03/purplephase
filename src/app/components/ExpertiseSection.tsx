@@ -192,7 +192,7 @@ const handleExpertiseWheel = (event:any) => {
 };
 
   return (
-  <section className="relative w-full overflow-hidden bg-white py-6 sm:py-10 md:py-14 xl:py-[85px] lg:pt-16 lg:pb-0">
+  <section className="relative w-full overflow-hidden bg-white pt-10  xl:py-[85px] lg:pt-16 pb-0">
       <div
         className="
           mx-auto
@@ -204,7 +204,6 @@ const handleExpertiseWheel = (event:any) => {
           gap-8
           overflow-hidden
           px-4
-          sm:px-6
           md:px-10
           lg:grid-cols-[58%_42%]
           lg:gap-6
@@ -217,7 +216,7 @@ const handleExpertiseWheel = (event:any) => {
       {/* Left Content */}
 {/* Left Content */}
 <div className="flex h-full w-full flex-col items-start justify-center lg:justify-start">
-  <div className="w-full max-w-[722px]">
+  <div className="w-full 2xl:max-w-[722px]">
     <h2 className="mb-4 text-left leading-none text-primary 2xl:mb-10">
       Expertise
     </h2>
@@ -227,13 +226,13 @@ const handleExpertiseWheel = (event:any) => {
       className="
         relative
         flex
-        h-[260px]
+        h-[200px]
         w-full
         items-center
         justify-center
         overflow-hidden
-        sm:h-[320px]
-         md:h-[360px]
+        md:h-[320px]
+         lg:h-[360px]
       "
     >
       {loading ? (
@@ -363,10 +362,9 @@ const handleExpertiseWheel = (event:any) => {
     h-full
     w-full
     items-center
-    justify-center
-    pt-2
+    justify-center  
+    md:pt-0
     lg:justify-end
-    lg:pt-0
     xl:-translate-x-20
     2xl:-translate-x-28
   "
