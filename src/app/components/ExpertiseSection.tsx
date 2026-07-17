@@ -205,7 +205,7 @@ const handleExpertiseWheel = (event:any) => {
           overflow-hidden
           px-4
           md:px-10
-          lg:grid-cols-[58%_42%]
+          md:grid-cols-[58%_42%]
           lg:gap-6
           lg:px-16
           xl:grid-cols-[60%_40%]

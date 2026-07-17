@@ -566,9 +566,33 @@ export default function BlogPage() {
                   {featuredBlog?.blogTitle}
                 </h3>
 
-                <p className="mt-4 pr-34 line-clamp-4 leading-7 !text-[#424242] text-[24px]!">
-                  {featuredBlog?.blogDescription}
-                </p>
+            <div
+  className="
+    mt-4
+    pr-34
+    line-clamp-4
+    text-[24px]
+    leading-7
+    !text-[#424242]
+
+    [&_p]:inline
+    [&_h1]:inline
+    [&_h2]:inline
+    [&_h3]:inline
+    [&_h4]:inline
+
+    [&_h1]:font-bold
+    [&_h2]:font-bold
+    [&_h3]:font-bold
+    [&_strong]:font-bold
+    [&_em]:italic
+
+    [&_br]:hidden
+  "
+  dangerouslySetInnerHTML={{
+    __html: featuredBlog?.blogDescription ?? "",
+  }}
+/>
    <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}

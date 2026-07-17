@@ -109,7 +109,7 @@ export default function AchievementSection() {
       
 
 <div className="counter-border-pill mb-16">
-  <div className="grid w-full grid-cols-2 gap-5 md:grid-cols-4 md:gap-10">
+  <div className="grid w-full grid-cols-2 gap-5 lg:grid-cols-4 lg:gap-10">
     <CounterItem value="15+" label="Successful Years" />
     <CounterItem value="20+" label="Industries Served" />
     <CounterItem value="500+" label="Satisfied Clients" />
@@ -130,7 +130,7 @@ export default function AchievementSection() {
           <div className="text-white text-lg">No testimonials found.</div>
         ) : (
           <div>
-            <div className="grid grid-cols-1 md:grid-cols-[385px_1fr] gap-6 md:gap-12 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-[300px_1fr] xl:grid-cols-[385px_1fr] gap-6 md:gap-12 items-start">
               {/* Image Card */}
               <AnimatePresence mode="wait">
                 <motion.div

@@ -277,7 +277,7 @@ const PortfolioSection = () => {
       return (
         <div
           key={item.id}
-          className="group relative h-[238px] lg:h-[354px] w-full overflow-hidden rounded-xl bg-white shadow-md"
+          className="group relative h-[200px] lg:h-[354px] w-full overflow-hidden rounded-xl bg-white shadow-md"
         >
           {firstImage ? (
             <div className="absolute inset-0 flex items-center justify-center ">

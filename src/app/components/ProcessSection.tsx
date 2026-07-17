@@ -22,7 +22,7 @@ const ProcessSection = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="relative flex justify-center "
         >
-          <div className="relative w-full max-w-[680px] max-h-[538px]">
+          <div className="relative w-full max-w-[500px] xl:max-w-[680px] xl:max-h-[538px]">
             <Image
               src={listen}
               alt="We listen before we advise"
@@ -36,7 +36,7 @@ const ProcessSection = () => {
 
         {/* Right Content */}
         <div className="text-center lg:text-left">
-          <h2 className="text-[58px] leading-8 2xl:leading-32.5!  lowercase [font-variant-caps:small-caps]! text-primary ">
+          <h2 className="leading-4 2xl:leading-32.5!  lowercase [font-variant-caps:small-caps]! text-primary ">
             We Listen, Before We Advise.
           </h2>
      
