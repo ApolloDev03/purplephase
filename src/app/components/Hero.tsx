@@ -187,28 +187,18 @@ export default function HeaderHero() {
     <section
   className="
     relative
-      w-full
+    h-[220px]
+    w-full
     overflow-hidden
     bg-[#e5e5e5]
     font-heading
-    h-[180px]
-   min-h-[180px]
-    max-h-[180px]
+    md:h-[350px]
 
-    md:h-[580px]
-    md:min-h-[580px]
-    md:max-h-[580px]
-
-    lg:h-[calc(100vw*720/1920)]
-    lg:min-h-[520px]
-    lg:max-h-[720px]
-
-    2xl:h-[calc(100vw*720/1920)]
-    2xl:min-h-[520px]
-    2xl:max-h-[720px]
+    lg:h-[clamp(520px,37.5vw,720px)]
+    2xl:h-[720px]
   "
 >
-  <AnimatePresence mode="wait">
+  {/* <AnimatePresence mode="wait">
     <motion.div
       key={`bg-${activeSlide.id || current}`}
       initial={{ opacity: 0 }}
@@ -232,13 +222,13 @@ export default function HeaderHero() {
     className="
       absolute
       inset-0
-      h-full
+      h-[200px]
       w-full
       scale-[1.42]
       object-contain
       object-center
 
-      sm:scale-[1.3]
+      sm:scale-[1]
 
       md:scale-100
       md:object-cover
@@ -282,26 +272,81 @@ export default function HeaderHero() {
   <div className="absolute inset-0 bg-[#e5e5e5]" />
 )}
     </motion.div>
-  </AnimatePresence>
+  </AnimatePresence> */}
 
-  {/* Overlay */}
+  <AnimatePresence mode="wait">
+  <motion.div
+    key={`bg-${activeSlide.id || current}`}
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    transition={{
+      duration: 0.7,
+      ease: "easeOut",
+    }}
+    className="absolute inset-0 z-0 h-full w-full overflow-hidden"
+  >
+{isVideo && finalMedia ? (
+  <video
+    key={`video-${activeSlide.id || current}`}
+    src={finalMedia}
+    autoPlay
+    muted
+    loop
+    playsInline
+    preload="auto"
+    className="
+      absolute
+      inset-0
+      h-full
+      w-full
+      object-cover
+      object-[95%_center]
+      lg:object-center
+    "
+  />
+) : finalMedia ? (
   <div
     className="
       absolute
       inset-0
-      z-10
-      bg-gradient-to-r
-      from-white/75
-      via-white/30
-      to-transparent
+      h-full
+      w-full
+      bg-cover
+      bg-right
+      bg-no-repeat
 
-      md:from-white/65
-      md:via-white/25
-      md:to-transparent
+      md:bg-center
+      lg:bg-center
     "
+    style={{
+      backgroundImage: `url(${finalMedia})`,
+    }}
   />
+) : (
+  <div className="absolute inset-0 bg-[#e5e5e5]" />
+)}
+  </motion.div>
+</AnimatePresence>
 
-  <div className="absolute inset-0 z-10 bg-black/[0.03]" />
+  {/* Overlay */}
+ <div
+  className="
+    absolute
+    inset-0
+    z-10
+    bg-gradient-to-r
+    from-white/75
+    via-white/25
+    to-transparent
+
+    md:from-white/65
+    md:via-white/20
+    md:to-transparent
+  "
+/>
+
+<div className="absolute inset-0 z-10 bg-black/[0.03]" />
 
   {/* Content */}
   <div
@@ -312,15 +357,14 @@ export default function HeaderHero() {
       z-20
       w-full
       -translate-y-1/2
-      px-5
-      sm:px-8
+      px-4
       md:px-12
       lg:px-20
       2xl:px-32
     "
   >
     <div
-      className="max-w-[88%] sm:max-w-[620px] lg:max-w-[760px]"
+      className="max-w-[88%] md:max-w-[620px] lg:max-w-[760px]"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
@@ -339,13 +383,12 @@ export default function HeaderHero() {
               whitespace-pre-line
               break-words
               font-body
-              text-[30px]
               font-semibold
               leading-[1.1]
               text-primary
 
-              sm:text-[28px]
-              md:text-[48px]
+              text-[26px]!
+              md:text-[30px]!
               lg:text-[54px]
               xl:text-[58px]
             "
@@ -366,14 +409,13 @@ export default function HeaderHero() {
               whitespace-pre-line
               break-words
               font-heading
-              text-[30px]
               font-extrabold
               uppercase
               leading-[1.1]
               text-primary
 
-              sm:text-[26px]
-              md:text-[48px]
+            text-[26px]!
+              md:text-[31px]!
               lg:text-[54px]
               xl:text-[58px]
             "
@@ -390,7 +432,7 @@ export default function HeaderHero() {
           duration: 0.5,
           delay: 0.25,
         }}
-        className="mt-4 flex justify-start  lg:mt-14"
+        className="mt-5 flex justify-start  lg:mt-14"
       >
         <button
           type="button"

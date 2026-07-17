@@ -186,15 +186,65 @@ function BlogDetailContent() {
           />
         </div>
 
-        <div className="mt-8">
-          <p className=" leading-[10px] text-[#424242] whitespace-pre-line">
-            {showFullText
-              ? blog.blogDescription
-              : `${blog.blogDescription.slice(0, 500)}...`}
-          </p>
-        </div>
+   
+        <div
+  className={`relative ${
+    showFullText ? "" : "max-h-[350px] overflow-hidden"
+  }`}
+>
+  <div
+    className="
+      blog-description
+      text-[#424242]
+      leading-[1.7]
+      mt-10
 
-    {blog.blogDescription.length > 500 && (
+      [&_p]:mb-6
+      [&_p]:text-[18px]
+      [&_p]:leading-[1.7]
+
+      [&_h2]:mb-5
+      [&_h2]:mt-10
+      [&_h2]:text-[28px]!
+      [&_h2]:font-bold
+      [&_h2]:leading-[1.3]
+      [&_h2]:text-[#A62666]
+
+      [&_h3]:mb-4
+      [&_h3]:mt-8
+      [&_h3]:text-[24px]
+      [&_h3]:font-bold
+      [&_h3]:text-[#A62666]
+
+      [&_strong]:font-bold
+      [&_strong]:text-[#242424]
+
+      [&_em]:italic
+
+      [&_ul]:mb-6
+      [&_ul]:list-disc
+      [&_ul]:pl-7
+
+      [&_ol]:mb-6
+      [&_ol]:list-decimal
+      [&_ol]:pl-7
+
+      [&_li]:mb-2
+
+      [&_a]:text-[#A62666]
+      [&_a]:underline
+    "
+    dangerouslySetInnerHTML={{
+      __html: blog.blogDescription,
+    }}
+  />
+
+  {!showFullText && (
+    <div className="pointer-events-none absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-[#ECECEC] to-transparent" />
+  )}
+</div>
+
+{blog.blogDescription.length > 500 && (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
     whileInView={{ opacity: 1, y: 0 }}
@@ -203,12 +253,13 @@ function BlogDetailContent() {
     className="mt-10 flex justify-center"
   >
     <button
-      onClick={() => setShowFullText(!showFullText)}
-      className="motion-shine group inline-flex items-center gap-6 rounded-full bg-primary px-6 py-3 text-[15px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30 lg:text-[20px] 2xl:text-[24px]"
+      type="button"
+      onClick={() => setShowFullText((previousValue) => !previousValue)}
+      className="motion-shine group inline-flex items-center gap-6 rounded-full bg-primary px-6 py-3 text-[15px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl lg:text-[20px] 2xl:text-[24px]"
     >
       {showFullText ? "Read Less" : "Read More"}
 
-      <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+      <span className="flex h-5 w-5 items-center justify-center">
         {showFullText ? (
           <FaArrowUpLong className="h-4 w-4" />
         ) : (

@@ -39,7 +39,9 @@
   h2 {
     font-weight: 600;
     font-weight: 700;
+    line-height: 1.20;
     letter-spacing: 0;
+     font-size: 26px;
   }
 
   h3 {
@@ -47,7 +49,7 @@
     text-transform: lowercase;
     /* font-size: clamp(20px, 5.5vw, 28px); */
     line-height: 1.20;
-    letter-spacing: 0;
+    letter-spacing: 0;    
   }
 
   p {
