@@ -220,8 +220,8 @@ export default function Header() {
 
   return (
     <>
-      <header className="sticky top-0 z-[99] w-full bg-[#f6f6f6] font-sans shadow-sm backdrop-blur-md">
-        <div className=" flex w-full items-center justify-between mx-auto max-w-full py-2 lg:py-4 px-4  lg:px-20 2xl:px-32">
+      <header className="sticky top-0 z-999 w-full bg-[#f6f6f6] font-sans shadow-sm backdrop-blur-md">
+        <div className="flex w-full items-center justify-between mx-auto max-w-full py-2 xl:py-4 px-4 lg:px-6 xl:px-10 2xl:px-32">
           <a href="/" className="flex items-center">
             <img
               src={logo.src}

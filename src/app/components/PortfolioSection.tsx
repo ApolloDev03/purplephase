@@ -248,7 +248,7 @@ const PortfolioSection = () => {
 
   return (
     <section className="w-full overflow-hidden bg-white">
-      <div className="mx-auto max-w-full px-4 py-10 2xl:py-[85px]  md:px-10 lg:px-20 lg:py-16 2xl:px-32">
+      <div className="mx-auto max-w-full px-4 py-10  lg:py-[30px] lg:px-6 xl:px-10 2xl:px-32">
         {/* Section Heading */}
         <div className="mb-6 text-center md:mb-8 lg:text-left">
           <h2 className="mb-0  leading-[1.05] tracking-tight text-primary ">
@@ -277,7 +277,7 @@ const PortfolioSection = () => {
       return (
         <div
           key={item.id}
-          className="group relative h-[200px] lg:h-[354px] w-full overflow-hidden rounded-xl bg-white shadow-md"
+          className="group relative h-[200px] xl:h-[354px] w-full overflow-hidden rounded-xl bg-white shadow-md"
         >
           {firstImage ? (
             <div className="absolute inset-0 flex items-center justify-center ">
@@ -317,7 +317,7 @@ const PortfolioSection = () => {
             onClick={() => router.push("/Portfolio")}
             className="flex justify-center lg:justify-start"
           >
-            <button className="motion-shine group inline-flex items-center gap-2 rounded-full bg-primary px-3 py-2 text-[14px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30  sm:text-[16px] lg:text-[20px] 2xl:text-[24px]">
+            <button className="motion-shine group inline-flex items-center gap-2 rounded-full bg-primary px-3 py-2 text-[14px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30  sm:text-[16px]  2xl:text-[24px]">
               Browse Projects
 
               <span className="flex h-4 w-4 lg:h-5 lg:w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
@@ -326,15 +326,15 @@ const PortfolioSection = () => {
             </button>
           </motion.div>
 
-          <div className="flex flex-wrap items-center justify-center gap-2 text-primary  lg:justify-end">
+          <div className="flex flex-wrap items-center justify-center xl:gap-2 text-primary  lg:justify-end">
             {filters.map((filter, index) => (
               <React.Fragment key={filter}>
-                <span className="rounded-full border border-primary/20 px-3 py-2 text-[13px] leading-none text-primary sm:border-0 sm:px-2 sm:py-0 sm:text-[15px] md:text-[17px] lg:text-[18px] xl:text-[20px] 2xl:text-[26px]">
+                <span className="rounded-full border border-primary/20 px-3 py-2 text-[13px] leading-none text-primary sm:border-0 sm:px-2 sm:py-0 sm:text-[15px] md:text-[17px]  xl:text-[20px] 2xl:text-[26px]">
                   {filter}
                 </span>
 
                 {index !== filters.length - 1 && (
-                  <span className="hidden text-[22px] font-light text-[#424242] sm:inline-block">
+                  <span className="hidden text-[18px] xl:text-[22px] font-light text-[#424242] sm:inline-block">
                     |
                   </span>
                 )}

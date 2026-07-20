@@ -12,8 +12,8 @@ const ProcessSection = () => {
   const router = useRouter();
 
   return (
-    <section className="relative max-w-full overflow-hidden bg-white px-4 py-[20px] 2xl:py-[85px]  lg:px-20 2xl:px-32">
-      <div className="mx-auto grid grid-cols-1 items-center lg:gap-10 lg:grid-cols-[45%_55%]">
+    <section className="relative max-w-full overflow-hidden bg-white px-4 py-[20px] lg:py-[30px] 2xl:py-[85px] lg:px-6 xl:px-10 2xl:px-32">
+      <div className="mx-auto grid grid-cols-1 items-center lg:gap-4 xl:gap-10 lg:grid-cols-[45%_55%]">
         {/* Left Image */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}
@@ -73,7 +73,7 @@ const ProcessSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.45 }}
-            className="mt-9 flex justify-center lg:justify-start"
+            className=" mt-5 2xl:mt-9  flex justify-center lg:justify-start"
           >
             <button
               type="button"

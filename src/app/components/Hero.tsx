@@ -194,7 +194,7 @@ export default function HeaderHero() {
     font-heading
     md:h-[350px]
 
-    lg:h-[clamp(520px,37.5vw,720px)]
+    lg:h-[450px]
     2xl:h-[720px]
   "
 >
@@ -302,7 +302,7 @@ export default function HeaderHero() {
       w-full
       object-cover
       object-[95%_center]
-      lg:object-center
+      xl:object-center
     "
   />
 ) : finalMedia ? (
@@ -358,8 +358,7 @@ export default function HeaderHero() {
       w-full
       -translate-y-1/2
       px-4
-      md:px-12
-      lg:px-20
+      lg:px-10
       2xl:px-32
     "
   >
@@ -381,16 +380,19 @@ export default function HeaderHero() {
             }}
             className="
               whitespace-pre-line
-              break-words
-              font-body
-              font-semibold
-              leading-[1.1]
-              text-primary
+  break-words
+  font-body
+  !font-semibold
+  leading-[1.15]
+  text-primary
 
-              text-[26px]!
-              md:text-[30px]!
-              lg:text-[54px]
-              xl:text-[58px]
+  !text-[22px]
+  min-[375px]:!text-[24px]
+  sm:!text-[26px]
+  md:!text-[30px]
+  lg:!text-[45px]
+  xl:!text-[50px]
+  2xl:!text-[58px]
             "
           >
             {activeSlide.title}
@@ -406,18 +408,20 @@ export default function HeaderHero() {
               ease: "easeOut",
             }}
             className="
-              whitespace-pre-line
-              break-words
-              font-heading
-              font-extrabold
-              uppercase
-              leading-[1.1]
-              text-primary
+             whitespace-pre-line
+  break-words
+  font-body
+  !font-semibold
+  leading-[1.15]
+  text-primary
 
-            text-[26px]!
-              md:text-[31px]!
-              lg:text-[54px]
-              xl:text-[58px]
+  !text-[22px]
+  min-[375px]:!text-[24px]
+  sm:!text-[26px]
+  md:!text-[30px]
+  lg:!text-[45px]
+  xl:!text-[50px]
+  2xl:!text-[58px]
             "
           >
             We Build Your Brand
@@ -462,7 +466,10 @@ export default function HeaderHero() {
 
             lg:px-7
             lg:py-3
-            lg:text-[15px]
+           !text-[13px]
+sm:!text-[14px]
+lg:!text-[15px]
+2xl:!text-[18px]
           "
         >
           Let's Build

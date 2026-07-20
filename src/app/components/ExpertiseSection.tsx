@@ -192,7 +192,7 @@ const handleExpertiseWheel = (event:any) => {
 };
 
   return (
-  <section className="relative w-full overflow-hidden bg-white pt-10  xl:py-[85px] lg:pt-16 pb-0">
+  <section className="relative w-full overflow-hidden bg-white pt-10 lg:pt-16 pb-0  2xl:py-[85px] ">
       <div
         className="
           mx-auto
@@ -204,12 +204,11 @@ const handleExpertiseWheel = (event:any) => {
           gap-8
           overflow-hidden
           px-4
-          md:px-10
           md:grid-cols-[58%_42%]
           lg:gap-6
-          lg:px-16
+          lg:px-6
           xl:grid-cols-[60%_40%]
-          xl:px-24
+          xl:px-10
           2xl:px-32
         "
       >
@@ -325,7 +324,8 @@ const handleExpertiseWheel = (event:any) => {
       sm:text-[16px]
       md:text-[18px]
       lg:text-[20px]
-      xl:text-[30px]
+      xl:text-[25px]
+      2xl:text-[30px]
       ${
         isActive
           ? "bg-primary text-white shadow-sm"

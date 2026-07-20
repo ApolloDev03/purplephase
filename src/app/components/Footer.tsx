@@ -42,7 +42,7 @@ const Footer = () => {
     };
 
     return (
-        <footer className="bg-[#f6f6f6] text-[18px]! py-10  2xl:text-[20px]!  font-sans selection:bg-primary/10 px-6  md:px-12 lg:px-20 2xl:px-32">
+        <footer className="bg-[#f6f6f6] py-10 lg:py-[30px]  2xl:text-[20px]!  font-sans selection:bg-primary/10 px-6  lg:px-6 xl:px-10 2xl:px-32">
             <div className="max-w-full mx-auto  grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-0">
 
                 {/* Left Side: Branding & Contact (Spans 6 columns) */}
@@ -154,7 +154,7 @@ const Footer = () => {
 <motion.div
   {...fadeInUp}
   transition={{ delay: 0.2 }}
-  className="flex flex-col mt-4 md:mt-0 lg:min-w-[150px]"
+  className="flex flex-col mt-10 md:mt-0 lg:min-w-[150px]"
 >
   <h4 className="text-[#626262] mb-2 ">Follow Us</h4>
 
@@ -185,20 +185,20 @@ const Footer = () => {
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
-                className="max-w-full mx-auto pt-10 grid grid-cols-1 gap-10 lg:grid-cols-12 text-[#575757]  "
+                className="max-w-full mx-auto pt-10 grid grid-cols-1 xl:gap-10 lg:grid-cols-12 text-[#575757]  "
             >
                 <div className="col-span-6 text-center items-center lg:text-left">
-                    <span className="text-[16px] md:text-[18px]">
+                    <span className="text-[14px] 2xl:text-[18px]">
                         Copyright © {new Date().getFullYear()}. All rights reserved Purple Phase Communications
                     </span>
                 </div>
 
 
-                <div className="col-span-6  grid grid-cols-1 md:grid-cols-2 justify-items-center  lg:justify-items-end">
-                    <div className="flex flex-col lg:min-w-[150px] text-[16px] md:text-[18px]">
+                <div className="col-span-6  mt-3 lg:mt-0 grid grid-cols-1 sm:grid-cols-2 justify-items-center  lg:justify-items-end">
+                    <div className="flex flex-col lg:min-w-[150px] text-[14px] xl:text-[18px]">
                         <a href="#" className="hover:text-primary transition-colors ">Terms & Conditions</a>
                     </div>
-                    <div className="flex flex-col lg:min-w-[150px] text-[16px] md:text-[18px]">
+                    <div className="flex flex-col lg:min-w-[150px] text-[14px] xl:text-[18px]">
                         <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
                     </div>
                 </div>
