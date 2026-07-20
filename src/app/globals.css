@@ -41,7 +41,7 @@
     font-weight: 700;
     line-height: 1.20;
     letter-spacing: 0;
-     font-size: 26px;
+    font-size: 26px;
   }
 
   h3 {
@@ -97,7 +97,7 @@
     }
   }
 
-  @media (min-width: 768px) {
+@media (min-width: 786px) and (max-width: 1024px) {
     h2 {
       font-size: 40px;
     }
@@ -119,28 +119,6 @@
     }
   }
 
-  @media (min-width: 1024px) {
-    h2 {
-      font-size: 45px;
-    }
-
-    h3 {
-      font-size: 30px;
-    }
-
-    p {
-      font-size: 18px;
-    }
-
-    button {
-      font-size: 18px;
-    }
-
-    .hero-title {
-      font-size: 54px;
-      line-height: 1.2;
-    }
-  }
 
   @media (min-width: 1280px) {
       h2 {
@@ -397,8 +375,220 @@ border-radius: 20px;
     display: none;
   }
 
-  @media (min-width: 1920px) {
+  @media (min-width: 1024px) {
  .counter-border-pill {
 border-radius: 999px;
 }
   }
+
+/* =====================================================
+   CASE STUDY FINAL RESPONSIVE HEIGHTS
+===================================================== */
+
+.brand-scroll-section {
+  position: relative;
+  width: 100%;
+}
+
+.brand-sticky-shell {
+  position: sticky;
+  top: 90px;
+  width: 100%;
+}
+
+.brand-sticky-grid {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.brand-image-stage {
+  position: relative !important;
+  display: block !important;
+  visibility: visible !important;
+
+  width: 100% !important;
+  height: 320px !important;
+  min-height: 320px !important;
+
+  flex: 0 0 auto !important;
+  overflow: hidden;
+
+  border-radius: 12px;
+  background: transparent;
+
+  opacity: 1 !important;
+}
+
+.brand-action-row {
+  position: relative !important;
+  inset: auto !important;
+  z-index: 100;
+
+  display: flex;
+  width: 100%;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: flex-start;
+
+  margin: 0 !important;
+  padding: 0 0 22px;
+
+  background: #f6f6f6;
+  transform: none !important;
+}
+
+.brand-case-study-button {
+  position: relative !important;
+  inset: auto !important;
+
+  margin: 0 !important;
+  transform: none;
+}
+
+/* =====================================================
+   TABLET: 768px–1023px
+===================================================== */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .brand-image-stage {
+    height: 430px !important;
+    min-height: 430px !important;
+    border-radius: 16px;
+  }
+}
+
+/* =====================================================
+   DESKTOP: 1024px–1439px
+===================================================== */
+
+@media (min-width: 1024px) and (max-width: 1439px) {
+  .brand-sticky-shell {
+    top: 90px;
+  }
+
+  .brand-image-stage {
+    height: 560px !important;
+    min-height: 560px !important;
+    border-radius: 18px;
+  }
+
+  .brand-action-row {
+    padding-bottom: 22px;
+  }
+}
+
+/* =====================================================
+   1440px–1679px
+   Available width: 1360px
+   1360 × 0.625 = 850px
+===================================================== */
+
+@media (min-width: 1440px) and (max-width: 1679px) {
+  .brand-sticky-shell {
+    top: 100px;
+  }
+
+  .brand-image-stage {
+    width: 100% !important;
+    height: 850px !important;
+    min-height: 850px !important;
+
+    aspect-ratio: auto !important;
+    border-radius: 20px;
+  }
+
+  .brand-action-row {
+    padding-top: 4px;
+    padding-bottom: 26px;
+  }
+}
+
+/* =====================================================
+   1680px–1919px
+   Available width: 1552px
+   1552 × 0.625 = 970px
+===================================================== */
+
+@media (min-width: 1680px) and (max-width: 1919px) {
+  .brand-sticky-shell {
+    top: 100px;
+  }
+
+  .brand-image-stage {
+    width: 100% !important;
+    height: 970px !important;
+    min-height: 970px !important;
+
+    aspect-ratio: auto !important;
+    border-radius: 22px;
+  }
+
+  .brand-action-row {
+    padding-top: 4px;
+    padding-bottom: 28px;
+  }
+}
+
+/* =====================================================
+   1920px AND ABOVE
+   Maximum section width: 1600px
+   Image height: 1000px
+===================================================== */
+
+@media (min-width: 1920px) {
+  .brand-sticky-shell {
+    top: 105px;
+  }
+
+  .brand-image-stage {
+    display: block !important;
+    visibility: visible !important;
+
+    width: 100% !important;
+    height: 1000px !important;
+    min-height: 1000px !important;
+
+    aspect-ratio: auto !important;
+    border-radius: 24px;
+
+    opacity: 1 !important;
+  }
+
+  .brand-action-row {
+    padding-top: 4px;
+    padding-bottom: 30px;
+  }
+}
+
+/* =====================================================
+   SHORT HEIGHT — ONLY BELOW 1440px WIDTH
+
+   Do not apply this rule on 1440px, 1680px or 1920px.
+===================================================== */
+
+@media (min-width: 1024px) and (max-width: 1439px) and (max-height: 760px) {
+  .brand-scroll-section {
+    height: auto !important;
+    min-height: auto !important;
+  }
+
+  .brand-sticky-shell {
+    position: relative !important;
+    top: auto !important;
+  }
+
+  .brand-image-stage {
+    width: 100% !important;
+    height: auto !important;
+    min-height: 0 !important;
+
+    aspect-ratio: 16 / 9;
+  }
+
+  .brand-action-row {
+    padding-top: 16px;
+    padding-bottom: 24px;
+  }
+}

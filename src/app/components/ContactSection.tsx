@@ -83,10 +83,10 @@ const router = useRouter();
   };
 
   return (
-    <section className="relative overflow-hidden bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)] py-10 xl:py-[85px]">
-      <div className="mx-auto max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
+    <section className="relative overflow-hidden bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)] py-10 lg:py-[30px] xl:py-[85px]">
+      <div className="mx-auto max-w-full px-4 lg:px-6 xl:px-10 2xl:px-32">
         {/* Heading */}
-          <h4 className="text-[28px] mb-4 font-semibold leading-tight tracking-wide text-white md:text-[38px] lg:text-[40px] 2xl:text-[48px]">
+          <h4 className="mb-4 font-semibold leading-tight tracking-wide text-white text-[30px] lg:text-[35px]  2xl:text-[48px]">
             No decks. No jargon. Just an honest conversation.
           </h4>
 
@@ -94,7 +94,7 @@ const router = useRouter();
             Let’s catch up over a cup of coffee !
           </span>
 
-        <div className=" mt-4! lg:mt-0 grid grid-cols-1  items-center   lg:grid-cols-12">
+        <div className=" mt-4! lg:mt-0 grid grid-cols-1  items-center lg:grid-cols-12">
           {/* Form */}
           <div className="lg:col-span-7 ">
             <form
@@ -108,7 +108,7 @@ const router = useRouter();
                 onChange={handleChange}
                 placeholder="Full Name"
                 required
-                className="h-[61px] rounded-[6px] bg-white px-3.5 text-[18px] py-3 text-black outline-none placeholder:text-[#8f8f8f]"
+                className="h-[61px] rounded-[6px] bg-white px-3.5 text-[16px] xl:text-[18px] py-3 text-black outline-none placeholder:text-[#8f8f8f]"
               />
 
               <input
@@ -118,7 +118,7 @@ const router = useRouter();
                 onChange={handleChange}
                 placeholder="Email"
                 required
-                className="h-[61px] rounded-[6px] bg-white px-3.5 text-[18px] py-3 text-black outline-none placeholder:text-[#8f8f8f]"
+                className="h-[61px] rounded-[6px] bg-white px-3.5 text-[16px] xl:text-[18px] py-3 text-black outline-none placeholder:text-[#8f8f8f]"
               />
 
               <input
@@ -128,7 +128,7 @@ const router = useRouter();
                 onChange={handleChange}
                 placeholder="Company Name"
                 required
-                className="h-[61px] rounded-[6px] bg-white px-3.5 text-[18px] py-3 text-black outline-none placeholder:text-[#8f8f8f]"
+                className="h-[61px] rounded-[6px] bg-white px-3.5 text-[16px] xl:text-[18px] py-3 text-black outline-none placeholder:text-[#8f8f8f]"
               />
 
               <input
@@ -138,7 +138,7 @@ const router = useRouter();
                 onChange={handleChange}
                 placeholder="Phone Number"
                 required
-                className="h-[61px] rounded-[6px] bg-white px-3.5 text-[18px] py-3 text-black outline-none placeholder:text-[#8f8f8f]"
+                className="h-[61px] rounded-[6px] bg-white px-3.5 text-[16px] xl:text-[18px] py-3 text-black outline-none placeholder:text-[#8f8f8f]"
               />
 
               <textarea
@@ -147,13 +147,13 @@ const router = useRouter();
                 onChange={handleChange}
                 placeholder="What solution are you looking for?"
                 required
-                className="h-[141px] resize-none rounded-[6px] bg-white px-4 py-3 text-[18px] text-black outline-none placeholder:text-[#8f8f8f] md:col-span-2"
+                className="h-[141px] resize-none rounded-[6px] bg-white px-4 py-3 text-[16px] xl:text-[18px] text-black outline-none placeholder:text-[#8f8f8f] md:col-span-2"
               />
 
               {/* Captcha same as it is */}
              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:col-span-2">
   {/* Captcha */}
-  <div className="flex h-[61px] items-center rounded-[6px] border border-white/70 bg-white/10 px-4 text-[18px] text-white">
+  <div className="flex h-[61px] items-center rounded-[6px] text-[16px] border border-white/70 bg-white/10 px-4 xl:text-[18px] text-white">
     <span className="font-medium">Captcha:</span>
     <span className="ml-1 ">
       {captchaQuestion} = ?
@@ -167,7 +167,7 @@ const router = useRouter();
     onChange={(e) => setCaptchaAnswer(e.target.value)}
     placeholder="Enter answer"
     required
-    className="h-[61px] w-full rounded-[6px] bg-white px-4 text-[18px] text-black outline-none placeholder:text-[#8f8f8f]"
+    className="h-[61px] w-full rounded-[6px] bg-white px-4 text-[16px] xl:text-[18px] text-black outline-none placeholder:text-[#8f8f8f]"
   />
 
   {/* Button */}
@@ -182,7 +182,7 @@ const router = useRouter();
   <button
     type="submit"
     disabled={loading}
-    className="animated-btn h-[61px] w-full"
+    className="animated-btn h-[61px] text-[16px]! xl:text-[18px]! w-full"
   >
     {loading ? "Submitting..." : "Let's Connect"}
   </button>
@@ -192,8 +192,8 @@ const router = useRouter();
           </div>
 
           {/* Coffee Image */}
-          <div className="flex mt-4 xl:mt-0 justify-center lg:col-span-5 lg:justify-end">
-            <div className="relative w-full max-w-[500px] xl:max-w-[600px] 2xl:max-w-[700px]">
+          <div className="flex mt-4 xl:mt-0 justify-center lg:col-span-5 xl:justify-end">
+            <div className="relative w-full max-w-[500px] lg:max-w-[600px] 2xl:max-w-[700px]">
               <img
                 src={logo.src}
                 alt="Coffee Illustration"

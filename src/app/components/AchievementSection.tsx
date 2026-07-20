@@ -104,12 +104,12 @@ export default function AchievementSection() {
   const currentTestimonial = testimonials[testIndex];
 
   return (
-    <section className="relative overflow-hidden py-10 xl:py-[85px] font-sans bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]">
-      <div className="max-w-full mx-auto px-4  lg:px-20 2xl:px-32">
+    <section className="relative overflow-hidden py-10 lg:py-[30px] 2xl:py-[85px]   font-sans bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]">
+      <div className="max-w-full mx-auto px-4 lg:px-6 xl:px-10 2xl:px-32">
       
 
 <div className="counter-border-pill mb-16">
-  <div className="grid w-full grid-cols-2 gap-5 lg:grid-cols-4 lg:gap-10">
+  <div className="grid w-full grid-cols-2 gap-5 lg:grid-cols-4 xl:gap-10">
     <CounterItem value="15+" label="Successful Years" />
     <CounterItem value="20+" label="Industries Served" />
     <CounterItem value="500+" label="Satisfied Clients" />
@@ -159,7 +159,7 @@ export default function AchievementSection() {
                     exit={{ opacity: 0, x: -50 }}
                     transition={{ duration: 0.5, ease: "easeOut" }}
                   >
-                    <p className="text-white! text-[18px] lg:text-[21px]!">
+                    <p className="text-white! text-[18px] lg:text-[20px] xl:text-[21px]!">
                       {currentTestimonial.description}
                     </p>
 
