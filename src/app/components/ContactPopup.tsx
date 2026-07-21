@@ -647,12 +647,9 @@ const res = await axios.post<ContactResponse>(
             >
               <div className="flex items-center justify-between">
                 <div>
-                  <h3 style={{
-            fontVariantCaps: "all-small-caps",
-            fontFeatureSettings: '"smcp", "c2sc"',
-          }}  className=" font-semibold uppercase tracking-[0.12em] text-gray-900 md:text-4xl">
+                  <h4  className=" font-bold uppercase tracking-[0.12em] text-gray-900 text-2xl lg:text-4xl">
                     Contact <span className="text-primary">Us</span>
-                  </h3>
+                  </h4>
                 </div>
 
                 <button
@@ -664,7 +661,7 @@ const res = await axios.post<ContactResponse>(
                 </button>
               </div>
 
-              <div className="mt-6 rounded-xl border border-gray-100 bg-gray-50/50 p-6 md:p-8">
+              <div className="mt-6 rounded-xl border border-gray-100 bg-gray-50/50  lg:p-8">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
                     <input
@@ -789,45 +786,6 @@ const res = await axios.post<ContactResponse>(
                     className="w-full border-b-2 border-gray-200 bg-transparent px-2 py-4 text-gray-900 outline-none transition-colors focus:border-primary"
                   />
 
-                  {/* <div className="flex flex-wrap items-center gap-4">
-                    <div className="flex items-center gap-2">
-                      <div className="flex h-12 items-center bg-gray-200 px-6 font-heading text-xl font-bold tracking-[0.3em] text-gray-700">
-                        {captchaCode}
-                      </div>
-
-                      <button
-                        type="button"
-                        onClick={generateCaptcha}
-                        className="flex h-12 w-12 items-center justify-center bg-secondary text-white transition-opacity hover:opacity-90"
-                      >
-                        <RotateCcw size={20} />
-                      </button>
-                    </div>
-
-                    <input
-                      type="text"
-                      name="captcha"
-                      value={formData.captcha}
-                      onChange={handleChange}
-                      placeholder="Enter Captcha"
-                      className="h-12 w-full max-w-50 border-b-2 border-gray-200 bg-transparent px-2 text-gray-900 outline-none focus:border-primary"
-                    />
-                  </div>
-       <motion.div
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
-  transition={{ duration: 0.5, delay: 0.45 }}
-
-  className="flex justify-center lg:justify-start"
->
-  <button type="submit" disabled={submitLoading} className="motion-shine mt-5 group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] lg:text-[20px]! font-semibold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
-  {submitLoading ? "Sending..." : "Send Message"}
-    <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-      <LuMoveUpRight className="h-5 w-5" />
-    </span>
-  </button>
-</motion.div> */}
 <div className="mt-5 flex w-full flex-col gap-4 lg:flex-row lg:items-center">
   {/* Captcha Box */}
   <div className="flex shrink-0 items-center gap-2">
@@ -865,12 +823,12 @@ const res = await axios.post<ContactResponse>(
     <button
       type="submit"
       disabled={submitLoading}
-      className="motion-shine group inline-flex h-12 items-center justify-center gap-3 rounded-full bg-primary px-4 text-[21px]! font-semibold! text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30 "
+      className="motion-shine group inline-flex text-[18px]! h-12 items-center justify-center gap-3 rounded-full bg-primary px-4 lg:text-[21px]! font-semibold! text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30 "
     >
       {submitLoading ? "Sending..." : "Send Message"}
 
-      <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-        <LuMoveUpRight className="h-5 w-5" />
+      <span className="flex lg:h-5 lg:w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+        <LuMoveUpRight className="lg:h-5 lg:w-5" />
       </span>
     </button>
   </motion.div>

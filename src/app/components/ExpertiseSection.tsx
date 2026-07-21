@@ -51,54 +51,119 @@ const getResponsiveSizes = (): ResponsiveSizes => {
 
 export default function ExpertiseSection() {
   const [expertiseData, setExpertiseData] = useState<ExpertiseItem[]>([]);
-  const [activeIndex, setActiveIndex] = useState(0);
+  // const [activeIndex, setActiveIndex] = useState(0);
   const [loading, setLoading] = useState(false);
+// const [sizes, setSizes] = useState<ResponsiveSizes>({
+//   itemHeight: 52,
+//   itemGap: 16,
+//   listHeight: 188, // 52 * 3 + 16 * 2
+// });
+  // const scrollRef = useRef<HTMLDivElement | null>(null);
+
+const [trackIndex, setTrackIndex] = useState(0);
+const [trackAnimationEnabled, setTrackAnimationEnabled] = useState(true);
+
 const [sizes, setSizes] = useState<ResponsiveSizes>({
   itemHeight: 52,
   itemGap: 16,
-  listHeight: 188, // 52 * 3 + 16 * 2
+  listHeight: 188,
 });
-  const scrollRef = useRef<HTMLDivElement | null>(null);
 
+const itemStep = sizes.itemHeight + sizes.itemGap;
 
-  const itemStep = sizes.itemHeight + sizes.itemGap;
+const listPadding = useMemo(() => {
+  return (sizes.listHeight - sizes.itemHeight) / 2;
+}, [sizes.listHeight, sizes.itemHeight]);
 
-  const listPadding = useMemo(() => {
-    return (sizes.listHeight - sizes.itemHeight) / 2;
-  }, [sizes.listHeight, sizes.itemHeight]);
+// Three copies provide seamless looping without jumping or flashing.
+const repeatedExpertiseData = useMemo(() => {
+  if (expertiseData.length <= 1) {
+    return expertiseData;
+  }
 
-  useEffect(() => {
-    const updateSizes = () => {
-      setSizes(getResponsiveSizes());
-    };
+  return [
+    ...expertiseData,
+    ...expertiseData,
+    ...expertiseData,
+  ];
+}, [expertiseData]);
+  // const itemStep = sizes.itemHeight + sizes.itemGap;
 
-    updateSizes();
+  // const listPadding = useMemo(() => {
+  //   return (sizes.listHeight - sizes.itemHeight) / 2;
+  // }, [sizes.listHeight, sizes.itemHeight]);
 
-    let resizeFrame: number | null = null;
+  // useEffect(() => {
+  //   const updateSizes = () => {
+  //     setSizes(getResponsiveSizes());
+  //   };
 
-    const handleResize = () => {
-      if (resizeFrame) cancelAnimationFrame(resizeFrame);
+  //   updateSizes();
 
-      resizeFrame = requestAnimationFrame(() => {
-        updateSizes();
+  //   let resizeFrame: number | null = null;
+
+  //   const handleResize = () => {
+  //     if (resizeFrame) cancelAnimationFrame(resizeFrame);
+
+  //     resizeFrame = requestAnimationFrame(() => {
+  //       updateSizes();
+  //     });
+  //   };
+
+  //   window.addEventListener("resize", handleResize);
+
+  //   return () => {
+  //     if (resizeFrame) cancelAnimationFrame(resizeFrame);
+  //     window.removeEventListener("resize", handleResize);
+  //   };
+  // }, []);
+
+  // useEffect(() => {
+  //   scrollRef.current?.scrollTo({
+  //     top: activeIndex * itemStep,
+  //     behavior: "auto",
+  //   });
+  // }, [itemStep]);
+useEffect(() => {
+  let resizeFrame: number | null = null;
+  let enableAnimationFrame: number | null = null;
+
+  const updateSizes = () => {
+    // Prevent the list from animating during responsive size changes.
+    setTrackAnimationEnabled(false);
+    setSizes(getResponsiveSizes());
+
+    enableAnimationFrame = requestAnimationFrame(() => {
+      enableAnimationFrame = requestAnimationFrame(() => {
+        setTrackAnimationEnabled(true);
       });
-    };
-
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      if (resizeFrame) cancelAnimationFrame(resizeFrame);
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  useEffect(() => {
-    scrollRef.current?.scrollTo({
-      top: activeIndex * itemStep,
-      behavior: "auto",
     });
-  }, [itemStep]);
+  };
 
+  updateSizes();
+
+  const handleResize = () => {
+    if (resizeFrame !== null) {
+      cancelAnimationFrame(resizeFrame);
+    }
+
+    resizeFrame = requestAnimationFrame(updateSizes);
+  };
+
+  window.addEventListener("resize", handleResize);
+
+  return () => {
+    if (resizeFrame !== null) {
+      cancelAnimationFrame(resizeFrame);
+    }
+
+    if (enableAnimationFrame !== null) {
+      cancelAnimationFrame(enableAnimationFrame);
+    }
+
+    window.removeEventListener("resize", handleResize);
+  };
+}, []);
   const fetchExpertiseList = async () => {
     try {
       setLoading(true);
@@ -126,15 +191,17 @@ const [sizes, setSizes] = useState<ResponsiveSizes>({
     return Number(a.id) - Number(b.id);
   });
 
-        setExpertiseData(sortedData);
-        setActiveIndex(0);
+      setTrackAnimationEnabled(false);
+setExpertiseData(sortedData);
 
-        setTimeout(() => {
-          scrollRef.current?.scrollTo({
-            top: 0,
-            behavior: "auto",
-          });
-        }, 0);
+// Start from the middle copy for seamless infinite looping.
+setTrackIndex(sortedData.length > 1 ? sortedData.length : 0);
+
+requestAnimationFrame(() => {
+  requestAnimationFrame(() => {
+    setTrackAnimationEnabled(true);
+  });
+});
       } else {
         setExpertiseData([]);
       }
@@ -152,38 +219,94 @@ const [sizes, setSizes] = useState<ResponsiveSizes>({
 
 
 
-  const scrollToItem = (index: number) => {
-    if (expertiseData.length === 0) return;
+  // const scrollToItem = (index: number) => {
+  //   if (expertiseData.length === 0) return;
 
-    const safeIndex = Math.min(Math.max(index, 0), expertiseData.length - 1);
+  //   const safeIndex = Math.min(Math.max(index, 0), expertiseData.length - 1);
 
-    setActiveIndex(safeIndex);
+  //   setActiveIndex(safeIndex);
 
-    scrollRef.current?.scrollTo({
-      top: safeIndex * itemStep,
-      behavior: "smooth",
+  //   scrollRef.current?.scrollTo({
+  //     top: safeIndex * itemStep,
+  //     behavior: "smooth",
+  //   });
+  // };
+//   useEffect(() => {
+//   if (expertiseData.length <= 1) return;
+
+//   const interval = setInterval(() => {
+//     setActiveIndex((prevIndex) => {
+//       const nextIndex =
+//         prevIndex >= expertiseData.length - 1 ? 0 : prevIndex + 1;
+
+//       scrollRef.current?.scrollTo({
+//         top: nextIndex * itemStep,
+//         behavior: "smooth",
+//       });
+
+//       return nextIndex;
+//     });
+//   }, 2500);
+
+//   return () => clearInterval(interval);
+// }, [expertiseData.length, itemStep]);
+const scrollToItem = (originalIndex: number) => {
+  const length = expertiseData.length;
+
+  if (length === 0) return;
+
+  if (length === 1) {
+    setTrackIndex(0);
+    return;
+  }
+
+  setTrackIndex((currentTrackIndex) => {
+    const possibleIndexes = [
+      originalIndex,
+      originalIndex + length,
+      originalIndex + length * 2,
+    ];
+
+    return possibleIndexes.reduce((nearest, current) => {
+      const currentDistance = Math.abs(current - currentTrackIndex);
+      const nearestDistance = Math.abs(nearest - currentTrackIndex);
+
+      return currentDistance < nearestDistance ? current : nearest;
     });
-  };
-  useEffect(() => {
+  });
+};
+
+useEffect(() => {
   if (expertiseData.length <= 1) return;
 
-  const interval = setInterval(() => {
-    setActiveIndex((prevIndex) => {
-      const nextIndex =
-        prevIndex >= expertiseData.length - 1 ? 0 : prevIndex + 1;
-
-      scrollRef.current?.scrollTo({
-        top: nextIndex * itemStep,
-        behavior: "smooth",
-      });
-
-      return nextIndex;
-    });
+  const interval = window.setInterval(() => {
+    setTrackIndex((previousIndex) => previousIndex + 1);
   }, 2500);
 
-  return () => clearInterval(interval);
-}, [expertiseData.length, itemStep]);
+  return () => {
+    window.clearInterval(interval);
+  };
+}, [expertiseData.length]);
 
+const handleTrackAnimationComplete = () => {
+  const length = expertiseData.length;
+
+  if (length <= 1) return;
+
+  // Reset from the third copy to the middle copy.
+  // Both positions display identical surrounding items,
+  // so the reset is visually invisible.
+  if (trackIndex >= length * 2) {
+    setTrackAnimationEnabled(false);
+    setTrackIndex(length);
+
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        setTrackAnimationEnabled(true);
+      });
+    });
+  }
+};
 const handleExpertiseWheel = (event:any) => {
   window.scrollBy({
     top: event.deltaY,
@@ -253,95 +376,214 @@ const handleExpertiseWheel = (event:any) => {
           No expertise found
         </div>
       ) : (
-        <div
-          ref={scrollRef}
-            onWheel={handleExpertiseWheel}
-          className="expertise-scroll relative mx-auto w-full overflow-hidden scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          style={{
-            height: `${sizes.listHeight}px`,
-            scrollSnapType: "y mandatory",
-          }}
-        >
-          <div
-            className="w-full"
-            style={{
-              paddingTop: `${listPadding}px`,
-              paddingBottom: `${listPadding}px`,
-            }}
-          >
-            {expertiseData.map((item, index) => {
-              const isActive = activeIndex === index;
-              const distance = Math.abs(activeIndex - index);
+//         <div
+//           ref={scrollRef}
+//             onWheel={handleExpertiseWheel}
+//           className="expertise-scroll relative mx-auto w-full overflow-hidden scroll-smooth [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+//           style={{
+//             height: `${sizes.listHeight}px`,
+//             scrollSnapType: "y mandatory",
+//           }}
+//         >
+//           <div
+//             className="w-full"
+//             style={{
+//               paddingTop: `${listPadding}px`,
+//               paddingBottom: `${listPadding}px`,
+//             }}
+//           >
+//             {expertiseData.map((item, index) => {
+//               const isActive = activeIndex === index;
+//               const distance = Math.abs(activeIndex - index);
 
-              return (
-  <motion.button
-  key={item.id}
-  type="button"
-  onClick={() => scrollToItem(index)}
-  animate={{
-    opacity:
-      distance === 0
-        ? 1
-        : distance === 1
-        ? 0.65
-        : distance === 2
-        ? 0.22
-        : 0,
-    scale: isActive ? 1 : 0.96,
-  }}
-  transition={{
-    duration: 0.45,
-    ease: [0.22, 1, 0.36, 1],
-  }}
-  className="flex w-full cursor-pointer items-center justify-start border-0 bg-transparent p-0"
+//               return (
+//   <motion.button
+//   key={item.id}
+//   type="button"
+//   onClick={() => scrollToItem(index)}
+//   animate={{
+//     opacity:
+//       distance === 0
+//         ? 1
+//         : distance === 1
+//         ? 0.65
+//         : distance === 2
+//         ? 0.22
+//         : 0,
+//     scale: isActive ? 1 : 0.96,
+//   }}
+//   transition={{
+//     duration: 0.45,
+//     ease: [0.22, 1, 0.36, 1],
+//   }}
+//   className="flex w-full cursor-pointer items-center justify-start border-0 bg-transparent p-0"
+//   style={{
+//     height: `${sizes.itemHeight}px`,
+//     marginBottom: `${sizes.itemGap}px`,
+//     scrollSnapAlign: "center",
+//     pointerEvents: distance > 2 ? "none" : "auto",
+//   }}
+// >
+//   <span
+//     className={`
+//       inline-flex
+//       h-full
+//       w-full
+//       max-w-[632px]
+//       min-w-0
+//       items-center
+//       justify-center
+//       rounded-full
+//       px-6
+//       text-center
+//       text-[15px]
+//       font-semibold
+//       uppercase
+//       leading-none
+   
+//       transition-all
+//       duration-500
+//       ease-out
+//       sm:text-[16px]
+//       md:text-[18px]
+//       lg:text-[20px]
+//       xl:text-[25px]
+//       2xl:text-[30px]
+//       ${
+//         isActive
+//           ? "bg-primary text-white shadow-sm"
+//           : "bg-transparent text-[#BDBDBD]"
+//       }
+//     `}
+//   >
+//     <span className="block w-full truncate">
+//       {item.expertise_name}
+//     </span>
+//   </span>
+// </motion.button>
+//               );
+//             })}
+//           </div>
+//         </div>
+<div
+  className="relative mx-auto w-full overflow-hidden"
   style={{
-    height: `${sizes.itemHeight}px`,
-    marginBottom: `${sizes.itemGap}px`,
-    scrollSnapAlign: "center",
-    pointerEvents: distance > 2 ? "none" : "auto",
+    height: `${sizes.listHeight}px`,
   }}
 >
-  <span
-    className={`
-      inline-flex
-      h-full
-      w-full
-      max-w-[632px]
-      min-w-0
-      items-center
-      justify-center
-      rounded-full
-      px-6
-      text-center
-      text-[15px]
-      font-semibold
-      uppercase
-      leading-none
-   
-      transition-all
-      duration-500
-      ease-out
-      sm:text-[16px]
-      md:text-[18px]
-      lg:text-[20px]
-      xl:text-[25px]
-      2xl:text-[30px]
-      ${
-        isActive
-          ? "bg-primary text-white shadow-sm"
-          : "bg-transparent text-[#BDBDBD]"
-      }
-    `}
+  <motion.div
+    animate={{
+      y: -(trackIndex * itemStep),
+    }}
+    transition={
+      trackAnimationEnabled
+        ? {
+            duration: 0.55,
+            ease: [0.22, 1, 0.36, 1],
+          }
+        : {
+            duration: 0,
+          }
+    }
+    onAnimationComplete={handleTrackAnimationComplete}
+    className="w-full"
+    style={{
+      paddingTop: `${listPadding}px`,
+      paddingBottom: `${listPadding}px`,
+      willChange: "transform",
+      backfaceVisibility: "hidden",
+      WebkitBackfaceVisibility: "hidden",
+    }}
   >
-    <span className="block w-full truncate">
-      {item.expertise_name}
-    </span>
-  </span>
-</motion.button>
-              );
-            })}
-          </div>
-        </div>
+    {repeatedExpertiseData.map((item, renderedIndex) => {
+      const originalIndex =
+        expertiseData.length > 0
+          ? renderedIndex % expertiseData.length
+          : 0;
+
+      const distance = Math.abs(trackIndex - renderedIndex);
+      const isActive = distance === 0;
+
+      return (
+        <motion.button
+          key={`${item.id}-${renderedIndex}`}
+          type="button"
+          onClick={() => scrollToItem(originalIndex)}
+          animate={{
+            opacity:
+              distance === 0
+                ? 1
+                : distance === 1
+                ? 0.65
+                : distance === 2
+                ? 0.22
+                : 0,
+            scale: isActive ? 1 : 0.96,
+          }}
+          transition={{
+            duration: 0.4,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+          className="
+            flex
+            w-full
+            cursor-pointer
+            items-center
+            justify-start
+            border-0
+            bg-transparent
+            p-0
+          "
+          style={{
+            height: `${sizes.itemHeight}px`,
+            marginBottom: `${sizes.itemGap}px`,
+            pointerEvents: distance > 2 ? "none" : "auto",
+            willChange: "transform, opacity",
+            backfaceVisibility: "hidden",
+            WebkitBackfaceVisibility: "hidden",
+          }}
+        >
+          <span
+            className={`
+              inline-flex
+              h-full
+              w-full
+              max-w-[550px]
+              xl:max-w-[632px]
+              min-w-0
+              items-center
+              justify-center
+              rounded-full
+              px-6
+              text-center
+              text-[15px]
+              font-semibold
+              uppercase
+              leading-none
+              transition-colors
+              duration-300
+              ease-out
+              sm:text-[16px]
+              md:text-[18px]
+              lg:text-[20px]
+              xl:text-[25px]
+              2xl:text-[30px]
+              ${
+                isActive
+                  ? "bg-primary text-white shadow-sm"
+                  : "bg-transparent text-[#BDBDBD]"
+              }
+            `}
+          >
+            <span className="block w-full truncate">
+              {item.expertise_name}
+            </span>
+          </span>
+        </motion.button>
+      );
+    })}
+  </motion.div>
+</div>
       )}
     </div>
   </div>

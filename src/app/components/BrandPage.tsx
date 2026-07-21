@@ -80,19 +80,12 @@ export default function BrandPage() {
   const total = brandStories.length;
   const transitionCount = Math.max(total - 1, 0);
 
-  /*
-   * Separate scroll distances for:
-   * 375px
-   * 789px
-   * 1024px
-   * 1410px
-   * 1920px
-   */
+  
   const sectionHeightStyle: SectionHeightStyles = {
     "--mobile-section-height":
-      loading || total === 0
-        ? "100svh"
-        : `calc(100svh + ${transitionCount * 82}svh)`,
+    loading || total === 0
+      ? "calc(100svh - 74px)"
+      : `calc(${100 + transitionCount * 30}svh)`,
 
     "--tablet-section-height":
       loading || total === 0
@@ -243,7 +236,11 @@ export default function BrandPage() {
         <p className="text-[#626262]">No case studies found.</p>
       </div>
     ) : (
-      <div className="brand-image-stage">
+      <div className="   brand-image-stage
+    relative
+    w-full
+    aspect-[16/10]
+    md:aspect-auto">
         {brandStories.map((item, index) => (
           <ScrollSlide
             key={item.id}
@@ -394,7 +391,6 @@ function ScrollSlide({
     origin-top
     overflow-hidden
     rounded-lg
-
     sm:rounded-xl
     lg:rounded-2xl
   "
@@ -409,14 +405,18 @@ function ScrollSlide({
       alt={item.title}
       draggable={false}
       className="
-        absolute
-        inset-0
-        block
-        h-full
-        w-full
-        max-w-none
-        object-cover
-        object-center
+       absolute
+    inset-0
+    block
+    h-full
+    w-full
+    max-w-none
+    bg-white
+    object-contain
+    object-center
+
+    md:bg-transparent
+    md:object-cover
       "
     />
 
@@ -427,7 +427,6 @@ function ScrollSlide({
         inset-x-0
         top-0
         z-10
-
         p-2.5
         sm:p-3
         md:p-5
@@ -444,27 +443,21 @@ function ScrollSlide({
           border
           border-white/25
           bg-black/45
-
           px-3
           py-2
-
           shadow-[0_6px_20px_rgba(0,0,0,0.18)]
           backdrop-blur-md
-
           sm:max-w-[80%]
           sm:rounded-xl
           sm:px-4
           sm:py-2.5
-
           md:max-w-[75%]
           md:px-5
           md:py-3
-
           lg:max-w-[78%]
           lg:rounded-2xl
           lg:px-7
           lg:py-4
-
           min-[1410px]:rounded-[20px]
           min-[1410px]:px-8
           min-[1410px]:py-5

@@ -139,7 +139,7 @@ export default function AchievementSection() {
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -25 }}
                   transition={{ duration: 0.45 }}
-                  className="relative mx-auto md:mx-0 w-full max-w-[385px] h-[257px] rounded-[20px] border border-white/75 bg-white/15 flex items-center justify-center overflow-hidden shadow-[0_15px_30px_rgba(0,0,0,0.22)]"
+                  className="relative mx-auto md:mx-0 w-full max-w-[250px]  lg:max-w-[385px] lg:h-[257px] rounded-[20px] border border-white/75 bg-white/15 flex items-center justify-center overflow-hidden shadow-[0_15px_30px_rgba(0,0,0,0.22)]"
                 >
                   <img
                     src={currentTestimonial.image}
@@ -150,7 +150,7 @@ export default function AchievementSection() {
               </AnimatePresence>
 
               {/* Text Slider */}
-              <div className="text-white overflow-hidden text-center md:text-left">
+              <div className="text-white overflow-hidden text-left">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={currentTestimonial.id}

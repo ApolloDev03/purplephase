@@ -22,7 +22,7 @@ const ProcessSection = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="relative flex justify-center "
         >
-          <div className="relative w-full max-w-[500px] xl:max-w-[680px] xl:max-h-[538px]">
+          <div className="relative w-full max-w-[350px] xl:max-w-[680px] xl:max-h-[538px]">
             <Image
               src={listen}
               alt="We listen before we advise"
@@ -35,7 +35,7 @@ const ProcessSection = () => {
         </motion.div>
 
         {/* Right Content */}
-        <div className="text-center lg:text-left">
+        <div className="text-left">
           <h2 className="leading-4 2xl:leading-32.5!  lowercase [font-variant-caps:small-caps]! text-primary ">
             We Listen, Before We Advise.
           </h2>
@@ -73,7 +73,7 @@ const ProcessSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.45 }}
-            className=" mt-5 2xl:mt-9  flex justify-center lg:justify-start"
+            className=" mt-5 2xl:mt-9  flex justify-start"
           >
             <button
               type="button"
