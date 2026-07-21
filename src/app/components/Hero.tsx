@@ -191,7 +191,7 @@ export default function HeaderHero() {
     w-full
     overflow-hidden
     bg-[#e5e5e5]
-    font-heading
+  
     md:h-[350px]
 
     lg:h-[450px]
@@ -386,13 +386,13 @@ export default function HeaderHero() {
   leading-[1.15]
   text-primary
 
-  !text-[22px]
-  min-[375px]:!text-[24px]
-  sm:!text-[26px]
-  md:!text-[30px]
-  lg:!text-[45px]
-  xl:!text-[50px]
-  2xl:!text-[58px]
+  min-[375px]:text-[24px]!
+  sm:text-[26px]!
+  md:text-[30px]!
+  lg:text-[45px]!
+  xl:text-[50px]!
+  2xl:text-[58px]!
+  w-[190px]! md:w-full!
             "
           >
             {activeSlide.title}

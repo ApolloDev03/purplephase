@@ -308,7 +308,7 @@ const PortfolioSection = () => {
 )}
 
         {/* Bottom Button + Filter Navigation */}
-        <div className="mt-7 flex flex-col gap-6 sm:mt-8 lg:flex-row lg:items-center lg:justify-between">
+        <div className="mt-7 flex flex-col gap-6 sm:mt-8 items-start lg:flex-row lg:items-center  lg:justify-between">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -326,7 +326,7 @@ const PortfolioSection = () => {
             </button>
           </motion.div>
 
-          <div className="flex flex-wrap items-center justify-center xl:gap-2 text-primary  lg:justify-end">
+          <div className="flex flex-wrap items-center justify-start xl:gap-2 text-primary  lg:justify-end">
             {filters.map((filter, index) => (
               <React.Fragment key={filter}>
                 <span className="rounded-full border border-primary/20 px-3 py-2 text-[13px] leading-none text-primary sm:border-0 sm:px-2 sm:py-0 sm:text-[15px] md:text-[17px]  xl:text-[20px] 2xl:text-[26px]">
