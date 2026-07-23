@@ -22,7 +22,7 @@ const ProcessSection = () => {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="relative flex justify-center "
         >
-          <div className="relative w-full max-w-[350px] xl:max-w-[680px] xl:max-h-[538px]">
+          <div className="relative w-full max-w-[300px] xl:max-w-[680px] xl:max-h-[538px]">
             <Image
               src={listen}
               alt="We listen before we advise"

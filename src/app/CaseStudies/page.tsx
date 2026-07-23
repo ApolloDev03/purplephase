@@ -100,7 +100,7 @@ export default function CaseStudyPage() {
       {/* <Breadcrumb /> */}
 
       <main className="bg-[#f6f6f6] font-body text-[#333333]">
-        <section className="mx-auto max-w-full px-4 py-16 xl:py-[85px] sm:px-6 lg:px-20 2xl:px-32">
+        <section className="mx-auto max-w-full  py-[20px] lg:py-[30px] 2xl:py-[85px] px-4 lg:px-6 xl:px-10 2xl:px-32">
           {/* Page Title */}
           <div className="">
             <h2 className="text-[#a20d69] ">
@@ -124,7 +124,7 @@ export default function CaseStudyPage() {
 
           {/* Case Studies */}
           {!loading && !error && (
-            <div className="space-y-9 mt-14">
+            <div className="space-y-9  lg:mt-14">
               {caseStudies.map((study, idx) => {
                 const detailSlug = study.slug || makeSlug(study.title);
 
@@ -178,11 +178,11 @@ export default function CaseStudyPage() {
                                       //  onClick={()=>handleContactPopupOpen()}
                                       className=" flex justify-center lg:justify-start"
                                   >
-                                      <button className="motion-shine group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+                                      <button className="motion-shine group inline-flex items-center gap-3 rounded-full bg-primary px-3 py-2 lg:px-6 lg:py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
                                            View More
               
-                                          <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                                              <LuMoveUpRight className="h-5 w-5" />
+                                          <span className="flex h-4 w-4 lg:h-5 lg:w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                                              <LuMoveUpRight className="h-4 w-4 lg:h-5 lg:w-5" />
                                           </span>
                                       </button>
                                   </motion.div>
@@ -193,8 +193,8 @@ export default function CaseStudyPage() {
 
         {/* CTA Section */}
         <section className="bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]">
-          <div className="mx-auto flex max-w-full flex-col items-center justify-center px-6 py-9 xl:py-[85px] text-center md:px-20 lg:px-[115px]">
-            <h1  className="uppercase text-[42px] font-bold leading-[130%]  tracking-wide text-white ">
+          <div className="mx-auto flex max-w-full flex-col items-center justify-center px-4  xl:px-10 py-[20px] lg:py-[30px] 2xl:py-[85px] text-center  lg:px-[115px]">
+            <h1  className="uppercase text-[28px] xl:text-[42px] font-bold leading-[130%]  tracking-wide text-white ">
               Want to scale your brand ?
             </h1>
              <motion.div
@@ -203,15 +203,15 @@ export default function CaseStudyPage() {
                                                                 viewport={{ once: true }}
                                                                 transition={{ duration: 0.5, delay: 0.45 }}
                                                                   onClick={()=>handleContactPopupOpen()}
-                                                                className="mt-5   justify-center!"
+                                                                className="mt-5 justify-center!"
                                                             >
                                                               <div className="animated-btn-wrapper rounded-full! ">
             
-                                                                <button className="animated-btn  inline-flex items-center gap-3 rounded-full! bg-[#720048] px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px]! font-bold! text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+                                                                <button className="animated-btn  inline-flex items-center gap-3 rounded-full! bg-[#720048] px-3 py-2 lg:px-6 lg:py-3 text-[15px] lg:text-[20px] 2xl:text-[24px]! font-bold! text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
                                                                      Lets Discuss
                                         
-                                                                    <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                                                                        <LuMoveUpRight className="h-5 w-5" />
+                                                                    <span className="flex w-4 h-4 lg:h-5 lg:w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                                                                        <LuMoveUpRight className="w-4 h-4 lg:h-5 lg:w-5" />
                                                                     </span>
                                                                 </button>
                                                               </div>

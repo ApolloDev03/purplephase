@@ -324,7 +324,6 @@ const handleExpertiseWheel = (event:any) => {
           max-w-full
           grid-cols-1
           items-center
-          gap-8
           overflow-hidden
           px-4
           md:grid-cols-[58%_42%]
@@ -605,7 +604,7 @@ const handleExpertiseWheel = (event:any) => {
     w-full
     items-center
     justify-center  
-    md:pt-0
+    pt-0
     lg:justify-end
     xl:-translate-x-20
     2xl:-translate-x-28
@@ -624,7 +623,6 @@ const handleExpertiseWheel = (event:any) => {
         w-full
         max-w-[180px]
         object-contain
-        sm:max-w-[220px]
         md:max-w-[260px]
         lg:max-w-[280px]
         xl:max-w-[300px]
