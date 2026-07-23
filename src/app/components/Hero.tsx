@@ -299,10 +299,10 @@ export default function HeaderHero() {
       absolute
       inset-0
       h-full
-      w-full
+     w-full
       object-cover
       object-[95%_center]
-      xl:object-center
+      xl:object-center 
     "
   />
 ) : finalMedia ? (

@@ -201,7 +201,7 @@ useEffect(() => {
     <>
 
       <section className="w-full bg-[#f3f3f3] ">
-        <div className="mx-auto max-w-full py-16 px-4 2xl:py-[85px] sm:px-6 lg:px-20 2xl:px-32">
+        <div className="mx-auto max-w-full  px-4 py-[20px] lg:py-[30px] 2xl:py-[85px] sm:px-6 lg:px-20 2xl:px-32">
           <div className="mb-10">
                     <h2 className=" leading-[130%]
 
@@ -216,7 +216,7 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
             </p>
 
 {serviceList.length > 0 && (
-  <div className="my-16 flex flex-wrap justify-start gap-3">
+  <div className=" my-7 lg:my-16 flex flex-wrap justify-start gap-3">
 
 
     {serviceList.map((service) => {
@@ -248,7 +248,7 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
 )}
 
             {loading && (
-              <div className="grid justify-center gap-5 md:grid-cols-2 xl:grid-cols-3">
+              <div className="grid justify-center gap-5 grid-cols-2 xl:grid-cols-3">
                 {[1, 2, 3, 4, 5, 6].map((item) => (
                   <div
                     key={item}
@@ -273,7 +273,7 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
             )}
   
             {!loading && !error && (
-  <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+  <div className="grid  grid-cols-1  gap-5 lg:grid-cols-3">
     {visibleProjects.map((item, index) => {
       const firstImage = item.images?.[0]?.image_url;
 
@@ -281,7 +281,7 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
         <div
           key={item.id}
           onClick={() => openGallery(item)}
-          className="group relative h-[354px] w-full cursor-pointer overflow-hidden rounded-xl bg-white shadow-md"
+          className="group relative h-[200px] lg:h-[354px] w-full cursor-pointer overflow-hidden rounded-xl bg-white shadow-md"
         >
           {firstImage ? (
             <div className="absolute inset-0 ">
@@ -328,11 +328,11 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
                                                      onClick={handleViewMore}
                                                     className="mt-10 flex justify-center"
                                                 >
-                                                    <button className="motion-shine group inline-flex items-center gap-3 rounded-full bg-[#720048] px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+                                                    <button className="motion-shine group inline-flex items-center gap-3 rounded-full bg-[#720048] px-3 py-2 lg:px-6 lg:py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
                                                         View More
                             
-                                                        <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                                                            <LuMoveUpRight className="h-5 w-5" />
+                                                        <span className="flex lg:h-5 lg:w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                                                            <LuMoveUpRight className="lg:h-5 lg:w-5" />
                                                         </span>
                                                     </button>
                                                 </motion.div>
@@ -343,7 +343,7 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
       </section>
   <section className="bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]">
           <div className="mx-auto flex max-w-full flex-col items-center justify-center px-6 py-9 xl:py-[85px] text-center md:px-20 lg:px-[115px]">
-            <h1   className="uppercase text-[42px] font-bold leading-[130%]  tracking-wide text-white ">
+            <h1   className="uppercase  text-[28px] xl:text-[42px] font-bold leading-[130%]  tracking-wide text-white ">
               Need impactful branding solutions ?
             </h1>
   
@@ -358,11 +358,11 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
                                                 >
                                                   <div className="animated-btn-wrapper rounded-full! ">
 
-                                                    <button className="animated-btn  inline-flex items-center gap-3 rounded-full! bg-[#720048] px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px]! font-bold! text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+                                                    <button className="animated-btn  inline-flex items-center gap-3 rounded-full! bg-[#720048] px-3 py-2 lg:px-6 lg:py-3 text-[15px] lg:text-[20px] 2xl:text-[24px]! font-bold! text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
                                                         Get A Quote
                             
-                                                        <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                                                            <LuMoveUpRight className="h-5 w-5" />
+                                                        <span className="flex w-4 h-4 lg:h-5 lg:w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                                                            <LuMoveUpRight className="w-4 h-4 lg:h-5 lg:w-5" />
                                                         </span>
                                                     </button>
                                                   </div>
