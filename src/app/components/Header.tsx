@@ -287,9 +287,9 @@ export default function Header() {
               animate="visible"
               exit="exit"
               className="
-                fixed right-0 top-0 z-[70] flex h-full w-[70%] max-w-md flex-col
+                fixed right-0 top-0 z-[70] flex h-full  max-w-md flex-col
                 overflow-hidden bg-white shadow-2xl
-                lg:w-full
+                xl:w-full
               "
             >
               <div className="flex items-center justify-end border-b border-gray-100 px-4 py-4 sm:px-8 sm:py-6">
@@ -307,7 +307,7 @@ export default function Header() {
                 </button>
               </div>
 
-              <div className="flex-1 overflow-y-auto px-4 py-6 lg:px-8 lg:py-10">
+              <div className="flex-1 overflow-y-auto px-4 py-6 xl:px-8 xl:py-10">
                 <nav className="flex flex-col gap-2 lg:gap-3">
                   {navItems.map((item, i) => (
                     <motion.a

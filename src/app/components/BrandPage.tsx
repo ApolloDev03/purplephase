@@ -1789,7 +1789,7 @@ export default function BrandPage() {
       )}
 
       {!loading && total > 0 && (
-        <div className="mx-auto flex w-full max-w-[1800px] justify-center pb-10 pt-4 sm:pb-14 lg:pb-20">
+        <div className="mx-auto flex w-full max-w-full justify-center lg:justify-start pb-10 pt-4 sm:pb-14 lg:pb-20">
           <button
             type="button"
             onClick={() => router.push("/CaseStudies")}

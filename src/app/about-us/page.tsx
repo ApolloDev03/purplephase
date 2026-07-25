@@ -146,7 +146,7 @@ useEffect(() => {
     <>
       {/* ================= HERO ================= */}
 
-      {/* <section className="relative h-[200px] md:h-[500px] lg:h-[500px] 2xl:h-[720px] overflow-hidden bg-[#dedede]">
+      <section className="relative h-[200px] md:h-[500px] lg:h-[500px] 2xl:h-[720px] overflow-hidden bg-[#dedede]">
    
         <div className="absolute right-0 top-0 h-full w-full">
           <img
@@ -164,8 +164,8 @@ useEffect(() => {
 
       
         <div className="relative z-10 flex h-full items-center">
-          <div className="px-4 lg:px-8 ">
-            <div className="h-[300px] overflow-hidden max-w-[50%] md:max-w-[620px] lg:max-w-[760px]">
+          <div className="px-4 lg:px-8 xl:px-10 2xl:px-32">
+            <div className="h-[300px] overflow-hidden max-w-[70%] md:max-w-[620px] lg:max-w-[760px]">
               <motion.div
                 animate={{
                   y: -(index * 56),
@@ -186,7 +186,7 @@ useEffect(() => {
             fontVariantCaps: "all-small-caps",
             fontFeatureSettings: '"smcp", "c2sc"',
           }}
-                      className={`h-[44px] sm:h-[56px] text-[26px] md:text-[32px] lg:text-[38px] xl:text-[60px]  font-extrabold leading-[1.09]
+                      className={`h-[44px] sm:h-[56px] text-[24px] md:text-[32px] lg:text-[38px] xl:text-[60px]  font-extrabold leading-[1.09]
                 transition-all duration-500
 
                 ${center
@@ -214,7 +214,7 @@ useEffect(() => {
       block: "start",
     });
   }}
-  className="flex absolute  xl:mt-10 justify-center lg:justify-start"
+  className="flex absolute bottom-3 lg:bottom-20 justify-center lg:justify-start"
 >
   <button className=" motion-shine 
             group
@@ -253,8 +253,8 @@ lg:!text-[15px]
 </motion.div>
           </div>
         </div>
-      </section> */}
-<section
+      </section>
+{/* <section
   className="
     relative
     h-[200px]
@@ -267,7 +267,7 @@ lg:!text-[15px]
     2xl:h-[680px]
   "
 >
-  {/* Background GIF */}
+
   <div className="absolute inset-0">
     <img
       src="/assets/about/about-main.gif"
@@ -283,7 +283,7 @@ lg:!text-[15px]
     />
   </div>
 
-  {/* Readability overlay */}
+
   <div
     className="
       pointer-events-none
@@ -301,7 +301,7 @@ lg:!text-[15px]
     "
   />
 
-  {/* Content */}
+
   <div className="relative z-10 flex h-full items-center">
     <div
       className="
@@ -315,7 +315,7 @@ lg:!text-[15px]
         2xl:px-14
       "
     >
-      {/* Animated heading viewport */}
+  
       <div
         className="
           w-full
@@ -393,7 +393,6 @@ lg:!text-[15px]
         </motion.div>
       </div>
 
-      {/* Button */}
       <motion.div
         initial={{
           opacity: 0,
@@ -485,7 +484,7 @@ lg:!text-[15px]
       </motion.div>
     </div>
   </div>
-</section>
+</section> */}
 
       {/* ================= PURPLE POTENTIAL ================= */}
 

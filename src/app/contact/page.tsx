@@ -255,22 +255,22 @@ export default function ContactPage() {
       <section className="font-body text-[#4d4d4d]">
         {/* HERO */}
         <div
-          className="relative h-[360px] w-full overflow-hidden bg-[#f8f6f7] bg-cover bg-center bg-no-repeat md:h-[420px] lg:h-[470px] xl:h-[720px]"
+          className="relative h-[200px] lg:h-[360px] w-full overflow-hidden bg-[#f8f6f7] bg-cover bg-center bg-no-repeat md:h-[420px] lg:h-[470px] xl:h-[720px]"
           style={{
             backgroundImage: "url('/assets/contact/contact-hero.jpg')",
           }}
         >
-          <div className="mx-auto flex h-full max-w-full items-center px-4 sm:px-6 lg:px-20 2xl:px-32">
-            <h2 className="relative z-10  leading-[130%] text-[#a20d69] ">
+          <div className="mx-auto flex h-full max-w-full items-center px-4 lg:px-6 xl:px-10 2xl:px-32">
+            <h1 className="relative text-[22px] md:text-[38px] lg:text-[48px] xl:text-[56px] font-bold z-10  leading-[130%] text-[#a20d69] ">
               Let’s Talk About Your <br />
               Brand’s Next Phase
-            </h2>
+            </h1>
           </div>
         </div>
 
         {/* CONTACT DETAILS */}
         <div className="bg-[#f4f4f4]">
-          <div className="mx-auto max-w-full px-6 py-16 sm:px-8 lg:px-20 2xl:px-32">
+          <div className="mx-auto max-w-full px-6 py-[20px] lg:py-[30px] xl:py-16 lg:px-6 xl:px-10 2xl:px-32">
             {/* FIRST ROW */}
             <div className="grid grid-cols-1 gap-x-2 gap-y-12 md:grid-cols-3">
               <div className="flex items-start gap-4">
@@ -286,22 +286,22 @@ export default function ContactPage() {
                     Call Us
                   </h3>
 
-                  <p className="text-[16px] leading-relaxed text-[#4a4a4a] md:text-[18px] lg:text-[20px]">
+                  <p className="text-[18px]! leading-relaxed text-[#4a4a4a]  lg:text-[20px]">
                     <span className="font-semibold text-[#2f2f2f]">
                       Mr. Prerak Shah
                     </span>{" "}
-                    <span className="text-[21px]!">- Founder</span>
+                    <span className="text-[15px] lg:text-[21px]!">- Founder</span>
                     <br />
                     <a
                       href="tel:+919999610505"
-                      className="underline text-[24px]! decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69]"
+                      className="underline text-[16px] lg:text-[24px]! decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69]"
                     >
                       +91 99986 10505 ,
                     </a>
                     {"  "}
                     <a
                       href="tel:+919327009400"
-                      className="underline text-[24px]! decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69]"
+                      className="underline text-[16px] lg:text-[24px]! decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69]"
                     >
                        93270 09400
                     </a>
@@ -355,7 +355,7 @@ export default function ContactPage() {
 
                   <a
                     href="tel:+919999610505"
-                    className="mt-4 inline-block text-[24px] text-[#4a4a4a] underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69]"
+                    className="mt-4 inline-block text-[16px] lg:text-[24px]! text-[#4a4a4a] underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69]"
                   >
                     +91 99986 10505
                   </a>
@@ -382,7 +382,7 @@ export default function ContactPage() {
 
                   <a
                     href="tel:+919999610505"
-                    className="mt-4 inline-block text-[24px] text-[#4a4a4a] underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69]"
+                    className="mt-4 inline-block text-[16px] lg:text-[24px]! text-[#4a4a4a] underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69]"
                   >
                     +91 99986 10505
                   </a>
@@ -417,18 +417,18 @@ export default function ContactPage() {
 
         {/* FORM */}
         <div className="bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)] ">
-          <div className="mx-auto max-w-full px-6 py-16 sm:px-8 lg:px-20 2xl:px-32">
+          <div className="mx-auto max-w-full px-4 py-[20px] lg:py-[30px] xl:py-16 lg:px-6 xl:px-10 2xl:px-32">
 
             <h1 className="text-[28px] text-white! mb-1 font-semibold leading-tight text-[#a20d69] md:text-[34px] lg:text-[50px]">
               No decks. No jargon. Just an honest conversation.
             </h1>
 
-            <span className=" text-white! font-medium text-[28px] text-[#424242] xl:text-[32px] 2xl:text-[36px]">
+            <span className=" text-white! font-medium text-[25px] text-[#424242] xl:text-[32px] 2xl:text-[36px]">
               Let’s catch up over a cup of coffee !
             </span>
 
             <form onSubmit={handleSubmit}>
-              <div className="mt-7 grid grid-cols-1 gap-4 md:grid-cols-2">
+              <div className="mt-3 lg:mt-7 grid grid-cols-1 gap-4 md:grid-cols-2">
                 <input
                   type="text"
                   name="name"
@@ -527,7 +527,7 @@ export default function ContactPage() {
                             {isSelected && <Check size={22} className="text-primary" />}
                           </span>
 
-                          <span className="text-[20px] text-white! ">
+                          <span className="text-[16px] lg:text-[20px] text-white! ">
                             {expertise.expertise_name}
                           </span>
                         </label>
@@ -596,7 +596,7 @@ export default function ContactPage() {
           </div>
         </div>
         {/* MAP */}
-        <div className="h-[606px] w-full overflow-hidden">
+        <div className=" h-[250px] lg:h-[606px] w-full overflow-hidden">
           <iframe
             src="https://www.google.com/maps?q=23.009938,72.553248&z=16&output=embed"
             width="100%"

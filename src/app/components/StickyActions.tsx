@@ -125,48 +125,48 @@ export default function StickyActions() {
                 className={`
           fixed bottom-6 z-[999] flex flex-col items-center gap-3
           transition-all duration-500 ease-in-out
-          ${isSidebarOpen ? "right-[calc(min(28rem,100vw)+16px)]" : "right-4 md:right-6"}
+          ${isSidebarOpen ? "right-[calc(min(15rem,100vw)+16px)] lg:right-[calc(min(19rem,100vw)+16px)] xl:right-[calc(min(28rem,100vw)+16px)]" : "right-4 md:right-6"}
         `}
             >
                 {/* WhatsApp */}
                 <a
                     href="https://wa.me/+919327009400"
                     target="_blank"
-                    className="flex h-11 w-11 items-center justify-center rounded-md bg-[#25D366] shadow-lg hover:scale-105 transition"
+                    className="flex w-8 h-8 lg:h-9 lg:w-9 xl:h-11 xl:w-11 items-center justify-center rounded-md bg-[#25D366] shadow-lg hover:scale-105 transition"
                 >
-                    <FaWhatsapp className="text-white text-[30px]" />
+                    <FaWhatsapp className="text-white text-[25px] xl:text-[30px]" />
                 </a>
 
                 {/* FAQ */}
                 <button
                     onClick={() => setFaqOpen(true)}
-                    className="flex h-11 w-11 items-center justify-center rounded-md bg-[#F58220] shadow-lg hover:scale-105 transition"
+                    className="flex w-8 h-8 lg:h-9 lg:w-9 xl:h-11 xl:w-11 items-center justify-center rounded-md bg-[#F58220] shadow-lg hover:scale-105 transition"
                 >
                     <img
                         src={faqsicon.src}
                         alt="FAQ"
-                        className="h-10 w-10 object-contain"
+                        className="w-8 h-8 lg:h-9 lg:w-9 xl:h-10 xl:w-10 object-contain"
                     />
                 </button>
 
                 {/* Top */}
                 <button
                     onClick={scrollToTop}
-                    className={`flex h-11 w-11 items-center justify-center rounded-md bg-white shadow-lg hover:scale-105 transition ${showTop ? "opacity-100" : "opacity-0 pointer-events-none"
+                    className={`flex w-8 h-8 lg:h-9 lg:w-9 xl:h-11 xl:w-11 items-center justify-center rounded-md bg-white shadow-lg hover:scale-105 transition ${showTop ? "opacity-100" : "opacity-0 pointer-events-none"
                         }`}
                 >
-                    <ChevronUp className="h-10 w-10 text-gray-600" strokeWidth={3} />
+                    <ChevronUp className="w-8 h-8 lg:h-9 lg:w-9  xl:h-10 xl:w-10  text-gray-600" strokeWidth={3} />
                 </button>
             </div>
 
             {/* FAQ Sidebar */}
             <div
-                className={`fixed top-0 right-0 h-full w-full sm:w-[420px] bg-white shadow-2xl z-[1000] transition-transform duration-500 ${faqOpen ? "translate-x-0" : "translate-x-full"
+                className={`fixed top-0 right-0 h-full w-full lg:w-[420px] bg-white shadow-2xl z-[1000] transition-transform duration-500 ${faqOpen ? "translate-x-0" : "translate-x-full"
                     }`}
             >
                 {/* Header */}
                 <div className="flex items-center justify-between px-5 py-4 border-b border-primary">
-                    <h4 className="text-3xl font-bold">FAQs</h4>
+                    <h4 className="text-xl lg:text-3xl font-bold">FAQs</h4>
                     <button onClick={() => setFaqOpen(false)}>
                         <X className="w-6 h-6" />
                     </button>

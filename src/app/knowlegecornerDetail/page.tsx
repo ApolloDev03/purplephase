@@ -173,7 +173,7 @@ function BlogDetailContent() {
   return (
     <main className="min-h-screen bg-[#ECECEC]">
       {/* TOP AREA */}
-      <section className="mx-auto w-full max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32 py-16">
+      <section className="mx-auto w-full max-w-full px-4 lg:px-6 xl:px-10 2xl:px-32 py-[20px] lg:py-[30px] py-16">
         <h2 className="font-semibold text-[#A62666]">
           {blog.blogTitle}
         </h2>
@@ -182,7 +182,7 @@ function BlogDetailContent() {
           <img
             src={getImageUrl(blog.blogImage)}
             alt={blog.blogTitle}
-            className="w-full object-cover h-[836px]"
+            className="w-full object-cover h-[250px] lg:h-[836px]"
           />
         </div>
 
@@ -273,8 +273,8 @@ function BlogDetailContent() {
 
       {/* CTA */}
        <section className="bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]">
-          <div className="mx-auto flex max-w-full flex-col items-center justify-center px-6 py-9 xl:py-[85px] text-center md:px-20 lg:px-[115px]">
-            <h1  className="uppercase text-[42px] font-bold leading-[130%]  tracking-wide text-white ">
+          <div className="mx-auto flex max-w-full flex-col items-center justify-center px-6 py-9 lg:py-16 xl:py-[85px] text-center md:px-20 lg:px-[115px]">
+            <h1  className="uppercase text-[28px] xl:text-[42px] font-bold leading-[130%]  tracking-wide text-white ">
              Curious About Brand Strategy ?
             </h1>
                 <motion.div
@@ -290,8 +290,8 @@ function BlogDetailContent() {
                                                                 <button className="animated-btn  inline-flex items-center gap-3 rounded-full! bg-[#720048] px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px]! font-bold! text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
                                                                        Stay Connected
                                         
-                                                                    <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                                                                        <LuMoveUpRight className="h-5 w-5" />
+                                                                    <span className="flex w-4 h-4 lg:h-5 lg:w-5  items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                                                                        <LuMoveUpRight className="w-4 h-4 lg:h-5 lg:w-5 " />
                                                                     </span>
                                                                 </button>
                                                               </div>
@@ -317,19 +317,19 @@ function BlogDetailContent() {
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}
-              className="fixed left-1/2 top-1/2 z-999 w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-3xl bg-white p-8 shadow-2xl"
+              className="fixed left-1/2 top-1/2 z-999 w-[290px]  sm:w-[320px] lg:w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-3xl bg-white p-3 lg:p-8 shadow-2xl"
             >
               <button
                 onClick={() => setIsPopupOpen(false)}
                 className="absolute right-5 top-5"
               >
-                <IoCloseOutline size={30} />
+                <IoCloseOutline className="text-[25px] lg:text-[30px]" />
               </button>
 
               <h3  style={{
             fontVariantCaps: "all-small-caps",
             fontFeatureSettings: '"smcp", "c2sc"',
-          }} className="mb-8 text-center text-2xl font-bold text-primary">
+          }} className="mb-8  lg:text-center text-2xl font-bold text-primary">
                 Stay Connected
               </h3>
 
@@ -339,9 +339,9 @@ function BlogDetailContent() {
                     key={item.name}
                     href={item.href}
                     target="_blank"
-                    className="flex items-center gap-4 rounded-xl p-3 transition hover:bg-[#f6f6f6]"
+                    className="flex items-center gap-4 rounded-xl p-1 lg:p-3 transition hover:bg-[#f6f6f6]"
                   >
-                    <div className="text-2xl text-primary">{item.icon}</div>
+                    <div className="text-xl lg:text-2xl text-primary">{item.icon}</div>
 
                     <span className="font-medium">{item.name}</span>
                   </a>

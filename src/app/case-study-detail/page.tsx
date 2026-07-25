@@ -212,9 +212,9 @@ const activeMoreImage =
 
   return (
     <>
-    <main className="py-16 bg-[#f6f6f6] font-sans text-[#242424] ">
+    <main className="py-[20px] lg:py-[30px] xl:py-16 bg-[#f6f6f6] font-sans text-[#242424] ">
       {/* HERO */}
-      <section className="mx-auto w-full max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
+      <section className="mx-auto w-full max-w-full px-4 lg:px-6 xl:px-10 2xl:px-32">
         <motion.div
           key={caseStudy.id}
           initial={{ opacity: 0, y: 30 }}
@@ -247,8 +247,8 @@ const activeMoreImage =
               )}
             </div>
 
-            <div className=" py-6 ">
-              <h1 className="text-[48px] font-semibold text-[#242424] md:text-4xl">
+            <div className="py-4 lg:py-6 ">
+              <h1 className="text-[25px] font-semibold text-[#242424] md:text-4xl">
                 {caseStudy.title}
               </h1>
 
@@ -266,7 +266,7 @@ const activeMoreImage =
 
       {/* SECTION IMAGES */}
       {sortedSections.length > 0 && (
-        <section className=" mx-auto w-full max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
+        <section className=" mx-auto w-full max-w-full px-4 lg:px-6 xl:px-10 2xl:px-32">
           {sortedSections.map((section, index) => {
             const images = [
               section.image_1,
@@ -281,7 +281,7 @@ const activeMoreImage =
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="w-full my-4"
+                className="w-full my-1 lg:my-4"
               >
                 <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
                   {images.map((img, i) => (
@@ -382,8 +382,8 @@ const activeMoreImage =
 )}
 
 {/* PREV NEXT */}
-<section className="mx-auto w-full max-w-full px-4 py-10 sm:px-6 lg:px-20 2xl:px-32">
-  <div className="flex flex-col items-center justify-between gap-5  pt-5 sm:flex-row">
+<section className="mx-auto w-full max-w-full px-4 py-4 lg:py-10 sm:px-6 lg:px-20 2xl:px-32">
+  <div className="flex flex-col items-center justify-between gap-5   lg:pt-5 lg:flex-row">
     {/* Previous Button */}
     <button
       type="button"
@@ -438,8 +438,8 @@ const activeMoreImage =
 
       {/* CTA */}
           <section className="bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]">
-          <div className="mx-auto flex max-w-full flex-col items-center justify-center px-6 py-9 xl:py-[85px] text-center md:px-20 lg:px-[115px]">
-            <h1  className="uppercase text-[42px] font-bold leading-[130%]  tracking-wide text-white ">
+          <div className="mx-auto flex max-w-full flex-col items-center justify-center px-6 py-9 lg:py-16 xl:py-[85px] text-center md:px-20 lg:px-[115px]">
+            <h1  className="uppercase text-[28px] xl:text-[42px] font-bold leading-[130%]  tracking-wide text-white ">
             WANT TO EXPAND YOUR BUSINESS ?
             </h1>
 
@@ -456,8 +456,8 @@ const activeMoreImage =
                                                                 <button className="animated-btn  inline-flex items-center gap-3 rounded-full! bg-[#720048] px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px]! font-bold! text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
                                                                      Lets Discuss
                                         
-                                                                    <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-                                                                        <LuMoveUpRight className="h-5 w-5" />
+                                                                    <span className="flex w-4 h-4 lg:h-5 lg:w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                                                                        <LuMoveUpRight className="w-4 h-4 lg:h-5 lg:w-5" />
                                                                     </span>
                                                                 </button>
                                                               </div>
