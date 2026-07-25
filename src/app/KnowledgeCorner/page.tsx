@@ -420,7 +420,7 @@ export default function BlogPage() {
     <>
       {/* HERO */}
    <section className="relative w-full overflow-hidden bg-[#f7f5f6]">
-  <div className="relative mx-auto h-[720px] w-full max-w-[1920px] overflow-hidden">
+  <div className="relative h-[200px] lg:h-[600px] 2xl:h-[720px] w-full  overflow-hidden">
     {/* Background Image */}
     <img
       src="/assets/knowledgecorner/book.png"
@@ -430,23 +430,22 @@ export default function BlogPage() {
 
     {/* Left Text */}
     <div className="absolute inset-0 z-10 flex items-center">
-      <div className="w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
-        <div className="">
-          <h2 className="font-heading text-[28px] font-bold leading-tight text-[#a20d69] md:text-[38px] lg:text-[48px] xl:text-[56px]">
+      <div className="w-[250px] lg:w-full px-4 lg:px-6 xl:px-10 2xl:px-32">
+     
+          <h1 className="font-heading text-[24px] font-bold leading-tight text-[#a20d69] lg:text-[40px] xl:text-[48px] 2xl:text-[56px]">
             Playbook To Build Your Brand
-          </h2>
+          </h1>
 
           <p className="mt-6  text-[15px] leading-[150%] text-[#4d4d4d] md:text-[18px] lg:text-[20px]">
             Your Go-To Corner For Everything That Makes <br/> Brands Sharper,
             Stronger, And Smarter.
           </p>
-        </div>
       </div>
     </div>
   </div>
 </section>
 
-      <section className="bg-white max-w-full overflow-hidden py-12 md:py-16 lg:py-20 max-auto  px-4 sm:px-6 lg:px-20 xl:px-32 ">
+      <section className="bg-white max-w-full overflow-hidden py-[20px] lg:py-[30px] 2xl:py-[85px] max-auto  px-4 lg:px-6 xl:px-10 2xl:px-32 ">
     <div className="grid  gap-5 lg:grid-cols-3">
       {categoryCards.map((item, index) => {
         const isActive = hoveredCategory
@@ -460,7 +459,7 @@ export default function BlogPage() {
             onClick={() => handleCategoryClick(item.title)}
             onMouseEnter={() => setHoveredCategory(item.title)}
             onMouseLeave={() => setHoveredCategory(null)}
-            className={`group relative h-[309px] w-full rounded-[23px] border p-8 text-left transition-all duration-300   ${
+            className={`group relative h-[200px] lg:h-[250px] 2xl:h-[309px] w-full rounded-[23px] border p-8 text-left transition-all duration-300   ${
               isActive
                 ? "border-transparent bg-gradient-to-r from-[#c92f8d] to-[#730042] text-white"
                 : "border-[#c92f8d] bg-[#EEEEEE]"
@@ -636,7 +635,7 @@ export default function BlogPage() {
                       <Link
                         href={`/knowlegecornerDetail?slug=${blog.slugname}`}
                         key={`${blog.blogId}-${index}`}
-                        className="group block h-[236px] w-[450px] overflow-hidden rounded-[10px] border-2 border-white shadow-md"
+                        className="group block h-[200px] w-[350px] 2xl:h-[236px] 2xl:w-[450px] overflow-hidden rounded-[10px] border-2 border-white shadow-md"
                       >
                         <div className="relative  w-full">
                           <img

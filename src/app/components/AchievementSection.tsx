@@ -130,7 +130,7 @@ export default function AchievementSection() {
           <div className="text-white text-lg">No testimonials found.</div>
         ) : (
           <div>
-            <div className="grid grid-cols-1 md:grid-cols-[300px_1fr]  xl:grid-cols-[385px_1fr] gap-6 md:gap-12 items-start">
+            <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr]  xl:grid-cols-[385px_1fr] gap-6 md:gap-12 items-start">
               {/* Image Card */}
               <AnimatePresence mode="wait">
                 <motion.div
@@ -152,14 +152,14 @@ export default function AchievementSection() {
       border-white/75
       bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]
       shadow-[0_15px_30px_rgba(0,0,0,0.22)]
-
-      lg:h-[257px]
-      lg:max-w-[385px]"
+h-[200px] max-w-[250px]
+      xl:h-[257px]
+      xl:max-w-[385px]"
                 >
                   <img
                     src={currentTestimonial.image}
                     alt={currentTestimonial.name}
-                    className="w-full h-full object-cover"
+                    className="w-full h-full "
                   />
                 </motion.div>
               </AnimatePresence>

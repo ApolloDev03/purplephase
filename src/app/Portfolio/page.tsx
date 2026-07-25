@@ -201,7 +201,7 @@ useEffect(() => {
     <>
 
       <section className="w-full bg-[#f3f3f3] ">
-        <div className="mx-auto max-w-full  px-4 py-[20px] lg:py-[30px] 2xl:py-[85px] sm:px-6 lg:px-20 2xl:px-32">
+        <div className="mx-auto max-w-full px-4 py-[20px] lg:py-[30px] 2xl:py-[85px] lg:px-6 xl:px-10 2xl:px-32">
           <div className="mb-10">
                     <h2 className=" leading-[130%]
 
@@ -281,7 +281,7 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
         <div
           key={item.id}
           onClick={() => openGallery(item)}
-          className="group relative h-[200px] lg:h-[354px] w-full cursor-pointer overflow-hidden rounded-xl bg-white shadow-md"
+          className="group relative h-[200px] lg:h-[250px] xl:h-[354px] w-full cursor-pointer overflow-hidden rounded-xl bg-white shadow-md"
         >
           {firstImage ? (
             <div className="absolute inset-0 ">
@@ -342,7 +342,7 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
         </div>
       </section>
   <section className="bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]">
-          <div className="mx-auto flex max-w-full flex-col items-center justify-center px-6 py-9 xl:py-[85px] text-center md:px-20 lg:px-[115px]">
+          <div className="mx-auto flex max-w-full flex-col items-center justify-center px-6 py-9 lg:py-16 xl:py-[85px] text-center md:px-20 lg:px-[115px]">
             <h1   className="uppercase  text-[28px] xl:text-[42px] font-bold leading-[130%]  tracking-wide text-white ">
               Need impactful branding solutions ?
             </h1>

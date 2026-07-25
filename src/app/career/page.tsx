@@ -368,15 +368,20 @@ const renderGalleryTile = (
               className="block h-auto w-full"
             />
 
-            <div className="absolute  inset-0 mx-auto max-w-full flex  items-center px-4 sm:px-6 lg:px-20 2xl:px-32">
-              <h2 className=" leading-[130%] text-[#a20d69] ">
+            <div className="absolute  inset-0 lg:mx-auto max-w-[200px] lg:max-w-full flex  items-center px-4 lg:px-6 xl:px-10 2xl:px-32">
+              <h1 className="leading-[130%] font-bold  
+text-[24px]!
+  md:text-[30px]!
+  lg:text-[45px]!
+  xl:text-[50px]!
+  2xl:text-[58px]! text-[#a20d69] ">
                 Great Work Needs <br />
                 Great People
-              </h2>
+              </h1>
             </div>
           </div>
           </section>
-          <section className="bg-white max-w-full   py-16 xl:py-[85px] sm:px-6 lg:px-20 2xl:px-32">
+          <section className="bg-white max-w-full py-[20px] lg:py-[30px] 2xl:py-[85px] px-4 lg:px-6 xl:px-10 2xl:px-32">
                         <div className="">
               <h2 className="leading-[120%] font-semibold [font-variant-caps:all-small-caps]! text-primary">
                 We Believe Great Brands Are Built By People{" "}
@@ -574,13 +579,13 @@ const renderGalleryTile = (
               onClick={() =>
                 setOpenCareerId(isOpen ? null : career.id)
               }
-              className={`grid w-full grid-cols-[1fr_30px] items-center rounded-md px-5 py-[15px] text-left transition md:grid-cols-[1fr_120px_120px_30px] md:px-8 ${
+              className={`grid w-full grid-cols-[1fr_30px] items-center rounded-md px-3 lg:px-5 py-[15px] text-left transition md:grid-cols-[1fr_120px_120px_30px] md:px-8 ${
                 isOpen
                   ? "bg-gradient-to-r from-[#c22c86] to-[#780040] text-white"
                   : "bg-[#dedede] text-[#111]"
               }`}
             >
-              <span className="text-[17px] font-bold leading-tight md:text-[18px] md:leading-none">
+              <span className="text-[12px] font-bold leading-tight md:text-[18px] lg:leading-none">
                 {career.title}
               </span>
 
@@ -610,8 +615,8 @@ const renderGalleryTile = (
                   transition={{ duration: 0.3 }}
                   className="overflow-hidden rounded-b-md bg-white"
                 >
-                  <div className="px-5 py-5 md:px-8">
-                    <p className="whitespace-pre-line text-[16px]! leading-7 text-[#444] md:text-[18px]!">
+                  <div className=" px-3 lg:px-5 py-5 md:px-8">
+                    <p className="whitespace-pre-line text-[12px]! leading-7 text-[#444] md:text-[18px]!">
                       {career.description}
                     </p>
                   </div>
@@ -631,10 +636,10 @@ const renderGalleryTile = (
             </section>
 
           {/* APPLY FORM */}
-           <section className="relative overflow-hidden bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)] py-16 xl:py-[85px]">
-                <div className="mx-auto max-w-full px-4 sm:px-6 lg:px-20 2xl:px-32">
+           <section className="relative overflow-hidden bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)] py-16 py-[20px] lg:py-[30px] 2xl:py-[85px]">
+                <div className="mx-auto max-w-full px-4 lg:px-6 xl:px-10 2xl:px-32">
                   {/* Heading */}
-                    <h4 className="mb-4 text-[28px] font-semibold leading-tight tracking-wide text-white md:text-[38px] lg:text-[40px] 2xl:text-[50px]">
+                    <h4 className="mb-4 font-semibold leading-tight tracking-wide text-white text-[30px] lg:text-[35px]  2xl:text-[48px]">
                      Ready to Build Brands with Us?
                     </h4>
           
@@ -642,7 +647,7 @@ const renderGalleryTile = (
                       We would love to hear from you.
                     </span>
           
-                  <div className=" grid grid-cols-1 items-center  lg:grid-cols-12">
+                  <div className="mt-4! lg:mt-0 grid grid-cols-1 items-center  lg:grid-cols-12">
                     {/* Form */}
                     <div className="lg:col-span-8">
                       <form
@@ -773,8 +778,8 @@ const renderGalleryTile = (
                     </div>
           
                     {/* Coffee Image */}
-                     <div className="flex justify-center lg:col-span-4 lg:justify-end">
-                                <div className="relative w-full max-w-[320px] xl:max-w-[600px] 2xl:max-w-[700px]">
+                     <div className="mt-4 xl:mt-0 flex justify-center lg:col-span-4 lg:justify-end">
+                                <div className="relative w-full max-w-[320px] lg:max-w-[600px] 2xl:max-w-[700px]">
                                   <img
                                     src={logo.src}
                                     alt="Coffee Illustration"
