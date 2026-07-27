@@ -493,13 +493,13 @@ lg:!text-[15px]
     <div className="grid items-center  lg:grid-cols-[52%_48%]">
       
       {/* Image */}
-      <div className="relative flex h-[260px] w-full items-center justify-center sm:h-[330px] md:h-[380px] lg:h-[420px]">
+      <div className="relative flex h-[250px] w-full items-center justify-center  md:h-[380px] lg:h-[420px]">
         <Image
           src="/assets/about/chess.png"
           alt="Unlock Brand Potential"
           width={560}
           height={420}
-          className="h-auto w-full max-w-[320px] xl:max-w-[680px] xl:max-h-[538px] object-contain"
+          className="h-auto w-full max-w-[280px] xl:max-w-[680px] xl:max-h-[538px] object-contain"
           priority
         />
       </div>
@@ -588,7 +588,7 @@ lg:!text-[15px]
                         viewport={{ once: true }}
                         transition={{ duration: 0.5, delay: 0.45 }}
                         onClick={()=>handleContactPopupOpen()}
-                        className=" flex justify-center lg:justify-start"
+                        className=" flex justify-start"
                     >
                         <button className="motion-shine group inline-flex items-center gap-3 rounded-full bg-primary px-3 py-2 lg:px-6 lg:py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
                               Tell Your Story
@@ -673,7 +673,7 @@ lg:!text-[15px]
   viewport={{ once: true }}
   transition={{ duration: 0.5, delay: 0.45 }}
   onClick={()=>handleContactPopupOpen()}
-  className="flex mt-6 justify-center lg:justify-start"
+  className="flex mt-6 justify-start"
 >
   <button className="motion-shine  group inline-flex items-center gap-3 rounded-full bg-primary px-3 py-2 lg:px-6 lg:py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
    Leverage Legacy
@@ -874,9 +874,7 @@ lg:!text-[15px]
           }}
           className="
             flex
-            justify-center
-
-            lg:justify-start
+           justify-start
           "
         >
           <button
@@ -886,9 +884,10 @@ lg:!text-[15px]
               motion-shine
               group
               mt-3
-              inline-flex
+             flex
               items-center
-              justify-center
+              justify-start
+              lg:justify-center
               gap-2
               rounded-full
               bg-primary
