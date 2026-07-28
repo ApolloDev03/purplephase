@@ -325,7 +325,7 @@ export default function Header() {
                         lg:rounded-2xl lg:px-4 lg:py-4
                       "
                     >
-                      <span className="text-lg font-medium tracking-wide text-gray-900 lg:text-2xl">
+                      <span className="text-[19px]! font-medium tracking-wide text-gray-900 lg:text-2xl">
                         {item.label}
                       </span>
                     </motion.a>

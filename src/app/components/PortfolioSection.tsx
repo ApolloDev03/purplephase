@@ -250,7 +250,7 @@ const PortfolioSection = () => {
     <section className="w-full overflow-hidden bg-white">
       <div className="mx-auto max-w-full px-4 py-10  lg:py-[30px] lg:px-6 xl:px-10 2xl:px-32">
         {/* Section Heading */}
-        <div className="mb-6 text-center md:mb-8 lg:text-left">
+        <div className="mb-6  md:mb-8 text-left">
           <h2 className="mb-0  leading-[1.05] tracking-tight text-primary ">
             Work That Works
           </h2>
@@ -329,12 +329,12 @@ const PortfolioSection = () => {
           <div className="flex flex-wrap items-center justify-start xl:gap-2 text-primary  lg:justify-end">
             {filters.map((filter, index) => (
               <React.Fragment key={filter}>
-                <span className="rounded-full border border-primary/20 px-3 py-2 text-[13px] leading-none text-primary sm:border-0 sm:px-2 sm:py-0 sm:text-[15px] md:text-[17px]  xl:text-[20px] 2xl:text-[26px]">
+                <span className="rounded-full border border-primary/20 px-3 py-2 text-[13px] leading-none text-primary sm:border-0 sm:px-2 sm:py-1 sm:text-[15px] md:text-[17px]  xl:text-[20px] 2xl:text-[26px]">
                   {filter}
                 </span>
 
                 {index !== filters.length - 1 && (
-                  <span className="hidden text-[18px] xl:text-[22px] font-light text-[#424242] sm:inline-block">
+                  <span className="hidden text-[14px] xl:text-[22px] font-light text-[#424242] sm:inline-block">
                     |
                   </span>
                 )}

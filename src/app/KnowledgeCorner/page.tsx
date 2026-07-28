@@ -446,7 +446,7 @@ export default function BlogPage() {
 </section>
 
       <section className="bg-white max-w-full overflow-hidden py-[20px] lg:py-[30px] 2xl:py-[85px] max-auto  px-4 lg:px-6 xl:px-10 2xl:px-32 ">
-    <div className="grid  gap-5 lg:grid-cols-3">
+    <div className="grid gap-5  md:grid-cols-2 lg:grid-cols-3">
       {categoryCards.map((item, index) => {
         const isActive = hoveredCategory
           ? hoveredCategory === item.title
@@ -499,7 +499,7 @@ export default function BlogPage() {
 </section>
 
       {/* BLOG SECTION */}
-      <section className="overflow-hidden">
+      {/* <section className="overflow-hidden">
         <div className="py-16 pr-32">
           {loading ? (
             <div className="flex justify-center py-20">
@@ -507,8 +507,7 @@ export default function BlogPage() {
             </div>
           ) : blogs.length > 0 ? (
             <div className="grid items-start gap-8 lg:grid-cols-[45%_55%]">
-              {/* LEFT BIG IMAGE */}
-            {/* LEFT ACTIVE BLOG IMAGE */}
+          
 <div className="relative z-10 flex w-full justify-center overflow-hidden lg:justify-start">
   <div
     className="
@@ -556,7 +555,6 @@ export default function BlogPage() {
   </div>
 </div>
 
-              {/* RIGHT CONTENT */}
               <div className="relative z-20 pt-2 lg:pt-3">
                 <h3  style={{
             fontVariantCaps: "all-small-caps",
@@ -613,7 +611,6 @@ export default function BlogPage() {
           </motion.div>
               
 
-                {/* SMALL BLOG CARDS */}
                 {sideBlogs.length > 0 && (
                   <div
                     className="
@@ -656,8 +653,357 @@ export default function BlogPage() {
             </div>
           )}
         </div>
-      </section>
+      </section> */}
+{/* BLOG SECTION */}
+<section className="overflow-hidden">
+  <div
+    className="
+      px-4
+      py-8
+      sm:py-10
+    
+      md:py-12
 
+      lg:py-16
+
+      lg:pl-0
+         lg:pr-6
+        xl:pr-10
+      2xl:pr-32
+    "
+  >
+    {loading ? (
+      <div className="flex justify-center py-20">
+        <div className="h-12 w-12 animate-spin rounded-full border-4 border-primary/20 border-t-primary" />
+      </div>
+    ) : blogs.length > 0 ? (
+      <div
+        className="
+          grid
+          grid-cols-1
+          items-start
+          gap-6
+
+          md:gap-8
+
+          lg:grid-cols-[45%_55%]
+          lg:gap-8
+        "
+      >
+        {/* LEFT ACTIVE BLOG IMAGE */}
+        <div className="relative z-10 flex w-full justify-center overflow-hidden lg:justify-start">
+          <div
+            className="
+              relative
+              h-[180px]
+              w-full
+              overflow-hidden
+              rounded-[10px]
+              md:h-[430px]
+
+              lg:h-[750px]
+              lg:w-[750px]
+              lg:max-w-[750px]
+            "
+          >
+            <img
+              src={
+                featuredBlog?.blogImage ||
+                "/assets/knowledgecorner/blog-main.png"
+              }
+              alt={
+                featuredBlog?.blogTitle ||
+                "Knowledge Corner Blog"
+              }
+              className="h-full w-full object-cover"
+            />
+
+            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+
+            {/* Slider arrows */}
+            <div
+              className="
+                absolute
+                bottom-4
+                right-4
+                z-20
+                flex
+                gap-4
+
+                md:bottom-6
+                md:right-6
+                md:gap-6
+
+                lg:bottom-10
+                lg:right-7
+                lg:gap-8
+              "
+            >
+              <button
+                type="button"
+                onClick={handlePrev}
+                aria-label="Previous blog"
+                className="
+                  flex
+                  h-9
+                  w-9
+                  items-center
+                  justify-center
+                  rounded-full
+                  border-2
+                  border-white
+                  text-white
+                  transition
+                  hover:bg-white
+                  hover:text-primary
+                "
+              >
+                <ArrowLeft size={17} />
+              </button>
+
+              <button
+                type="button"
+                onClick={handleNext}
+                aria-label="Next blog"
+                className="
+                  flex
+                  h-9
+                  w-9
+                  items-center
+                  justify-center
+                  rounded-full
+                  border-2
+                  border-white
+                  text-white
+                  transition
+                  hover:bg-white
+                  hover:text-primary
+                "
+              >
+                <ArrowRight size={17} />
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* RIGHT CONTENT */}
+        <div className="relative z-20 pt-1 md:pt-2 lg:pt-3">
+          <h3
+            style={{
+              fontVariantCaps: "all-small-caps",
+              fontFeatureSettings: '"smcp", "c2sc"',
+            }}
+            className="
+              text-[25px]!
+              font-semibold
+              leading-[120%]
+              text-secondary
+              md:text-[34px]!
+
+              lg:text-[40px]!
+            "
+          >
+            {featuredBlog?.blogTitle}
+          </h3>
+
+          <div
+            className="
+              mt-3
+              line-clamp-4
+              pr-0
+              text-[14px]
+              leading-6
+              !text-[#424242]
+
+              md:mt-4
+              md:text-[18px]
+              md:leading-7
+
+              lg:pr-34
+              lg:text-[24px]
+              lg:leading-7
+
+              [&_p]:inline
+              [&_h1]:inline
+              [&_h2]:inline
+              [&_h3]:inline
+              [&_h4]:inline
+
+              [&_h1]:font-bold
+              [&_h2]:font-bold
+              [&_h3]:font-bold
+              [&_strong]:font-bold
+              [&_em]:italic
+              [&_br]:hidden
+            "
+            dangerouslySetInnerHTML={{
+              __html: featuredBlog?.blogDescription ?? "",
+            }}
+          />
+
+          {/* READ MORE BUTTON */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{
+              duration: 0.5,
+              delay: 0.45,
+            }}
+            className="
+              mt-6
+              flex
+              md:mt-8
+              lg:mt-9
+              justify-start
+            "
+          >
+            <button
+              type="button"
+              onClick={() =>
+                router.push(
+                  `/knowlegecornerDetail?slug=${featuredBlog?.slugname}`
+                )
+              }
+              className="
+                motion-shine
+                group
+                inline-flex
+                items-center
+                gap-3
+                rounded-full
+                bg-primary
+                px-6
+                py-3
+                text-[15px]
+                font-bold
+                text-white
+                shadow-lg
+                shadow-primary/20
+                transition-all
+                duration-300
+
+                hover:-translate-y-1
+                hover:bg-[#7a1f50]
+                hover:shadow-xl
+                hover:shadow-primary/30
+
+                sm:gap-[25px]
+
+                lg:text-[20px]
+                2xl:text-[24px]
+              "
+            >
+              Read More
+
+              <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+                <LuMoveUpRight className="h-5 w-5" />
+              </span>
+            </button>
+          </motion.div>
+
+          {/* 
+            MOBILE + TABLET: Horizontal swipe slider
+            LAPTOP + DESKTOP: Original 3-column design
+          */}
+          {sideBlogs.length > 0 && (
+            <div
+              className="
+              
+                hidden 
+                w-full
+                snap-x
+                snap-mandatory
+                gap-4
+                overflow-x-auto
+                pb-3
+
+                [-ms-overflow-style:none]
+                [scrollbar-width:none]
+                [&::-webkit-scrollbar]:hidden
+
+               mt-32
+                md:gap-5
+
+                lg:-ml-[200px]
+                lg:grid
+                lg:w-[calc(100%+110px)]
+                lg:grid-cols-3
+                lg:gap-4
+                lg:overflow-visible
+                lg:pb-0
+
+                xl:-ml-[200px]
+                xl:w-[calc(100%+150px)]
+
+                2xl:-ml-[300px]
+                2xl:mt-[5%]
+                2xl:w-[calc(100%+200px)]
+              "
+            >
+              {sideBlogs.map((blog, index) => (
+                <Link
+                  href={`/knowlegecornerDetail?slug=${blog.slugname}`}
+                  key={`${blog.blogId}-${index}`}
+                  className="
+                    group
+                    block
+                    h-[180px]
+                    w-[82vw]
+                    max-w-[320px]
+                    shrink-0
+                    snap-start
+                    overflow-hidden
+                    rounded-[10px]
+                    border-2
+                    border-white
+                    shadow-md
+
+                    sm:w-[320px]
+
+                    md:h-[220px]
+                    md:w-[360px]
+                    md:max-w-[360px]
+
+                    lg:h-[190px]
+                    lg:w-[350px]
+                    lg:max-w-none
+                    lg:shrink
+                    lg:snap-none
+
+                    2xl:h-[236px]
+                    2xl:w-[450px]
+                  "
+                >
+                  <div className="relative h-full w-full overflow-hidden">
+                    <img
+                      src={blog.blogImage}
+                      alt={blog.blogTitle}
+                      className="
+                        h-full
+                        w-full
+                        object-cover
+                        transition
+                        duration-500
+                        group-hover:scale-105
+                      "
+                    />
+                  </div>
+                </Link>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    ) : (
+      <div className="rounded-3xl bg-white py-20 text-center">
+        <h3 className="text-3xl font-bold">
+          No Blogs Found
+        </h3>
+      </div>
+    )}
+  </div>
+</section>
       <ContactSection />
     </>
   );

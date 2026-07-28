@@ -86,11 +86,11 @@ const router = useRouter();
     <section className="relative overflow-hidden bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)] py-10 lg:py-[30px] xl:py-[85px]">
       <div className="mx-auto max-w-full px-4 lg:px-6 xl:px-10 2xl:px-32">
         {/* Heading */}
-          <h4 className="mb-4 font-semibold leading-tight tracking-wide text-white text-[30px] lg:text-[35px]  2xl:text-[48px]">
+          <h4 className="mb-2 md:mb-4 font-semibold leading-tight tracking-wide text-white text-[25px] lg:text-[35px]  2xl:text-[48px]">
             No decks. No jargon. Just an honest conversation.
           </h4>
 
-          <span className=" text-[22px]   font-medium leading-tight text-white md:text-[28px] 2xl:text-[34px]">
+          <span className=" text-[14px]   font-medium leading-tight text-white md:text-[28px] 2xl:text-[34px]">
             Let’s catch up over a cup of coffee !
           </span>
 
@@ -108,7 +108,7 @@ const router = useRouter();
                 onChange={handleChange}
                 placeholder="Full Name"
                 required
-                className="h-[61px] rounded-[6px] bg-white px-3.5 text-[16px] xl:text-[18px] py-3 text-black outline-none placeholder:text-[#8f8f8f]"
+                className="h-[50px] md:h-[61px] rounded-[6px] bg-white px-3.5 text-[14px] xl:text-[18px] py-3 text-black outline-none placeholder:text-[#8f8f8f]"
               />
 
               <input
@@ -118,7 +118,7 @@ const router = useRouter();
                 onChange={handleChange}
                 placeholder="Email"
                 required
-                className="h-[61px] rounded-[6px] bg-white px-3.5 text-[16px] xl:text-[18px] py-3 text-black outline-none placeholder:text-[#8f8f8f]"
+                className="h-[50px] md:h-[61px] rounded-[6px] bg-white px-3.5 text-[14px] xl:text-[18px] py-3 text-black outline-none placeholder:text-[#8f8f8f]"
               />
 
               <input
@@ -128,7 +128,7 @@ const router = useRouter();
                 onChange={handleChange}
                 placeholder="Company Name"
                 required
-                className="h-[61px] rounded-[6px] bg-white px-3.5 text-[16px] xl:text-[18px] py-3 text-black outline-none placeholder:text-[#8f8f8f]"
+                className="h-[50px] md:h-[61px] rounded-[6px] bg-white px-3.5 text-[14px] xl:text-[18px] py-3 text-black outline-none placeholder:text-[#8f8f8f]"
               />
 
               <input
@@ -138,7 +138,7 @@ const router = useRouter();
                 onChange={handleChange}
                 placeholder="Phone Number"
                 required
-                className="h-[61px] rounded-[6px] bg-white px-3.5 text-[16px] xl:text-[18px] py-3 text-black outline-none placeholder:text-[#8f8f8f]"
+                className="h-[50px] md:h-[61px] rounded-[6px] bg-white px-3.5 text-[14px] xl:text-[18px] py-3 text-black outline-none placeholder:text-[#8f8f8f]"
               />
 
               <textarea
@@ -147,13 +147,13 @@ const router = useRouter();
                 onChange={handleChange}
                 placeholder="What solution are you looking for?"
                 required
-                className="h-[141px] resize-none rounded-[6px] bg-white px-4 py-3 text-[16px] xl:text-[18px] text-black outline-none placeholder:text-[#8f8f8f] md:col-span-2"
+                className="h-[141px] resize-none rounded-[6px] bg-white px-4 py-3 text-[14px] xl:text-[18px] text-black outline-none placeholder:text-[#8f8f8f] md:col-span-2"
               />
 
               {/* Captcha same as it is */}
              <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:col-span-2">
   {/* Captcha */}
-  <div className="flex h-[61px] items-center rounded-[6px] text-[16px] border border-white/70 bg-white/10 px-4 xl:text-[18px] text-white">
+  <div className="flex h-[50px] md:h-[61px] items-center rounded-[6px] text-[14px] border border-white/70 bg-white/10 px-4 xl:text-[18px] text-white">
     <span className="font-medium">Captcha:</span>
     <span className="ml-1 ">
       {captchaQuestion} = ?
@@ -167,7 +167,7 @@ const router = useRouter();
     onChange={(e) => setCaptchaAnswer(e.target.value)}
     placeholder="Enter answer"
     required
-    className="h-[61px] w-full rounded-[6px] bg-white px-4 text-[16px] xl:text-[18px] text-black outline-none placeholder:text-[#8f8f8f]"
+    className="h-[50px] md:h-[61px] w-full rounded-[6px] bg-white px-4 text-[14px] xl:text-[18px] text-black outline-none placeholder:text-[#8f8f8f]"
   />
 
   {/* Button */}
@@ -182,7 +182,7 @@ const router = useRouter();
   <button
     type="submit"
     disabled={loading}
-    className="animated-btn h-[61px] text-[16px]! xl:text-[18px]! w-full"
+    className="animated-btn h-[50px] md:h-[61px] text-[16px]! xl:text-[18px]! w-full"
   >
     {loading ? "Submitting..." : "Let's Connect"}
   </button>

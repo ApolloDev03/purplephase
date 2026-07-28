@@ -194,7 +194,7 @@ export default function CaseStudyPage() {
         {/* CTA Section */}
         <section className="bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]">
           <div className="mx-auto flex max-w-full flex-col items-center justify-center px-4  xl:px-10 py-[20px] lg:py-[30px] 2xl:py-[85px] text-center  lg:px-[115px]">
-            <h1  className="uppercase text-[28px] xl:text-[42px] font-bold leading-[130%]  tracking-wide text-white ">
+            <h1  className="uppercase text-[25px] xl:text-[42px] font-bold leading-[130%]  tracking-wide text-white ">
               Want to scale your brand ?
             </h1>
              <motion.div

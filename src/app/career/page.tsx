@@ -368,7 +368,7 @@ const renderGalleryTile = (
               className="block h-auto w-full"
             />
 
-            <div className="absolute  inset-0 lg:mx-auto max-w-[200px] lg:max-w-full flex  items-center px-4 lg:px-6 xl:px-10 2xl:px-32">
+            <div className="absolute inset-0 lg:mx-auto max-w-[200px] lg:max-w-full flex  items-center px-4 lg:px-6 xl:px-10 2xl:px-32">
               <h1 className="leading-[130%] font-bold  
 text-[24px]!
   md:text-[30px]!
@@ -639,11 +639,11 @@ text-[24px]!
            <section className="relative overflow-hidden bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)] py-16 py-[20px] lg:py-[30px] 2xl:py-[85px]">
                 <div className="mx-auto max-w-full px-4 lg:px-6 xl:px-10 2xl:px-32">
                   {/* Heading */}
-                    <h4 className="mb-4 font-semibold leading-tight tracking-wide text-white text-[30px] lg:text-[35px]  2xl:text-[48px]">
+                    <h4 className="mb-2 font-semibold leading-tight tracking-wide text-white text-[25px] lg:text-[35px]  2xl:text-[48px]">
                      Ready to Build Brands with Us?
                     </h4>
           
-                    <span className=" text-[22px] font-normal leading-tight text-white md:text-[28px] 2xl:text-[36px]">
+                    <span className=" text-[14px] font-normal leading-tight text-white md:text-[28px] 2xl:text-[36px]">
                       We would love to hear from you.
                     </span>
           
@@ -660,7 +660,7 @@ text-[24px]!
               value={formData.first_name}
               onChange={handleChange}
               placeholder="Full Name"
-              className="h-[61px] w-full rounded-md border border-white/20 bg-white px-4 text-[18px] text-[#333] outline-none placeholder:text-[#8b8b8b]"
+              className="h-[50px] md:h-[61px] text-[16px]! w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
             />
 
             <input
@@ -669,7 +669,7 @@ text-[24px]!
               value={formData.email}
               onChange={handleChange}
               placeholder="Email"
-              className="h-[61px] w-full rounded-md border border-white/20 bg-white px-4 text-[18px] text-[#333] outline-none placeholder:text-[#8b8b8b]"
+              className="h-[50px] md:h-[61px] text-[16px]! w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
             />
 
             <input
@@ -678,7 +678,7 @@ text-[24px]!
               value={formData.qualification}
               onChange={handleChange}
               placeholder="Qualification"
-              className="h-[61px] w-full rounded-md border border-white/20 bg-white px-4 text-[18px] text-[#333] outline-none placeholder:text-[#8b8b8b]"
+              className="h-[50px] md:h-[61px] text-[16px]! w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
             />
 
             <input
@@ -687,7 +687,7 @@ text-[24px]!
               value={formData.contact_no}
               onChange={handleChange}
               placeholder="Phone Number"
-              className="h-[61px] w-full rounded-md border border-white/20 bg-white px-4 text-[18px] text-[#333] outline-none placeholder:text-[#8b8b8b]"
+              className="h-[50px] md:h-[61px] text-[16px]! w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
             />
 
             {/* Applied For */}
@@ -697,7 +697,7 @@ text-[24px]!
     name="career_id"
     value={formData.career_id}
     onChange={handleChange}
-    className="h-[61px] w-full appearance-none rounded-md border border-white/20 bg-white px-4 pr-12 text-[18px] text-[#333] outline-none"
+    className="h-[50px] md:h-[61px] text-[16px]! w-full appearance-none rounded-md border border-white/20 bg-white px-4 pr-12  text-[#333] outline-none"
   >
     <option value="">Applied for</option>
 
@@ -724,21 +724,21 @@ text-[24px]!
 
 
             {/* Resume */}
-            <div className="flex h-[61px] items-center  overflow-hidden rounded-md border border-white/20 bg-white px-3">
+            <div className="flex h-[50px] md:h-[61px] text-[16px]! items-center  overflow-hidden rounded-md border border-white/20 bg-white px-3">
               <input
                 id="resume"
                 type="file"
                 name="resume"
                 onChange={handleFileChange}
                 accept=".pdf,.doc,.docx"
-                className="w-full text-[18px] text-[#555] file:mr-3 file:rounded file:border-0 file:bg-[#ececec] file:px-3 file:py-1.5 file:text-[12px]"
+                className="w-full text-[16px] text-[#555] file:mr-3 file:rounded file:border-0 file:bg-[#ececec] file:px-3 file:py-1.5 file:text-[12px]"
               />
             </div>
           
                         {/* Captcha same as it is */}
                               <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:col-span-2">
   {/* Captcha */}
-  <div className="flex h-[61px] items-center rounded-[6px] border border-white/70 bg-white/10 px-4 text-[18px] text-white">
+  <div className="flex h-[50px] md:h-[61px] text-[16px]! items-center rounded-[6px] border border-white/70 bg-white/10 px-4  text-white">
     <span className="font-medium">Captcha:</span>
     <span className="ml-1 ">
       {captchaQuestion} = ?
@@ -752,7 +752,7 @@ text-[24px]!
     onChange={(e) => setCaptchaAnswer(e.target.value)}
     placeholder="Enter answer"
     required
-    className="h-[61px] w-full rounded-[6px] bg-white px-4 text-[18px] text-black outline-none placeholder:text-[#8f8f8f]"
+    className="h-[50px] md:h-[61px] text-[16px]! w-full rounded-[6px] bg-white px-4  text-black outline-none placeholder:text-[#8f8f8f]"
   />
 
   {/* Button */}
@@ -767,7 +767,7 @@ text-[24px]!
     <button
     type="submit"
     disabled={submitLoading}
-    className="animated-btn h-[61px] w-full"
+    className="animated-btn h-[50px] md:h-[61px] text-[16px]! w-full"
   >
     {submitLoading ? "Submitting..." : "Let's Connect"}
   </button>
@@ -795,7 +795,213 @@ text-[24px]!
               </section>
            
       <AnimatePresence>
-    {galleryOpen && (
+        {galleryOpen && (
+  <motion.div
+    className="
+      fixed
+      inset-0
+      z-[9999]
+      flex
+      items-center
+      justify-center
+      overflow-hidden
+      bg-black/90
+      p-3
+      sm:p-5
+      lg:p-8
+    "
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    exit={{ opacity: 0 }}
+    onClick={closeGallery}
+  >
+    {/* Close Button */}
+    <button
+      type="button"
+      onClick={(e) => {
+        e.stopPropagation();
+        closeGallery();
+      }}
+      aria-label="Close gallery"
+      className="
+        absolute
+        right-3
+        top-3
+        z-50
+        flex
+        h-10
+        w-10
+        items-center
+        justify-center
+        rounded-full
+        bg-white/90
+        text-primary
+        shadow-lg
+        transition
+        hover:bg-white
+
+        sm:right-5
+        sm:top-5
+        sm:h-11
+        sm:w-11
+
+        lg:right-8
+        lg:top-8
+        lg:h-12
+        lg:w-12
+      "
+    >
+      <X className="h-5 w-5 lg:h-[22px] lg:w-[22px]" />
+    </button>
+
+    {/* Gallery Content */}
+    <div
+      className="
+        relative
+        flex
+        h-full
+        w-full
+        max-w-full
+        items-center
+        justify-center
+      "
+      onClick={(e) => e.stopPropagation()}
+    >
+      {/* Left Arrow */}
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          handlePrevImage();
+        }}
+        aria-label="Previous image"
+        className="
+          absolute
+          left-1
+          top-1/2
+          z-40
+          flex
+          h-10
+          w-10
+          -translate-y-1/2
+          items-center
+          justify-center
+          rounded-full
+          bg-white/90
+          shadow-lg
+          transition
+          hover:bg-white
+
+          sm:left-3
+          sm:h-11
+          sm:w-11
+
+          lg:left-8
+          lg:h-auto
+          lg:w-auto
+          lg:p-3
+        "
+      >
+        <ChevronLeft className="h-6 w-6 text-[#A61D67] lg:h-[30px] lg:w-[30px]" />
+      </button>
+
+      {/* Active Image */}
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.img
+          key={`${activeImageIndex}-${careerImages[activeImageIndex]}`}
+          src={careerImages[activeImageIndex]}
+          alt={`Career gallery image ${activeImageIndex + 1}`}
+          className="
+            block
+            h-auto
+            w-auto
+            max-h-[calc(100dvh-70px)]
+            max-w-[calc(100vw-28px)]
+            select-none
+            object-contain
+
+            sm:max-h-[calc(100dvh-80px)]
+            sm:max-w-[calc(100vw-50px)]
+
+            lg:max-h-[90vh]
+            lg:max-w-[90vw]
+          "
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -40 }}
+          transition={{
+            duration: 0.3,
+            ease: "easeOut",
+          }}
+          draggable={false}
+        />
+      </AnimatePresence>
+
+      {/* Right Arrow */}
+      <button
+        type="button"
+        onClick={(e) => {
+          e.stopPropagation();
+          handleNextImage();
+        }}
+        aria-label="Next image"
+        className="
+          absolute
+          right-1
+          top-1/2
+          z-40
+          flex
+          h-10
+          w-10
+          -translate-y-1/2
+          items-center
+          justify-center
+          rounded-full
+          bg-white/90
+          shadow-lg
+          transition
+          hover:bg-white
+
+          sm:right-3
+          sm:h-11
+          sm:w-11
+
+          lg:right-8
+          lg:h-auto
+          lg:w-auto
+          lg:p-3
+        "
+      >
+        <ChevronRight className="h-6 w-6 text-[#A61D67] lg:h-[30px] lg:w-[30px]" />
+      </button>
+
+      {/* Image Counter */}
+      <div
+        className="
+          absolute
+          bottom-2
+          left-1/2
+          z-40
+          -translate-x-1/2
+          rounded-full
+          bg-black/60
+          px-3
+          py-1
+          text-[12px]
+          font-medium
+          text-white
+
+          sm:bottom-3
+          sm:text-[13px]
+          lg:bottom-0
+        "
+      >
+        {activeImageIndex + 1} / {careerImages.length}
+      </div>
+    </div>
+  </motion.div>
+)}
+    {/* {galleryOpen && (
       <motion.div
         className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90"
         initial={{ opacity: 0 }}
@@ -803,15 +1009,13 @@ text-[24px]!
         exit={{ opacity: 0 }}
         onClick={closeGallery}
       >
-        {/* Close Button */}
         <button
           onClick={closeGallery}
-          className="absolute right-8 top-8 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-primary"
+          className="absolute right-0 lg:right-8 top-8 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-primary"
         >
           <X size={22} />
         </button>
 
-        {/* Left Arrow */}
         <button
           onClick={(e) => {
             e.stopPropagation();
@@ -822,7 +1026,6 @@ text-[24px]!
           <ChevronLeft size={30} className="text-[#A61D67]" />
         </button>
 
-        {/* Image */}
         <AnimatePresence mode="wait">
           <motion.img
             key={careerImages[activeImageIndex]}
@@ -837,7 +1040,6 @@ text-[24px]!
           />
         </AnimatePresence>
 
-        {/* Right Arrow */}
         <button
           onClick={(e) => {
             e.stopPropagation();
@@ -848,7 +1050,7 @@ text-[24px]!
           <ChevronRight size={30} className="text-[#A61D67]" />
         </button>
       </motion.div>
-    )}
+    )} */}
   </AnimatePresence>
       </>
     );

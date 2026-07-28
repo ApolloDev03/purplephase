@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import axios from "axios";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
@@ -47,6 +47,8 @@ const [activeServiceId, setActiveServiceId] = useState<number | null>(null);
   );
   const [activeImageIndex, setActiveImageIndex] = useState(0);
   const [isContactPopupOpen, setIsContactPopupOpen] = useState(false);
+const [isServiceDropdownOpen, setIsServiceDropdownOpen] = useState(false);
+const serviceDropdownRef = useRef<HTMLDivElement>(null);
 
     const handleContactPopupOpen = () => {
         setIsContactPopupOpen(true);
@@ -197,6 +199,27 @@ useEffect(() => {
     window.removeEventListener("keydown", handleKeyDown);
   };
 }, [selectedProject]);
+
+const selectedService = serviceList.find(
+  (service) => service.id === activeServiceId
+);
+
+useEffect(() => {
+  const handleOutsideClick = (event: MouseEvent) => {
+    if (
+      serviceDropdownRef.current &&
+      !serviceDropdownRef.current.contains(event.target as Node)
+    ) {
+      setIsServiceDropdownOpen(false);
+    }
+  };
+
+  document.addEventListener("mousedown", handleOutsideClick);
+
+  return () => {
+    document.removeEventListener("mousedown", handleOutsideClick);
+  };
+}, []);
   return (
     <>
 
@@ -215,7 +238,7 @@ text-primary ">
 The work in this portfolio aims to make that experience purposeful, powerful, and impossible to forget.
             </p>
 
-{serviceList.length > 0 && (
+{/* {serviceList.length > 0 && (
   <div className=" my-7 lg:my-16 flex flex-wrap justify-start gap-3">
 
 
@@ -245,6 +268,230 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
       Show All
     </button>
   </div>
+)} */}
+
+{serviceList.length > 0 && (
+  <div
+    className="
+      my-7 flex flex-nowrap justify-start gap-3
+      overflow-x-auto pb-2 scroll-smooth
+      snap-x snap-mandatory
+      [scrollbar-width:none]
+      [&::-webkit-scrollbar]:hidden
+
+      lg:my-16 lg:flex-wrap lg:overflow-visible lg:pb-0 lg:snap-none
+    "
+  >
+    {serviceList.map((service) => {
+      const isActive = activeServiceId === service.id;
+
+      return (
+        <button
+          type="button"
+          key={service.id}
+          onClick={() => handleFilterChange(service.id)}
+          className={`
+            shrink-0 snap-start whitespace-nowrap
+            rounded-lg p-2 md:p-3
+            text-[14px] lg:!text-[19px] !font-semibold
+            text-gray-600 hover:text-white
+            transition-all duration-300
+
+            ${
+              isActive
+                ? "bg-primary text-white"
+                : "bg-[#cccccc] hover:bg-primary"
+            }
+          `}
+        >
+          {service.service_name}
+        </button>
+      );
+    })}
+
+    <button
+      type="button"
+      onClick={() => handleFilterChange(null)}
+      className={`
+        shrink-0 snap-start whitespace-nowrap
+        rounded-lg p-2 md:p-3
+        text-[14px] lg:!text-[19px] !font-semibold
+        text-white
+        transition-all duration-300
+
+        ${
+          activeServiceId === null
+            ? "bg-primary"
+            : "bg-secondary hover:bg-primary"
+        }
+      `}
+    >
+      Show All
+    </button>
+  </div>
+)}
+
+{serviceList.length > 0 && (
+  <>
+    {/* Mobile Custom Dropdown */}
+    <div
+      ref={serviceDropdownRef}
+      className="relative z-50 my-7 lg:hidden"
+    >
+      <button
+        type="button"
+        onClick={() => setIsServiceDropdownOpen((prev) => !prev)}
+        className={`
+          flex w-full items-center justify-between
+          rounded-lg border bg-white
+          px-4 py-3
+          text-left !text-[16px] !font-semibold
+          shadow-sm
+          transition-all duration-300
+
+          ${
+            isServiceDropdownOpen
+              ? "border-primary ring-2 ring-primary/15"
+              : "border-gray-300"
+          }
+        `}
+      >
+        <span className="min-w-0 truncate text-gray-700">
+          {selectedService?.service_name || "Show All"}
+        </span>
+
+        <svg
+          className={`ml-3 h-5 w-5 shrink-0 text-gray-700 transition-transform duration-300 ${
+            isServiceDropdownOpen ? "rotate-180" : ""
+          }`}
+          viewBox="0 0 24 24"
+          fill="none"
+        >
+          <path
+            d="M6 9L12 15L18 9"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </button>
+
+      {isServiceDropdownOpen && (
+        <div
+          className="
+            absolute left-0 right-0 top-[calc(100%+8px)]
+            z-[100]
+            max-h-[280px]
+            overflow-y-auto
+            rounded-lg border border-gray-200
+            bg-white p-2
+            shadow-[0_15px_45px_rgba(0,0,0,0.18)]
+          "
+        >
+          {/* Show All */}
+          <button
+            type="button"
+            onClick={() => {
+              handleFilterChange(null);
+              setIsServiceDropdownOpen(false);
+            }}
+            className={`
+              flex w-full items-center
+              rounded-md px-3 py-3
+              text-left !text-[15px] !font-semibold
+              transition-colors duration-200
+
+              ${
+                activeServiceId === null
+                  ? "bg-primary text-white"
+                  : "text-gray-700 hover:bg-gray-100"
+              }
+            `}
+          >
+            Show All
+          </button>
+
+          {serviceList.map((service) => {
+            const isActive = activeServiceId === service.id;
+
+            return (
+              <button
+                type="button"
+                key={service.id}
+                onClick={() => {
+                  handleFilterChange(service.id);
+                  setIsServiceDropdownOpen(false);
+                }}
+                className={`
+                  mt-1 flex w-full items-center
+                  rounded-md px-3 py-3
+                  text-left !text-[15px] !font-semibold
+                  transition-colors duration-200
+
+                  ${
+                    isActive
+                      ? "bg-primary text-white"
+                      : "text-gray-700 hover:bg-gray-100"
+                  }
+                `}
+              >
+                {service.service_name}
+              </button>
+            );
+          })}
+        </div>
+      )}
+    </div>
+
+    {/* Desktop Existing Design */}
+    <div className="my-16 hidden flex-wrap justify-start gap-3 lg:flex">
+      {serviceList.map((service) => {
+        const isActive = activeServiceId === service.id;
+
+        return (
+          <button
+            type="button"
+            key={service.id}
+            onClick={() => handleFilterChange(service.id)}
+            className={`
+              rounded-lg p-3
+              !text-[19px] !font-semibold
+              text-gray-600 hover:text-white
+              transition-all duration-300
+
+              ${
+                isActive
+                  ? "bg-primary text-white"
+                  : "bg-[#cccccc] hover:bg-primary"
+              }
+            `}
+          >
+            {service.service_name}
+          </button>
+        );
+      })}
+
+      <button
+        type="button"
+        onClick={() => handleFilterChange(null)}
+        className={`
+          rounded-lg p-3
+          !text-[19px] !font-semibold
+          text-white
+          transition-all duration-300
+
+          ${
+            activeServiceId === null
+              ? "bg-primary"
+              : "bg-secondary hover:bg-primary"
+          }
+        `}
+      >
+        Show All
+      </button>
+    </div>
+  </>
 )}
 
             {loading && (
@@ -343,7 +590,7 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
       </section>
   <section className="bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]">
           <div className="mx-auto flex max-w-full flex-col items-center justify-center px-6 py-9 lg:py-16 xl:py-[85px] text-center md:px-20 lg:px-[115px]">
-            <h1   className="uppercase  text-[28px] xl:text-[42px] font-bold leading-[130%]  tracking-wide text-white ">
+            <h1   className="uppercase  text-[24px] xl:text-[42px] font-bold leading-[130%]  tracking-wide text-white ">
               Need impactful branding solutions ?
             </h1>
   
@@ -370,7 +617,7 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
          
           </div>
         </section>
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {selectedProject && (
           <motion.div
             className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/80 px-4  backdrop-blur-sm"
@@ -444,7 +691,307 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
             </motion.div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence> */}
+      <AnimatePresence>
+  {selectedProject && (
+    <motion.div
+      className="
+        fixed
+        inset-0
+        z-[9999]
+        flex
+        items-center
+        justify-center
+        overflow-y-auto
+        bg-black/80
+        p-2
+        backdrop-blur-sm
+
+        sm:p-4
+        lg:px-4
+      "
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={closeGallery}
+    >
+      <motion.div
+        className="
+          relative
+          my-auto
+          w-full
+          max-w-4xl
+          overflow-hidden
+          rounded-[14px]
+          bg-white
+          p-3
+          shadow-2xl
+
+          sm:rounded-[18px]
+          sm:p-4
+
+          md:rounded-[24px]
+          md:p-6
+        "
+        initial={{
+          opacity: 0,
+          scale: 0.92,
+          y: 30,
+        }}
+        animate={{
+          opacity: 1,
+          scale: 1,
+          y: 0,
+        }}
+        exit={{
+          opacity: 0,
+          scale: 0.92,
+          y: 30,
+        }}
+        transition={{ duration: 0.25 }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Close button */}
+        <button
+          type="button"
+          onClick={closeGallery}
+          aria-label="Close portfolio gallery"
+          className="
+            absolute
+            right-2
+            top-2
+            z-30
+            flex
+            h-9
+            w-9
+            items-center
+            justify-center
+            rounded-full
+            bg-[#A61D67]
+            text-white
+            shadow-lg
+            transition
+            hover:bg-[#8d1557]
+
+            sm:right-3
+            sm:top-3
+            sm:h-10
+            sm:w-10
+
+            md:right-4
+            md:top-4
+          "
+        >
+          <X className="h-5 w-5" />
+        </button>
+
+        {/* Project details */}
+        <div className="mb-3 min-h-[55px] pr-12 sm:mb-4">
+          <p
+            className="
+              text-[10px]
+              font-semibold
+              uppercase
+              leading-4
+              tracking-[0.12em]
+              text-[#A61D67]
+
+              sm:text-xs
+              sm:tracking-widest
+            "
+          >
+            {selectedProject?.service?.service_name || "Portfolio"}
+          </p>
+
+          <h3
+            className="
+              mt-1
+              line-clamp-2
+              text-[18px]
+              font-bold
+              leading-[120%]
+              text-[#626262]
+
+              sm:text-xl
+              md:text-3xl
+            "
+          >
+            {selectedProject.title}
+          </h3>
+        </div>
+
+        {/* Image slider */}
+        <div
+          className="
+            relative
+            flex
+            h-[calc(100dvh-155px)]
+            min-h-[300px]
+            max-h-[520px]
+            w-full
+            items-center
+            justify-center
+            overflow-hidden
+            rounded-[12px]
+            bg-[#f3f3f3]
+
+            sm:h-[65vh]
+            sm:max-h-[600px]
+            sm:rounded-[16px]
+
+            lg:h-[500px]
+            lg:max-h-none
+            lg:rounded-[18px]
+          "
+        >
+          {selectedImages.length > 0 ? (
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.img
+                key={
+                  selectedImages[activeImageIndex]?.id ||
+                  selectedImages[activeImageIndex]?.image_url
+                }
+                src={selectedImages[activeImageIndex]?.image_url}
+                alt={selectedProject.title}
+                className="
+                  block
+                  h-full
+                  w-full
+                  select-none
+                  object-contain
+
+                  lg:object-cover
+                "
+                initial={{
+                  opacity: 0,
+                  x: 40,
+                }}
+                animate={{
+                  opacity: 1,
+                  x: 0,
+                }}
+                exit={{
+                  opacity: 0,
+                  x: -40,
+                }}
+                transition={{ duration: 0.25 }}
+                draggable={false}
+              />
+            </AnimatePresence>
+          ) : (
+            <p className="text-sm font-medium text-gray-400">
+              No Image
+            </p>
+          )}
+
+          {selectedImages.length > 1 && (
+            <>
+              {/* Previous image */}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handlePrevImage();
+                }}
+                aria-label="Previous image"
+                className="
+                  absolute
+                  left-2
+                  top-1/2
+                  z-20
+                  flex
+                  h-9
+                  w-9
+                  -translate-y-1/2
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-white/95
+                  text-[#A61D67]
+                  shadow-lg
+                  transition
+                  hover:bg-[#A61D67]
+                  hover:text-white
+
+                  sm:left-3
+                  sm:h-10
+                  sm:w-10
+
+                  md:left-5
+                  md:h-12
+                  md:w-12
+                "
+              >
+                <ChevronLeft className="h-5 w-5 md:h-6 md:w-6" />
+              </button>
+
+              {/* Next image */}
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  handleNextImage();
+                }}
+                aria-label="Next image"
+                className="
+                  absolute
+                  right-2
+                  top-1/2
+                  z-20
+                  flex
+                  h-9
+                  w-9
+                  -translate-y-1/2
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-white/95
+                  text-[#A61D67]
+                  shadow-lg
+                  transition
+                  hover:bg-[#A61D67]
+                  hover:text-white
+
+                  sm:right-3
+                  sm:h-10
+                  sm:w-10
+
+                  md:right-5
+                  md:h-12
+                  md:w-12
+                "
+              >
+                <ChevronRight className="h-5 w-5 md:h-6 md:w-6" />
+              </button>
+
+              {/* Mobile image counter */}
+              <div
+                className="
+                  absolute
+                  bottom-3
+                  left-1/2
+                  z-20
+                  -translate-x-1/2
+                  rounded-full
+                  bg-black/60
+                  px-3
+                  py-1
+                  text-[11px]
+                  font-medium
+                  text-white
+
+                  sm:text-xs
+                "
+              >
+                {activeImageIndex + 1} / {selectedImages.length}
+              </div>
+            </>
+          )}
+        </div>
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
         <ContactPopup
                                   isOpen={isContactPopupOpen}
                                   onClose={() => setIsContactPopupOpen(!isContactPopupOpen)}

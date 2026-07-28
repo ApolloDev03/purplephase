@@ -132,37 +132,43 @@ export default function AchievementSection() {
           <div>
             <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr]  xl:grid-cols-[385px_1fr] gap-6 md:gap-12 items-start">
               {/* Image Card */}
-              <AnimatePresence mode="wait">
-                <motion.div
-                  key={`image-${currentTestimonial.id}`}
-                  initial={{ opacity: 0, y: 25 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -25 }}
-                  transition={{ duration: 0.45 }}
-                  className="   relative
+             <AnimatePresence mode="wait">
+  <motion.div
+    key={`image-${currentTestimonial.id}`}
+    initial={{ opacity: 0, y: 25 }}
+    animate={{ opacity: 1, y: 0 }}
+    exit={{ opacity: 0, y: -25 }}
+    transition={{ duration: 0.45 }}
+    className="
+      relative
       ml-0
       mr-auto
       self-start
-      w-full
-      max-w-[80px]
+      flex-none
       overflow-hidden
-      rounded-md
-      lg:rounded-[20px]
       border
       border-white/75
       bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]
       shadow-[0_15px_30px_rgba(0,0,0,0.22)]
-h-[200px] max-w-[250px]
+     !w-[80px]
+     !h-[80px]
+      max-[639px]:rounded-md
+      md:w-[250px]
+      md:h-[200px]
+      md:max-w-[250px]
+      xl:w-[385px]
       xl:h-[257px]
-      xl:max-w-[385px]"
-                >
-                  <img
-                    src={currentTestimonial.image}
-                    alt={currentTestimonial.name}
-                    className="w-full h-full "
-                  />
-                </motion.div>
-              </AnimatePresence>
+      xl:max-w-[385px]
+      xl:rounded-[20px]
+    "
+  >
+    <img
+      src={currentTestimonial.image}
+      alt={currentTestimonial.name}
+      className="block h-full w-full object-cover"
+    />
+  </motion.div>
+</AnimatePresence>
 
               {/* Text Slider */}
               <div className="text-white overflow-hidden text-left">

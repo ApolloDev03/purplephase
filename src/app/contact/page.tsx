@@ -419,11 +419,11 @@ export default function ContactPage() {
         <div className="bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)] ">
           <div className="mx-auto max-w-full px-4 py-[20px] lg:py-[30px] xl:py-16 lg:px-6 xl:px-10 2xl:px-32">
 
-            <h1 className="text-[28px] text-white! mb-1 font-semibold leading-tight text-[#a20d69] md:text-[34px] lg:text-[50px]">
+            <h1 className="text-[25px] text-white! mb-1 font-semibold leading-tight text-[#a20d69] md:text-[34px] lg:text-[50px]">
               No decks. No jargon. Just an honest conversation.
             </h1>
 
-            <span className=" text-white! font-medium text-[25px] text-[#424242] xl:text-[32px] 2xl:text-[36px]">
+            <span className=" text-white! font-medium text-[14px] lg:text-[25px] text-[#424242] xl:text-[32px] 2xl:text-[36px]">
               Let’s catch up over a cup of coffee !
             </span>
 
@@ -435,7 +435,7 @@ export default function ContactPage() {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Full Name"
-                  className="h-[61px] w-full rounded-md border-0 bg-white px-4 text-[18px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+                  className="h-[50px] md:h-[61px] w-full rounded-md border-0 bg-white px-4 text-[14px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
                 />
 
                 <input
@@ -444,7 +444,7 @@ export default function ContactPage() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="Email"
-                  className="h-[61px] w-full rounded-md border-0 bg-white px-4 text-[18px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+                  className="h-[50px] md:h-[61px] w-full rounded-md border-0 bg-white px-4 text-[14px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
                 />
 
                 <input
@@ -453,7 +453,7 @@ export default function ContactPage() {
                   value={formData.company}
                   onChange={handleChange}
                   placeholder="Company Name"
-                  className="h-[61px] w-full rounded-md border-0 bg-white px-4 text-[18px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+                  className="h-[50px] md:h-[61px] w-full rounded-md border-0 bg-white px-4 text-[14px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
                 />
 
                 <input
@@ -462,7 +462,7 @@ export default function ContactPage() {
                   value={formData.contact_no}
                   onChange={handleChange}
                   placeholder="Contact Number"
-                  className="h-[61px] w-full rounded-md border-0 bg-white px-4 text-[18px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+                  className="h-[50px] md:h-[61px] w-full rounded-md border-0 bg-white px-4 text-[14px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
                 />
               </div>
 
@@ -473,7 +473,7 @@ export default function ContactPage() {
                   value={formData.country}
                   onChange={handleChange}
                   placeholder="Country"
-                  className="h-[61px] w-full rounded-md border-0 bg-white px-4 text-[18px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+                  className="h-[50px] md:h-[61px] w-full rounded-md border-0 bg-white px-4 text-[14px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
                 />
 
                 <input
@@ -482,7 +482,7 @@ export default function ContactPage() {
                   value={formData.state}
                   onChange={handleChange}
                   placeholder="State"
-                  className="h-[61px] w-full rounded-md border-0 bg-white px-4 text-[18px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+                  className="h-[50px] md:h-[61px] w-full rounded-md border-0 bg-white px-4 text-[14px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
                 />
 
                 <input
@@ -491,11 +491,11 @@ export default function ContactPage() {
                   value={formData.district}
                   onChange={handleChange}
                   placeholder="District"
-                  className="h-[61px] w-full rounded-md border-0 bg-white px-4 text-[18px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+                  className="h-[50px] md:h-[61px] w-full rounded-md border-0 bg-white px-4 text-[14px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
                 />
               </div>
               <div className="mt-7">
-                <h1 className="mb-5 text-[20px] font-bold text-white! ">
+                <h1 className="mb-5 text-[14px] lg:text-[20px] font-bold text-white! ">
                   Interested Services
                 </h1>
 
@@ -519,7 +519,7 @@ export default function ContactPage() {
                           />
 
                           <span
-                            className={`flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-[10px] border-2 transition-all duration-300 ${isSelected
+                            className={`flex h-[20px] w-[20px] lg:h-[30px] lg:w-[30px] shrink-0 items-center justify-center rounded-md lg:rounded-[10px] border-2 transition-all duration-300 ${isSelected
                                 ? "border-white! bg-white!"
                                 : "border-white! bg-transparent"
                               }`}
@@ -527,7 +527,7 @@ export default function ContactPage() {
                             {isSelected && <Check size={22} className="text-primary" />}
                           </span>
 
-                          <span className="text-[16px] lg:text-[20px] text-white! ">
+                          <span className=" text-[14px] lg:text-[16px] lg:text-[20px] text-white! ">
                             {expertise.expertise_name}
                           </span>
                         </label>
@@ -545,11 +545,11 @@ export default function ContactPage() {
                 onChange={handleChange}
                 rows={5}
                 placeholder="Tell us about your project..."
-                className="mt-7 w-full resize-none rounded-md border-0 bg-white px-4 py-4 text-[13px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+                className="mt-7 w-full resize-none rounded-md border-0 bg-white px-4 py-4 text-[14px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
               />
 
-              <div className="mt-3 grid grid-cols-1 gap-7 md:grid-cols-[264px_340px_1fr]">
-                <div className="flex h-[61px] w-full overflow-hidden rounded-md border border-[#e8d5e1] bg-white shadow-[0_8px_22px_rgba(150,25,101,0.10)]">
+              <div className="mt-3 grid grid-cols-1 gap-3 lg:gap-7 md:grid-cols-[264px_340px_1fr]">
+                <div className="flex h-[50px] md:h-[61px] w-full overflow-hidden rounded-md border border-[#e8d5e1] bg-white shadow-[0_8px_22px_rgba(150,25,101,0.10)]">
                   {/* Captcha Text Box */}
                   <div className="relative flex flex-1 items-center justify-center overflow-hidden bg-[linear-gradient(135deg,#ffffff_0%,#fdf1f8_100%)]">
                     <span className="relative z-10 select-none font-heading text-[22px] font-bold tracking-[0.32em] text-[#555] drop-shadow-sm">
@@ -576,14 +576,14 @@ export default function ContactPage() {
                   value={formData.captcha}
                   onChange={handleChange}
                   placeholder="Enter Captcha"
-                  className="h-[61px] w-full rounded-md border-0 bg-white px-4 text-[18px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
+                  className="h-[50px] md:h-[61px] w-full rounded-md border-0 bg-white px-4 text-[14px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
                 />
                 <div className="animated-btn-wrapper">
 
                   <button
                     type="submit"
                     disabled={submitLoading}
-                    className="animated-btn h-[61px] w-full"
+                    className="animated-btn h-[50px] md:h-[61px] text-[16px]! xl:text-[18px]! w-full"
                   >
                     {submitLoading ? "Sending..." : "Let’s Connect"}
 

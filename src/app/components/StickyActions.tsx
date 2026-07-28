@@ -125,7 +125,7 @@ export default function StickyActions() {
                 className={`
           fixed bottom-6 z-[999] flex flex-col items-center gap-3
           transition-all duration-500 ease-in-out
-          ${isSidebarOpen ? "right-[calc(min(15rem,100vw)+16px)] lg:right-[calc(min(19rem,100vw)+16px)] xl:right-[calc(min(28rem,100vw)+16px)]" : "right-4 md:right-6"}
+          ${isSidebarOpen ? "right-[calc(min(15rem,100vw)+16px)] lg:right-[calc(min(17rem,100vw)+16px)] xl:right-[calc(min(28rem,100vw)+16px)]" : "right-4 md:right-6"}
         `}
             >
                 {/* WhatsApp */}
