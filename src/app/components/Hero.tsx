@@ -386,8 +386,7 @@ export default function HeaderHero() {
   leading-[1.15]
   text-primary
 
-  min-[375px]:text-[24px]!
-  sm:text-[26px]!
+text-[25px]!
   md:text-[30px]!
   lg:text-[45px]!
   xl:text-[50px]!
@@ -411,13 +410,10 @@ export default function HeaderHero() {
              whitespace-pre-line
   break-words
   font-body
-  !font-semibold
-  leading-[1.15]
+  !font-bold
   text-primary
-
-  !text-[22px]
-  min-[375px]:!text-[24px]
-  sm:!text-[26px]
+max-w-[50%] md:max-w-[620px] lg:max-w-[760px]
+!text-[25px]
   md:!text-[30px]
   lg:!text-[45px]
   xl:!text-[50px]

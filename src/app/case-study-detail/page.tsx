@@ -153,6 +153,11 @@ useEffect(() => {
   const sortedMoreImages = [...(caseStudy.more_images || [])].sort(
     (a, b) => a.sort_order - b.sort_order
   );
+  const mobileMoreImageGroups: MoreImage[][] = [];
+
+for (let index = 0; index < sortedMoreImages.length; index += 4) {
+  mobileMoreImageGroups.push(sortedMoreImages.slice(index, index + 4));
+}
   const moreImageRows: MoreImage[][] = [];
 
   let moreStart = 0;
@@ -344,98 +349,255 @@ const activeMoreImage =
         </section>
       )} */}
       {/* MORE IMAGES */}
+{/* MORE IMAGES */}
 {sortedMoreImages.length > 0 && (
-  <section className="mx-auto w-full max-w-full px-4 py-5 sm:px-6 lg:px-20 2xl:px-32">
-    {moreImageRows.map((row, rowIndex) => {
-      const isThreeGrid = row.length === 3;
+  <section className="mx-auto w-full max-w-full px-4 py-5 lg:px-6 xl:px-10 2xl:px-32">
 
-      return (
+    {/* Mobile: 4 images, space, next 4 images */}
+    <div className="lg:hidden">
+      {mobileMoreImageGroups.map((group, groupIndex) => (
         <div
-          key={rowIndex}
-          className={`mb-5 grid grid-cols-1 gap-5 ${
-            isThreeGrid ? "sm:grid-cols-2 lg:grid-cols-3" : "sm:grid-cols-2"
-          }`}
+          key={`mobile-group-${groupIndex}`}
+          className="
+            mb-10 grid grid-cols-2 gap-3
+            last:mb-0
+          "
         >
-          {row.map((img, index) => (
-            <motion.div
+          {group.map((img, imageIndex) => (
+            <motion.button
+              type="button"
               key={img.id}
-              initial={{ opacity: 0, y: 25 }}
+              initial={{ opacity: 0, y: 22 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.45, delay: index * 0.06 }}
+              viewport={{ once: true, amount: 0.15 }}
+              transition={{
+                duration: 0.45,
+                delay: imageIndex * 0.07,
+              }}
               onClick={() => openMoreImageSlider(img.id)}
-              className={`group cursor-pointer overflow-hidden rounded-[12px] bg-white ${
-                isThreeGrid ? "aspect-[536/335]" : "aspect-[815/509]"
-              }`}
+              className="
+                group aspect-[1/0.70] w-full
+                overflow-hidden rounded-[12px]
+                bg-white
+              "
             >
               <img
                 src={img.image_url}
-                alt={`More image ${rowIndex + 1}-${index + 1}`}
-                className="block h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                alt={`More image ${groupIndex * 4 + imageIndex + 1}`}
+                className="
+                  block h-full w-full object-cover
+                  transition-transform duration-700
+                  group-hover:scale-105
+                "
               />
-            </motion.div>
+            </motion.button>
           ))}
         </div>
-      );
-    })}
+      ))}
+    </div>
+
+    {/* Desktop: Existing layout unchanged */}
+    <div className="hidden lg:block">
+      {moreImageRows.map((row, rowIndex) => {
+        const isThreeGrid = row.length === 3;
+
+        return (
+          <div
+            key={`desktop-row-${rowIndex}`}
+            className={`mb-5 grid gap-5 ${
+              isThreeGrid ? "grid-cols-3" : "grid-cols-2"
+            }`}
+          >
+            {row.map((img, index) => (
+              <motion.div
+                key={img.id}
+                initial={{ opacity: 0, y: 25 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{
+                  duration: 0.45,
+                  delay: index * 0.06,
+                }}
+                onClick={() => openMoreImageSlider(img.id)}
+                className={`group cursor-pointer overflow-hidden rounded-[12px] bg-white ${
+                  isThreeGrid ? "lg:aspect-[536/335]" : "aspect-[815/509]"
+                }`}
+              >
+                <img
+                  src={img.image_url}
+                  alt={`More image ${rowIndex + 1}-${index + 1}`}
+                  className="
+                    block h-full w-full object-cover
+                    transition-transform duration-700
+                    group-hover:scale-105
+                  "
+                />
+              </motion.div>
+            ))}
+          </div>
+        );
+      })}
+    </div>
   </section>
 )}
-
 {/* PREV NEXT */}
-<section className="mx-auto w-full max-w-full px-4 py-4 lg:py-10 sm:px-6 lg:px-20 2xl:px-32">
-  <div className="flex flex-col items-center justify-between gap-5   lg:pt-5 lg:flex-row">
-    {/* Previous Button */}
+{/* PREVIOUS / EXPLORE / NEXT */}
+<section className="mx-auto w-full max-w-full px-4 py-6 lg:px-6 xl:px-10 lg:py-10 2xl:px-32">
+  <div
+    className="
+      grid grid-cols-[46px_minmax(0,1fr)_46px]
+      items-center gap-3
+
+      lg:flex lg:justify-between lg:gap-5 lg:pt-5
+    "
+  >
+    {/* Previous */}
     <button
       type="button"
       onClick={() => handleProjectChange(caseStudy.previous_slug)}
       disabled={!caseStudy.previous_slug}
-      className={`inline-flex items-center gap-2 text-sm font-medium transition sm:text-base ${
-        caseStudy.previous_slug
-          ? "cursor-pointer text-[#666] hover:text-[#A62666]"
-          : "cursor-not-allowed text-gray-300"
-      }`}
+      aria-label="Previous Project"
+      className={`
+        flex h-11 w-11 items-center justify-center
+        rounded-full border
+        transition-all duration-300
+
+        lg:h-auto lg:w-auto lg:gap-2
+        lg:rounded-none lg:border-0
+        lg:text-base lg:font-medium
+
+        ${
+          caseStudy.previous_slug
+            ? `
+              cursor-pointer
+              border-[#A62666]/25
+              bg-white text-[#A62666]
+              shadow-sm
+              hover:border-[#A62666]
+              hover:bg-[#A62666]
+              hover:text-white
+
+              lg:bg-transparent
+              lg:text-[#666]
+              lg:shadow-none
+              lg:hover:bg-transparent
+              lg:hover:text-[#A62666]
+            `
+            : `
+              cursor-not-allowed
+              border-gray-200
+              bg-gray-100
+              text-gray-300
+
+              lg:bg-transparent
+            `
+        }
+      `}
     >
-      <FaAnglesLeft className="text-[13px]" />
-      <span>Previous Project</span>
+      <FaAnglesLeft className="text-[15px] lg:text-[13px]" />
+
+      <span className="hidden lg:inline">
+        Previous Project
+      </span>
     </button>
 
-    {/* Explore More Button */}
+    {/* Explore More */}
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: 0.45 }}
-      className="flex justify-center"
+      transition={{ duration: 0.5, delay: 0.25 }}
+      className="flex min-w-0 justify-center"
     >
       <button
         type="button"
         onClick={() => router.push("/case-study")}
-        className="motion-shine group inline-flex items-center justify-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30 lg:text-[20px] 2xl:text-[24px]"
+        className="
+          motion-shine group
+          inline-flex max-w-full items-center justify-center
+          gap-2 whitespace-nowrap rounded-full
+          bg-primary px-4 py-3
+          text-[13px] font-bold text-white
+          shadow-lg shadow-primary/20
+          transition-all duration-300
+
+          hover:-translate-y-1
+          hover:bg-[#7a1f50]
+          hover:shadow-xl
+          hover:shadow-primary/30
+
+          sm:px-6 sm:text-[15px]
+          lg:gap-3 lg:text-[20px]
+          2xl:text-[24px]
+        "
       >
         Explore More
-        <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-          <LuMoveUpRight className="h-5 w-5" />
+
+        <span
+          className="
+            flex h-4 w-4 items-center justify-center
+            transition-transform duration-300
+            group-hover:translate-x-1
+            group-hover:-translate-y-1
+            lg:h-5 lg:w-5
+          "
+        >
+          <LuMoveUpRight className="h-full w-full" />
         </span>
       </button>
     </motion.div>
 
-    {/* Next Button */}
+    {/* Next */}
     <button
       type="button"
       onClick={() => handleProjectChange(caseStudy.next_slug)}
       disabled={!caseStudy.next_slug}
-      className={`inline-flex items-center gap-2 text-sm font-medium transition sm:text-base ${
-        caseStudy.next_slug
-          ? "cursor-pointer text-[#666] hover:text-[#A62666]"
-          : "cursor-not-allowed text-gray-300"
-      }`}
+      aria-label="Next Project"
+      className={`
+        flex h-11 w-11 items-center justify-center
+        rounded-full border
+        transition-all duration-300
+
+        lg:h-auto lg:w-auto lg:gap-2
+        lg:rounded-none lg:border-0
+        lg:text-base lg:font-medium
+
+        ${
+          caseStudy.next_slug
+            ? `
+              cursor-pointer
+              border-[#A62666]/25
+              bg-white text-[#A62666]
+              shadow-sm
+              hover:border-[#A62666]
+              hover:bg-[#A62666]
+              hover:text-white
+
+              lg:bg-transparent
+              lg:text-[#666]
+              lg:shadow-none
+              lg:hover:bg-transparent
+              lg:hover:text-[#A62666]
+            `
+            : `
+              cursor-not-allowed
+              border-gray-200
+              bg-gray-100
+              text-gray-300
+
+              lg:bg-transparent
+            `
+        }
+      `}
     >
-      <span>Next Project</span>
-      <FaAnglesRight className="text-[13px]" />
+      <span className="hidden lg:inline">
+        Next Project
+      </span>
+
+      <FaAnglesRight className="text-[15px] lg:text-[13px]" />
     </button>
   </div>
 </section>
-
       {/* CTA */}
           <section className="bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]">
           <div className="mx-auto flex max-w-full flex-col items-center justify-center px-6 py-9 lg:py-16 xl:py-[85px] text-center md:px-20 lg:px-[115px]">
