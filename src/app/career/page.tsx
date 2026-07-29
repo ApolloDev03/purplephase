@@ -370,7 +370,7 @@ const renderGalleryTile = (
 
             <div className="absolute inset-0 lg:mx-auto max-w-[200px] lg:max-w-full flex  items-center px-4 lg:px-6 xl:px-10 2xl:px-32">
               <h1 className="leading-[130%] font-bold  
-text-[24px]!
+text-[21px]!
   md:text-[30px]!
   lg:text-[45px]!
   xl:text-[50px]!
@@ -660,7 +660,7 @@ text-[24px]!
               value={formData.first_name}
               onChange={handleChange}
               placeholder="Full Name"
-              className="h-[50px] md:h-[61px] text-[16px]! w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
+              className="h-[50px] md:h-[61px] text-[14px]! w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
             />
 
             <input
@@ -669,7 +669,7 @@ text-[24px]!
               value={formData.email}
               onChange={handleChange}
               placeholder="Email"
-              className="h-[50px] md:h-[61px] text-[16px]! w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
+              className="h-[50px] md:h-[61px] text-[14px]! w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
             />
 
             <input
@@ -678,7 +678,7 @@ text-[24px]!
               value={formData.qualification}
               onChange={handleChange}
               placeholder="Qualification"
-              className="h-[50px] md:h-[61px] text-[16px]! w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
+              className="h-[50px] md:h-[61px] text-[14px]! w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
             />
 
             <input
@@ -687,7 +687,7 @@ text-[24px]!
               value={formData.contact_no}
               onChange={handleChange}
               placeholder="Phone Number"
-              className="h-[50px] md:h-[61px] text-[16px]! w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
+              className="h-[50px] md:h-[61px] text-[14px]! w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
             />
 
             {/* Applied For */}
@@ -697,7 +697,7 @@ text-[24px]!
     name="career_id"
     value={formData.career_id}
     onChange={handleChange}
-    className="h-[50px] md:h-[61px] text-[16px]! w-full appearance-none rounded-md border border-white/20 bg-white px-4 pr-12  text-[#333] outline-none"
+    className="h-[50px] md:h-[61px] text-[14px]! w-full appearance-none rounded-md border border-white/20 bg-white px-4 pr-12  text-[#333] outline-none"
   >
     <option value="">Applied for</option>
 
@@ -724,21 +724,21 @@ text-[24px]!
 
 
             {/* Resume */}
-            <div className="flex h-[50px] md:h-[61px] text-[16px]! items-center  overflow-hidden rounded-md border border-white/20 bg-white px-3">
+            <div className="flex h-[50px] md:h-[61px] text-[14px]! items-center  overflow-hidden rounded-md border border-white/20 bg-white px-3">
               <input
                 id="resume"
                 type="file"
                 name="resume"
                 onChange={handleFileChange}
                 accept=".pdf,.doc,.docx"
-                className="w-full text-[16px] text-[#555] file:mr-3 file:rounded file:border-0 file:bg-[#ececec] file:px-3 file:py-1.5 file:text-[12px]"
+                className="w-full text-[14px] text-[#555] file:mr-3 file:rounded file:border-0 file:bg-[#ececec] file:px-3 file:py-1.5 file:text-[12px]"
               />
             </div>
           
                         {/* Captcha same as it is */}
                               <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:col-span-2">
   {/* Captcha */}
-  <div className="flex h-[50px] md:h-[61px] text-[16px]! items-center rounded-[6px] border border-white/70 bg-white/10 px-4  text-white">
+  <div className="flex h-[50px] md:h-[61px] text-[14px]! items-center rounded-[6px] border border-white/70 bg-white/10 px-4  text-white">
     <span className="font-medium">Captcha:</span>
     <span className="ml-1 ">
       {captchaQuestion} = ?
@@ -752,7 +752,7 @@ text-[24px]!
     onChange={(e) => setCaptchaAnswer(e.target.value)}
     placeholder="Enter answer"
     required
-    className="h-[50px] md:h-[61px] text-[16px]! w-full rounded-[6px] bg-white px-4  text-black outline-none placeholder:text-[#8f8f8f]"
+    className="h-[50px] md:h-[61px] text-[14px] w-full rounded-[6px] bg-white px-4  text-black outline-none placeholder:text-[#8f8f8f]"
   />
 
   {/* Button */}
@@ -767,7 +767,7 @@ text-[24px]!
     <button
     type="submit"
     disabled={submitLoading}
-    className="animated-btn h-[50px] md:h-[61px] text-[16px]! w-full"
+    className="animated-btn h-[50px] md:h-[61px] text-[14px]! w-full"
   >
     {submitLoading ? "Submitting..." : "Let's Connect"}
   </button>

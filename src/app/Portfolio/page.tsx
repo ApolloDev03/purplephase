@@ -826,18 +826,14 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
             relative
             flex
             h-[calc(100dvh-155px)]
-            min-h-[300px]
-            max-h-[520px]
+            min-h-[200px]
+            max-h-[200px]
             w-full
             items-center
             justify-center
             overflow-hidden
             rounded-[12px]
-            bg-[#f3f3f3]
-
-            sm:h-[65vh]
-            sm:max-h-[600px]
-            sm:rounded-[16px]
+            bg-[#f3f3f3] 
 
             lg:h-[500px]
             lg:max-h-none

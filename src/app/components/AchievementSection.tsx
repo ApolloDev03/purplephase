@@ -104,10 +104,9 @@ export default function AchievementSection() {
   const currentTestimonial = testimonials[testIndex];
 
   return (
-    <section className="relative overflow-hidden py-10 lg:py-[30px] 2xl:py-[85px]   font-sans bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]">
+    <section className="relative overflow-hidden py-10 lg:py-[30px] xl:py-[50px] 2xl:py-[85px]   font-sans bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]">
       <div className="max-w-full mx-auto px-4 lg:px-6 xl:px-10 2xl:px-32">
-      
-
+    
 <div className="counter-border-pill mb-16">
   <div className="grid w-full grid-cols-2 gap-5 lg:grid-cols-4 xl:gap-10">
     <CounterItem value="15+" label="Successful Years" />
@@ -130,7 +129,7 @@ export default function AchievementSection() {
           <div className="text-white text-lg">No testimonials found.</div>
         ) : (
           <div>
-            <div className="grid grid-cols-1 lg:grid-cols-[250px_1fr]  xl:grid-cols-[385px_1fr] gap-6 md:gap-12 items-start">
+            <div className="grid grid-cols-1 md:grid-cols-[250px_1fr]  lg:grid-cols-[385px_1fr] gap-6 md:gap-12 items-start">
               {/* Image Card */}
              <AnimatePresence mode="wait">
   <motion.div
@@ -152,14 +151,13 @@ export default function AchievementSection() {
       shadow-[0_15px_30px_rgba(0,0,0,0.22)]
      !w-[80px]
      !h-[80px]
-      max-[639px]:rounded-md
       md:w-[250px]
       md:h-[200px]
       md:max-w-[250px]
-      xl:w-[385px]
-      xl:h-[257px]
-      xl:max-w-[385px]
-      xl:rounded-[20px]
+      lg:w-[385px]!
+      lg:h-[257px]!
+      lg:max-w-[385px]!
+      lg:rounded-[20px]!
     "
   >
     <img
