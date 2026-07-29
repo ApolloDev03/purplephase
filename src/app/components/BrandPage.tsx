@@ -1610,6 +1610,7 @@
 //   );
 // }
 
+
 "use client";
 
 import { useEffect, useRef, useState } from "react";
@@ -1789,7 +1790,7 @@ export default function BrandPage() {
       )}
 
       {!loading && total > 0 && (
-        <div className="mx-auto flex w-full max-w-full justify-center lg:justify-start pb-10 pt-4 sm:pb-14 lg:pb-20">
+        <div className="mx-auto flex w-full max-w-full justify-start pb-10 pt-4 sm:pb-14 lg:pb-20">
           <button
             type="button"
             onClick={() => router.push("/CaseStudies")}
@@ -1877,7 +1878,7 @@ function CaseStudyStack({
   return (
     <section
       ref={stackSectionRef}
-      className="mx-auto mt-4 w-full max-w-none sm:mt-6 lg:mt-8"
+      className="mx-auto mt-0 w-full max-w-none lg:mt-8"
     >
       {brandStories.map((item, index) => {
         const rangeStart = total > 1 ? index / total : 0;
@@ -1919,10 +1920,6 @@ function StackingCaseStudyCard({
 }: StackingCaseStudyCardProps) {
   const cardRef = useRef<HTMLDivElement | null>(null);
 
-  /*
-   * The first card is fully visible at its correct size by default.
-   * Every following card moves upward and settles into the sticky stack.
-   */
   const { scrollYProgress: cardScrollProgress } = useScroll({
     target: cardRef,
     offset: ["start end", "start start"],
@@ -1949,10 +1946,6 @@ function StackingCaseStudyCard({
     { clamp: true },
   );
 
-  /*
-   * Cards already in the stack become slightly smaller while the next
-   * case-study card moves over them.
-   */
   const stackScale = useTransform(
     progress,
     range,
@@ -1966,54 +1959,21 @@ function StackingCaseStudyCard({
   );
 
   return (
-    <div
-      ref={cardRef}
-      className="
-        sticky
-        top-0
-        flex
-        min-h-[100svh]
-        w-full
-        items-center
-        justify-center
-        py-3
-max-w-full
-        sm:py-4
-        lg:min-h-[100dvh]
-        lg:py-6
-      "
-    >
-      <motion.article
-        style={{
-          scale: cardScale,
-          y: entryY,
-          opacity: entryOpacity,
-          zIndex: index + 1,
-        }}
+    <div ref={cardRef} className="w-full">
+
+      {/* MOBILE + TABLET
+          No sticky, no viewport height, no upper/lower space */}
+      <article
         className="
           relative
-          aspect-[4/5]
+          aspect-[4/3]
           w-full
-          max-w-full
-          origin-center
           overflow-hidden
           rounded-lg
           bg-white
-          shadow-[0_22px_70px_rgba(0,0,0,0.18)]
-          will-change-transform
+          shadow-[0_12px_35px_rgba(0,0,0,0.16)]
 
-          sm:aspect-[4/3]
-          sm:w-[96%]
-          sm:rounded-xl
-
-          md:w-[94%]
-
-          lg:aspect-[16/9]
-          lg:w-[92%]
-          lg:rounded-2xl
-
-          min-[1440px]:w-[94%]
-          min-[1920px]:w-[100%]
+          lg:hidden
         "
       >
         <Link
@@ -2021,66 +1981,38 @@ max-w-full
           aria-label={`View case study: ${item.title}`}
           className="group relative block h-full w-full overflow-hidden"
         >
-          <div className="absolute inset-0 flex h-full w-full items-center justify-center bg-white">
-            <img
-              src={item.hero_image}
-              alt={item.title}
-              draggable={false}
-              className="
-                block
-                h-full
-                w-full
-                max-w-none
-                object-cover
-                object-center
-              "
-            />
-          </div>
-
-          {/* Existing title position and title box kept unchanged. */}
-          <div
+          <img
+            src={item.hero_image}
+            alt={item.title}
+            draggable={false}
             className="
               absolute
-              inset-x-0
-              top-0
-              z-10
-              p-2.5
-              sm:p-3
-              md:p-5
-              lg:p-7
-              min-[1410px]:p-8
+              inset-0
+              block
+              h-full
+              w-full
+              object-cover
+              object-center
+              transition-transform
+              duration-500
+              group-hover:scale-105
             "
-          >
+          />
+
+          {/* Mobile title */}
+          <div className="absolute inset-x-0 top-0 z-10 p-3">
             <div
               className="
                 inline-block
-                max-w-[85%]
+                max-w-[88%]
                 rounded-lg
                 border
                 border-white/25
-                bg-black/45
+                bg-black/50
                 px-3
                 py-2
                 shadow-[0_6px_20px_rgba(0,0,0,0.18)]
                 backdrop-blur-md
-
-                sm:max-w-[80%]
-                sm:rounded-xl
-                sm:px-4
-                sm:py-2.5
-
-                md:max-w-[75%]
-                md:px-5
-                md:py-3
-
-                lg:max-w-[78%]
-                lg:rounded-2xl
-                lg:px-7
-                lg:py-4
-
-                min-[1410px]:rounded-[20px]
-                min-[1410px]:px-8
-                min-[1410px]:py-5
               "
             >
               <h3
@@ -2092,11 +2024,8 @@ max-w-full
                   leading-tight
                   text-white
 
-                  sm:text-[18px]
+                  sm:text-[20px]
                   md:text-[24px]
-                  lg:text-[36px]
-                  xl:text-[42px]
-                  min-[1410px]:text-[48px]
                 "
               >
                 {item.title}
@@ -2104,7 +2033,116 @@ max-w-full
             </div>
           </div>
         </Link>
-      </motion.article>
+      </article>
+
+      {/* LAPTOP + DESKTOP
+          Existing sticky animation remains */}
+      <div
+        className="
+          sticky
+          top-0
+          hidden
+          min-h-[100dvh]
+          w-full
+          items-center
+          justify-center
+          py-6
+
+          lg:flex
+        "
+      >
+        <motion.article
+          style={{
+            scale: cardScale,
+            y: entryY,
+            opacity: entryOpacity,
+            zIndex: index + 1,
+          }}
+          className="
+            relative
+            aspect-[16/9]
+            w-[92%]
+            origin-center
+            overflow-hidden
+            rounded-2xl
+            bg-white
+            shadow-[0_22px_70px_rgba(0,0,0,0.18)]
+            will-change-transform
+
+            min-[1440px]:w-[94%]
+            min-[1920px]:w-full
+          "
+        >
+          <Link
+            href={`/case-study-detail?slug=${encodeURIComponent(item.slug)}`}
+            aria-label={`View case study: ${item.title}`}
+            className="group relative block h-full w-full overflow-hidden"
+          >
+            <div className="absolute inset-0 h-full w-full">
+              <img
+                src={item.hero_image}
+                alt={item.title}
+                draggable={false}
+                className="
+                  block
+                  h-full
+                  w-full
+                  object-cover
+                  object-center
+                "
+              />
+            </div>
+
+            {/* Desktop title */}
+            <div
+              className="
+                absolute
+                inset-x-0
+                top-0
+                z-10
+                p-7
+
+                min-[1410px]:p-8
+              "
+            >
+              <div
+                className="
+                  inline-block
+                  max-w-[78%]
+                  rounded-2xl
+                  border
+                  border-white/25
+                  bg-black/45
+                  px-7
+                  py-4
+                  shadow-[0_6px_20px_rgba(0,0,0,0.18)]
+                  backdrop-blur-md
+
+                  min-[1410px]:rounded-[20px]
+                  min-[1410px]:px-8
+                  min-[1410px]:py-5
+                "
+              >
+                <h3
+                  className="
+                    !m-0
+                    !capitalize
+                    text-[36px]
+                    font-bold
+                    leading-tight
+                    text-white
+
+                    xl:text-[42px]
+                    min-[1410px]:text-[48px]
+                  "
+                >
+                  {item.title}
+                </h3>
+              </div>
+            </div>
+          </Link>
+        </motion.article>
+      </div>
     </div>
   );
-} 
+}

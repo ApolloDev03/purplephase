@@ -146,7 +146,7 @@ useEffect(() => {
     <>
       {/* ================= HERO ================= */}
 
-      <section className="relative h-[200px] md:h-[500px] lg:h-[500px] 2xl:h-[720px] overflow-hidden bg-[#dedede]">
+      <section className="relative h-[200px] md:h-[500px] lg:h-[550px] xl:h-[600px] 2xl:h-[800px]! overflow-hidden bg-[#dedede]">
    
         <div className="absolute right-0 top-0 h-full w-full">
           <img
@@ -220,7 +220,8 @@ useEffect(() => {
             group
             inline-flex
             items-center
-            gap-2
+            gap-1
+            md:gap-2
             rounded-full
             bg-primary
             px-3
@@ -241,13 +242,13 @@ useEffect(() => {
             lg:px-7
             lg:py-3
            !text-[13px]
-sm:!text-[14px]
+
 lg:!text-[15px]
 2xl:!text-[18px]">
     Meet The Team
 
-    <span className="flex h-4 w-4 lg:h-5 lg:w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-      <LuMoveUpRight className="h-4 w-4 lg:h-5 lg:w-5" />
+    <span className="flex h-3 w-3 lg:h-5 lg:w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+      <LuMoveUpRight className="h-3 w-3 lg:h-5 lg:w-5" />
     </span>
   </button>
 </motion.div>
@@ -532,10 +533,10 @@ lg:!text-[15px]
             fontFeatureSettings: '"smcp", "c2sc"',
           }}
         >
-          We are your branding partner in this
+          We are your branding partner in this {" "}
           <br className="hidden lg:block" />
           journey of transformation from a raw
-          <br className="hidden lg:block" />
+          <br className="hidden lg:block" /> {" "}
           gold brand into gleaming gold brand.
         </h3>
       </div>
@@ -1119,17 +1120,17 @@ lg:!text-[15px]
     </div>
   </div>
 </section> */}
-<section id="team" className="overflow-hidden bg-white">
+{/* <section id="team" className="overflow-hidden bg-white">
   <div className="max-w-full px-4 lg:px-6 xl:px-10 2xl:px-32">
     <div className="flex flex-col items-center justify-between lg:flex-row lg:gap-12">
 
-      {/* Left content */}
+
       <div className="flex w-full flex-col justify-center">
         <h2 className="mt-[20px] font-semibold leading-[120%] text-primary lg:mt-0">
           We Are The Team Behind Your Team Dedicated To Build Your Brand
         </h2>
 
-        {/* Member details */}
+
         <div className="relative mt-10 min-h-[140px] lg:min-h-[230px] lg:mt-24">
           <AnimatePresence mode="wait">
             {member && (
@@ -1174,17 +1175,10 @@ lg:!text-[15px]
           </AnimatePresence>
         </div>
 
-        {/* 
-          Mobile:
-          Arrows remain in the same left position.
-          Image is placed beside the arrows on the right.
-          
-          Desktop:
-          Only arrows are shown here.
-        */}
+   
         <div className="flex w-full items-end justify-between gap-4 lg:mt-8 lg:block">
 
-          {/* Arrows */}
+     
           <div className="flex shrink-0 items-end gap-12">
             <button
               type="button"
@@ -1205,7 +1199,6 @@ lg:!text-[15px]
             </button>
           </div>
 
-          {/* Mobile member image */}
           <div className="relative -mt-4 h-[250px] w-[165px] shrink-0 overflow-hidden sm:w-[210px] lg:hidden">
             <AnimatePresence mode="wait">
               {member && (
@@ -1236,7 +1229,6 @@ lg:!text-[15px]
         </div>
       </div>
 
-      {/* Desktop member image — original position */}
       <div className="hidden w-full justify-center lg:flex lg:w-[42%] lg:justify-end">
         <div className="relative h-[680px] w-full max-w-[560px] overflow-hidden">
           <AnimatePresence mode="wait">
@@ -1267,6 +1259,195 @@ lg:!text-[15px]
         </div>
       </div>
 
+    </div>
+  </div>
+</section> */}
+<section id="team" className="overflow-hidden bg-white">
+  <div className="max-w-full px-4 lg:px-6 xl:px-10 2xl:px-32">
+    <div className="flex flex-col items-center justify-between lg:flex-row lg:gap-12">
+
+      {/* LEFT CONTENT */}
+      <div className="flex w-full flex-col justify-center">
+        {/* Section heading */}
+        <h2 className="mt-[20px] font-semibold leading-[120%] text-primary lg:mt-0">
+          We Are The Team Behind Your Team Dedicated To Build Your Brand
+        </h2>
+
+        {/* MOBILE MEMBER IMAGE — image first */}
+        <div className="mt-6 flex w-full justify-center lg:hidden">
+          <div
+            className="
+              relative
+              h-[29
+              
+              
+              
+              
+              0px]
+              w-full
+              max-w-[260px]
+              overflow-hidden
+
+              sm:h-[340px]
+              sm:max-w-[300px]
+            "
+          >
+            <AnimatePresence mode="wait">
+              {member && (
+                <motion.div
+                  key={`mobile-image-${member.id}`}
+                  className="absolute inset-0 flex items-end justify-center"
+                  initial={{ opacity: 0, x: 50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -50 }}
+                  transition={{
+                    duration: 0.5,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                >
+                  <Image
+                    src={member.photo}
+                    alt={member.name}
+                    fill
+                    priority
+                    unoptimized
+                    sizes="(max-width: 639px) 260px, 300px"
+                    className="object-contain object-bottom"
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        </div>
+
+        {/* MEMBER DETAILS */}
+        <div
+          className="
+            relative
+            mt-5
+            min-h-[120px]
+
+            lg:mt-24
+            lg:min-h-[230px]
+          "
+        >
+          <AnimatePresence mode="wait">
+            {member && (
+              <motion.div
+                key={`details-${member.id}`}
+                className="relative lg:absolute lg:inset-0"
+                initial={{ opacity: 0, x: 25 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -25 }}
+                transition={{
+                  duration: 0.45,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+              >
+                <h2 className="uppercase text-[20px]! tracking-[1px] text-primary xl:text-[28px]!">
+                  {member.name}
+                </h2>
+
+                <p className="my-1 lg:text-[21px]!">
+                  {member.sub_designation}
+                </p>
+
+                <h3
+                  style={{
+                    fontVariantCaps: "all-small-caps",
+                    fontFeatureSettings: '"smcp", "c2sc"',
+                  }}
+                  className="text-primary"
+                >
+                  {member.designation}
+                </h3>
+
+                <p className="mt-2 w-full max-w-[500px] whitespace-pre-line">
+                  {member.description
+                    ?.replace(/\\r\\n|\\n|\\r/g, "\n")
+                    .replace(/\r\n|\r/g, "\n")
+                    .replace(/\n{2,}/g, "\n")
+                    .trim()}
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+
+        {/* ARROWS */}
+        <div className=" flex items-center gap-12 pb-4 lg:mt-8 lg:pb-0">
+          <button
+            type="button"
+            onClick={prevMember}
+            className="group"
+            aria-label="Previous team member"
+          >
+            <MoveLeft
+              className="
+                h-10
+                w-10
+                text-[#9B9B9B]
+                transition-transform
+                group-hover:-translate-x-1
+
+                lg:h-14
+                lg:w-14
+              "
+            />
+          </button>
+
+          <button
+            type="button"
+            onClick={nextMember}
+            className="group"
+            aria-label="Next team member"
+          >
+            <MoveRight
+              className="
+                h-10
+                w-10
+                text-[#9B9B9B]
+                transition-transform
+                group-hover:translate-x-1
+
+                lg:h-14
+                lg:w-14
+              "
+            />
+          </button>
+        </div>
+      </div>
+
+      {/* DESKTOP MEMBER IMAGE — original right-side position */}
+      <div className="hidden w-full justify-center lg:flex lg:w-[42%] lg:justify-end">
+        <div className="relative h-[680px] w-full max-w-[560px] overflow-hidden">
+          <AnimatePresence mode="wait">
+            {member && (
+              <motion.div
+                key={`desktop-image-${member.id}`}
+                className="absolute inset-0 flex items-end justify-center"
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{
+                  duration: 0.5,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+              >
+                <Image
+                  src={member.photo}
+                  alt={member.name}
+                  fill
+                  priority
+                  unoptimized
+                  sizes="42vw"
+                  className="object-contain object-bottom"
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+      </div>
     </div>
   </div>
 </section>
