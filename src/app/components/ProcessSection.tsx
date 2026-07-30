@@ -48,14 +48,14 @@ const ProcessSection = () => {
             className="mt-4 2xl:mt-0 leading-1 space-y-4 2xl:space-y-7 font-body text-[17px] font-light 2xl:leading-[1.38] text-[#424242] "
           >
             <p>
-              We understand your business, your pain points and your
+              We understand your business, your pain points and your {" "}
               <br className="hidden lg:block" />
               consumers.
             </p>
 
             <p >
               We believe in creativity anchored in clarity led by strategic
-              <br className="hidden lg:block" />
+              <br className="hidden lg:block" />{" "}
               storytelling and powered by impactful innovation...
             </p>
 

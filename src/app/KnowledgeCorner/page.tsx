@@ -425,14 +425,16 @@ export default function BlogPage() {
     <img
       src="/assets/knowledgecorner/book.png"
       alt="Playbook To Build Your Brand"
-      className="absolute inset-0 h-full w-full object-cover"
+      className="absolute inset-0 h-full w-full   object-cover
+      object-[55%_center]
+      xl:object-center"
     />
 
     {/* Left Text */}
     <div className="absolute inset-0 z-10 flex items-center">
       <div className="w-[250px] lg:w-full px-4 lg:px-6 xl:px-10 2xl:px-32">
      
-          <h1 className="font-heading text-[24px] font-bold leading-tight text-[#a20d69] lg:text-[40px] xl:text-[48px] 2xl:text-[56px]">
+          <h1 className="font-heading text-[22px] font-bold leading-tight text-[#a20d69] lg:text-[40px] xl:text-[48px] 2xl:text-[56px]">
             Playbook To Build Your Brand
           </h1>
 
