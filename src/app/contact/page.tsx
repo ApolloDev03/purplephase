@@ -261,7 +261,7 @@ export default function ContactPage() {
           }}
         >
           <div className="mx-auto flex h-full max-w-full items-center px-4 lg:px-6 xl:px-10 2xl:px-32">
-            <h1 className="relative text-[22px] md:text-[38px] lg:text-[48px] xl:text-[56px] font-bold z-10  leading-[130%] text-[#a20d69] ">
+            <h1 className="relative text-[21px] md:text-[38px] lg:text-[48px] xl:text-[56px] font-bold z-10  leading-[130%] text-[#a20d69] ">
               Let’s Talk About Your <br />
               Brand’s Next Phase
             </h1>

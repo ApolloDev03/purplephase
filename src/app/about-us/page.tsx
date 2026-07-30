@@ -186,7 +186,7 @@ useEffect(() => {
             fontVariantCaps: "all-small-caps",
             fontFeatureSettings: '"smcp", "c2sc"',
           }}
-                      className={`h-[44px] sm:h-[56px] text-[24px] md:text-[32px] lg:text-[38px] xl:text-[60px]  font-extrabold leading-[1.09]
+                      className={`h-[54px] md:h-[56px] text-[23px] md:text-[32px] lg:text-[38px] xl:text-[60px]  font-extrabold leading-[1.09]
                 transition-all duration-500
 
                 ${center
@@ -214,7 +214,7 @@ useEffect(() => {
       block: "start",
     });
   }}
-  className="flex absolute bottom-3 lg:bottom-20 justify-center lg:justify-start"
+  className="flex absolute bottom-8 lg:bottom-20 2xl:bottom-36 justify-start"
 >
   <button className=" motion-shine 
             group
@@ -244,7 +244,7 @@ useEffect(() => {
            !text-[13px]
 
 lg:!text-[15px]
-2xl:!text-[18px]">
+2xl:!text-[24px]">
     Meet The Team
 
     <span className="flex h-3 w-3 lg:h-5 lg:w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
@@ -255,237 +255,7 @@ lg:!text-[15px]
           </div>
         </div>
       </section>
-{/* <section
-  className="
-    relative
-    h-[200px]
-    overflow-hidden
-    bg-[#dedede]
 
-    md:h-[440px]
-    lg:h-[500px]
-    xl:h-[580px]
-    2xl:h-[680px]
-  "
->
-
-  <div className="absolute inset-0">
-    <img
-      src="/assets/about/about-main.gif"
-      alt="About Banner"
-      className="
-        h-full
-        w-full
-        object-cover
-        sm:object-[88%_center]
-        md:object-[82%_center]
-        xl:object-center
-      "
-    />
-  </div>
-
-
-  <div
-    className="
-      pointer-events-none
-      absolute
-      inset-0
-      z-[1]
-      bg-gradient-to-r
-      from-white/90
-      via-white/35
-      to-transparent
-
-      sm:from-white/80
-      md:from-white/45
-      md:via-white/10
-    "
-  />
-
-
-  <div className="relative z-10 flex h-full items-center">
-    <div
-      className="
-        flex
-        w-full
-        flex-col
-        items-start
-        justify-center
-        px-4
-        lg:px-8
-        2xl:px-14
-      "
-    >
-  
-      <div
-        className="
-          w-full
-          h-[156px]
-       max-w-[120px]
-
-          md:h-[168px]
-          md:max-w-[620px]
-
-          xl:h-[192px]
-          xl:max-w-[760px]
-
-          2xl:h-[216px]
-        "
-      >
-        <motion.div
-          animate={{
-            y: -(index * heroLineHeight),
-          }}
-          transition={{
-            duration: 0.6,
-            ease: "easeInOut",
-          }}
-        >
-          {[...items, ...items].map((text, i) => {
-            const isActive =
-              (i - index + items.length) % items.length === 1;
-
-            return (
-              <h1
-                key={`${text}-${i}`}
-                style={{
-                  fontVariantCaps: "all-small-caps",
-                  fontFeatureSettings: '"smcp", "c2sc"',
-                }}
-                className={`
-                  m-0
-                  flex
-                  h-[40px]
-                  items-center
-                  whitespace-nowrap
-                  text-[21px]
-                  font-extrabold
-                  leading-none
-                  transition-all
-                  duration-500
-
-                  min-[400px]:text-[23px]
-
-                  sm:h-[52px]
-                  sm:text-[25px]
-
-                  md:h-[56px]
-                  md:text-[38px]
-
-                  lg:text-[44px]
-
-                  xl:h-[64px]
-                  xl:text-[58px]
-
-                  2xl:h-[72px]
-                  2xl:text-[66px]
-
-                  ${
-                    isActive
-                      ? "translate-x-0 text-[#9C1367] opacity-100"
-                      : "translate-x-0 text-[#9C1367] opacity-0"
-                  }
-                `}
-              >
-                {text}
-              </h1>
-            );
-          })}
-        </motion.div>
-      </div>
-
-      <motion.div
-        initial={{
-          opacity: 0,
-          y: 15,
-        }}
-        whileInView={{
-          opacity: 1,
-          y: 0,
-        }}
-        viewport={{
-          once: true,
-        }}
-        transition={{
-          duration: 0.5,
-          delay: 0.35,
-        }}
-        className="
-          relative
-          z-20
-          mt-2
-
-          sm:mt-3
-          md:mt-5
-          xl:mt-7
-          2xl:mt-8
-        "
-      >
-        <button
-          type="button"
-          onClick={() => {
-            document.getElementById("team")?.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
-          }}
-          className="
-            motion-shine
-            group
-            inline-flex
-            items-center
-            justify-center
-            gap-2
-            rounded-full
-            bg-primary
-            px-4
-            py-2
-            text-[12px]
-            font-bold
-            text-white
-            shadow-lg
-            shadow-primary/20
-            transition-all
-            duration-300
-
-            hover:-translate-y-1
-            hover:bg-[#7a1f50]
-            hover:shadow-xl
-
-            sm:px-5
-            sm:py-2.5
-            sm:text-[14px]
-
-            lg:px-7
-            lg:py-3
-            lg:text-[15px]
-
-            2xl:px-8
-            2xl:py-3.5
-            2xl:text-[18px]
-          "
-        >
-          Meet The Team
-
-          <LuMoveUpRight
-            className="
-              h-4
-              w-4
-              transition-transform
-              duration-300
-
-              group-hover:translate-x-1
-              group-hover:-translate-y-1
-
-              lg:h-5
-              lg:w-5
-            "
-          />
-        </button>
-      </motion.div>
-    </div>
-  </div>
-</section> */}
 
       {/* ================= PURPLE POTENTIAL ================= */}
 
@@ -962,7 +732,7 @@ lg:!text-[15px]
         </div>
 
         {/* Content */}
-        <div className="relative  ">
+        <div className="relative my-4 md:my-0 ">
           <div className="max-w-full px-4 lg:px-6 xl:px-10 2xl:px-32 ">
             <h2 className="mb-10 text-[36px] md:text-[48px]   font-semibold leading-[120%] text-[#9c1367]">
               We don’t position brands on instinct
@@ -1278,12 +1048,7 @@ lg:!text-[15px]
           <div
             className="
               relative
-              h-[29
-              
-              
-              
-              
-              0px]
+              h-[290px]
               w-full
               max-w-[260px]
               overflow-hidden

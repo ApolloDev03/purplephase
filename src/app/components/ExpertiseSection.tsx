@@ -180,13 +180,29 @@ useEffect(() => {
       );
 
       if (res.data?.success && Array.isArray(res.data?.data)) {
-       const sortedData = [...res.data.data]
-  .filter((item) => Number(item.status) === 1)
-  .sort((a, b) => {
-    const seqA = Number(a.sequence_number ?? 9999);
-    const seqB = Number(b.sequence_number ?? 9999);
+ const sortedData: ExpertiseItem[] = [...res.data.data]
+  .filter((item: ExpertiseItem) => {
+    const expertiseName =
+      item.expertise_name?.trim().toLowerCase();
 
-    if (seqA !== seqB) return seqA - seqB;
+    return (
+      Number(item.show_home_page) === 1 &&
+      Number(item.status) === 1 &&
+      expertiseName !== "other"
+    );
+  })
+  .sort((a: ExpertiseItem, b: ExpertiseItem) => {
+    const seqA = Number(
+      a.sequence_number ?? Number.MAX_SAFE_INTEGER
+    );
+
+    const seqB = Number(
+      b.sequence_number ?? Number.MAX_SAFE_INTEGER
+    );
+
+    if (seqA !== seqB) {
+      return seqA - seqB;
+    }
 
     return Number(a.id) - Number(b.id);
   });
@@ -494,93 +510,94 @@ const handleExpertiseWheel = (event:any) => {
       WebkitBackfaceVisibility: "hidden",
     }}
   >
-    {repeatedExpertiseData.map((item, renderedIndex) => {
-      const originalIndex =
-        expertiseData.length > 0
-          ? renderedIndex % expertiseData.length
-          : 0;
+{repeatedExpertiseData.map((item, renderedIndex) => {
+  const expertiseName = item.expertise_name?.trim();
+  const originalIndex =
+    expertiseData.length > 0
+      ? renderedIndex % expertiseData.length
+      : 0;
 
-      const distance = Math.abs(trackIndex - renderedIndex);
-      const isActive = distance === 0;
+  const distance = Math.abs(trackIndex - renderedIndex);
+  const isActive = distance === 0;
 
-      return (
-        <motion.button
-          key={`${item.id}-${renderedIndex}`}
-          type="button"
-          onClick={() => scrollToItem(originalIndex)}
-          animate={{
-            opacity:
-              distance === 0
-                ? 1
-                : distance === 1
-                ? 0.65
-                : distance === 2
-                ? 0.22
-                : 0,
-            scale: isActive ? 1 : 0.96,
-          }}
-          transition={{
-            duration: 0.4,
-            ease: [0.22, 1, 0.36, 1],
-          }}
-          className="
-            flex
-            w-full
-            cursor-pointer
-            items-center
-            justify-start
-            border-0
-            bg-transparent
-            p-0
-          "
-          style={{
-            height: `${sizes.itemHeight}px`,
-            marginBottom: `${sizes.itemGap}px`,
-            pointerEvents: distance > 2 ? "none" : "auto",
-            willChange: "transform, opacity",
-            backfaceVisibility: "hidden",
-            WebkitBackfaceVisibility: "hidden",
-          }}
-        >
-          <span
-            className={`
-              inline-flex
-              h-full
-              w-full
-              max-w-[550px]
-              xl:max-w-[632px]
-              min-w-0
-              items-center
-              justify-center
-              rounded-full
-              px-6
-              text-center
-              text-[15px]
-              font-semibold
-              uppercase
-              leading-none
-              transition-colors
-              duration-300
-              ease-out
-              sm:text-[16px]
-              md:text-[18px]
-              lg:text-[20px]
-              xl:text-[25px]
-              2xl:text-[30px]
-              ${
-                isActive
-                  ? "bg-primary text-white shadow-sm"
-                  : "bg-transparent text-[#BDBDBD]"
-              }
-            `}
-          >
-            <span className="block w-full truncate">
-              {item.expertise_name}
-            </span>
-          </span>
-        </motion.button>
-      );
-    })}
+  return (
+    <motion.button
+      key={`${item.id}-${renderedIndex}`}
+      type="button"
+      onClick={() => scrollToItem(originalIndex)}
+      animate={{
+        opacity:
+          distance === 0
+            ? 1
+            : distance === 1
+            ? 0.65
+            : distance === 2
+            ? 0.22
+            : 0,
+        scale: isActive ? 1 : 0.96,
+      }}
+      transition={{
+        duration: 0.4,
+        ease: [0.22, 1, 0.36, 1],
+      }}
+      className="
+        flex
+        w-full
+        cursor-pointer
+        items-center
+        justify-start
+        border-0
+        bg-transparent
+        p-0
+      "
+      style={{
+        height: `${sizes.itemHeight}px`,
+        marginBottom: `${sizes.itemGap}px`,
+        pointerEvents: distance > 2 ? "none" : "auto",
+        willChange: "transform, opacity",
+        backfaceVisibility: "hidden",
+        WebkitBackfaceVisibility: "hidden",
+      }}
+    >
+      <span
+        className={`
+          inline-flex
+          h-full
+          w-full
+          max-w-[550px]
+          min-w-0
+          items-center
+          justify-center
+          rounded-full
+          px-6
+          text-center
+          text-[15px]
+          font-semibold
+          uppercase
+          leading-none
+          transition-colors
+          duration-300
+          ease-out
+          sm:text-[16px]
+          md:text-[18px]
+          lg:text-[20px]
+          xl:max-w-[632px]
+          xl:text-[25px]
+          2xl:text-[30px]
+          ${
+            isActive
+              ? "bg-primary text-white shadow-sm"
+              : "bg-transparent text-[#BDBDBD]"
+          }
+        `}
+      >
+        <span className="block w-full truncate">
+          {expertiseName}
+        </span>
+      </span>
+    </motion.button>
+  );
+})}
   </motion.div>
 </div>
       )}

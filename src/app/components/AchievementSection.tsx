@@ -163,7 +163,7 @@ export default function AchievementSection() {
     <img
       src={currentTestimonial.image}
       alt={currentTestimonial.name}
-      className="block h-full w-full object-cover"
+      className="block h-full w-full object-contain md:object-cover"
     />
   </motion.div>
 </AnimatePresence>
