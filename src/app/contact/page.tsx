@@ -85,7 +85,7 @@ export default function ContactPage() {
 
       if (res.data?.success) {
         const activeExpertise = (res.data.data || [])
-          .filter((item) => item.status === 1)
+          .filter((item) => item.status == 1)
           .sort((a, b) => a.sequence_number - b.sequence_number);
 
         setExpertiseList(activeExpertise);

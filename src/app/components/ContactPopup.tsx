@@ -670,7 +670,7 @@ const res = await axios.post<ContactResponse>(
                       value={formData.name}
                       onChange={handleChange}
                       placeholder="Name*"
-                      className="h-14 w-full border-b-2 border-gray-200 bg-transparent px-2 text-gray-900 outline-none transition-colors focus:border-primary"
+                      className="h-10 lg:h-14 w-full text-[14px] lg:text-[18px]  border-b-2 border-gray-200 bg-transparent px-2 text-gray-900 outline-none transition-colors focus:border-primary"
                     />
 
                     <input
@@ -679,7 +679,7 @@ const res = await axios.post<ContactResponse>(
                       value={formData.email}
                       onChange={handleChange}
                       placeholder="Email*"
-                      className="h-14 w-full border-b-2 border-gray-200 bg-transparent px-2 text-gray-900 outline-none transition-colors focus:border-primary"
+                      className="h-10 lg:h-14 w-full text-[14px] lg:text-[18px] border-b-2 border-gray-200 bg-transparent px-2 text-gray-900 outline-none transition-colors focus:border-primary"
                     />
                   </div>
 
@@ -690,7 +690,7 @@ const res = await axios.post<ContactResponse>(
                       value={formData.contact_no}
                       onChange={handleChange}
                       placeholder="Contact No*"
-                      className="h-14 w-full border-b-2 border-gray-200 bg-transparent px-2 text-gray-900 outline-none transition-colors focus:border-primary"
+                      className="h-10 lg:h-14 w-full text-[14px] lg:text-[18px] border-b-2 border-gray-200 bg-transparent px-2 text-gray-900 outline-none transition-colors focus:border-primary"
                     />
 
                     <input
@@ -699,7 +699,7 @@ const res = await axios.post<ContactResponse>(
                       value={formData.company}
                       onChange={handleChange}
                       placeholder="Company*"
-                      className="h-14 w-full border-b-2 border-gray-200 bg-transparent px-2 text-gray-900 outline-none transition-colors focus:border-primary"
+                      className="h-10 lg:h-14 w-full text-[14px] lg:text-[18px] border-b-2 border-gray-200 bg-transparent px-2 text-gray-900 outline-none transition-colors focus:border-primary"
                     />
                   </div>
 
@@ -710,7 +710,7 @@ const res = await axios.post<ContactResponse>(
     value={formData.country}
     onChange={handleChange}
     placeholder="Country*"
-    className="h-14 w-full border-b-2 border-gray-200 bg-transparent px-2 text-gray-900 outline-none transition-colors focus:border-primary"
+    className="h-10 lg:h-14 w-full text-[14px] lg:text-[18px] border-b-2 border-gray-200 bg-transparent px-2 text-gray-900 outline-none transition-colors focus:border-primary"
   />
 
   <input
@@ -719,7 +719,7 @@ const res = await axios.post<ContactResponse>(
     value={formData.state}
     onChange={handleChange}
     placeholder="State*"
-    className="h-14 w-full border-b-2 border-gray-200 bg-transparent px-2 text-gray-900 outline-none transition-colors focus:border-primary"
+    className="h-10 lg:h-14 w-full text-[14px] lg:text-[18px] border-b-2 border-gray-200 bg-transparent px-2 text-gray-900 outline-none transition-colors focus:border-primary"
   />
 
   <input
@@ -728,11 +728,11 @@ const res = await axios.post<ContactResponse>(
     value={formData.district}
     onChange={handleChange}
     placeholder="District*"
-    className="h-14 w-full border-b-2 border-gray-200 bg-transparent px-2 text-gray-900 outline-none transition-colors focus:border-primary"
+    className="h-10 lg:h-14 w-full text-[14px] lg:text-[18px] border-b-2 border-gray-200 bg-transparent px-2 text-gray-900 outline-none transition-colors focus:border-primary"
   />
 </div>
                   <div className="pt-2">
-                    <h1 className="font-heading mb-5  font-semibold text-gray-800">
+                    <h1 className="font-heading mb-5  text-[14px] lg:text-[18px]  font-semibold text-gray-800">
                       Interested Expertise
                     </h1>
 
@@ -756,7 +756,7 @@ const res = await axios.post<ContactResponse>(
             />
 
             <span
-              className={`flex h-[30px] w-[30px] shrink-0 items-center justify-center rounded-[10px] border-2 transition-all duration-300 ${
+              className={`flex h-[20px] w-[20px] lg:h-[30px] lg:w-[30px] shrink-0 items-center justify-center rounded-[5px] lg:rounded-[10px] border-2 transition-all duration-300 ${
                 isSelected
                   ? "border-[#a20d69] bg-[#a20d69]"
                   : "border-[#a20d69] bg-transparent"
@@ -765,7 +765,7 @@ const res = await axios.post<ContactResponse>(
               {isSelected && <Check size={22} className="text-white" />}
             </span>
 
-            <span className="font-normal leading-[1.3] text-[#666] ">
+            <span className="font-normal  text-[14px] lg:text-[18px] leading-[1.3] text-[#666] ">
               {expertise.expertise_name}
             </span>
           </label>
@@ -783,20 +783,20 @@ const res = await axios.post<ContactResponse>(
                     onChange={handleChange}
                     rows={4}
                     placeholder="Tell us about your project..."
-                    className="w-full border-b-2 border-gray-200 bg-transparent px-2 py-4 text-gray-900 outline-none transition-colors focus:border-primary"
+                    className="w-full text-[14px] lg:text-[18px] border-b-2 border-gray-200 bg-transparent px-2 py-4 text-gray-900 outline-none transition-colors focus:border-primary"
                   />
 
-<div className="mt-5 flex w-full flex-col gap-4 lg:flex-row lg:items-center">
+<div className=" lg:mt-5 flex w-full flex-col gap-4 lg:flex-row lg:items-center">
   {/* Captcha Box */}
   <div className="flex shrink-0 items-center gap-2">
-    <div className="flex h-12 min-w-[170px] items-center justify-center bg-gray-200 px-6 font-heading text-xl font-bold tracking-[0.3em] text-gray-700">
+    <div className="flex h-10 lg:h-12 text-[14px] lg:text-[18px] min-w-[170px] items-center justify-center bg-gray-200 px-6 font-heading text-xl font-bold tracking-[0.3em] text-gray-700">
       {captchaCode}
     </div>
 
     <button
       type="button"
       onClick={generateCaptcha}
-      className="flex h-12 w-12 shrink-0 items-center justify-center bg-secondary text-white transition-opacity hover:opacity-90"
+      className="flex h-10 w-10 lg:h-12 lg:w-12 shrink-0 items-center justify-center bg-secondary text-white transition-opacity hover:opacity-90"
     >
       <RotateCcw size={20} />
     </button>
@@ -809,7 +809,7 @@ const res = await axios.post<ContactResponse>(
     value={formData.captcha}
     onChange={handleChange}
     placeholder="Enter Captcha"
-    className="h-12 w-full border-b-2 border-gray-200 bg-transparent px-2 text-gray-900 outline-none focus:border-primary lg:max-w-[220px]"
+    className="h-12 w-full text-[14px] lg:text-[18px] border-b-2 border-gray-200 bg-transparent px-2 text-gray-900 outline-none focus:border-primary lg:max-w-[220px]"
   />
 
   {/* Submit Button */}
@@ -823,7 +823,7 @@ const res = await axios.post<ContactResponse>(
     <button
       type="submit"
       disabled={submitLoading}
-      className="motion-shine group inline-flex text-[18px]! h-12 items-center justify-center gap-3 rounded-full bg-primary px-4 lg:text-[21px]! font-semibold! text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30 "
+      className="motion-shine group inline-flex text-[14px] lg:text-[18px]! h-12 items-center justify-center gap-1 lg:gap-3 rounded-full bg-primary px-4 lg:text-[21px]! font-semibold! text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30 "
     >
       {submitLoading ? "Sending..." : "Send Message"}
 

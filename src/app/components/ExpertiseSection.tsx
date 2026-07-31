@@ -164,70 +164,108 @@ useEffect(() => {
     window.removeEventListener("resize", handleResize);
   };
 }, []);
-  const fetchExpertiseList = async () => {
-    try {
-      setLoading(true);
+ const fetchExpertiseList = async () => {
+  try {
+    setLoading(true);
 
-      const res = await axios.post(
-        `${apiUrl}/expertiseList`,
-        {},
-        {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (res.data?.success && Array.isArray(res.data?.data)) {
- const sortedData: ExpertiseItem[] = [...res.data.data]
-  .filter((item: ExpertiseItem) => {
-    const expertiseName =
-      item.expertise_name?.trim().toLowerCase();
-
-    return (
-      Number(item.show_home_page) === 1 &&
-      Number(item.status) === 1 &&
-      expertiseName !== "other"
-    );
-  })
-  .sort((a: ExpertiseItem, b: ExpertiseItem) => {
-    const seqA = Number(
-      a.sequence_number ?? Number.MAX_SAFE_INTEGER
+    const res = await axios.post(
+      `${apiUrl}/expertiseList`,
+      {},
+      {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      }
     );
 
-    const seqB = Number(
-      b.sequence_number ?? Number.MAX_SAFE_INTEGER
-    );
+    if (
+      res.data?.success &&
+      Array.isArray(res.data?.data)
+    ) {
+      const sortedData: ExpertiseItem[] = [
+        ...res.data.data,
+      ]
+        .filter((item: ExpertiseItem) => {
+          const expertiseName =
+            item.expertise_name
+              ?.trim()
+              .toLowerCase();
 
-    if (seqA !== seqB) {
-      return seqA - seqB;
-    }
+          const showHomePage =
+            Number(item.show_home_page) == 1;
 
-    return Number(a.id) - Number(b.id);
-  });
+          const activeStatus =
+            Number(item.status) == 1;
+
+      
+
+          // Only show:
+          // show_home_page = 1
+          // status = 1
+          // expertise_name is not Other
+          return (
+            showHomePage &&
+            activeStatus 
+          );
+        })
+        .sort(
+          (
+            a: ExpertiseItem,
+            b: ExpertiseItem
+          ) => {
+            const seqA = Number(
+              a.sequence_number ??
+                Number.MAX_SAFE_INTEGER
+            );
+
+            const seqB = Number(
+              b.sequence_number ??
+                Number.MAX_SAFE_INTEGER
+            );
+
+            if (seqA !== seqB) {
+              return seqA - seqB;
+            }
+
+            return Number(a.id) - Number(b.id);
+          }
+        );
 
       setTrackAnimationEnabled(false);
-setExpertiseData(sortedData);
+      setExpertiseData(sortedData);
 
-// Start from the middle copy for seamless infinite looping.
-setTrackIndex(sortedData.length > 1 ? sortedData.length : 0);
+      const initialTrackIndex =
+        sortedData.length > 1
+          ? sortedData.length
+          : 0;
 
-requestAnimationFrame(() => {
-  requestAnimationFrame(() => {
-    setTrackAnimationEnabled(true);
-  });
-});
-      } else {
-        setExpertiseData([]);
-      }
-    } catch (error) {
-      console.error("Expertise List API Error:", error);
+      // Start from middle copy
+      setTrackIndex(initialTrackIndex);
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setTrackAnimationEnabled(true);
+        });
+      });
+    } else {
       setExpertiseData([]);
-    } finally {
-      setLoading(false);
+      setTrackIndex(0);
+      setTrackAnimationEnabled(false);
     }
-  };
+  } catch (error) {
+    console.error(
+      "Expertise List API Error:",
+      error
+    );
+
+    setExpertiseData([]);
+    setTrackIndex(0);
+    setTrackAnimationEnabled(false);
+  } finally {
+    setLoading(false);
+  }
+};
 
   useEffect(() => {
     fetchExpertiseList();
