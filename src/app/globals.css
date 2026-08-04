@@ -626,15 +626,23 @@ border-radius: 999px;
   }
 } */
 
- @media (max-width: 767px) {
+/* @media (max-width: 767px) {
   .brand-scroll-section {
     position: relative;
+
     width: 100%;
-    height: auto !important;
-    min-height: 0 !important;
+    height: calc(
+      100svh + var(--mobile-scroll-distance)
+    ) !important;
+
+    min-height: calc(
+      100svh + var(--mobile-scroll-distance)
+    ) !important;
+
     margin: 0 !important;
     padding: 0 !important;
-    background: transparent !important;
+
+    background: #f6f6f6 !important;
   }
 
   .brand-sticky-shell {
@@ -649,7 +657,7 @@ border-radius: 999px;
     margin: 0 !important;
     padding: 0 !important;
 
-    background: transparent !important;
+    background: #f6f6f6 !important;
     overflow: visible;
   }
 
@@ -663,7 +671,8 @@ border-radius: 999px;
 
     margin: 0 !important;
     padding: 0 !important;
-    background: transparent !important;
+
+    background: #f6f6f6 !important;
   }
 
   .brand-image-stage {
@@ -672,10 +681,6 @@ border-radius: 999px;
 
     width: 100% !important;
 
-    /*
-     * Mobile width pramane perfect 16:9 height.
-     * 32px = main container na left + right padding.
-     */
     height: clamp(
       195px,
       calc((100vw - 32px) * 0.5625),
@@ -690,8 +695,6 @@ border-radius: 999px;
 
     max-height: 260px !important;
 
-    aspect-ratio: auto !important;
-
     margin: 0 !important;
     padding: 0 !important;
 
@@ -701,24 +704,8 @@ border-radius: 999px;
     isolation: isolate;
   }
 
-  .brand-image-stage > article {
-    position: absolute !important;
-    inset: 0 !important;
-
-    width: 100% !important;
-    height: 100% !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    overflow: hidden !important;
-    border-radius: 12px;
-    background: transparent !important;
-  }
-
-  .brand-image-stage article > a {
-    display: block !important;
-
+  .brand-image-stage article,
+  .brand-image-stage a {
     width: 100% !important;
     height: 100% !important;
 
@@ -733,19 +720,14 @@ border-radius: 999px;
     position: absolute !important;
     inset: 0 !important;
 
-    display: block !important;
-
     width: 100% !important;
     height: 100% !important;
 
-    min-width: 100% !important;
-    min-height: 100% !important;
+    object-fit: cover !important;
+    object-position: center !important;
 
     margin: 0 !important;
     padding: 0 !important;
-
-    object-fit: cover !important;
-    object-position: center center !important;
 
     background: transparent !important;
   }
@@ -759,22 +741,72 @@ border-radius: 999px;
     margin: 0 !important;
     padding: 0 !important;
 
-    background: transparent !important;
+    background: #f6f6f6 !important;
   }
 
   .brand-scroll-spacer {
-    display: block;
+    display: none !important;
+    height: 0 !important;
+    min-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+} */
 
-    width: 100%;
-    height: var(--mobile-scroll-distance);
+@media (max-width: 767px) {
+  .brand-image-stage {
+    position: relative !important;
+    display: block !important;
+
+    width: 100% !important;
+
+    height: clamp(
+      225px,
+      calc((100vw - 32px) * 0.68),
+      295px
+    ) !important;
+
+    min-height: clamp(
+      225px,
+      calc((100vw - 32px) * 0.68),
+      295px
+    ) !important;
+
+    max-height: 295px !important;
 
     margin: 0 !important;
     padding: 0 !important;
 
+    overflow: hidden !important;
+    border-radius: 12px;
     background: transparent !important;
-    pointer-events: none;
+    isolation: isolate;
+  }
+
+  .brand-image-stage article,
+  .brand-image-stage a {
+    width: 100% !important;
+    height: 100% !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: hidden !important;
+  }
+
+  .brand-image-stage img {
+    position: absolute !important;
+    inset: 0 !important;
+
+    width: 100% !important;
+    height: 100% !important;
+
+    object-fit: cover !important;
+    object-position: center center !important;
   }
 }
+
+
 @media (min-width: 768px) and (max-width: 1023px) {
   .brand-scroll-spacer {
     width: 100%;
