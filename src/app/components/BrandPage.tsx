@@ -84,7 +84,7 @@ const [isMobile, setIsMobile] = useState(false);
     "--mobile-scroll-distance":
       loading || total <= 1
         ? "0px"
-        : `${transitionCount * 20}svh`,
+        : `${transitionCount * 50}svh`,
 
     "--tablet-scroll-distance":
       loading || total <= 1
