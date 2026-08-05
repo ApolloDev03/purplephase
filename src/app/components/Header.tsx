@@ -169,7 +169,7 @@ import ContactPopup from "./ContactPopup";
 const navItems = [
   { label: "Home", href: "/" },
   { label: "About Us", href: "/about-us" },
-  { label: "Case Studies", href: "/CaseStudies" },
+  { label: "Case Studies", href: "/case-study" },
   { label: "Portfolio", href: "/Portfolio" },
   { label: "Career", href: "/career" },
   { label: "Knowledge Corner", href: "/KnowledgeCorner" },

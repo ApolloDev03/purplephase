@@ -118,23 +118,23 @@
   }
  
 
-  @media (min-width: 1280px) {
+  @media  (min-width: 1280px) and (max-width: 1919px) {
      h2 {
-      font-size: 56px;
+      font-size: 50px;
     }
     h3 {
-      font-size: 34px;
+      font-size: 30px;
     }
     p {
-      font-size: 20px;
+      font-size: 18px;
     }
 
     button {
-      font-size: 20px;
+      font-size: 18px;
     }
 
     .hero-title {
-      font-size: 58px;
+      font-size: 50px;
     }
   }
 

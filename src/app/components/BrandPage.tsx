@@ -40,6 +40,7 @@
 
   type CaseStudyItem = {
     id: number;
+      show_home_page: number | string;
     slug: string;
     title: string;
     description: string;
@@ -145,11 +146,15 @@ const [isMobile, setIsMobile] = useState(false);
             },
           );
 
-          if (response.data?.success) {
-            setBrandStories(response.data.data ?? []);
-          } else {
-            setBrandStories([]);
-          }
+        if (response.data?.success) {
+  const homePageStories = (response.data.data ?? []).filter(
+    (item) => Number(item.show_home_page) === 1,
+  );
+
+  setBrandStories(homePageStories);
+} else {
+  setBrandStories([]);
+}
         } catch (error) {
           console.error("Case study list API error:", error);
           setBrandStories([]);
@@ -192,8 +197,8 @@ const [isMobile, setIsMobile] = useState(false);
     min-[1440px]:pt-[50px]
 
     min-[1680px]:px-16
-    min-[1920px]:px-20
-    min-[1920px]:pt-[60px]
+    min-[1920px]:px-32!
+    min-[1920px]:py-[60px]
   "
 >
     <section
@@ -204,7 +209,7 @@ const [isMobile, setIsMobile] = useState(false);
     mx-auto
     mb-0
     w-full
-    pb-0
+    py-[20px]
   "
 >
   <div className="brand-sticky-shell">
@@ -273,7 +278,7 @@ const [isMobile, setIsMobile] = useState(false);
         <div className="brand-action-row">
           <button
             type="button"
-            onClick={() => router.push("/CaseStudies")}
+            onClick={() => router.push("/case-study")}
             className="
               brand-case-study-button
               group

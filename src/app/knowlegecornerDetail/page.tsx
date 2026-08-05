@@ -39,14 +39,376 @@ type BlogDetail = {
   slugname: string;
   blogDescription: string;
   date: string;
-  metaTitle: string;
-  metaKeyword: string;
-  metaDescription: string;
-  head: string;
-  body: string;
+  metaTitle: string | null;
+  metaKeyword: string | null;
+  metaDescription: string | null;
+  head: string | null;
+  body: string | null;
   blogImage: string;
   recentBlogs: RecentBlog[];
 };
+
+type SeoMetaAttribute = "name" | "property";
+
+function normalizeSeoText(value: string): string {
+  return value
+    .replace(/<[^>]*>/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function createBlogDescription(blog: BlogDetail): string {
+  const apiDescription = blog.metaDescription?.trim();
+
+  if (apiDescription) {
+    return apiDescription;
+  }
+
+  const plainDescription = normalizeSeoText(
+    blog.blogDescription || "",
+  );
+
+  if (plainDescription.length <= 170) {
+    return plainDescription;
+  }
+
+  return `${plainDescription.slice(0, 167).trim()}...`;
+}
+
+function findSeoMetaTag(
+  attribute: SeoMetaAttribute,
+  key: string,
+): HTMLMetaElement | null {
+  return (
+    Array.from(
+      document.head.querySelectorAll<HTMLMetaElement>("meta"),
+    ).find((meta) => meta.getAttribute(attribute) === key) ?? null
+  );
+}
+
+function setSeoMetaTag(
+  attribute: SeoMetaAttribute,
+  key: string,
+  content: string | null | undefined,
+  cleanups: Array<() => void>,
+): void {
+  const normalizedContent = content?.trim();
+
+  if (!normalizedContent) {
+    return;
+  }
+
+  const existingMeta = findSeoMetaTag(attribute, key);
+
+  if (existingMeta) {
+    const previousContent = existingMeta.getAttribute("content");
+
+    existingMeta.setAttribute("content", normalizedContent);
+
+    cleanups.push(() => {
+      if (previousContent === null) {
+        existingMeta.removeAttribute("content");
+      } else {
+        existingMeta.setAttribute("content", previousContent);
+      }
+    });
+
+    return;
+  }
+
+  const meta = document.createElement("meta");
+
+  meta.setAttribute(attribute, key);
+  meta.setAttribute("content", normalizedContent);
+  meta.setAttribute("data-api-seo", "blog-detail");
+
+  document.head.appendChild(meta);
+
+  cleanups.push(() => {
+    meta.remove();
+  });
+}
+
+function setSeoCanonical(
+  href: string,
+  cleanups: Array<() => void>,
+): void {
+  const normalizedHref = href.trim();
+
+  if (!normalizedHref) {
+    return;
+  }
+
+  const existingCanonical =
+    document.head.querySelector<HTMLLinkElement>(
+      'link[rel="canonical"]',
+    );
+
+  if (existingCanonical) {
+    const previousHref = existingCanonical.getAttribute("href");
+
+    existingCanonical.setAttribute("href", normalizedHref);
+
+    cleanups.push(() => {
+      if (previousHref === null) {
+        existingCanonical.removeAttribute("href");
+      } else {
+        existingCanonical.setAttribute("href", previousHref);
+      }
+    });
+
+    return;
+  }
+
+  const canonical = document.createElement("link");
+
+  canonical.rel = "canonical";
+  canonical.href = normalizedHref;
+  canonical.setAttribute("data-api-seo", "blog-detail");
+
+  document.head.appendChild(canonical);
+
+  cleanups.push(() => {
+    canonical.remove();
+  });
+}
+
+function appendSeoJsonLd(
+  head: string | null,
+  body: string | null,
+  cleanups: Array<() => void>,
+): void {
+  const sources = [head, body].filter(
+    (source): source is string => Boolean(source?.trim()),
+  );
+
+  const schemaPattern =
+    /<script\b[^>]*type\s*=\s*["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+
+  for (const source of sources) {
+    schemaPattern.lastIndex = 0;
+
+    let match: RegExpExecArray | null;
+
+    while ((match = schemaPattern.exec(source)) !== null) {
+      const schemaText = match[1]?.trim();
+
+      if (!schemaText) {
+        continue;
+      }
+
+      try {
+        const parsedSchema: unknown = JSON.parse(schemaText);
+        const script = document.createElement("script");
+
+        script.type = "application/ld+json";
+        script.setAttribute("data-api-seo", "blog-detail");
+        script.textContent = JSON.stringify(parsedSchema).replace(
+          /</g,
+          "\\u003c",
+        );
+
+        document.head.appendChild(script);
+
+        cleanups.push(() => {
+          script.remove();
+        });
+      } catch (schemaError) {
+        console.error("Invalid blog JSON-LD schema:", schemaError);
+      }
+    }
+  }
+}
+
+function applyBlogSeo(blog: BlogDetail): () => void {
+  const cleanups: Array<() => void> = [];
+  const previousTitle = document.title;
+
+  const title =
+    blog.metaTitle?.trim() ||
+    `${blog.blogTitle.trim()} | Purple Phase`;
+
+  const description = createBlogDescription(blog);
+
+  const currentPath =
+    window.location.pathname === "/blogdetail"
+      ? "/blogdetail"
+      : "/blog-detail";
+
+  let canonicalUrl =
+    `https://purplephase.in${currentPath}?slug=${encodeURIComponent(
+      blog.slugname,
+    )}`;
+
+  document.title = title;
+
+  cleanups.push(() => {
+    document.title = previousTitle;
+  });
+
+  setSeoMetaTag(
+    "name",
+    "description",
+    description,
+    cleanups,
+  );
+
+  setSeoMetaTag(
+    "name",
+    "keywords",
+    blog.metaKeyword,
+    cleanups,
+  );
+
+  setSeoMetaTag(
+    "name",
+    "robots",
+    "index, follow",
+    cleanups,
+  );
+
+  if (blog.head?.trim()) {
+    const parsedDocument = new DOMParser().parseFromString(
+      blog.head,
+      "text/html",
+    );
+
+    parsedDocument.querySelectorAll("meta").forEach((apiMeta) => {
+      const property = apiMeta.getAttribute("property")?.trim();
+      const name = apiMeta.getAttribute("name")?.trim();
+      const content = apiMeta.getAttribute("content")?.trim();
+
+      if (property && content) {
+        setSeoMetaTag(
+          "property",
+          property,
+          content,
+          cleanups,
+        );
+      }
+
+      if (name && content) {
+        setSeoMetaTag(
+          "name",
+          name,
+          content,
+          cleanups,
+        );
+      }
+    });
+
+    const apiCanonical =
+      parsedDocument.querySelector<HTMLLinkElement>(
+        'link[rel="canonical"]',
+      );
+
+    const apiCanonicalHref =
+      apiCanonical?.getAttribute("href")?.trim();
+
+    if (apiCanonicalHref) {
+      canonicalUrl = apiCanonicalHref;
+    }
+  } else {
+    setSeoMetaTag(
+      "property",
+      "og:type",
+      "article",
+      cleanups,
+    );
+
+    setSeoMetaTag(
+      "property",
+      "og:url",
+      canonicalUrl,
+      cleanups,
+    );
+
+    setSeoMetaTag(
+      "property",
+      "og:title",
+      title,
+      cleanups,
+    );
+
+    setSeoMetaTag(
+      "property",
+      "og:description",
+      description,
+      cleanups,
+    );
+
+    setSeoMetaTag(
+      "property",
+      "og:image",
+      blog.blogImage,
+      cleanups,
+    );
+
+    setSeoMetaTag(
+      "property",
+      "og:site_name",
+      "Purple Phase",
+      cleanups,
+    );
+
+    setSeoMetaTag(
+      "property",
+      "og:locale",
+      "en_IN",
+      cleanups,
+    );
+
+    setSeoMetaTag(
+      "name",
+      "twitter:card",
+      "summary_large_image",
+      cleanups,
+    );
+
+    setSeoMetaTag(
+      "name",
+      "twitter:url",
+      canonicalUrl,
+      cleanups,
+    );
+
+    setSeoMetaTag(
+      "name",
+      "twitter:title",
+      title,
+      cleanups,
+    );
+
+    setSeoMetaTag(
+      "name",
+      "twitter:description",
+      description,
+      cleanups,
+    );
+
+    setSeoMetaTag(
+      "name",
+      "twitter:image",
+      blog.blogImage,
+      cleanups,
+    );
+  }
+
+  setSeoCanonical(canonicalUrl, cleanups);
+
+  appendSeoJsonLd(
+    blog.head,
+    blog.body,
+    cleanups,
+  );
+
+  return () => {
+    [...cleanups].reverse().forEach((cleanup) => {
+      cleanup();
+    });
+  };
+}
+
 function BlogDetailContent() {
   const searchParams = useSearchParams();
   const slug = searchParams.get("slug");
@@ -140,6 +502,14 @@ function BlogDetailContent() {
   useEffect(() => {
     fetchBlogDetail();
   }, [slug]);
+
+  useEffect(() => {
+    if (!blog) {
+      return;
+    }
+
+    return applyBlogSeo(blog);
+  }, [blog]);
 
   if (loading) {
     return (

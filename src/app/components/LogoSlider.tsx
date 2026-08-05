@@ -10,6 +10,8 @@ type ClientLogo = {
     client_name: string;
     client_logo: string;
     altTag: string;
+    show_home_page?: number | string;
+
 };
 
 function LogoRow({
@@ -80,12 +82,16 @@ export function LogoSlider() {
         const fetchClients = async () => {
             try {
                 const res = await axios.post(`${apiUrl}/OurClient`);
+if (res.data?.status && Array.isArray(res.data.data)) {
+  const homePageClients = res.data.data.filter(
+    (client: ClientLogo) =>
+      Number(client.show_home_page) === 1,
+  );
 
-                if (res.data?.status && Array.isArray(res.data.data)) {
-                    setClients(res.data.data);
-                } else {
-                    setClients([]);
-                }
+  setClients(homePageClients);
+} else {
+  setClients([]);
+}
             } catch (error) {
                 console.error("Our Client API Error:", error);
                 setClients([]);
