@@ -187,6 +187,7 @@ type PortfolioImage = {
 
 type PortfolioItem = {
   id: number;
+   show_home_page?: number | string;
   title: string;
   description?: string;
   service?: {
@@ -227,11 +228,19 @@ const PortfolioSection = () => {
         }
       );
 
-      if (res.data?.success) {
-        setPortfolioList(res.data?.data || []);
-      } else {
-        setError(res.data?.message || "Failed to fetch portfolio list.");
-      }
+     if (res.data?.success) {
+  const homePagePortfolio = (res.data?.data || []).filter(
+    (item: PortfolioItem) =>
+      Number(item.show_home_page) === 1,
+  );
+
+  setPortfolioList(homePagePortfolio);
+} else {
+  setPortfolioList([]);
+  setError(
+    res.data?.message || "Failed to fetch portfolio list.",
+  );
+}
     } catch (err) {
       console.error("Portfolio API Error:", err);
       setError("Something went wrong while loading portfolio.");
@@ -244,11 +253,13 @@ const PortfolioSection = () => {
     fetchPortfolioList();
   }, []);
 
-  const filteredItems = portfolioList.slice(0, 3);
+ const filteredItems = portfolioList
+  .filter((item) => Number(item.show_home_page) === 1)
+  .slice(0, 3);
 
   return (
     <section className="w-full overflow-hidden bg-white">
-      <div className="mx-auto max-w-full px-4 py-10  lg:py-[30px] lg:px-6 xl:px-10 2xl:px-32">
+      <div className="mx-auto max-w-full px-4 py-10  lg:py-[30px] xl:py-[50px] 2xl:py-[85px] lg:px-6 xl:px-10 2xl:px-32">
         {/* Section Heading */}
         <div className="mb-6  md:mb-8 text-left">
           <h2 className="mb-0  leading-[1.05] tracking-tight text-primary ">

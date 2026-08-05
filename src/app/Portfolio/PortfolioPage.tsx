@@ -765,7 +765,7 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
               font-bold
               leading-[120%]
               text-[#626262]
-
+              capitalize!
               sm:text-xl
               md:text-3xl
             "

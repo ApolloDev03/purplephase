@@ -104,8 +104,8 @@ export default function AchievementSection() {
   const currentTestimonial = testimonials[testIndex];
 
   return (
-    <section className="relative overflow-hidden py-10 lg:py-[30px] xl:py-[50px] 2xl:py-[85px]   font-sans bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]">
-      <div className="max-w-full mx-auto px-4 lg:px-6 xl:px-10 2xl:px-32">
+    <section className="relative overflow-hidden py-10 lg:py-[60px]! 2xl:py-[85px]!   font-sans bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]">
+      <div className="max-w-full mx-auto px-4   lg:px-6 xl:px-10 2xl:px-32">
     
 <div className="counter-border-pill mb-16">
   <div className="grid w-full grid-cols-2 gap-5 lg:grid-cols-4 xl:gap-10">
@@ -149,6 +149,7 @@ export default function AchievementSection() {
       border-white/75
       bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]
       shadow-[0_15px_30px_rgba(0,0,0,0.22)]
+      rounded-lg
      !w-[80px]
      !h-[80px]
       md:w-[250px]

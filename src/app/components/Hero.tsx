@@ -412,6 +412,7 @@ text-[25px]!
   font-body
   !font-bold
   text-primary
+  uppercase
 max-w-[50%] md:max-w-[620px] lg:max-w-[760px]
 !text-[25px]
   md:!text-[30px]
