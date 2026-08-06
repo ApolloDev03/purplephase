@@ -37,7 +37,7 @@ const ProcessSection = () => {
         {/* Right Content */}
         <div className="text-left">
           <h2 className="leading-4 2xl:leading-32.5!  lowercase [font-variant-caps:small-caps]! text-primary ">
-            We Listen, Before We Advise.
+            We Listen, Before We Advise
           </h2>
      
           <motion.div

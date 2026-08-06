@@ -1096,7 +1096,7 @@ export default function ContactPage() {
             </h1>
 
             <span className=" text-white! font-medium text-[14px] lg:text-[25px] text-[#424242] xl:text-[32px] 2xl:text-[36px]">
-              Let’s catch up over a cup of coffee !
+              Let’s catch up over a cup of coffee!
             </span>
 
             <form onSubmit={handleSubmit} noValidate>

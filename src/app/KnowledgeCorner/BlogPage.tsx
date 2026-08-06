@@ -439,8 +439,8 @@ export default function BlogPage() {
           </h1>
 
           <p className="mt-6  text-[15px] leading-[150%] text-[#4d4d4d] md:text-[18px] lg:text-[20px]">
-            Your Go-To Corner For Everything That Makes <br/> Brands Sharper,
-            Stronger, And Smarter.
+            Your go-to corner for everything that makes <br/> brands sharper,
+            stronger, and smarter.
           </p>
       </div>
     </div>
