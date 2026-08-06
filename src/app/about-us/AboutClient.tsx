@@ -332,7 +332,9 @@ lg:!text-[15px]
               Established in 2010, we have a legacy spanning <b>70 years</b> in
               branding & advertising. We started with a belief that a well-built
               brand is the single greatest competitive advantage any business
-              can have. Not the biggest budget. Not the flashiest product. The
+              can have. Not the biggest budget. Not the flashiest product. But
+              
+               The
               brand.
             </p>
 
@@ -376,7 +378,7 @@ lg:!text-[15px]
       {/* ================= LEGACY ================= */}
       <section className="bg-white ">
         <div className="py-[20px] lg:py-[30px] 2xl:py-[85px] mx-auto max-w-full px-4 lg:px-6 xl:px-10 2xl:px-32">
-          <h2 className="mb-8  leading-[120%] text-[#9c1367]">
+          <h2 className="mb-8 capitalize leading-[120%] text-[#9c1367]">
             Your brand isn’t a project to us
             <br />
             It’s a story we help write
@@ -422,14 +424,11 @@ lg:!text-[15px]
           {/* Content */}
           <div className="mt-8 ">
             <p className="text-justify leading-[1.75] ">
-              When there was no AI, no social media, no design tools, no internet…in
-              fact no computer and mobile phone… when even rotary dial phones (what’s
-              that? Look up in Google) were a luxury…our story began back then in
-              1953.
+              When there was no AI, no social media, no design tools, and no internet – in fact, no computers or mobile phones – and when even rotary dial phones (what’s that? Look it up on Google) were a luxury... our story began back then, in 1953.
             </p>
 
             <p className="mt-7 text-justify leading-[1.75] ">
-              At that time, we used to hand-paint advertisements, posters and billboards for some of India’s biggest brands. Even 60 feet billboards were painstakingly hand painted. Of course there was no CTRL+Z. One mistake and you have to redo the entire thing.
+             At that time, we used to hand-paint advertisements, posters, and billboards for some of India's biggest brands. Even 60-foot billboards were painstakingly hand-painted. Of course, there was no CTRL+Z. One mistake and you had to redo the entire thing.
             </p>
 
             <h3  style={{
@@ -597,7 +596,7 @@ lg:!text-[15px]
             text-[#9C1367]
           "
         >
-          Human Thinking,
+          Human Thinking
           <br />
           AI Edge
         </h2>
@@ -1034,13 +1033,13 @@ lg:!text-[15px]
 </section> */}
 <section id="team" className="overflow-hidden bg-white">
   <div className="max-w-full px-4 lg:px-6 xl:px-10 2xl:px-32">
-    <div className="flex flex-col items-center justify-between lg:flex-row lg:gap-12">
+    <div className="flex flex-col items-center justify-between lg:flex-row 2xl:gap-12">
 
       {/* LEFT CONTENT */}
       <div className="flex w-full flex-col justify-center">
         {/* Section heading */}
-        <h2 className="mt-[20px] font-semibold leading-[120%] text-primary lg:mt-0">
-          We Are The Team Behind Your Team Dedicated To Build Your Brand
+        <h2 className="mt-[20px]  font-semibold 2xl:leading-[120%] text-primary lg:mt-0">
+          We are the team behind your team Dedicated to build your brand
         </h2>
 
         {/* MOBILE MEMBER IMAGE — image first */}

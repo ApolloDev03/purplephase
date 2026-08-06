@@ -1499,7 +1499,7 @@ text-[21px]!
               <h2 className="leading-[120%] font-semibold [font-variant-caps:all-small-caps]! text-primary">
                 We Believe Great Brands Are Built By People{" "}
                 <br  />
-                Who Never Stop Learning.
+                Who Never Stop Learning
               </h2>
 
               <div className="mt-7  space-y-6  text-[#424242] ">
@@ -1725,7 +1725,7 @@ text-[21px]!
                 <div className="mx-auto max-w-full px-4 lg:px-6 xl:px-10 2xl:px-32">
                   {/* Heading */}
                     <h4 className="mb-2 font-semibold leading-tight tracking-wide text-white text-[25px] lg:text-[35px]  2xl:text-[48px]">
-                     Ready to Build Brands with Us?
+                     Ready to build brands with us?
                     </h4>
           
                     <span className=" text-[14px] font-normal leading-tight text-white md:text-[28px] 2xl:text-[36px]">

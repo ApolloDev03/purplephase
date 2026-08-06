@@ -20,7 +20,7 @@ const Footer = () => {
         { name: 'Instagram', icon: <FaInstagram />, href: 'https://www.instagram.com/purple_phase_communications/' },
         { name: 'LinkedIn', icon: <FaLinkedinIn />, href: 'https://www.linkedin.com/company/purple-phase-communications' },
         { name: 'Facebook', icon: <FaFacebookF />, href: 'https://www.facebook.com/PurplePhaseCommunications/' },
-        { name: 'Twitter', icon: <FaXTwitter />, href: 'https://www.facebook.com/PurplePhaseCommunications/' },
+        { name: 'Twitter', icon: <FaXTwitter />, href: 'https://x.com/sm_ppc' },
         { name: 'Youtube', icon: <FaYoutube />, href: 'https://www.youtube.com/@purplephasecommunications' },
     ];
 

@@ -208,7 +208,7 @@ export default function CaseStudyPage() {
                                                               <div className="animated-btn-wrapper rounded-full! ">
             
                                                                 <button className="animated-btn  inline-flex items-center gap-3 rounded-full! bg-[#720048] px-3 py-2 lg:px-6 lg:py-3 text-[15px] lg:text-[20px] 2xl:text-[24px]! font-bold! text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
-                                                                     Lets Discuss
+                                                                     Let's Discuss
                                         
                                                                     <span className="flex w-4 h-4 lg:h-5 lg:w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
                                                                         <LuMoveUpRight className="w-4 h-4 lg:h-5 lg:w-5" />

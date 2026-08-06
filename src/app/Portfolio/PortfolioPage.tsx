@@ -229,7 +229,7 @@ useEffect(() => {
                     <h2 className=" leading-[130%]
 
 text-primary ">
-               Ideas That Moved People <br/> Work That Moved Markets
+               Ideas that moved people <br/> Work that moved markets
               </h2>
 
             <p className=" leading-7 mt-5 text-[#6d6d6d] ">
