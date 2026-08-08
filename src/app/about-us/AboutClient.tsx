@@ -146,7 +146,7 @@ useEffect(() => {
     <>
       {/* ================= HERO ================= */}
 
-      <section className="relative h-[200px] md:h-[500px] lg:h-[550px] xl:h-[600px] 2xl:h-[800px]! overflow-hidden bg-[#dedede]">
+      <section className="relative h-[200px] md:h-[300px] lg:h-[550px] xl:h-[600px] 2xl:h-[800px]! overflow-hidden bg-[#dedede]">
    
         <div className="absolute right-0 top-0 h-full w-full">
           <img
@@ -165,7 +165,15 @@ useEffect(() => {
       
         <div className="relative z-10 flex h-full items-center">
           <div className="px-4 lg:px-8 xl:px-10 2xl:px-32">
-            <div className="h-[300px] overflow-hidden max-w-[70%] md:max-w-[620px] lg:max-w-[760px]">
+            <div className="    h-[300px]
+    overflow-hidden
+    max-w-[70%]
+    md:max-w-[620px]
+    lg:max-w-[760px]
+
+    lg:relative
+    lg:-top-[35px]
+    xl:-top-[90px]">
               <motion.div
                 animate={{
                   y: -(index * 56),
@@ -186,7 +194,7 @@ useEffect(() => {
             fontVariantCaps: "all-small-caps",
             fontFeatureSettings: '"smcp", "c2sc"',
           }}
-                      className={`h-[54px] md:h-[56px] text-[23px] md:text-[32px] lg:text-[38px] xl:text-[60px]  font-extrabold leading-[1.09]
+                      className={`h-[54px] md:h-[56px] text-[23px] md:text-[32px] lg:text-[38px] xl:text-[50px] 2xl:text-[60px]  font-extrabold leading-[1.09]
                 transition-all duration-500
 
                 ${center
@@ -214,7 +222,7 @@ useEffect(() => {
       block: "start",
     });
   }}
-  className="flex absolute bottom-8 lg:bottom-20 2xl:bottom-36 justify-start"
+  className="flex absolute bottom-8 lg:bottom-20 xl:bottom-48 2xl:bottom-56 justify-start"
 >
   <button className=" motion-shine 
             group
