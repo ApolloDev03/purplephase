@@ -1,46 +1,46 @@
-import type { Metadata } from "next";
+// import type { Metadata } from "next";
 
-import SeoJsonLd from "../components/SeoJsonLd";
+// import SeoJsonLd from "../components/SeoJsonLd";
 
-import {
-  buildSeoMetadata,
-  extractJsonLdSchemas,
-  getSeoData,
-} from "../lib/seo";
+// import {
+//   buildSeoMetadata,
+//   extractJsonLdSchemas,
+//   getSeoData,
+// } from "../lib/seo";
 import ContactPage from "./ContactPage";
 
-const Contact_SEO_ID = "7";
+// const Contact_SEO_ID = "7";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return buildSeoMetadata({
-    id: Contact_SEO_ID,
+// export async function generateMetadata(): Promise<Metadata> {
+//   return buildSeoMetadata({
+//     id: Contact_SEO_ID,
 
-    fallbackTitle:
-      "Contact Us | Purple Phase",
+//     fallbackTitle:
+//       "Contact Us | Purple Phase",
 
-    fallbackDescription:
-      "Explore Purple Phase branding Contact.",
-  });
-}
+//     fallbackDescription:
+//       "Explore Purple Phase branding Contact.",
+//   });
+// }
 
 export default async function CaseStudyPage() {
-  const seo =
-    await getSeoData(
-      Contact_SEO_ID,
-    );
+  // const seo =
+  //   await getSeoData(
+  //     Contact_SEO_ID,
+  //   );
 
-  const schemas =
-    extractJsonLdSchemas(
-      seo?.head,
-      seo?.body,
-    );
+  // const schemas =
+  //   extractJsonLdSchemas(
+  //     seo?.head,
+  //     seo?.body,
+  //   );
 
   return (
     <>
-      <SeoJsonLd
+      {/* <SeoJsonLd
         schemas={schemas}
         idPrefix="case-study-api-schema"
-      />
+      /> */}
 
       <ContactPage />
     </>
