@@ -435,7 +435,7 @@ export function ContactSection() {
     text-black
     outline-none
     placeholder:text-[#8f8f8f]
-    md:h-[61px]
+    xl:h-[61px]
     xl:text-[18px]
   `;
 

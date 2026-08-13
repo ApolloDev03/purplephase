@@ -660,7 +660,7 @@
 //               value={formData.first_name}
 //               onChange={handleChange}
 //               placeholder="Full Name"
-//               className="h-[50px] md:h-[61px] text-[14px]! w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
+//               className="h-[50px]   xl:h-[61px] text-[14px]! w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
 //             />
 
 //             <input
@@ -669,7 +669,7 @@
 //               value={formData.email}
 //               onChange={handleChange}
 //               placeholder="Email"
-//               className="h-[50px] md:h-[61px] text-[14px]! w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
+//               className="h-[50px]   xl:h-[61px] text-[14px]! w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
 //             />
 
 //             <input
@@ -678,7 +678,7 @@
 //               value={formData.qualification}
 //               onChange={handleChange}
 //               placeholder="Qualification"
-//               className="h-[50px] md:h-[61px] text-[14px]! w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
+//               className="h-[50px]   xl:h-[61px] text-[14px]! w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
 //             />
 
 //             <input
@@ -687,7 +687,7 @@
 //               value={formData.contact_no}
 //               onChange={handleChange}
 //               placeholder="Phone Number"
-//               className="h-[50px] md:h-[61px] text-[14px]! w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
+//               className="h-[50px]   xl:h-[61px] text-[14px]! w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
 //             />
 
 //             {/* Applied For */}
@@ -697,7 +697,7 @@
 //     name="career_id"
 //     value={formData.career_id}
 //     onChange={handleChange}
-//     className="h-[50px] md:h-[61px] text-[14px]! w-full appearance-none rounded-md border border-white/20 bg-white px-4 pr-12  text-[#333] outline-none"
+//     className="h-[50px]   xl:h-[61px] text-[14px]! w-full appearance-none rounded-md border border-white/20 bg-white px-4 pr-12  text-[#333] outline-none"
 //   >
 //     <option value="">Applied for</option>
 
@@ -724,7 +724,7 @@
 
 
 //             {/* Resume */}
-//             <div className="flex h-[50px] md:h-[61px] text-[14px]! items-center  overflow-hidden rounded-md border border-white/20 bg-white px-3">
+//             <div className="flex h-[50px]   xl:h-[61px] text-[14px]! items-center  overflow-hidden rounded-md border border-white/20 bg-white px-3">
 //               <input
 //                 id="resume"
 //                 type="file"
@@ -738,7 +738,7 @@
 //                         {/* Captcha same as it is */}
 //                               <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:col-span-2">
 //   {/* Captcha */}
-//   <div className="flex h-[50px] md:h-[61px] text-[14px]! items-center rounded-[6px] border border-white/70 bg-white/10 px-4  text-white">
+//   <div className="flex h-[50px]   xl:h-[61px] text-[14px]! items-center rounded-[6px] border border-white/70 bg-white/10 px-4  text-white">
 //     <span className="font-medium">Captcha:</span>
 //     <span className="ml-1 ">
 //       {captchaQuestion} = ?
@@ -752,7 +752,7 @@
 //     onChange={(e) => setCaptchaAnswer(e.target.value)}
 //     placeholder="Enter answer"
 //     required
-//     className="h-[50px] md:h-[61px] text-[14px] w-full rounded-[6px] bg-white px-4  text-black outline-none placeholder:text-[#8f8f8f]"
+//     className="h-[50px]   xl:h-[61px] text-[14px] w-full rounded-[6px] bg-white px-4  text-black outline-none placeholder:text-[#8f8f8f]"
 //   />
 
 //   {/* Button */}
@@ -767,7 +767,7 @@
 //     <button
 //     type="submit"
 //     disabled={submitLoading}
-//     className="animated-btn h-[50px] md:h-[61px] text-[14px]! w-full"
+//     className="animated-btn h-[50px]   xl:h-[61px] text-[14px]! w-full"
 //   >
 //     {submitLoading ? "Submitting..." : "Let's Connect"}
 //   </button>
@@ -1724,7 +1724,7 @@ text-[21px]!
            <section className="relative overflow-hidden bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)] py-16 py-[20px] lg:py-[30px] 2xl:py-[85px]">
                 <div className="mx-auto max-w-full px-4 lg:px-6 xl:px-10 2xl:px-32">
                   {/* Heading */}
-                    <h4 className="mb-2 font-semibold leading-tight tracking-wide text-white text-[25px] lg:text-[35px]  2xl:text-[48px]">
+                    <h4 className="mb-2 2xl:mb-4 font-semibold leading-tight tracking-wide text-white text-[25px] lg:text-[35px]  2xl:text-[48px]">
                      Ready to build brands with us?
                     </h4>
           
@@ -1732,7 +1732,7 @@ text-[21px]!
                       We would love to hear from you.
                     </span>
           
-                  <div className="mt-4! lg:mt-0 grid grid-cols-1 items-center  lg:grid-cols-12">
+                  <div className="mt-4!  grid grid-cols-1 items-center  lg:grid-cols-12">
                     {/* Form */}
                     <div className="lg:col-span-8">
                       <form
@@ -1748,7 +1748,7 @@ text-[21px]!
               placeholder="Full Name"
               autoComplete="name"
               required
-              className="h-[50px] md:h-[61px] text-[14px]! w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
+              className="h-[50px]   xl:h-[61px] text-[14px]! xl:text-[18px] w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
             />
 
             <input
@@ -1760,7 +1760,7 @@ text-[21px]!
               autoComplete="email"
               inputMode="email"
               required
-              className="h-[50px] md:h-[61px] text-[14px]! w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
+              className="h-[50px]   xl:h-[61px] text-[14px]! xl:text-[18px] w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
             />
 
             <input
@@ -1770,7 +1770,7 @@ text-[21px]!
               onChange={handleChange}
               placeholder="Qualification"
               required
-              className="h-[50px] md:h-[61px] text-[14px]! w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
+              className="h-[50px]   xl:h-[61px] text-[14px]! xl:text-[18px] w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
             />
 
             <input
@@ -1784,7 +1784,7 @@ text-[21px]!
               pattern="[0-9]*"
               maxLength={10}
               required
-              className="h-[50px] md:h-[61px] text-[14px]! w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
+              className="h-[50px]   xl:h-[61px] text-[14px]! xl:text-[18px]  w-full rounded-md border border-white/20 bg-white px-4  text-[#333] outline-none placeholder:text-[#8b8b8b]"
             />
 
             {/* Applied For */}
@@ -1795,7 +1795,7 @@ text-[21px]!
     value={formData.career_id}
     onChange={handleChange}
     required
-    className="h-[50px] md:h-[61px] text-[14px]! w-full appearance-none rounded-md border border-white/20 bg-white px-4 pr-12  text-[#333] outline-none"
+    className="h-[50px]   xl:h-[61px] text-[14px]! xl:text-[18px] w-full appearance-none rounded-md border border-white/20 bg-white px-4 pr-12  text-[#333] outline-none"
   >
     <option value="">Applied for</option>
 
@@ -1822,7 +1822,7 @@ text-[21px]!
 
 
             {/* Resume */}
-            <div className="flex h-[50px] md:h-[61px] text-[14px]! items-center  overflow-hidden rounded-md border border-white/20 bg-white px-3">
+            <div className="flex h-[50px]   xl:h-[61px] text-[14px]! xl:text-[18px] items-center  overflow-hidden rounded-md border border-white/20 bg-white px-3">
               <input
                 id="resume"
                 type="file"
@@ -1837,7 +1837,7 @@ text-[21px]!
                         {/* Captcha same as it is */}
                               <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:col-span-2">
   {/* Captcha */}
-  <div className="flex h-[50px] md:h-[61px] text-[14px]! items-center rounded-[6px] border border-white/70 bg-white/10 px-4  text-white">
+  <div className="flex h-[50px]   xl:h-[61px] text-[14px]! xl:text-[18px] items-center rounded-[6px] border border-white/70 bg-white/10 px-4  text-white">
     <span className="font-medium">Captcha:</span>
     <span className="ml-1 ">
       {captchaQuestion} = ?
@@ -1854,22 +1854,16 @@ text-[21px]!
     pattern="[0-9]*"
     maxLength={2}
     required
-    className="h-[50px] md:h-[61px] text-[14px] w-full rounded-[6px] bg-white px-4  text-black outline-none placeholder:text-[#8f8f8f]"
+    className="h-[50px]   xl:h-[61px] text-[14px] xl:text-[18px] w-full rounded-[6px] bg-white px-4  text-black outline-none placeholder:text-[#8f8f8f]"
   />
 
   {/* Button */}
   <div className="animated-btn-wrapper">
- {/* <button
-    type="submit"
-    disabled={submitLoading}
-    className="motion-shine !text-[18px] contact-gradient-btn h-[61px] w-full rounded-full font-semibold text-white transition disabled:cursor-not-allowed disabled:opacity-60"
-  >
-    {submitLoading ? "Submitting..." : "Let's Connect"}
-  </button> */}
+ 
     <button
     type="submit"
     disabled={submitLoading}
-    className="animated-btn h-[50px] md:h-[61px] text-[14px]! w-full"
+    className="animated-btn h-[50px]   xl:h-[61px]  text-[16px]! xl:text-[18px]! w-full"
   >
     {submitLoading ? "Submitting..." : "Let's Connect"}
   </button>
@@ -1880,15 +1874,46 @@ text-[21px]!
                     </div>
           
                     {/* Coffee Image */}
-                     <div className="mt-4 xl:mt-0 flex justify-center lg:col-span-4 lg:justify-end">
-                                <div className="relative w-full max-w-[320px] lg:max-w-[600px] 2xl:max-w-[700px]">
+                     {/* <div className="mt-4 xl:mt-0 flex justify-center lg:col-span-4 lg:justify-end">
+                                <div className="relative w-full max-w-[320px] lg:max-w-[550px] 2xl:max-w-[600px]">
                                   <img
                                     src={logo.src}
                                     alt="Coffee Illustration"
                                     className="h-auto w-full drop-shadow-2xl"
                                   />
                                 </div>
-                              </div>
+                              </div> */}
+                              <div className="mt-4 xl:mt-0 flex justify-center lg:col-span-4 lg:justify-end">
+  <div
+    className="
+      relative
+      w-full
+      max-w-[320px]
+      h-[260px]
+md:max-w-[350px]
+      md:h-[320px]
+
+      lg:max-w-[550px]
+      lg:h-[250px]
+
+      xl:h-[300px]
+
+      2xl:max-w-[600px]
+      2xl:h-[300px]
+    "
+  >
+    <img
+      src={logo.src}
+      alt="Coffee Illustration"
+      className="
+        h-full
+        w-full
+        object-contain
+        drop-shadow-2xl
+      "
+    />
+  </div>
+</div>
               
                   </div>
                 </div>
@@ -2103,56 +2128,7 @@ text-[21px]!
     </div>
   </motion.div>
 )}
-    {/* {galleryOpen && (
-      <motion.div
-        className="fixed inset-0 z-[9999] flex items-center justify-center bg-black/90"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        onClick={closeGallery}
-      >
-        <button
-          onClick={closeGallery}
-          className="absolute right-0 lg:right-8 top-8 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-white/90 text-primary"
-        >
-          <X size={22} />
-        </button>
-
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            handlePrevImage();
-          }}
-          className="absolute left-8 top-1/2 z-30 -translate-y-1/2 rounded-full bg-white/90 p-3 shadow-lg transition hover:bg-white"
-        >
-          <ChevronLeft size={30} className="text-[#A61D67]" />
-        </button>
-
-        <AnimatePresence mode="wait">
-          <motion.img
-            key={careerImages[activeImageIndex]}
-            src={careerImages[activeImageIndex]}
-            alt=""
-            className="max-h-[90vh] max-w-[90vw] object-contain"
-            initial={{ opacity: 0, x: 40 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: -40 }}
-            transition={{ duration: 0.3 }}
-            onClick={(e) => e.stopPropagation()}
-          />
-        </AnimatePresence>
-
-        <button
-          onClick={(e) => {
-            e.stopPropagation();
-            handleNextImage();
-          }}
-          className="absolute right-8 top-1/2 z-30 -translate-y-1/2 rounded-full bg-white/90 p-3 shadow-lg transition hover:bg-white"
-        >
-          <ChevronRight size={30} className="text-[#A61D67]" />
-        </button>
-      </motion.div>
-    )} */}
+   
   </AnimatePresence>
       </>
     );

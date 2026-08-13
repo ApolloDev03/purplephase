@@ -195,6 +195,7 @@ export default function HeaderHero() {
     md:h-[350px]
 
     lg:h-[450px]
+    xl:h-[500px]
     2xl:h-[720px]
   "
 >

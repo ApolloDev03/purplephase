@@ -41,7 +41,7 @@
 // }
 
 
-import type { Metadata } from "next";
+// import type { Metadata } from "next";
 
 import AchievementSection from "./components/AchievementSection";
 import BrandPage from "./components/BrandPage";
@@ -54,31 +54,31 @@ import ProcessSection from "./components/ProcessSection";
 import SeoJsonLd from "./components/SeoJsonLd";
 import VideoSection from "./components/VideoSection";
 
-import {
-  buildSeoMetadata,
-  extractJsonLdSchemas,
-  getSeoData,
-} from "./lib/seo";
+// import {
+//   buildSeoMetadata,
+//   extractJsonLdSchemas,
+//   getSeoData,
+// } from "./lib/seo";
 
-const HOME_SEO_ID = "1";
+// const HOME_SEO_ID = "1";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return buildSeoMetadata({
-    id: HOME_SEO_ID,
+// export async function generateMetadata(): Promise<Metadata> {
+//   return buildSeoMetadata({
+//     id: HOME_SEO_ID,
 
-    fallbackTitle:
-      "Purple Phase | Creative Branding Agency",
+//     fallbackTitle:
+//       "Purple Phase | Creative Branding Agency",
 
-    fallbackDescription:
-      "Purple Phase delivers strategic branding, creative design and digital marketing experiences.",
-  });
-}
+//     fallbackDescription:
+//       "Purple Phase delivers strategic branding, creative design and digital marketing experiences.",
+//   });
+// }
 
 export default async function Home() {
-  const seo =
-    await getSeoData(
-      HOME_SEO_ID,
-    );
+  // const seo =
+  //   await getSeoData(
+  //     HOME_SEO_ID,
+  //   );
 
   /*
    * Dynamic schema only from API.
@@ -87,18 +87,18 @@ export default async function Home() {
    * તો schemas empty રહેશે અને
    * <script> render નહીં થાય.
    */
-  const schemas =
-    extractJsonLdSchemas(
-      seo?.head,
-      seo?.body,
-    );
+  // const schemas =
+  //   extractJsonLdSchemas(
+  //     seo?.head,
+  //     seo?.body,
+  //   );
 
   return (
     <>
-      <SeoJsonLd
+      {/* <SeoJsonLd
         schemas={schemas}
         idPrefix="home-api-schema"
-      />
+      /> */}
 
       <HeaderHero />
       <ProcessSection />
