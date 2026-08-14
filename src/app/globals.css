@@ -804,6 +804,20 @@ border-radius: 999px;
     object-fit: cover !important;
     object-position: center center !important;
   }
+    .brand-scroll-section {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .brand-sticky-shell {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  .brand-action-row {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+  }
 }
 
 

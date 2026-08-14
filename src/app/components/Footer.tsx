@@ -12,6 +12,7 @@ import {
 import Image from 'next/image';
 import logo from '../assets/ppc-combined-logo.png';
 import { FaXTwitter } from 'react-icons/fa6';
+import Link from 'next/link';
 
 const Footer = () => {
     const socialLinks = [
@@ -90,7 +91,7 @@ const Footer = () => {
     </div>
 
     {/* Mumbai */}
-    <div className="flex flex-col">
+    {/* <div className="flex flex-col">
         <div className="flex items-center gap-2 mb-2">
             <FaMapMarkerAlt className="text-primary text-sm" />
             <h4 className="font-medium text-[#4A4A4A]">
@@ -104,7 +105,7 @@ const Footer = () => {
         >
             +91 90000 00000
         </a>
-    </div>
+    </div> */}
 
     {/* UK */}
     {/* <div className="flex flex-col">
@@ -195,12 +196,23 @@ const Footer = () => {
 
 
                 <div className="col-span-6  mt-3 lg:mt-0 grid grid-cols-1 sm:grid-cols-2 justify-items-center  lg:justify-items-end">
-                    <div className="flex flex-col lg:min-w-[150px] text-[14px] xl:text-[18px]">
-                        <a href="#" className="hover:text-primary transition-colors ">Terms & Conditions</a>
-                    </div>
-                    <div className="flex flex-col lg:min-w-[150px] text-[14px] xl:text-[18px]">
-                        <a href="#" className="hover:text-primary transition-colors">Privacy Policy</a>
-                    </div>
+                <div className="flex flex-col lg:min-w-[150px] text-[14px] xl:text-[18px]">
+  <Link
+    href="/terms-and-conditions"
+    className="hover:text-primary transition-colors"
+  >
+    Terms & Conditions
+  </Link>
+</div>
+
+<div className="flex flex-col lg:min-w-[150px] text-[14px] xl:text-[18px]">
+  <Link
+    href="/privacy-policy"
+    className="hover:text-primary transition-colors"
+  >
+    Privacy Policy
+  </Link>
+</div>
                 </div>
             </motion.div>
         </footer>
