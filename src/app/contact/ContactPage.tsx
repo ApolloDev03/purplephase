@@ -1002,11 +1002,7 @@ export default function ContactPage() {
                   </a>
                 </div>
               </div>
-            </div>
-
-            {/* SECOND ROW */}
-            <div className="mt-16 grid grid-cols-1 gap-x-2 gap-y-12 md:grid-cols-3">
-              <div className="flex items-start gap-4">
+                <div className="flex items-start gap-4">
                 <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#a20d69] text-[#a20d69]">
                   <MapPin size={18} />
                 </div>
@@ -1024,17 +1020,15 @@ export default function ContactPage() {
                     Annapurna Hall, New Vikasgruh Road, Paldi, Ahmedabad, Gujarat -
                     380007.
                   </p>
-
-                  <a
-                    href="tel:+919999610505"
-                    className="mt-4 inline-block text-[16px] lg:text-[24px]! text-[#4a4a4a] underline decoration-[#4a4a4a]/60 underline-offset-2 transition-colors hover:text-[#a20d69]"
-                  >
-                    +91 99986 10505
-                  </a>
                 </div>
               </div>
+            </div>
 
-              <div className="flex items-start gap-4">
+            {/* SECOND ROW */}
+            <div className="mt-16 grid grid-cols-1 gap-x-2 gap-y-12 md:grid-cols-3">
+            
+
+              {/* <div className="flex items-start gap-4">
                 <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#a20d69] text-[#a20d69]">
                   <MapPin size={18} />
                 </div>
@@ -1059,7 +1053,7 @@ export default function ContactPage() {
                     +91 99986 10505
                   </a>
                 </div>
-              </div>
+              </div> */}
 
               {/* <div className="flex items-start gap-4">
         <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border-2 border-[#a20d69] text-[#a20d69]">
