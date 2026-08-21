@@ -24,7 +24,13 @@ type PortfolioItem = {
     service_name: string;
   } | null;
   images: PortfolioImage[];
+    video_link?: string | null; 
   created_at: string;
+};
+type PortfolioMedia = {
+  id: string | number;
+  type: "image" | "video";
+  src: string;
 };
 
 type ServiceItem = {
@@ -115,11 +121,31 @@ const handleViewMore = () => {
   setVisibleCount((prev) => prev + ITEMS_PER_PAGE);
 };
 
-  const getSortedImages = (project: PortfolioItem | null) => {
-    return [...(project?.images || [])].sort(
-      (a, b) => a.sort_order - b.sort_order
-    );
-  };
+const getProjectMedia = (
+  project: PortfolioItem | null
+): PortfolioMedia[] => {
+  if (!project) return [];
+
+  const images: PortfolioMedia[] = [...(project.images || [])]
+    .sort((a, b) => a.sort_order - b.sort_order)
+    .map((image) => ({
+      id: `image-${image.id}`,
+      type: "image",
+      src: image.image_url,
+    }));
+
+  const videos: PortfolioMedia[] = [];
+
+  if (project.video_link) {
+    videos.push({
+      id: `video-${project.id}`,
+      type: "video",
+      src: project.video_link,
+    });
+  }
+
+  return [...images, ...videos];
+};
 
   const openGallery = (project: PortfolioItem) => {
     setSelectedProject(project);
@@ -131,23 +157,25 @@ const handleViewMore = () => {
     setActiveImageIndex(0);
   };
 
-  const selectedImages = getSortedImages(selectedProject);
+const selectedMedia = getProjectMedia(selectedProject);
 
-  const handlePrevImage = () => {
-    if (!selectedImages.length) return;
+ const handlePrevImage = () => {
+  if (!selectedMedia.length) return;
 
-    setActiveImageIndex((prev) =>
-      prev === 0 ? selectedImages.length - 1 : prev - 1
-    );
-  };
+  setActiveImageIndex((prev) =>
+    prev === 0 ? selectedMedia.length - 1 : prev - 1
+  );
+};
 
-  const handleNextImage = () => {
-    if (!selectedImages.length) return;
+const handleNextImage = () => {
+  if (!selectedMedia.length) return;
 
-    setActiveImageIndex((prev) =>
-      prev === selectedImages.length - 1 ? 0 : prev + 1
-    );
-  };
+  setActiveImageIndex((prev) =>
+    prev === selectedMedia.length - 1 ? 0 : prev + 1
+  );
+};
+
+  
 
 
 const filteredProjects = useMemo(() => {
@@ -166,15 +194,16 @@ const visibleProjects = useMemo(() => {
 useEffect(() => {
   if (!selectedProject) return;
 
-  const imagesLength = selectedProject?.images?.length || 0;
-  if (imagesLength === 0) return;
+  const mediaLength = selectedMedia.length;
+
+  if (mediaLength === 0) return;
 
   const handleKeyDown = (event: KeyboardEvent) => {
     if (event.key === "ArrowLeft") {
       event.preventDefault();
 
       setActiveImageIndex((prev) =>
-        prev === 0 ? imagesLength - 1 : prev - 1
+        prev === 0 ? mediaLength - 1 : prev - 1
       );
     }
 
@@ -182,12 +211,13 @@ useEffect(() => {
       event.preventDefault();
 
       setActiveImageIndex((prev) =>
-        prev === imagesLength - 1 ? 0 : prev + 1
+        prev === mediaLength - 1 ? 0 : prev + 1
       );
     }
 
     if (event.key === "Escape") {
       event.preventDefault();
+
       setSelectedProject(null);
       setActiveImageIndex(0);
     }
@@ -198,7 +228,7 @@ useEffect(() => {
   return () => {
     window.removeEventListener("keydown", handleKeyDown);
   };
-}, [selectedProject]);
+}, [selectedProject, selectedMedia.length]);
 
 const selectedService = serviceList.find(
   (service) => service.id === activeServiceId
@@ -220,6 +250,40 @@ useEffect(() => {
     document.removeEventListener("mousedown", handleOutsideClick);
   };
 }, []);
+
+const getYouTubeEmbedUrl = (url: string) => {
+  try {
+    const parsedUrl = new URL(url);
+
+    if (parsedUrl.hostname.includes("youtu.be")) {
+      const videoId = parsedUrl.pathname.replace("/", "");
+
+      return `https://www.youtube.com/embed/${videoId}`;
+    }
+
+    if (parsedUrl.hostname.includes("youtube.com")) {
+      if (parsedUrl.pathname.includes("/embed/")) {
+        return url;
+      }
+
+      if (parsedUrl.pathname.includes("/shorts/")) {
+        const videoId = parsedUrl.pathname.split("/shorts/")[1];
+
+        return `https://www.youtube.com/embed/${videoId}`;
+      }
+
+      const videoId = parsedUrl.searchParams.get("v");
+
+      if (videoId) {
+        return `https://www.youtube.com/embed/${videoId}`;
+      }
+    }
+  } catch {
+    return null;
+  }
+
+  return null;
+};
   return (
     <>
 
@@ -482,7 +546,7 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
         <div
           key={item.id}
           onClick={() => openGallery(item)}
-          className="group relative h-[200px] lg:h-[250px] xl:h-[354px] w-full cursor-pointer overflow-hidden rounded-xl bg-white shadow-md"
+          className="group relative h-[200px] xl:h-[250px] 2xl:h-[354px] w-full cursor-pointer overflow-hidden rounded-xl bg-white shadow-md"
         >
           {firstImage ? (
             <div className="absolute inset-0 ">
@@ -794,47 +858,90 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
             lg:rounded-[18px]
           "
         >
-          {selectedImages.length > 0 ? (
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.img
-                key={
-                  selectedImages[activeImageIndex]?.id ||
-                  selectedImages[activeImageIndex]?.image_url
-                }
-                src={selectedImages[activeImageIndex]?.image_url}
-                alt={selectedProject.title}
-                className="
-                  block
-                  h-full
-                  w-full
-                  select-none
-                  object-contain
-
-                  lg:object-cover
-                "
-                initial={{
-                  opacity: 0,
-                  x: 40,
-                }}
-                animate={{
-                  opacity: 1,
-                  x: 0,
-                }}
-                exit={{
-                  opacity: 0,
-                  x: -40,
-                }}
-                transition={{ duration: 0.25 }}
-                draggable={false}
-              />
-            </AnimatePresence>
+         {selectedMedia.length > 0 ? (
+  <AnimatePresence mode="wait" initial={false}>
+    <motion.div
+      key={selectedMedia[activeImageIndex]?.id}
+      className="h-full w-full"
+      initial={{
+        opacity: 0,
+        x: 40,
+      }}
+      animate={{
+        opacity: 1,
+        x: 0,
+      }}
+      exit={{
+        opacity: 0,
+        x: -40,
+      }}
+      transition={{
+        duration: 0.25,
+      }}
+    >
+      {selectedMedia[activeImageIndex]?.type === "image" ? (
+        <img
+          src={selectedMedia[activeImageIndex]?.src}
+          alt={selectedProject.title}
+          className="
+            block
+            h-full
+            w-full
+            select-none
+            object-contain
+            lg:object-cover
+          "
+          draggable={false}
+        />
+      ) : (
+        <>
+          {getYouTubeEmbedUrl(
+            selectedMedia[activeImageIndex]?.src
+          ) ? (
+            <iframe
+              src={getYouTubeEmbedUrl(
+                selectedMedia[activeImageIndex]?.src
+              )!}
+              title={selectedProject.title}
+              className="h-full w-full border-0 bg-black"
+              allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture
+              "
+              allowFullScreen
+            />
           ) : (
-            <p className="text-sm font-medium text-gray-400">
-              No Image
-            </p>
+            <video
+              key={selectedMedia[activeImageIndex]?.src}
+              src={selectedMedia[activeImageIndex]?.src}
+              controls
+              autoPlay
+              playsInline
+              className="
+                h-full
+                w-full
+                bg-black
+                object-contain
+              "
+            >
+              Your browser does not support video.
+            </video>
           )}
+        </>
+      )}
+    </motion.div>
+  </AnimatePresence>
+) : (
+  <p className="text-sm font-medium text-gray-400">
+    No media available
+  </p>
+)}
 
-          {selectedImages.length > 1 && (
+         {selectedMedia.length > 1 && (
             <>
               {/* Previous image */}
               <button
@@ -933,7 +1040,7 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
                   sm:text-xs
                 "
               >
-                {activeImageIndex + 1} / {selectedImages.length}
+                {activeImageIndex + 1} / {selectedMedia.length}
               </div>
             </>
           )}

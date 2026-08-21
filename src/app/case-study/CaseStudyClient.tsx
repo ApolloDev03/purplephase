@@ -138,7 +138,7 @@ export default function CaseStudyPage() {
                     className="w-full mt-10"
                   >
                     <Link
-                      href={`/case-study-detail?slug=${encodeURIComponent(
+                      href={`/case-study-detail?title=${encodeURIComponent(
                         detailSlug
                       )}`}
                       className="block"
