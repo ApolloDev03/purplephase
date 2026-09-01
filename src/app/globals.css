@@ -1,4 +1,4 @@
-  @import "tailwindcss";
+@import "tailwindcss";
 
   @theme {
     --color-primary: #961965;
@@ -381,7 +381,9 @@ border-radius: 999px;
   }
 
 /* =====================================================
-   CASE STUDY FINAL RESPONSIVE HEIGHTS
+   CASE STUDY
+   MOBILE: AUTO SLIDER
+   MD+: MOUSE / PAGE SCROLL
 ===================================================== */
 
 .brand-scroll-section {
@@ -402,6 +404,10 @@ border-radius: 999px;
   gap: 18px;
 }
 
+/* =====================================================
+   IMAGE STAGE
+===================================================== */
+
 .brand-image-stage {
   position: relative !important;
   display: block !important;
@@ -412,14 +418,18 @@ border-radius: 999px;
   min-height: 320px !important;
 
   flex: 0 0 auto !important;
-  overflow: hidden;
+  overflow: hidden !important;
 
   border-radius: 12px;
   background: transparent;
-    isolation: isolate;
+  isolation: isolate;
 
   opacity: 1 !important;
 }
+
+/* =====================================================
+   BUTTON ROW
+===================================================== */
 
 .brand-action-row {
   position: relative !important;
@@ -429,6 +439,7 @@ border-radius: 999px;
   display: flex;
   width: 100%;
   flex: 0 0 auto;
+
   align-items: center;
   justify-content: flex-start;
 
@@ -448,312 +459,55 @@ border-radius: 999px;
 }
 
 /* =====================================================
-   TABLET: 768px–1023px
+   MOBILE
+   0PX - 767PX
+   AUTO SLIDER
 ===================================================== */
-
-@media (min-width: 768px) and (max-width: 1023px) {
-  .brand-image-stage {
-    height: 430px !important;
-    min-height: 430px !important;
-    border-radius: 16px;
-  }
-}
-
-/* =====================================================
-   DESKTOP: 1024px–1439px
-===================================================== */
-
-@media (min-width: 1024px) and (max-width: 1439px) {
-  .brand-sticky-shell {
-    top: 90px;
-  }
-
-  .brand-image-stage {
-     width: 100% !important;
-    height: 800px !important;
-    min-height: 800px !important;
-
-    border-radius: 18px;
-    aspect-ratio: auto !important;
-  }
-
-  .brand-action-row {
-    padding-bottom: 22px;
-  }
-}
-
-/* =====================================================
-   1440px–1679px
-   Available width: 1360px
-   1360 × 0.625 = 850px
-===================================================== */
-
-@media (min-width: 1440px) and (max-width: 1679px) {
-  .brand-sticky-shell {
-    top: 100px;
-  }
-
-  .brand-image-stage {
-    width: 100% !important;
-    height: 850px !important;
-    min-height: 850px !important;
-
-    aspect-ratio: auto !important;
-    border-radius: 20px;
-  }
-
-  .brand-action-row {
-    padding-top: 4px;
-    padding-bottom: 26px;
-  }
-}
-
-/* =====================================================
-   1680px–1919px
-   Available width: 1552px
-   1552 × 0.625 = 970px
-===================================================== */
-
-@media (min-width: 1680px) and (max-width: 1919px) {
-  .brand-sticky-shell {
-    top: 100px;
-  }
-
-  .brand-image-stage {
-    width: 100% !important;
-    height: 970px !important;
-    min-height: 970px !important;
-
-    aspect-ratio: auto !important;
-    border-radius: 22px;
-  }
-
-  .brand-action-row {
-    padding-top: 4px;
-    padding-bottom: 28px;
-  }
-}
-
-/* =====================================================
-   1920px AND ABOVE
-   Maximum section width: 1600px
-   Image height: 1000px
-===================================================== */
-
-@media (min-width: 1920px) {
-  .brand-sticky-shell {
-    top: 105px;
-  }
-
-  .brand-image-stage {
-    display: block !important;
-    visibility: visible !important;
-
-    width: 100% !important;
-    height: 1000px !important;
-    min-height: 1000px !important;
-
-    aspect-ratio: auto !important;
-    border-radius: 24px;
-
-    opacity: 1 !important;
-  }
-
-  .brand-action-row {
-    padding-top: 4px;
-    padding-bottom: 30px;
-  }
-}
-/* @media (max-width: 767px) {
-  .brand-scroll-section {
-    position: relative;
-    width: 100%;
-    height: auto !important;
-    min-height: 0 !important;
-  }
-
-  .brand-sticky-shell {
-    position: sticky;
-    top: 74px;
-    z-index: 5;
-
-    width: 100%;
-    height: fit-content;
-    min-height: 0;
-
-    padding-top: 10px;
-
-    overflow: visible;
-  }
-
-  .brand-sticky-grid {
-    display: grid;
-    width: 100%;
-    grid-template-rows: auto auto auto;
-    align-content: start;
-    gap: 12px;
-  }
-
-  .brand-image-stage {
-    position: relative !important;
-
-    width: 100% !important;
-    height: auto !important;
-    min-height: 0 !important;
-    max-height: none !important;
-
-    aspect-ratio: 16 / 10;
-
-    overflow: hidden;
-    flex-shrink: 0;
-    border-radius: 12px;
-  }
-
-  .brand-action-row {
-    position: relative !important;
-
-    width: 100%;
-    margin: 0 !important;
-    padding: 0 !important;
-
-    background: transparent;
-  }
-
-  .brand-scroll-spacer {
-    width: 100%;
-    height: var(--mobile-scroll-distance);
-    pointer-events: none;
-  }
-} */
-
-/* @media (max-width: 767px) {
-  .brand-scroll-section {
-    position: relative;
-
-    width: 100%;
-    height: calc(
-      100svh + var(--mobile-scroll-distance)
-    ) !important;
-
-    min-height: calc(
-      100svh + var(--mobile-scroll-distance)
-    ) !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    background: #f6f6f6 !important;
-  }
-
-  .brand-sticky-shell {
-    position: sticky;
-    top: 74px;
-    z-index: 5;
-
-    width: 100%;
-    height: auto;
-    min-height: 0;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    background: #f6f6f6 !important;
-    overflow: visible;
-  }
-
-  .brand-sticky-grid {
-    display: grid;
-    width: 100%;
-    grid-template-rows: auto auto auto;
-    align-content: start;
-
-    gap: 10px;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    background: #f6f6f6 !important;
-  }
-
-  .brand-image-stage {
-    position: relative !important;
-    display: block !important;
-
-    width: 100% !important;
-
-    height: clamp(
-      195px,
-      calc((100vw - 32px) * 0.5625),
-      260px
-    ) !important;
-
-    min-height: clamp(
-      195px,
-      calc((100vw - 32px) * 0.5625),
-      260px
-    ) !important;
-
-    max-height: 260px !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    overflow: hidden !important;
-    border-radius: 12px;
-    background: transparent !important;
-    isolation: isolate;
-  }
-
-  .brand-image-stage article,
-  .brand-image-stage a {
-    width: 100% !important;
-    height: 100% !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    overflow: hidden !important;
-    background: transparent !important;
-  }
-
-  .brand-image-stage img {
-    position: absolute !important;
-    inset: 0 !important;
-
-    width: 100% !important;
-    height: 100% !important;
-
-    object-fit: cover !important;
-    object-position: center !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    background: transparent !important;
-  }
-
-  .brand-action-row {
-    position: relative !important;
-
-    width: 100%;
-    min-height: 0 !important;
-
-    margin: 0 !important;
-    padding: 0 !important;
-
-    background: #f6f6f6 !important;
-  }
-
-  .brand-scroll-spacer {
-    display: none !important;
-    height: 0 !important;
-    min-height: 0 !important;
-    margin: 0 !important;
-    padding: 0 !important;
-  }
-} */
 
 @media (max-width: 767px) {
+  .brand-scroll-section {
+    position: relative !important;
+
+    width: 100%;
+    height: auto !important;
+    min-height: 0 !important;
+
+    margin: 0 !important;
+    padding-bottom: 0 !important;
+  }
+
+  /* Mobile must not stay sticky */
+  .brand-sticky-shell {
+    position: relative !important;
+
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+
+    z-index: 5;
+
+    width: 100%;
+    height: auto !important;
+    min-height: 0 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    overflow: visible;
+  }
+
+  .brand-sticky-grid {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+
+    gap: 12px;
+
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Mobile image stage */
   .brand-image-stage {
     position: relative !important;
     display: block !important;
@@ -778,6 +532,7 @@ border-radius: 999px;
     padding: 0 !important;
 
     overflow: hidden !important;
+
     border-radius: 12px;
     background: transparent !important;
     isolation: isolate;
@@ -803,55 +558,216 @@ border-radius: 999px;
 
     object-fit: cover !important;
     object-position: center center !important;
-  }
-    .brand-scroll-section {
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
-  }
 
-  .brand-sticky-shell {
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
   .brand-action-row {
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
+    position: relative !important;
+
+    width: 100%;
+    min-height: 0 !important;
+
+    margin: 0 !important;
+
+    background: transparent !important;
+  }
+
+  /*
+   * VERY IMPORTANT:
+   * Mobile auto slider does not need scroll spacer.
+   */
+  .brand-scroll-spacer {
+    display: none !important;
+
+    width: 0 !important;
+    height: 0 !important;
+    min-height: 0 !important;
+
+    margin: 0 !important;
+    padding: 0 !important;
+
+    pointer-events: none;
   }
 }
 
+/* =====================================================
+   TABLET
+   768PX - 1023PX
+   MOUSE / PAGE SCROLL
+===================================================== */
 
 @media (min-width: 768px) and (max-width: 1023px) {
+  .brand-sticky-shell {
+    position: sticky;
+    top: 90px;
+  }
+
+  .brand-image-stage {
+    width: 100% !important;
+
+    height: 430px !important;
+    min-height: 430px !important;
+
+    border-radius: 16px;
+  }
+
   .brand-scroll-spacer {
+    display: block;
+
     width: 100%;
     height: var(--tablet-scroll-distance);
+
     pointer-events: none;
   }
 }
+
+/* =====================================================
+   DESKTOP
+   1024PX - 1439PX
+===================================================== */
 
 @media (min-width: 1024px) and (max-width: 1439px) {
+  .brand-sticky-shell {
+    top: 90px;
+  }
+
+  .brand-image-stage {
+    width: 100% !important;
+
+    height: 800px !important;
+    min-height: 800px !important;
+
+    border-radius: 18px;
+    aspect-ratio: auto !important;
+  }
+
+  .brand-action-row {
+    padding-bottom: 22px;
+  }
+
   .brand-scroll-spacer {
+    display: block;
+
     width: 100%;
     height: var(--desktop-scroll-distance);
+
     pointer-events: none;
   }
 }
+
+/* =====================================================
+   1440PX - 1679PX
+===================================================== */
 
 @media (min-width: 1440px) and (max-width: 1679px) {
+  .brand-sticky-shell {
+    top: 100px;
+  }
+
+  .brand-image-stage {
+    width: 100% !important;
+
+    height: 850px !important;
+    min-height: 850px !important;
+
+    aspect-ratio: auto !important;
+    border-radius: 20px;
+  }
+
+  .brand-action-row {
+    padding-top: 4px;
+    padding-bottom: 26px;
+  }
+
   .brand-scroll-spacer {
+    display: block;
+
     width: 100%;
     height: var(--wide-scroll-distance);
+
     pointer-events: none;
   }
 }
 
-@media (min-width: 1680px) {
+/* =====================================================
+   1680PX - 1919PX
+===================================================== */
+
+@media (min-width: 1680px) and (max-width: 1919px) {
+  .brand-sticky-shell {
+    top: 100px;
+  }
+
+  .brand-image-stage {
+    width: 100% !important;
+
+    height: 970px !important;
+    min-height: 970px !important;
+
+    aspect-ratio: auto !important;
+    border-radius: 22px;
+  }
+
+  .brand-action-row {
+    padding-top: 4px;
+    padding-bottom: 28px;
+  }
+
   .brand-scroll-spacer {
+    display: block;
+
     width: 100%;
     height: var(--full-hd-scroll-distance);
+
     pointer-events: none;
   }
 }
+
+/* =====================================================
+   1920PX+
+===================================================== */
+
+@media (min-width: 1920px) {
+  .brand-sticky-shell {
+    top: 105px;
+  }
+
+  .brand-image-stage {
+    display: block !important;
+    visibility: visible !important;
+
+    width: 100% !important;
+
+    height: 1000px !important;
+    min-height: 1000px !important;
+
+    aspect-ratio: auto !important;
+    border-radius: 24px;
+
+    opacity: 1 !important;
+  }
+
+  .brand-action-row {
+    padding-top: 4px;
+    padding-bottom: 30px;
+  }
+
+  .brand-scroll-spacer {
+    display: block;
+
+    width: 100%;
+    height: var(--full-hd-scroll-distance);
+
+    pointer-events: none;
+  }
+}
+
+/* =====================================================
+   CASE STUDY SAFETY
+===================================================== */
+
 .brand-image-stage {
   position: relative !important;
   overflow: hidden !important;

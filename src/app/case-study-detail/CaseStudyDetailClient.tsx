@@ -1086,7 +1086,7 @@ function applyCaseStudySeo(
 export default function CaseStudyDetailContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
-  const slug = searchParams.get("slug");
+  const slug = searchParams.get("title");
   const [isContactPopupOpen, setIsContactPopupOpen] = useState(false);
 
     const handleContactPopupOpen = () => {

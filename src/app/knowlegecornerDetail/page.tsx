@@ -411,7 +411,7 @@ function applyBlogSeo(blog: BlogDetail): () => void {
 
 function BlogDetailContent() {
   const searchParams = useSearchParams();
-  const slug = searchParams.get("slug");
+  const slug = searchParams.get("title");
 
   const [blog, setBlog] = useState<BlogDetail | null>(null);
   const [loading, setLoading] = useState(true);

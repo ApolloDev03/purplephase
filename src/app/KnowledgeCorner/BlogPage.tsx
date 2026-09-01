@@ -864,7 +864,7 @@ export default function BlogPage() {
               type="button"
               onClick={() =>
                 router.push(
-                  `/knowlegecornerDetail?slug=${featuredBlog?.slugname}`
+                  `/knowlegecornerDetail?title=${featuredBlog?.slugname}`
                 )
               }
               className="
@@ -945,7 +945,7 @@ export default function BlogPage() {
             >
               {sideBlogs.map((blog, index) => (
                 <Link
-                  href={`/knowlegecornerDetail?slug=${blog.slugname}`}
+                  href={`/knowlegecornerDetail?title=${blog.slugname}`}
                   key={`${blog.blogId}-${index}`}
                   className="
                     group
