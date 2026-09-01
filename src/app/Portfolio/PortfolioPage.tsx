@@ -284,6 +284,31 @@ const getYouTubeEmbedUrl = (url: string) => {
 
   return null;
 };
+const getYouTubeVideoId = (url: string) => {
+  try {
+    const parsedUrl = new URL(url);
+
+    if (parsedUrl.hostname.includes("youtu.be")) {
+      return parsedUrl.pathname.replace("/", "");
+    }
+
+    if (parsedUrl.hostname.includes("youtube.com")) {
+      if (parsedUrl.pathname.includes("/shorts/")) {
+        return parsedUrl.pathname.split("/shorts/")[1];
+      }
+
+      if (parsedUrl.pathname.includes("/embed/")) {
+        return parsedUrl.pathname.split("/embed/")[1];
+      }
+
+      return parsedUrl.searchParams.get("v");
+    }
+  } catch {
+    return null;
+  }
+
+  return null;
+};
   return (
     <>
 
@@ -537,44 +562,318 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
               </div>
             )}
   
-            {!loading && !error && (
-  <div className="grid  grid-cols-1  gap-5 lg:grid-cols-3">
+          {!loading && !error && (
+  <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
     {visibleProjects.map((item, index) => {
       const firstImage = item.images?.[0]?.image_url;
+
+      const videoUrl = item.video_link?.trim() || null;
+
+      const youtubeVideoId = videoUrl
+        ? getYouTubeVideoId(videoUrl)
+        : null;
+
+      const youtubeEmbedUrl = videoUrl
+        ? getYouTubeEmbedUrl(videoUrl)
+        : null;
 
       return (
         <div
           key={item.id}
           onClick={() => openGallery(item)}
-          className="group relative h-[200px] xl:h-[250px] 2xl:h-[354px] w-full cursor-pointer overflow-hidden rounded-xl bg-white shadow-md"
+          className="
+            group relative
+            h-[200px]
+            w-full
+            cursor-pointer
+            overflow-hidden
+            rounded-xl
+            bg-white
+            shadow-md
+
+            xl:h-[250px]
+            2xl:h-[354px]
+          "
         >
-          {firstImage ? (
-            <div className="absolute inset-0 ">
+          {/* =====================================================
+              VIDEO
+          ===================================================== */}
+
+          {videoUrl ? (
+            <>
+              {youtubeEmbedUrl ? (
+                <iframe
+                  src={`${youtubeEmbedUrl}?autoplay=1&mute=1&controls=0&loop=1&playlist=${youtubeVideoId}&playsinline=1&modestbranding=1&rel=0`}
+                  title={item.title}
+                  className="
+                    pointer-events-none
+                    absolute
+                    inset-0
+                    h-full
+                    w-full
+                    scale-[1.01]
+                    border-0
+                    object-cover
+                  "
+                  allow="autoplay; encrypted-media"
+                />
+              ) : (
+                <video
+                  src={videoUrl}
+                  muted
+                  loop
+                  autoPlay
+                  playsInline
+                  preload="metadata"
+                  className="
+                    absolute
+                    inset-0
+                    h-full
+                    w-full
+                    object-cover
+                    transition-transform
+                    duration-700
+                    ease-out
+                    group-hover:scale-105
+                  "
+                />
+              )}
+
+              {/* Video Indicator */}
+              <div
+                className="
+                  absolute
+                  left-1/2
+                  top-1/2
+                  z-20
+                  flex
+                  h-14
+                  w-14
+                  -translate-x-1/2
+                  -translate-y-1/2
+                  items-center
+                  justify-center
+                  rounded-full
+                  bg-white/90
+                  shadow-lg
+                  backdrop-blur-sm
+                  transition-all
+                  duration-300
+                  group-hover:scale-110
+                  group-hover:bg-primary
+                  group-hover:text-white
+                "
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="ml-1 h-6 w-6"
+                >
+                  <path d="M8 5v14l11-7z" />
+                </svg>
+              </div>
+            </>
+          ) : firstImage ? (
+            /* =====================================================
+                IMAGE
+            ===================================================== */
+
+            <div className="absolute inset-0">
               <div className="relative h-full w-full">
                 <Image
                   src={firstImage}
                   alt={item.title}
                   fill
-                  className="object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+                  className="
+                    object-cover
+                    transition-transform
+                    duration-700
+                    ease-out
+                    group-hover:scale-105
+                  "
                   priority={index === 0}
                 />
               </div>
             </div>
           ) : (
-            <div className="flex h-full w-full items-center justify-center text-sm text-slate-400">
-              No Image
+            /* =====================================================
+                NO MEDIA
+            ===================================================== */
+
+            <div
+              className="
+                flex
+                h-full
+                w-full
+                items-center
+                justify-center
+                text-sm
+                text-slate-400
+              "
+            >
+              No Media
             </div>
           )}
 
-          {/* Service Badge */}
-          <div className="absolute left-4 top-4 z-10">
-            <span className="rounded-full bg-white/90 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-primary shadow-sm backdrop-blur">
+          {/* =====================================================
+              DARK OVERLAY
+          ===================================================== */}
+
+          <div
+            className="
+              pointer-events-none
+              absolute
+              inset-0
+              bg-black/5
+              transition-colors
+              duration-300
+              group-hover:bg-black/10
+            "
+          />
+
+          {/* =====================================================
+              SERVICE BADGE
+          ===================================================== */}
+
+          <div className="absolute left-4 top-4 z-30">
+            <span
+              className="
+                rounded-full
+                bg-white/90
+                px-4
+                py-1.5
+                text-xs
+                font-semibold
+                uppercase
+                tracking-wide
+                text-primary
+                shadow-sm
+                backdrop-blur
+              "
+            >
               {item?.service?.service_name || "Portfolio"}
             </span>
           </div>
 
-          {/* Bottom Title */}
-          <div className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/90 via-black/55 to-transparent px-4 py-4">
+          {/* =====================================================
+              VIDEO BADGE
+          ===================================================== */}
+
+         {videoUrl ? (
+  <>
+    {youtubeVideoId ? (
+      <img
+        src={`https://img.youtube.com/vi/${youtubeVideoId}/maxresdefault.jpg`}
+        alt={item.title}
+        className="
+          absolute
+          inset-0
+          h-full
+          w-full
+          object-cover
+          transition-transform
+          duration-700
+          group-hover:scale-105
+        "
+      />
+    ) : (
+      <video
+        src={videoUrl}
+        muted
+        playsInline
+        preload="metadata"
+        className="
+          pointer-events-none
+          absolute
+          inset-0
+          h-full
+          w-full
+          object-cover
+          transition-transform
+          duration-700
+          group-hover:scale-105
+        "
+      />
+    )}
+
+    {/* Play Button */}
+    <div
+      className="
+        pointer-events-none
+        absolute
+        left-1/2
+        top-1/2
+        z-20
+        flex
+        h-14
+        w-14
+        -translate-x-1/2
+        -translate-y-1/2
+        items-center
+        justify-center
+        rounded-full
+        bg-white/90
+        text-primary
+        shadow-lg
+        backdrop-blur-sm
+        transition-all
+        duration-300
+        group-hover:scale-110
+        group-hover:bg-primary
+        group-hover:text-white
+      "
+    >
+      <svg
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        className="ml-1 h-7 w-7"
+      >
+        <path d="M8 5v14l11-7z" />
+      </svg>
+    </div>
+  </>
+) : firstImage ? (
+  <div className="absolute inset-0">
+    <div className="relative h-full w-full">
+      <Image
+        src={firstImage}
+        alt={item.title}
+        fill
+        className="
+          object-cover
+          transition-transform
+          duration-700
+          ease-out
+          group-hover:scale-105
+        "
+        priority={index === 0}
+      />
+    </div>
+  </div>
+) : (
+  <div className="flex h-full w-full items-center justify-center text-sm text-slate-400">
+    No Media
+  </div>
+)}
+
+          {/* =====================================================
+              BOTTOM TITLE
+          ===================================================== */}
+
+          <div
+            className="
+              absolute
+              inset-x-0
+              bottom-0
+              z-30
+              bg-gradient-to-t
+              from-black/90
+              via-black/55
+              to-transparent
+              px-4
+              py-4
+            "
+          >
             <p className="!text-white text-[16px] font-medium leading-[1.3]">
               {item.title}
             </p>

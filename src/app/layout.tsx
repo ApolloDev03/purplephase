@@ -77,6 +77,7 @@ import StickyActions from "./components/StickyActions";
 import { SidebarProvider } from "./components/SidebarContext";
 import { ToastContainer } from "react-toastify";
 import Header from "./components/Header";
+import GoogleAdsConversion from "./components/GoogleAdsConversion";
 
 const montserrat = Montserrat({
   subsets: ["latin"],
@@ -177,7 +178,7 @@ export default function RootLayout({
         </noscript>
         {/* End Meta Pixel Noscript */}
 
-
+ <GoogleAdsConversion />
         <SidebarProvider>
           <StickyActions />
 
