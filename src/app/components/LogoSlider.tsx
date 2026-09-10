@@ -39,7 +39,7 @@ function LogoRow({
                         x: reverse ? ["-50%", "0%"] : ["0%", "-50%"],
                     }}
                     transition={{
-                        duration: 50,
+                        duration: 100,
                         ease: "linear",
                         repeat: Infinity,
                     }}
