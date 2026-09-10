@@ -310,6 +310,7 @@ type BlogItem = {
   blogDescription: string;
   date: string;
   blogImage: string;
+  team_member_name:string;
 };
 
 type BlogResponse = {
@@ -842,7 +843,20 @@ export default function BlogPage() {
               __html: featuredBlog?.blogDescription ?? "",
             }}
           />
-
+<h4
+  className="
+    text-[20px]!
+    font-semibold
+    leading-[120%]
+    text-secondary
+    md:text-[24px]!
+    lg:text-[24px]!
+    mt-4
+  "
+>
+  <span className="text-black font-semibold">Author Name: </span>
+  {featuredBlog?.team_member_name || "N/A"}
+</h4>
           {/* READ MORE BUTTON */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -856,7 +870,7 @@ export default function BlogPage() {
               mt-6
               flex
               md:mt-8
-              lg:mt-9
+              lg:mt-5
               justify-start
             "
           >
@@ -924,7 +938,7 @@ export default function BlogPage() {
                 [scrollbar-width:none]
                 [&::-webkit-scrollbar]:hidden
 
-               mt-32
+               mt-28
                 md:gap-5
 
                 lg:-ml-[200px]
@@ -939,7 +953,7 @@ export default function BlogPage() {
                 xl:w-[calc(100%+150px)]
 
                 2xl:-ml-[300px]
-                2xl:mt-[5%]
+                2xl:mt-[2%]
                 2xl:w-[calc(100%+200px)]
               "
             >
