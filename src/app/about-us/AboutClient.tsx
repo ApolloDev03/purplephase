@@ -188,7 +188,7 @@ useEffect(() => {
                     (i - index + items.length) % items.length === 2;
 
                   return (
-                    <h1
+                    <h4
                       key={i}
                        style={{
             fontVariantCaps: "all-small-caps",
@@ -204,7 +204,7 @@ useEffect(() => {
                 `}
                     >
                       {text}
-                    </h1>
+                    </h4>
                   );
                 })}
               </motion.div>
@@ -731,11 +731,11 @@ lg:!text-[15px]
         <div className="text-[60px] lg:text-[140px] 2xl:text-[200px] font-bold leading-[0.85] text-[#ECECEC] block absolute right-0 bottom-0 pointer-events-none z-0">
           <h1 className=" text-right">
             4C
-          </h1>
-
-          <h1 className=" lg:-mt-2">
+            <br/>
             THINKING
           </h1>
+
+      
         </div>
 
         {/* Content */}

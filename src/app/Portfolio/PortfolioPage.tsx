@@ -1188,7 +1188,6 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
             w-full
             select-none
             object-contain
-            lg:object-cover
           "
           draggable={false}
         />

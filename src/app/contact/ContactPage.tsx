@@ -1085,11 +1085,11 @@ export default function ContactPage() {
         <div className="bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)] ">
           <div className="mx-auto max-w-full px-4 py-[20px] lg:py-[30px] xl:py-16 lg:px-6 xl:px-10 2xl:px-32">
 
-            <h1 className="text-[25px] text-white! mb-1 font-semibold leading-tight text-[#a20d69] md:text-[34px] lg:text-[40px] 2xl:text-[50px]">
+            <h4 className="text-[25px] text-white! mb-1 font-semibold leading-tight  md:text-[34px] lg:text-[40px] 2xl:text-[50px]">
               No decks. No jargon. Just an honest conversation.
-            </h1>
+            </h4>
 
-            <span className=" text-white! font-medium text-[14px] lg:text-[25px] text-[#424242] xl:text-[32px] 2xl:text-[36px]">
+            <span className=" text-white! font-medium text-[14px] lg:text-[25px] xl:text-[32px] 2xl:text-[36px]">
               Let’s catch up over a cup of coffee!
             </span>
 
@@ -1176,9 +1176,9 @@ export default function ContactPage() {
                 />
               </div>
               <div className="mt-7">
-                <h1 className="mb-5 text-[14px] lg:text-[20px] font-bold text-white! ">
+                <h4 className="mb-5 text-[14px] lg:text-[20px] font-bold text-white! ">
                   Interested Services
-                </h1>
+                </h4>
 
                 {loadingExpertise ? (
                   <p className=" text-white!">Loading services...</p>
