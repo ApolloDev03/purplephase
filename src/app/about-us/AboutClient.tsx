@@ -1047,7 +1047,7 @@ lg:!text-[15px]
       <div className="flex w-full flex-col justify-center">
         {/* Section heading */}
         <h2 className="mt-[20px]  font-semibold 2xl:leading-[120%] text-primary lg:mt-0">
-          We are the team behind your team Dedicated to build your brand
+          The core team dedicated to build your brand.
         </h2>
 
         {/* MOBILE MEMBER IMAGE — image first */}

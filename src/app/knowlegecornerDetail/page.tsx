@@ -594,6 +594,7 @@ function BlogDetailContent() {
       [&_ul]:mb-6
       [&_ul]:list-disc
       [&_ul]:pl-7
+      [&_ul]:text-[18px]
 
       [&_ol]:mb-6
       [&_ol]:list-decimal
