@@ -1221,7 +1221,7 @@ for (let index = 0; index < sortedMoreImages.length; index += 4) {
   const handleProjectChange = (projectSlug: string | null) => {
   if (!projectSlug) return;
 
-  router.push(`/case-study-detail?slug=${encodeURIComponent(projectSlug)}`);
+  router.push(`/case-study-detail?title=${encodeURIComponent(projectSlug)}`);
 
   setTimeout(() => {
     window.scrollTo({
@@ -1544,7 +1544,7 @@ const activeMoreImage =
       <FaAnglesLeft className="text-[15px] lg:text-[13px]" />
 
       <span className="hidden lg:inline">
-        Previous Project
+        Previous 
       </span>
     </button>
 
@@ -1638,7 +1638,7 @@ const activeMoreImage =
       `}
     >
       <span className="hidden lg:inline">
-        Next Project
+        Next 
       </span>
 
       <FaAnglesRight className="text-[15px] lg:text-[13px]" />

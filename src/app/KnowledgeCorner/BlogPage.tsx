@@ -922,7 +922,7 @@ export default function BlogPage() {
             MOBILE + TABLET: Horizontal swipe slider
             LAPTOP + DESKTOP: Original 3-column design
           */}
-          {sideBlogs.length > 0 && (
+          {/* {sideBlogs.length > 0 && (
             <div
               className="
               
@@ -1008,7 +1008,93 @@ export default function BlogPage() {
                 </Link>
               ))}
             </div>
-          )}
+          )} */}
+
+{sideBlogs.length > 0 && (
+  <div
+    className="
+      hidden
+      w-full
+      snap-x
+      snap-mandatory
+      gap-4
+      overflow-x-auto
+      pb-3
+
+      [-ms-overflow-style:none]
+      [scrollbar-width:none]
+      [&::-webkit-scrollbar]:hidden
+lg:mt-20
+      xl:mt-28
+      md:gap-5
+
+      lg:-ml-[200px]
+      lg:flex
+      lg:w-max
+      lg:gap-4
+      lg:overflow-visible
+      lg:pb-0
+
+      xl:-ml-[200px]
+
+      2xl:-ml-[300px]
+      2xl:mt-[2%]
+    "
+  >
+    {sideBlogs.slice(0, 3).map((blog, index) => (
+      <Link
+        href={`/knowlegecornerDetail?title=${blog.slugname}`}
+        key={`${blog.blogId}-${index}`}
+        className="
+          group
+          block
+          h-[180px]
+          w-[82vw]
+          max-w-[320px]
+          shrink-0
+          snap-start
+          overflow-hidden
+          rounded-[10px]
+          border-2
+          border-white
+          shadow-md
+
+          sm:w-[320px]
+
+          md:h-[220px]
+          md:w-[360px]
+          md:max-w-[360px]
+
+          lg:h-[190px]
+          lg:w-[350px]
+          lg:max-w-none
+          lg:shrink-0
+          lg:snap-none
+
+          2xl:h-[236px]
+          2xl:w-[450px]
+        "
+      >
+        <div className="relative h-full w-full overflow-hidden">
+          <img
+            src={blog.blogImage}
+            alt={blog.blogTitle}
+            className="
+              h-full
+              w-full
+              object-cover
+              transition
+              duration-500
+              group-hover:scale-105
+            "
+          />
+        </div>
+      </Link>
+    ))}
+  </div>
+)}
+
+          
         </div>
       </div>
     ) : (

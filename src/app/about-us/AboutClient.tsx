@@ -269,7 +269,7 @@ lg:!text-[15px]
 
     <section className="w-full bg-white py-[20px] lg:py-[30px] 2xl:py-[85px]">
   <div className="mx-auto max-w-full px-4 lg:px-6 xl:px-10 2xl:px-32">
-    <div className="grid items-center  lg:grid-cols-[52%_48%]">
+    <div className="grid items-center md:grid-cols-[45%_55%] lg:grid-cols-[52%_48%]">
       
       {/* Image */}
       <div className="relative flex h-[250px] w-full items-center justify-center  md:h-[380px] lg:h-[420px]">
@@ -312,9 +312,9 @@ lg:!text-[15px]
           }}
         >
           We are your branding partner in this {" "}
-          <br className="hidden lg:block" />
+          <br className="hidden xl:block" />
           journey of transformation from a raw
-          <br className="hidden lg:block" /> {" "}
+          <br className="hidden xl:block" /> {" "}
           gold brand into gleaming gold brand.
         </h3>
       </div>
@@ -464,93 +464,36 @@ lg:!text-[15px]
           </div>
         </div>
       </section>
-      {/* ================= AI EDGE ================= */}
+     
 
-
-      {/* <section className="relative overflow-hidden bg-white">
-        <div className="relative min-h-[638px]">
-
-          
-          <div className="absolute top-0 right-0 h-full w-full lg:w-[50%]">
-            <Image
-              src="/assets/about/menvsrobochess.png"
-              alt="Human Thinking AI Edge"
-              fill
-              priority
-              className="object-cover object-right"
-            />
-          </div>
-
-    
-          <div className="relative z-10 flex  items-center">
-            <div className="max-w-full lg:w-[60%] bg-white px-4 lg:px-6 xl:px-10 2xl:px-32 py-16">
-
-              <div className="">
-                <h2 className="mb-2   text-[#9C1367]">
-                  Human Thinking,                
-                  AI Edge
-                </h2>
-
-                <p className="mb-8  leading-[1.6] text-[#424242]">
-                  We thoughtfully deploy AI capabilities where it adds <br/> real value
-                  across research, strategy, content, design,<br/> media planning and
-                  digital marketing.
-                </p>
-
-                <p className="mb-8  leading-[1.6] text-[#424242]">
-                  Human thinking and judgement is absolutely <br/> irreplaceable. What AI
-                  does is helps our team to <br/> sharpen insights, explore possibilities,
-                  and move brands <br/> with greater speed and precision.
-                </p>
-                   <motion.div
-  initial={{ opacity: 0, y: 20 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  viewport={{ once: true }}
-  transition={{ duration: 0.5, delay: 0.45 }}
- onClick={()=>handleContactPopupOpen()}
-  className="flex justify-center lg:justify-start"
->
-  <button className="motion-shine mt-5 group inline-flex items-center gap-3 rounded-full bg-primary px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px] font-semibold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
-   Get AI Edge
-    <span className="flex h-5 w-5 items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
-      <LuMoveUpRight className="h-5 w-5" />
-    </span>
-  </button>
-</motion.div>
-              
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-      </section> */}
-
-      <section className="relative overflow-hidden bg-white">
+ <section className="relative overflow-hidden bg-white">
   <div
     className="
       grid
       grid-cols-1
-
       lg:relative
       lg:block
       lg:min-h-[638px]
+
+      lg:max-xl:min-h-0
     "
   >
-    {/* Image: Top on mobile, right side on large screens */}
+    {/* RIGHT IMAGE */}
     <div
       className="
         relative
         order-1
         h-[300px]
         w-full
-        md:h-[480px]
+        md:h-[400px]
 
         lg:absolute
         lg:right-0
         lg:top-0
         lg:h-full
-        lg:w-[50%]
+        lg:w-[55%]
+
+        lg:max-xl:w-[56%]
       "
     >
       <Image
@@ -563,11 +506,12 @@ lg:!text-[15px]
           object-cover
           object-[95%_center]
           lg:object-right
+          lg:max-xl:object-[70%_center]
         "
       />
     </div>
 
-    {/* Content: Below image on mobile, left side on large screens */}
+    {/* LEFT CONTENT */}
     <div
       className="
         relative
@@ -576,17 +520,17 @@ lg:!text-[15px]
         flex
         w-full
         items-center
-
         lg:min-h-[638px]
+
+        lg:max-xl:min-h-0
+        lg:max-xl:items-start
       "
     >
       <div
         className="
-          w-full          
+          w-full
           p-4
-
           sm:px-6
-
           md:px-8
           md:py-14
 
@@ -594,16 +538,15 @@ lg:!text-[15px]
           lg:px-6
           lg:py-16
 
+          lg:max-xl:w-[57%]
+          lg:max-xl:px-8
+          lg:max-xl:py-10
+
           xl:px-10
           2xl:px-32
         "
       >
-        <h2
-          className="
-            mb-3
-            text-[#9C1367]
-          "
-        >
+        <h2 className="mb-3 text-[#9C1367]">
           Human Thinking
           <br />
           AI Edge
@@ -614,14 +557,15 @@ lg:!text-[15px]
             mb-6
             leading-[1.6]
             text-[#424242]
-
             lg:mb-8
+
+            lg:max-xl:mb-4
           "
         >
           We thoughtfully deploy AI capabilities where it adds
-          <br className="hidden lg:block" /> real value across research,
+          <br className="hidden xl:block" /> real value across research,
           strategy, content, design,
-          <br className="hidden lg:block" /> media planning and digital
+          <br className="hidden xl:block" /> media planning and digital
           marketing.
         </p>
 
@@ -630,16 +574,17 @@ lg:!text-[15px]
             mb-6
             leading-[1.6]
             text-[#424242]
-
             lg:mb-8
+
+            lg:max-xl:mb-4
           "
         >
           Human thinking and judgement is absolutely
-          <br className="hidden lg:block" /> irreplaceable. What AI does is
+          <br className="hidden xl:block" /> irreplaceable. What AI does is
           help our team to
-          <br className="hidden lg:block" /> sharpen insights, explore
+          <br className="hidden xl:block" /> sharpen insights, explore
           possibilities, and move brands
-          <br className="hidden lg:block" /> with greater speed and precision.
+          <br className="hidden xl:block" /> with greater speed and precision.
         </p>
 
         <motion.div
@@ -650,10 +595,7 @@ lg:!text-[15px]
             duration: 0.5,
             delay: 0.45,
           }}
-          className="
-            flex
-           justify-start
-          "
+          className="flex justify-start"
         >
           <button
             type="button"
@@ -662,10 +604,9 @@ lg:!text-[15px]
               motion-shine
               group
               mt-3
-             flex
+              flex
               items-center
               justify-start
-              lg:justify-center
               gap-2
               rounded-full
               bg-primary
@@ -684,13 +625,17 @@ lg:!text-[15px]
               hover:shadow-xl
               hover:shadow-primary/30
 
-              lg:px-6
-              lg:py-3
               sm:text-[15px]
 
               lg:mt-5
+              lg:justify-center
               lg:gap-3
+              lg:px-6
+              lg:py-3
               lg:text-[20px]
+
+              lg:max-xl:mt-2
+              lg:max-xl:text-[16px]
 
               2xl:text-[24px]
             "
@@ -707,7 +652,6 @@ lg:!text-[15px]
                 text-white
                 transition-transform
                 duration-300
-
                 group-hover:translate-x-1
                 group-hover:-translate-y-1
 
@@ -902,7 +846,7 @@ lg:!text-[15px]
     <div className="flex flex-col items-center justify-between lg:flex-row lg:gap-12">
 
 
-      <div className="flex w-full flex-col justify-center">
+      <div className="flex w-full flex-col justify-center md:w-[55%] lg:w-full">
         <h2 className="mt-[20px] font-semibold leading-[120%] text-primary lg:mt-0">
           We Are The Team Behind Your Team Dedicated To Build Your Brand
         </h2>
@@ -1041,17 +985,17 @@ lg:!text-[15px]
 </section> */}
 <section id="team" className="overflow-hidden bg-white">
   <div className="max-w-full px-4 lg:px-6 xl:px-10 2xl:px-32">
-    <div className="flex flex-col items-center justify-between lg:flex-row 2xl:gap-12">
+    <div className="flex flex-col items-center justify-between md:flex-row md:items-center md:gap-6 lg:gap-0 2xl:gap-12">
 
       {/* LEFT CONTENT */}
-      <div className="flex w-full flex-col justify-center">
+      <div className="flex w-full flex-col justify-center md:w-[55%] lg:w-full">
         {/* Section heading */}
         <h2 className="mt-[20px]  font-semibold 2xl:leading-[120%] text-primary lg:mt-0">
           The core team dedicated to build your brand.
         </h2>
 
         {/* MOBILE MEMBER IMAGE — image first */}
-        <div className="mt-6 flex w-full justify-center lg:hidden">
+        <div className="mt-6 flex w-full justify-center md:hidden">
           <div
             className="
               relative
@@ -1095,12 +1039,15 @@ lg:!text-[15px]
         {/* MEMBER DETAILS */}
         <div
           className="
-            relative
-            mt-5
-            min-h-[120px]
+             relative
+  mt-5
+  min-h-[120px]
 
-            lg:mt-24
-            lg:min-h-[230px]
+  md:mt-10
+  md:min-h-[190px]
+
+  lg:mt-24
+  lg:min-h-[230px]
           "
         >
           <AnimatePresence mode="wait">
@@ -1191,8 +1138,18 @@ lg:!text-[15px]
       </div>
 
       {/* DESKTOP MEMBER IMAGE — original right-side position */}
-      <div className="hidden w-full justify-center lg:flex lg:w-[42%] lg:justify-end">
-        <div className="relative h-[680px] w-full max-w-[560px] overflow-hidden">
+     <div className="hidden w-full justify-center md:flex md:w-[45%] md:justify-end lg:w-[42%]">
+  <div
+    className="
+      relative
+      h-[400px]
+      w-full
+      max-w-[560px]
+      overflow-hidden
+
+      lg:h-[680px]
+    "
+  >
           <AnimatePresence mode="wait">
             {member && (
               <motion.div

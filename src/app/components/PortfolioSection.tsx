@@ -202,14 +202,15 @@ const PortfolioSection = () => {
                   className="
                     group
                     relative
-                    h-[200px]
+                    h-[260px]
                     w-full
                     overflow-hidden
                     rounded-xl
                     bg-[#eeeeee]
                     shadow-md
-                    lg:h-[270px]
-                    xl:h-[354px]
+                    lg:h-[225px]
+                    xl:h-[300px]
+                    2xl:h-[354px]
                   "
                 >
 
@@ -232,7 +233,8 @@ const PortfolioSection = () => {
                             inset-0
                             h-full
                             w-full
-                            object-cover
+                            object-contain
+                            lg:object-cover
                             transition-transform
                             duration-700
                             ease-out
@@ -263,7 +265,8 @@ const PortfolioSection = () => {
                             inset-0
                             h-full
                             w-full
-                            object-cover
+                            object-contain
+                            xl:object-cover
                             transition-transform
                             duration-700
                             ease-out

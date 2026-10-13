@@ -1230,7 +1230,7 @@ export default function ContactPage() {
                 className="mt-7 w-full resize-none rounded-md border-0 bg-white px-4 py-4 text-[14px] text-[#333] outline-none placeholder:text-[#8f8f8f]"
               />
 
-              <div className="mt-3 grid grid-cols-1 gap-3 lg:gap-7 md:grid-cols-[264px_340px_1fr]">
+              <div className="mt-3 grid grid-cols-1 gap-3 lg:gap-7 md:grid-cols-[250px_250px_1fr] lg:grid-cols-[264px_340px_1fr]">
                 <div className="flex h-[50px] md:h-[61px] w-full overflow-hidden rounded-md border border-[#e8d5e1] bg-white shadow-[0_8px_22px_rgba(150,25,101,0.10)]">
                   {/* Captcha Text Box */}
                   <div className="relative flex flex-1 items-center justify-center overflow-hidden bg-[linear-gradient(135deg,#ffffff_0%,#fdf1f8_100%)]">

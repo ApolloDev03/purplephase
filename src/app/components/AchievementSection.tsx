@@ -42,7 +42,7 @@ const CounterItem = ({ value, label }: CounterItemProps) => {
 
   return (
     <div className="flex flex-col items-center justify-between text-center">
-      <h4 className="text-white text-[30px]  md:text-[54px] lg:text-[75px]  font-semibold leading-none">
+      <h4 className="text-white text-[30px]  md:text-[54px] xl:text-[75px]  font-semibold leading-none">
         {displayValue}
         {suffix}
       </h4>
@@ -152,9 +152,9 @@ export default function AchievementSection() {
       rounded-lg
      !w-[80px]
      !h-[80px]
-      md:w-[250px]
-      md:h-[200px]
-      md:max-w-[250px]
+      md:w-[250px]!
+      md:h-[200px]!
+      md:max-w-[350px]!
       lg:w-[385px]!
       lg:h-[257px]!
       lg:max-w-[385px]!

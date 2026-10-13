@@ -1,741 +1,1750 @@
 "use client";
 
+
+
 import Link from "next/link";
-import { Suspense, useEffect, useState } from "react";
+
+import { Suspense, useEffect, useRef, useState } from "react";
+
 import { useSearchParams } from "next/navigation";
+
 import axios from "axios";
+
 import { apiUrl } from "../config";
+
 import { AnimatePresence, motion } from "framer-motion";
+
 import { IoCloseOutline } from "react-icons/io5";
 
+
+
 import {
+
   FaBehance,
+
   FaPinterestP,
+
   FaInstagram,
+
   FaLinkedinIn,
+
   FaFacebookF,
+
   FaYoutube,
+
 } from "react-icons/fa";
 
-import { FaArrowDownLong, FaArrowUpLong, FaXTwitter } from "react-icons/fa6";
+
+
+import { FaAnglesLeft, FaAnglesRight, FaArrowDownLong, FaArrowUpLong, FaXTwitter } from "react-icons/fa6";
+
 import { LuMoveUpRight } from "react-icons/lu";
 
+
+
 type BlogDetailResponse = {
+
   message: string;
+
   success: boolean;
+
   data: BlogDetail | null;
-};
-type RecentBlog = {
-  blogId: number;
-  blogTitle: string;
-  blogImage: string;
-  slugname: string;
-  date: string;
+
 };
 
-type BlogDetail = {
+type BlogListItem = {
   blogId: number;
-  blogTitle: string;
   slugname: string;
-  blogDescription: string;
-  date: string;
-  metaTitle: string | null;
-  metaKeyword: string | null;
-  metaDescription: string | null;
-  head: string | null;
-  body: string | null;
-  blogImage: string;
-  recentBlogs: RecentBlog[];
 };
+
+type BlogListResponse = {
+  success: boolean;
+  data: BlogListItem[];
+};
+
+type RecentBlog = {
+
+  blogId: number;
+
+  blogTitle: string;
+
+  blogImage: string;
+
+  slugname: string;
+
+  date: string;
+
+};
+
+
+
+type BlogDetail = {
+
+  blogId: number;
+
+  blogTitle: string;
+
+  slugname: string;
+
+  blogDescription: string;
+
+  date: string;
+
+  metaTitle: string | null;
+
+  metaKeyword: string | null;
+
+  metaDescription: string | null;
+
+  head: string | null;
+
+  body: string | null;
+
+  blogImage: string;
+
+  recentBlogs: RecentBlog[];
+
+};
+
+
 
 type SeoMetaAttribute = "name" | "property";
 
+
+
 function normalizeSeoText(value: string): string {
+
   return value
+
     .replace(/<[^>]*>/g, " ")
+
     .replace(/\s+/g, " ")
+
     .trim();
+
 }
+
+
 
 function createBlogDescription(blog: BlogDetail): string {
+
   const apiDescription = blog.metaDescription?.trim();
 
+
+
   if (apiDescription) {
+
     return apiDescription;
+
   }
+
+
 
   const plainDescription = normalizeSeoText(
+
     blog.blogDescription || "",
+
   );
+
+
 
   if (plainDescription.length <= 170) {
+
     return plainDescription;
+
   }
+
+
 
   return `${plainDescription.slice(0, 167).trim()}...`;
+
 }
+
+
 
 function findSeoMetaTag(
+
   attribute: SeoMetaAttribute,
+
   key: string,
+
 ): HTMLMetaElement | null {
+
   return (
+
     Array.from(
+
       document.head.querySelectorAll<HTMLMetaElement>("meta"),
+
     ).find((meta) => meta.getAttribute(attribute) === key) ?? null
+
   );
+
 }
 
+
+
 function setSeoMetaTag(
+
   attribute: SeoMetaAttribute,
+
   key: string,
+
   content: string | null | undefined,
+
   cleanups: Array<() => void>,
+
 ): void {
+
   const normalizedContent = content?.trim();
 
+
+
   if (!normalizedContent) {
+
     return;
+
   }
+
+
 
   const existingMeta = findSeoMetaTag(attribute, key);
 
+
+
   if (existingMeta) {
+
     const previousContent = existingMeta.getAttribute("content");
+
+
 
     existingMeta.setAttribute("content", normalizedContent);
 
+
+
     cleanups.push(() => {
+
       if (previousContent === null) {
+
         existingMeta.removeAttribute("content");
+
       } else {
+
         existingMeta.setAttribute("content", previousContent);
+
       }
+
     });
 
+
+
     return;
+
   }
+
+
 
   const meta = document.createElement("meta");
 
+
+
   meta.setAttribute(attribute, key);
+
   meta.setAttribute("content", normalizedContent);
+
   meta.setAttribute("data-api-seo", "blog-detail");
+
+
 
   document.head.appendChild(meta);
 
+
+
   cleanups.push(() => {
+
     meta.remove();
+
   });
+
 }
 
+
+
 function setSeoCanonical(
+
   href: string,
+
   cleanups: Array<() => void>,
+
 ): void {
+
   const normalizedHref = href.trim();
 
+
+
   if (!normalizedHref) {
+
     return;
+
   }
 
+
+
   const existingCanonical =
+
     document.head.querySelector<HTMLLinkElement>(
+
       'link[rel="canonical"]',
+
     );
 
+
+
   if (existingCanonical) {
+
     const previousHref = existingCanonical.getAttribute("href");
+
+
 
     existingCanonical.setAttribute("href", normalizedHref);
 
+
+
     cleanups.push(() => {
+
       if (previousHref === null) {
+
         existingCanonical.removeAttribute("href");
+
       } else {
+
         existingCanonical.setAttribute("href", previousHref);
+
       }
+
     });
 
+
+
     return;
+
   }
+
+
 
   const canonical = document.createElement("link");
 
+
+
   canonical.rel = "canonical";
+
   canonical.href = normalizedHref;
+
   canonical.setAttribute("data-api-seo", "blog-detail");
+
+
 
   document.head.appendChild(canonical);
 
+
+
   cleanups.push(() => {
+
     canonical.remove();
+
   });
+
 }
 
+
+
 function appendSeoJsonLd(
+
   head: string | null,
+
   body: string | null,
+
   cleanups: Array<() => void>,
+
 ): void {
+
   const sources = [head, body].filter(
+
     (source): source is string => Boolean(source?.trim()),
+
   );
 
+
+
   const schemaPattern =
-    /<script\b[^>]*type\s*=\s*["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+
+    /<script\b[^>]*type\s*=\s*["']application\/ld\\+json["'][^>]*>([\s\S]*?)<\/script>/gi;
+
+
 
   for (const source of sources) {
+
     schemaPattern.lastIndex = 0;
+
+
 
     let match: RegExpExecArray | null;
 
+
+
     while ((match = schemaPattern.exec(source)) !== null) {
+
       const schemaText = match[1]?.trim();
 
+
+
       if (!schemaText) {
+
         continue;
+
       }
 
+
+
       try {
+
         const parsedSchema: unknown = JSON.parse(schemaText);
+
         const script = document.createElement("script");
 
+
+
         script.type = "application/ld+json";
+
         script.setAttribute("data-api-seo", "blog-detail");
+
         script.textContent = JSON.stringify(parsedSchema).replace(
+
           /</g,
-          "\\u003c",
+
+          "\\\u003c",
+
         );
+
+
 
         document.head.appendChild(script);
 
+
+
         cleanups.push(() => {
+
           script.remove();
+
         });
+
       } catch (schemaError) {
+
         console.error("Invalid blog JSON-LD schema:", schemaError);
+
       }
+
     }
+
   }
+
 }
 
+
+
 function applyBlogSeo(blog: BlogDetail): () => void {
+
   const cleanups: Array<() => void> = [];
+
   const previousTitle = document.title;
 
+
+
   const title =
+
     blog.metaTitle?.trim() ||
+
     `${blog.blogTitle.trim()} | Purple Phase`;
+
+
 
   const description = createBlogDescription(blog);
 
+
+
   const currentPath =
+
     window.location.pathname === "/blogdetail"
+
       ? "/blogdetail"
+
       : "/blog-detail";
 
+
+
   let canonicalUrl =
-    `https://purplephase.in${currentPath}?slug=${encodeURIComponent(
+
+    `https\://purplephase.in${currentPath}?slug=${encodeURIComponent(
+
       blog.slugname,
+
     )}`;
+
+
 
   document.title = title;
 
+
+
   cleanups.push(() => {
+
     document.title = previousTitle;
+
   });
 
+
+
   setSeoMetaTag(
+
     "name",
+
     "description",
+
     description,
+
     cleanups,
+
   );
 
+
+
   setSeoMetaTag(
+
     "name",
+
     "keywords",
+
     blog.metaKeyword,
+
     cleanups,
+
   );
 
+
+
   setSeoMetaTag(
+
     "name",
+
     "robots",
+
     "index, follow",
+
     cleanups,
+
   );
+
+
 
   if (blog.head?.trim()) {
+
     const parsedDocument = new DOMParser().parseFromString(
+
       blog.head,
+
       "text/html",
+
     );
+
+
 
     parsedDocument.querySelectorAll("meta").forEach((apiMeta) => {
+
       const property = apiMeta.getAttribute("property")?.trim();
+
       const name = apiMeta.getAttribute("name")?.trim();
+
       const content = apiMeta.getAttribute("content")?.trim();
 
+
+
       if (property && content) {
+
         setSeoMetaTag(
+
           "property",
+
           property,
+
           content,
+
           cleanups,
+
         );
+
       }
+
+
 
       if (name && content) {
+
         setSeoMetaTag(
+
           "name",
+
           name,
+
           content,
+
           cleanups,
+
         );
+
       }
+
     });
 
+
+
     const apiCanonical =
+
       parsedDocument.querySelector<HTMLLinkElement>(
+
         'link[rel="canonical"]',
+
       );
 
+
+
     const apiCanonicalHref =
+
       apiCanonical?.getAttribute("href")?.trim();
 
+
+
     if (apiCanonicalHref) {
+
       canonicalUrl = apiCanonicalHref;
+
     }
+
   } else {
+
     setSeoMetaTag(
+
       "property",
+
       "og:type",
+
       "article",
+
       cleanups,
+
     );
 
+
+
     setSeoMetaTag(
+
       "property",
+
       "og:url",
+
       canonicalUrl,
+
       cleanups,
+
     );
 
+
+
     setSeoMetaTag(
+
       "property",
+
       "og:title",
+
       title,
+
       cleanups,
+
     );
 
+
+
     setSeoMetaTag(
+
       "property",
+
       "og:description",
+
       description,
+
       cleanups,
+
     );
 
+
+
     setSeoMetaTag(
+
       "property",
+
       "og:image",
+
       blog.blogImage,
+
       cleanups,
+
     );
 
+
+
     setSeoMetaTag(
+
       "property",
+
       "og:site_name",
+
       "Purple Phase",
+
       cleanups,
+
     );
 
+
+
     setSeoMetaTag(
+
       "property",
+
       "og:locale",
+
       "en_IN",
+
       cleanups,
+
     );
 
+
+
     setSeoMetaTag(
+
       "name",
+
       "twitter:card",
+
       "summary_large_image",
+
       cleanups,
+
     );
 
+
+
     setSeoMetaTag(
+
       "name",
+
       "twitter:url",
+
       canonicalUrl,
+
       cleanups,
+
     );
 
+
+
     setSeoMetaTag(
+
       "name",
+
       "twitter:title",
+
       title,
+
       cleanups,
+
     );
 
+
+
     setSeoMetaTag(
+
       "name",
+
       "twitter:description",
+
       description,
+
       cleanups,
+
     );
 
+
+
     setSeoMetaTag(
+
       "name",
+
       "twitter:image",
+
       blog.blogImage,
+
       cleanups,
+
     );
+
   }
+
+
 
   setSeoCanonical(canonicalUrl, cleanups);
 
+
+
   appendSeoJsonLd(
+
     blog.head,
+
     blog.body,
+
     cleanups,
+
   );
 
+
+
   return () => {
+
     [...cleanups].reverse().forEach((cleanup) => {
+
       cleanup();
+
     });
+
   };
+
 }
 
+
+
 function BlogDetailContent() {
+
   const searchParams = useSearchParams();
+
   const slug = searchParams.get("title");
 
+  
   const [blog, setBlog] = useState<BlogDetail | null>(null);
+  
   const [loading, setLoading] = useState(true);
+  
   const [showFullText, setShowFullText] = useState(false);
+  
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [blogList, setBlogList] = useState<BlogListItem[]>([]);
+  const blogContentRef = useRef<HTMLDivElement>(null);
 
-  const socials = [
-    {
-      name: "Behance",
-      icon: <FaBehance />,
-      href: "https://www.behance.net/purple_phase",
-    },
-    {
-      name: "Pinterest",
-      icon: <FaPinterestP />,
-      href: "https://in.pinterest.com/purple_phase_communications",
-    },
-    {
-      name: "Instagram",
-      icon: <FaInstagram />,
-      href: "https://www.instagram.com/purple_phase_communications/",
-    },
-    {
-      name: "Linkedin",
-      icon: <FaLinkedinIn />,
-      href: "https://www.linkedin.com/company/purple-phase-communications",
-    },
-    {
-      name: "Facebook",
-      icon: <FaFacebookF />,
-      href: "https://www.facebook.com/PurplePhaseCommunications/",
-    },
-    {
-      name: "Twitter",
-      icon: <FaXTwitter />,
-      href: "#",
-    },
-    {
-      name: "Youtube",
-      icon: <FaYoutube />,
-      href: "https://www.youtube.com/@purplephasecommunications",
-    },
-  ];
+  // The Knowledge Corner listing fetches blogs by expertise_id.
+  useEffect(() => {
+    let active = true;
+    const categories = [
+      "BRAND STRATEGY",
+      "CONSUMER BEHAVIOUR",
+      "DESIGN THINKING",
+      "DIGITAL & AI EDGE",
+      "BRAND STORIES",
+      "BRAND CONSULTING",
+    ];
 
-  const getImageUrl = (url: string) => {
-    if (!url) return "";
-
-    return url.replace(
-      "http://127.0.0.1:8000",
-      "https://purplephase.in/ppcadmin"
-    );
-  };
-
-  const fetchBlogDetail = async () => {
-    if (!slug) {
-      setLoading(false);
-      return;
-    }
-
-    try {
-      setLoading(true);
-
-      const res = await axios.post<BlogDetailResponse>(
-        `${apiUrl}/blogdetails`,
-        {
-          slugname: slug,
-        },
-        {
-          headers: {
-            Accept: "application/json",
-          },
-        }
+    const fetchBlogList = async () => {
+      const results = await Promise.allSettled(
+        categories.map((category) =>
+          axios.post<BlogListResponse>(
+            `${apiUrl}/blogs`,
+            { expertise_id: category },
+            { headers: { Accept: "application/json" } }
+          )
+        )
       );
 
-      if (res.data?.success && res.data?.data) {
-        setBlog(res.data.data);
-      } else {
-        setBlog(null);
+      if (!active) return;
+
+      const allBlogs = results.flatMap((result) =>
+        result.status === "fulfilled" && result.value.data?.success
+          ? result.value.data.data || []
+          : []
+      );
+      // A blog may belong to more than one category.
+      const uniqueBlogs = Array.from(
+        new Map(allBlogs.filter((item) => item.slugname).map((item) => [item.slugname, item])).values()
+      );
+      setBlogList(uniqueBlogs);
+
+      if (!uniqueBlogs.length) {
+        console.warn("Blog navigation: no items returned from the category APIs.");
       }
-    } catch (error) {
-      console.error("Blog detail API error:", error);
-      setBlog(null);
-    } finally {
-      setLoading(false);
-    }
+    };
+
+    void fetchBlogList();
+    return () => { active = false; };
+  }, []);
+
+  const currentBlogIndex = blogList.findIndex(
+    (item) => item.slugname?.trim().toLowerCase() ===
+      (blog?.slugname ?? slug ?? "").trim().toLowerCase()
+  );
+  const previousBlog = currentBlogIndex > 0 ? blogList[currentBlogIndex - 1] : null;
+  const nextBlog = currentBlogIndex >= 0 && currentBlogIndex < blogList.length - 1
+    ? blogList[currentBlogIndex + 1]
+    : null;
+
+  const openBlog = (nextSlug: string) => {
+    window.location.assign(
+      `/knowlegecornerDetail?title=${encodeURIComponent(nextSlug)}`
+    );
   };
 
-  useEffect(() => {
-    fetchBlogDetail();
-  }, [slug]);
+
+
+
+  const socials = [
+
+    {
+
+      name: "Behance",
+
+      icon: <FaBehance />,
+
+      href: "https\://www.behance.net/purple_phase",
+
+    },
+
+    {
+
+      name: "Pinterest",
+
+      icon: <FaPinterestP />,
+
+      href: "https\://in.pinterest.com/purple_phase_communications",
+
+    },
+
+    {
+
+      name: "Instagram",
+
+      icon: <FaInstagram />,
+
+      href: "https\://www.instagram.com/purple_phase_communications/",
+
+    },
+
+    {
+
+      name: "Linkedin",
+
+      icon: <FaLinkedinIn />,
+
+      href: "https\://www.linkedin.com/company/purple-phase-communications",
+
+    },
+
+    {
+
+      name: "Facebook",
+
+      icon: <FaFacebookF />,
+
+      href: "https\://www.facebook.com/PurplePhaseCommunications/",
+
+    },
+
+    {
+
+      name: "Twitter",
+
+      icon: <FaXTwitter />,
+
+      href: "#",
+
+    },
+
+    {
+
+      name: "Youtube",
+
+      icon: <FaYoutube />,
+
+      href: "https\://www.youtube.com/@purplephasecommunications",
+
+    },
+
+  ];
+
+
+
+  const getImageUrl = (url: string) => {
+
+    if (!url) return "";
+
+
+
+    return url.replace(
+
+      "http\://127.0.0.1:8000",
+
+      "https\://purplephase.in/ppcadmin"
+
+    );
+
+  };
+
+
+
+  const fetchBlogDetail = async () => {
+
+    if (!slug) {
+
+      setLoading(false);
+
+      return;
+
+    }
+
+
+
+    try {
+
+      setLoading(true);
+
+
+
+      const res = await axios.post<BlogDetailResponse>(
+
+        `${apiUrl}/blogdetails`,
+
+        {
+
+          slugname: slug,
+
+        },
+
+        {
+
+          headers: {
+
+            Accept: "application/json",
+
+          },
+
+        }
+
+      );
+
+
+
+      if (res.data?.success && res.data?.data) {
+
+        setBlog(res.data.data);
+
+      } else {
+
+        setBlog(null);
+
+      }
+
+    } catch (error) {
+
+      console.error("Blog detail API error:", error);
+
+      setBlog(null);
+
+    } finally {
+
+      setLoading(false);
+
+    }
+
+  };
+
+
 
   useEffect(() => {
+
+    fetchBlogDetail();
+
+  }, [slug]);
+
+
+
+  useEffect(() => {
+
     if (!blog) {
+
+      return;
+
+    }
+
+
+
+    return applyBlogSeo(blog);
+
+  }, [blog]);
+
+useEffect(() => {
+  const container = blogContentRef.current;
+
+  if (!container || !blog?.blogDescription) return;
+
+  const tables = container.querySelectorAll("table");
+
+  tables.forEach((table) => {
+    if (table.parentElement?.classList.contains("blog-table-scroll")) {
       return;
     }
 
-    return applyBlogSeo(blog);
-  }, [blog]);
+    const wrapper = document.createElement("div");
+
+    wrapper.className = "blog-table-scroll";
+
+    table.parentNode?.insertBefore(wrapper, table);
+
+    wrapper.appendChild(table);
+  });
+}, [blog?.blogDescription]);
+
 
   if (loading) {
+
     return (
+
       <main className="flex min-h-screen items-center justify-center bg-[#f8f3f6] px-4">
+
         <div className="h-12 w-12 animate-spin rounded-full border-4 border-primary/20 border-t-primary" />
+
       </main>
+
     );
+
   }
+
+
 
   if (!blog) {
+
     return (
+
       <main className="flex min-h-screen items-center justify-center bg-[#f8f3f6] px-4">
+
         <div className="max-w-xl rounded-[30px] bg-white p-10 text-center shadow-xl">
+
           <h1 className="text-3xl font-bold text-[#2b1230]">Blog Not Found</h1>
 
+
+
           <p className="mt-4 text-gray-600">
+
             This blog detail is not available. Please go back to blog page.
+
           </p>
 
+
+
           <Link
+
             href="/blog"
+
             className="mt-8 inline-flex rounded-full bg-primary px-6 py-3 text-sm font-bold text-white transition hover:bg-[#6f214d]"
+
           >
+
             Back To Blog
+
           </Link>
+
         </div>
+
       </main>
+
     );
+
   }
 
+
   return (
+
     <main className="min-h-screen bg-[#ECECEC]">
+
       {/* TOP AREA */}
+
       <section className="mx-auto w-full max-w-full px-4 lg:px-6 xl:px-10 2xl:px-32 py-[20px] lg:py-[30px] py-16">
+
         <h2 className="font-semibold text-[#A62666]">
+
           {blog.blogTitle}
+
         </h2>
 
+
+
         <div className="mt-8">
+
           <img
+
             src={getImageUrl(blog.blogImage)}
+
             alt={blog.blogTitle}
+
             className="w-full object-cover h-[250px] lg:h-[836px]"
+
           />
+
         </div>
 
-   
+
+
         <div
+
   className={`relative ${
+
     showFullText ? "" : "max-h-[350px] overflow-hidden"
+
   }`}
+
 >
+
   <div
-    className="
-      blog-description
-      text-[#424242]
-      leading-[1.7]
-      mt-10
+   ref={blogContentRef}
+  className="
 
-      [&_p]:mb-6
-      [&_p]:text-[18px]
-      [&_p]:leading-[1.7]
+    blog-description
 
-      [&_h2]:mb-5
-      [&_h2]:mt-10
-      [&_h2]:text-[28px]!
-      [&_h2]:font-bold
-      [&_h2]:leading-[1.3]
-      [&_h2]:text-[#A62666]
+    normal-case
 
-      [&_h3]:mb-4
-      [&_h3]:mt-8
-      [&_h3]:text-[24px]
-      [&_h3]:font-bold
-      [&_h3]:text-[#A62666]
+    text-[#424242]
 
-      [&_strong]:font-bold
-      [&_strong]:text-[#242424]
+    leading-[1.7]
 
-      [&_em]:italic
+    mt-10
 
-      [&_ul]:mb-6
-      [&_ul]:list-disc
-      [&_ul]:pl-7
-      [&_ul]:text-[18px]
 
-      [&_ol]:mb-6
-      [&_ol]:list-decimal
-      [&_ol]:pl-7
 
-      [&_li]:mb-2
+    [&_p]:mb-6
 
-      [&_a]:text-[#A62666]
-      [&_a]:underline
-    "
+    [&_p]:text-[18px]
+
+    [&_p]:leading-[1.7]
+
+    [&_p]:normal-case
+
+
+
+    [&_h2]:mb-5
+
+    [&_h2]:mt-10
+
+    [&_h2]:text-[28px]!
+
+    [&_h2]:font-bold
+
+    [&_h2]:leading-[1.3]
+
+    [&_h2]:text-[#A62666]
+
+    [&_h2]:normal-case
+
+
+
+    [&_h3]:mb-4
+
+    [&_h3]:mt-8
+
+    [&_h3]:text-[24px]
+
+    [&_h3]:font-bold
+
+    [&_h3]:text-[#A62666]
+
+    [&_h3]:normal-case
+
+
+
+    [&_span]:normal-case
+
+    [&_li]:normal-case
+
+
+
+    [&_strong]:font-bold
+
+    [&_strong]:text-[#242424]
+
+
+
+    [&_em]:italic
+
+
+
+    [&_ul]:mb-6
+
+    [&_ul]:list-disc
+
+    [&_ul]:pl-7
+
+    [&_ul]:text-[18px]
+
+
+
+    [&_ol]:mb-6
+
+    [&_ol]:list-decimal
+
+    [&_ol]:pl-7
+
+
+
+    [&_li]:mb-2
+
+
+
+    [&_a]:text-[#A62666]
+
+    [&_a]:underline
+
+    
+
+  "
+
     dangerouslySetInnerHTML={{
+
       __html: blog.blogDescription,
+
     }}
+
   />
 
+
+
   {!showFullText && (
+
     <div className="pointer-events-none absolute bottom-0 left-0 h-24 w-full bg-gradient-to-t from-[#ECECEC] to-transparent" />
+
   )}
+
 </div>
 
-{blog.blogDescription.length > 500 && (
-  <motion.div
-    initial={{ opacity: 0, y: 20 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5, delay: 0.45 }}
-    className="mt-10 flex justify-center"
-  >
+
+{/* Read More / Read Less + Previous / Next */}
+<div
+  className="
+    mt-10
+    flex
+    w-full
+    items-center
+    justify-between
+    gap-2
+    md:gap-5
+  "
+>
+  {/* Previous Blog */}
+ 
+{/* Previous Blog */}
+<button
+  type="button"
+  onClick={() => previousBlog && openBlog(previousBlog.slugname)}
+  disabled={!previousBlog}
+  aria-label="Previous Blog"
+  className={`
+    flex h-11 w-11 items-center justify-center
+    rounded-full border
+    transition-all duration-300
+
+    lg:h-auto lg:w-auto lg:gap-2
+    lg:rounded-none lg:border-0
+    lg:text-base lg:font-medium
+
+    ${
+      previousBlog
+        ? `
+          cursor-pointer
+          border-[#A62666]/25
+          bg-white text-[#A62666]
+          shadow-sm
+          hover:border-[#A62666]
+          hover:bg-[#A62666]
+          hover:text-white
+
+          lg:bg-transparent
+          lg:text-[#666]
+          lg:shadow-none
+          lg:hover:bg-transparent
+          lg:hover:text-[#A62666]
+        `
+        : `
+          cursor-not-allowed
+          border-gray-200
+          bg-gray-100
+          text-gray-300
+
+          lg:bg-transparent
+        `
+    }
+  `}
+>
+  <FaAnglesLeft className="text-[15px] lg:text-[13px]" />
+
+  <span className="hidden lg:inline">
+    Previous 
+  </span>
+</button>
+
+
+  {/* Read More / Read Less */}
+  {blog.blogDescription.length > 500 && (
     <button
       type="button"
-      onClick={() => setShowFullText((previousValue) => !previousValue)}
-      className="motion-shine group inline-flex items-center gap-6 rounded-full bg-primary px-6 py-3 text-[15px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl lg:text-[20px] 2xl:text-[24px]"
+      onClick={() => setShowFullText((prev) => !prev)}
+      className="
+        motion-shine
+        group
+        inline-flex
+        shrink-0
+        items-center
+        justify-center
+        gap-2
+        rounded-full
+        bg-primary
+        px-4
+        py-3
+        text-[14px]
+        font-bold
+        text-white
+        shadow-lg
+        transition-all
+        duration-300
+        hover:bg-[#7a1f50]
+
+        md:gap-4
+        md:px-6
+        md:text-[18px]
+        lg:text-[20px]
+      "
     >
       {showFullText ? "Read Less" : "Read More"}
 
-      <span className="flex h-5 w-5 items-center justify-center">
-        {showFullText ? (
-          <FaArrowUpLong className="h-4 w-4" />
-        ) : (
-          <FaArrowDownLong className="h-4 w-4" />
-        )}
-      </span>
+      {showFullText ? (
+        <FaArrowUpLong className="h-4 w-4" />
+      ) : (
+        <FaArrowDownLong className="h-4 w-4" />
+      )}
     </button>
+  )}
+
+  {/* Next Blog */}
+ 
+{/* Next Blog */}
+<button
+  type="button"
+  onClick={() => nextBlog && openBlog(nextBlog.slugname)}
+  disabled={!nextBlog}
+  aria-label="Next Blog"
+  className={`
+    flex h-11 w-11 items-center justify-center
+    rounded-full border
+    transition-all duration-300
+
+    lg:h-auto lg:w-auto lg:gap-2
+    lg:rounded-none lg:border-0
+    lg:text-base lg:font-medium
+
+    ${
+      nextBlog
+        ? `
+          cursor-pointer
+          border-[#A62666]/25
+          bg-white text-[#A62666]
+          shadow-sm
+          hover:border-[#A62666]
+          hover:bg-[#A62666]
+          hover:text-white
+
+          lg:bg-transparent
+          lg:text-[#666]
+          lg:shadow-none
+          lg:hover:bg-transparent
+          lg:hover:text-[#A62666]
+        `
+        : `
+          cursor-not-allowed
+          border-gray-200
+          bg-gray-100
+          text-gray-300
+
+          lg:bg-transparent
+        `
+    }
+  `}
+>
+  <span className="hidden lg:inline">
+    Next 
+  </span>
+
+  <FaAnglesRight className="text-[15px] lg:text-[13px]" />
+</button>
+
+</div>
+
+
+{/* {blog.blogDescription.length > 500 && (
+
+  <motion.div
+
+    initial={{ opacity: 0, y: 20 }}
+
+    whileInView={{ opacity: 1, y: 0 }}
+
+    viewport={{ once: true }}
+
+    transition={{ duration: 0.5, delay: 0.45 }}
+
+    className="mt-10 flex justify-center"
+
+  >
+
+    <button
+
+      type="button"
+
+      onClick={() => setShowFullText((previousValue) => !previousValue)}
+
+      className="motion-shine group inline-flex items-center gap-6 rounded-full bg-primary px-6 py-3 text-[15px] font-bold text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl lg:text-[20px] 2xl:text-[24px]"
+
+    >
+
+      {showFullText ? "Read Less" : "Read More"}
+
+
+
+      <span className="flex h-5 w-5 items-center justify-center">
+
+        {showFullText ? (
+
+          <FaArrowUpLong className="h-4 w-4" />
+
+        ) : (
+
+          <FaArrowDownLong className="h-4 w-4" />
+
+        )}
+
+      </span>
+
+    </button>
+
   </motion.div>
-)}
+
+)} */}
+
+      {/* PREVIOUS / NEXT BLOG NAVIGATION */}
+      {/* <div className="mt-10 flex w-full items-center justify-between gap-3 md:mt-14">
+        <button type="button"
+          onClick={() => previousBlog && openBlog(previousBlog.slugname)}
+          disabled={!previousBlog}
+          className="inline-flex items-center gap-2 rounded-full border border-[#A62666] px-3 py-3 text-[13px] font-semibold text-[#A62666] transition hover:bg-[#A62666] hover:text-white disabled:cursor-not-allowed disabled:border-gray-300 disabled:text-gray-400 disabled:hover:bg-transparent sm:px-5 sm:text-[16px]">
+          <span aria-hidden="true">«</span> Previous Blog
+        </button>
+        <button type="button"
+          onClick={() => nextBlog && openBlog(nextBlog.slugname)}
+          disabled={!nextBlog}
+          className="inline-flex items-center gap-2 rounded-full border border-[#A62666] px-3 py-3 text-[13px] font-semibold text-[#A62666] transition hover:bg-[#A62666] hover:text-white disabled:cursor-not-allowed disabled:border-gray-300 disabled:text-gray-400 disabled:hover:bg-transparent sm:px-5 sm:text-[16px]">
+          Next Blog <span aria-hidden="true">»</span>
+        </button>
+      </div> */}
       </section>
 
+
+
       {/* CTA */}
+
        <section className="bg-[linear-gradient(110deg,#c7358f_0%,#a31562_45%,#52002d_100%)]">
+
           <div className="mx-auto flex max-w-full flex-col items-center justify-center px-6 py-9 lg:py-16 xl:py-[85px] text-center md:px-20 lg:px-[115px]">
+
             <h1  className="uppercase text-[28px] xl:text-[42px] font-bold leading-[130%]  tracking-wide text-white ">
+
              Curious About Brand Strategy ?
+
             </h1>
+
                 <motion.div
+
                                                                 initial={{ opacity: 0, y: 20 }}
+
                                                                 whileInView={{ opacity: 1, y: 0 }}
+
                                                                 viewport={{ once: true }}
+
                                                                 transition={{ duration: 0.5, delay: 0.45 }}
+
                                                                   onClick={() => setIsPopupOpen(true)}
+
                                                                 className="mt-5   justify-center!"
+
                                                             >
+
                                                               <div className="animated-btn-wrapper rounded-full! ">
-            
+
                                                                 <button className="animated-btn  inline-flex items-center gap-3 rounded-full! bg-[#720048] px-6 py-3 text-[15px] lg:text-[20px] 2xl:text-[24px]! font-bold! text-white shadow-lg shadow-primary/20 transition-all duration-300 hover:-translate-y-1 hover:bg-[#7a1f50] hover:shadow-xl hover:shadow-primary/30">
+
                                                                        Stay Connected
-                                        
+
                                                                     <span className="flex w-4 h-4 lg:h-5 lg:w-5  items-center justify-center text-white transition-all duration-300 group-hover:translate-x-1 group-hover:-translate-y-1">
+
                                                                         <LuMoveUpRight className="w-4 h-4 lg:h-5 lg:w-5 " />
+
                                                                     </span>
+
                                                                 </button>
+
                                                               </div>
+
                                                             </motion.div>
-  
-         
+
           </div>
+
         </section>
-      
-   
+
       <AnimatePresence>
+
         {isPopupOpen && (
+
           <>
+
             <motion.div
+
               className="fixed inset-0 z-999 bg-black/60 backdrop-blur-sm"
+
               initial={{ opacity: 0 }}
+
               animate={{ opacity: 1 }}
+
               exit={{ opacity: 0 }}
+
               onClick={() => setIsPopupOpen(false)}
+
             />
 
+
+
             <motion.div
+
               initial={{ opacity: 0, scale: 0.9 }}
+
               animate={{ opacity: 1, scale: 1 }}
+
               exit={{ opacity: 0, scale: 0.9 }}
+
               className="fixed left-1/2 top-1/2 z-999 w-[290px]  sm:w-[320px] lg:w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-3xl bg-white p-3 lg:p-8 shadow-2xl"
+
             >
+
               <button
+
                 onClick={() => setIsPopupOpen(false)}
+
                 className="absolute right-5 top-5"
+
               >
+
                 <IoCloseOutline className="text-[25px] lg:text-[30px]" />
+
               </button>
 
+
+
               <h3  style={{
+
             fontVariantCaps: "all-small-caps",
+
             fontFeatureSettings: '"smcp", "c2sc"',
+
           }} className="mb-8  lg:text-center text-2xl font-bold text-primary">
+
                 Stay Connected
+
               </h3>
 
+
+
               <div className="grid grid-cols-2 gap-y-6">
+
                 {socials.map((item) => (
+
                   <a
+
                     key={item.name}
+
                     href={item.href}
+
                     target="_blank"
+
                     className="flex items-center gap-4 rounded-xl p-1 lg:p-3 transition hover:bg-[#f6f6f6]"
+
                   >
+
                     <div className="text-xl lg:text-2xl text-primary">{item.icon}</div>
 
+
+
                     <span className="font-medium">{item.name}</span>
+
                   </a>
+
                 ))}
+
               </div>
+
             </motion.div>
+
           </>
+
         )}
+
       </AnimatePresence>
+
     </main>
+
   );
+
 }
 
+
+
 export default function BlogDetailPage() {
+
   return (
+
     <Suspense
+
       fallback={
+
         <div className="min-h-screen flex items-center justify-center bg-[#fdfdfd]">
+
           <div className="w-12 h-12 border-4 border-t-[#A62666] border-[#A62666]/20 rounded-full animate-spin" />
+
         </div>
+
       }
+
     >
+
       <BlogDetailContent />
+
     </Suspense>
+
   );
+
 }
