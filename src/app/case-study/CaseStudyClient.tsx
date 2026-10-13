@@ -143,13 +143,46 @@ export default function CaseStudyPage() {
                       )}`}
                       className="block"
                     >
-                      <div className="overflow-hidden rounded-xl bg-white">
+                      {/* <div className="overflow-hidden rounded-xl bg-white">
                         <img
                           src={study.hero_image}
                           alt={study.award_title || study.title}
                           className="h-auto w-full rounded-xl object-cover"
                         />
-                      </div>
+                      </div> */}
+
+
+<div
+  className="
+    overflow-hidden
+    rounded-xl
+    bg-white
+
+    md:aspect-[1400/900]
+    md:!h-auto
+    md:w-full
+
+    lg:aspect-auto
+  "
+>
+  <img
+    src={study.hero_image}
+    alt={study.award_title || study.title}
+    className="
+      block
+      h-auto
+      w-full
+      rounded-xl
+
+      md:!h-full
+      md:!w-full
+      md:!object-cover
+
+      lg:!h-auto
+    "
+  />
+</div>
+
 
                       <div className="mt-5">
                         <h2 className="font-heading text-[16px] font-bold text-[#202020] md:text-[18px]">

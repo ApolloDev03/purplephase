@@ -215,6 +215,7 @@
 import {
   ChangeEvent,
   FormEvent,
+  useEffect,
   useState,
 } from "react";
 import axios from "axios";
@@ -223,6 +224,7 @@ import { useRouter } from "next/navigation";
 
 import logo from "../assets/coffee cups.png";
 import { apiUrl } from "../config";
+import { RefreshCw } from "lucide-react";
 
 type ContactFormData = {
   full_name: string;
@@ -249,8 +251,28 @@ export function ContactSection() {
   const [captchaAnswer, setCaptchaAnswer] = useState("");
   const [loading, setLoading] = useState(false);
 
-  const captchaQuestion = "5 + 3";
-  const correctCaptcha = "8";
+  
+const [captcha, setCaptcha] = useState({
+  num1: 0,
+  num2: 0,
+});
+
+const generateCaptcha = () => {
+  setCaptcha({
+    num1: Math.floor(Math.random() * 9) + 1,
+    num2: Math.floor(Math.random() * 9) + 1,
+  });
+
+  setCaptchaAnswer("");
+};
+
+useEffect(() => {
+  generateCaptcha();
+}, []);
+
+const captchaQuestion = `${captcha.num1} + ${captcha.num2}`;
+const correctCaptcha = String(captcha.num1 + captcha.num2);
+
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
   const phoneRegex = /^[0-9]{10}$/;
@@ -333,10 +355,11 @@ export function ContactSection() {
       return false;
     }
 
-    if (captchaAnswer.trim() !== correctCaptcha) {
-      toast.error("Incorrect captcha answer.");
-      return false;
-    }
+   if (captchaAnswer.trim() !== correctCaptcha) {
+  toast.error("Incorrect captcha answer. Please try again.");
+  generateCaptcha();
+  return false;
+}
 
     return true;
   };
@@ -383,7 +406,7 @@ export function ContactSection() {
         );
 
         setFormData(initialFormData);
-        setCaptchaAnswer("");
+     generateCaptcha();
 
         router.push("/inquiry-thank-you");
       } else {
@@ -528,15 +551,24 @@ export function ContactSection() {
               />
 
               <div className="grid grid-cols-1 gap-3 md:col-span-2 md:grid-cols-3">
-                <div className="flex h-[50px] items-center rounded-[6px] border border-white/70 bg-white/10 px-4 text-[14px] text-white md:h-[61px] xl:text-[18px]">
-                  <span className="font-medium">
-                    Captcha:
-                  </span>
+              
+<div className="flex h-[50px] items-center justify-between gap-2 rounded-[6px] border border-white/70 bg-white/10 px-4 text-[14px] text-white xl:h-[61px] xl:text-[18px]">
+  <div className="flex items-center gap-1 whitespace-nowrap">
+    <span className="font-medium">Captcha:</span>
+    <span>{captchaQuestion} = ?</span>
+  </div>
 
-                  <span className="ml-1">
-                    {captchaQuestion} = ?
-                  </span>
-                </div>
+  <button
+    type="button"
+    onClick={generateCaptcha}
+    aria-label="Refresh captcha"
+    title="Refresh Captcha"
+    className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full text-white transition-all duration-300 hover:bg-white/20 active:rotate-180"
+  >
+    <RefreshCw className="h-[18px] w-[18px]" />
+  </button>
+</div>
+
 
                 <input
                   type="text"
@@ -561,7 +593,7 @@ export function ContactSection() {
                       text-[16px]!
                       disabled:cursor-not-allowed
                       disabled:opacity-60
-                      md:h-[61px]
+                      xl:h-[61px]
                       xl:text-[18px]!
                     "
                   >

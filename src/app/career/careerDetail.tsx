@@ -547,7 +547,7 @@
 //           key={`${imageUrl}-${index}`}
 //           type="button"
 //           onClick={() => openGallery(index)}
-//           className="group block h-[230px] w-full overflow-hidden rounded-md"
+//           className="group block h-[230px] md:h-[280px] w-full overflow-hidden rounded-md"
 //           aria-label={`Open Life at Purple Phase image ${index + 1}`}
 //         >
 //           <img
@@ -1065,7 +1065,7 @@
   import { toast } from "react-toastify";
   import { apiUrl } from "../config";
   import { useRouter } from "next/navigation";
-  import { ChevronLeft, ChevronRight, X } from "lucide-react";
+  import { ChevronLeft, ChevronRight, RefreshCw, X } from "lucide-react";
   import logo from "../assets/career/apply-people.png"
 
 
@@ -1116,8 +1116,38 @@ type PhotoGalleryResponse = {
   const [captchaAnswer, setCaptchaAnswer] = useState("");
 const [careerImages, setCareerImages] = useState<string[]>([]);
 const [loadingGallery, setLoadingGallery] = useState<boolean>(false);
-const captchaQuestion = "5 + 3";
-const correctCaptcha = "8";
+
+const [captcha, setCaptcha] = useState({
+  num1: 0,
+  num2: 0,
+});
+
+const generateCaptcha = () => {
+  setCaptcha((previous) => {
+    let num1: number;
+    let num2: number;
+
+    do {
+      num1 = Math.floor(Math.random() * 9) + 1;
+      num2 = Math.floor(Math.random() * 9) + 1;
+    } while (
+      num1 === previous.num1 &&
+      num2 === previous.num2
+    );
+
+    return { num1, num2 };
+  });
+
+  setCaptchaAnswer("");
+};
+
+useEffect(() => {
+  generateCaptcha();
+}, []);
+
+const captchaQuestion = `${captcha.num1} + ${captcha.num2}`;
+const correctCaptcha = String(captcha.num1 + captcha.num2);
+
 
 
   const [galleryOpen, setGalleryOpen] = useState(false);
@@ -1291,10 +1321,11 @@ const correctCaptcha = "8";
         return;
       }
 
-      if (captchaAnswer.trim() !== correctCaptcha) {
-        toast.error("Incorrect captcha answer.");
-        return;
-      }
+    if (captchaAnswer.trim() !== correctCaptcha) {
+  toast.error("Incorrect captcha answer. Please try again.");
+  generateCaptcha();
+  return;
+}
 
       try {
         setSubmitLoading(true);
@@ -1341,7 +1372,7 @@ const correctCaptcha = "8";
             fileInput.value = "";
           }
 
-      setCaptchaAnswer("");
+      generateCaptcha();
 
           setTimeout(() => {
             router.push("/career-thank-you");
@@ -1481,7 +1512,7 @@ const renderGalleryTile = (
               className="block h-auto w-full"
             />
 
-            <div className="absolute inset-0 lg:mx-auto max-w-[200px] lg:max-w-full flex  items-center px-4 lg:px-6 xl:px-10 2xl:px-32">
+            <div className="absolute inset-0 lg:mx-auto max-w-[200px] md:max-w-full flex  items-center px-4 lg:px-6 xl:px-10 2xl:px-32">
               <h1 className="leading-[130%] font-bold  
 text-[21px]!
   md:text-[30px]!
@@ -1566,7 +1597,7 @@ text-[21px]!
     grid-rows-[279px_279px]
     gap-3
     overflow-hidden
-    md:grid
+    lg:grid
   "
 >
   {[
@@ -1626,13 +1657,13 @@ text-[21px]!
 </div>
 
     {/* MOBILE GALLERY */}
-    <div className="grid grid-cols-1 gap-3 md:hidden">
+   <div className="grid grid-cols-1 md:grid-cols-2 lg:hidden gap-3">
       {careerImages.map((imageUrl, index) => (
         <button
           key={`${imageUrl}-${index}`}
           type="button"
           onClick={() => openGallery(index)}
-          className="group block h-[230px] w-full overflow-hidden rounded-md"
+          className="group block h-[230px] md:h-[280px] w-full overflow-hidden rounded-md"
           aria-label={`Open Life at Purple Phase image ${index + 1}`}
         >
           <img
@@ -1837,12 +1868,55 @@ text-[21px]!
                         {/* Captcha same as it is */}
                               <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:col-span-2">
   {/* Captcha */}
-  <div className="flex h-[50px]   xl:h-[61px] text-[14px]! xl:text-[18px] items-center rounded-[6px] border border-white/70 bg-white/10 px-4  text-white">
+ 
+{/* Dynamic Captcha with Refresh Button */}
+<div
+  className="
+    flex
+    h-[50px]
+    xl:h-[61px]
+    items-center
+    justify-between
+    gap-2
+    rounded-[6px]
+    border
+    border-white/70
+    bg-white/10
+    px-3
+    text-[14px]
+    xl:text-[18px]
+    text-white
+  "
+>
+  <div className="flex min-w-0 items-center gap-1 whitespace-nowrap">
     <span className="font-medium">Captcha:</span>
-    <span className="ml-1 ">
-      {captchaQuestion} = ?
-    </span>
+    <span>{captchaQuestion} = ?</span>
   </div>
+
+  <button
+    type="button"
+    onClick={generateCaptcha}
+    aria-label="Refresh captcha"
+    title="Refresh Captcha"
+    className="
+      flex
+      h-8
+      w-8
+      shrink-0
+      items-center
+      justify-center
+      rounded-full
+      text-white
+      transition-all
+      duration-300
+      hover:bg-white/20
+      active:rotate-180
+    "
+  >
+    <RefreshCw className="h-[18px] w-[18px]" />
+  </button>
+</div>
+
 
   {/* Answer */}
   <input
@@ -1863,7 +1937,7 @@ text-[21px]!
     <button
     type="submit"
     disabled={submitLoading}
-    className="animated-btn h-[50px]   xl:h-[61px]  text-[16px]! xl:text-[18px]! w-full"
+    className="animated-btn h-[50px]!   xl:h-[61px]!  text-[16px]! xl:text-[18px]! w-full"
   >
     {submitLoading ? "Submitting..." : "Let's Connect"}
   </button>

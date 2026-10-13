@@ -13,7 +13,7 @@ const ProcessSection = () => {
 
   return (
     <section className="relative max-w-full overflow-hidden bg-white px-4 py-[20px] lg:py-[30px] 2xl:py-[85px] lg:px-6 xl:px-10 2xl:px-32">
-      <div className="mx-auto grid grid-cols-1 items-center lg:gap-4 xl:gap-10 lg:grid-cols-[45%_55%]">
+      <div className="mx-auto grid grid-cols-1 items-center lg:gap-4 xl:gap-10  md:grid-cols-[45%_55%]">
         {/* Left Image */}
         <motion.div
           initial={{ opacity: 0, x: -40 }}

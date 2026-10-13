@@ -420,122 +420,7 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
   </div>
 )}
 
-{serviceList.length > 0 && (
-  <>
-    {/* Mobile Custom Dropdown */}
-    <div
-      ref={serviceDropdownRef}
-      className="relative z-50 my-7 lg:hidden"
-    >
-      <button
-        type="button"
-        onClick={() => setIsServiceDropdownOpen((prev) => !prev)}
-        className={`
-          flex w-full items-center justify-between
-          rounded-lg border bg-white
-          px-4 py-3
-          text-left !text-[16px] !font-semibold
-          shadow-sm
-          transition-all duration-300
 
-          ${
-            isServiceDropdownOpen
-              ? "border-primary ring-2 ring-primary/15"
-              : "border-gray-300"
-          }
-        `}
-      >
-        <span className="min-w-0 truncate text-gray-700">
-          {selectedService?.service_name || "Show All"}
-        </span>
-
-        <svg
-          className={`ml-3 h-5 w-5 shrink-0 text-gray-700 transition-transform duration-300 ${
-            isServiceDropdownOpen ? "rotate-180" : ""
-          }`}
-          viewBox="0 0 24 24"
-          fill="none"
-        >
-          <path
-            d="M6 9L12 15L18 9"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-        </svg>
-      </button>
-
-      {isServiceDropdownOpen && (
-        <div
-          className="
-            absolute left-0 right-0 top-[calc(100%+8px)]
-            z-[100]
-            max-h-[280px]
-            overflow-y-auto
-            rounded-lg border border-gray-200
-            bg-white p-2
-            shadow-[0_15px_45px_rgba(0,0,0,0.18)]
-          "
-        >
-          {/* Show All */}
-          <button
-            type="button"
-            onClick={() => {
-              handleFilterChange(null);
-              setIsServiceDropdownOpen(false);
-            }}
-            className={`
-              flex w-full items-center
-              rounded-md px-3 py-3
-              text-left !text-[15px] !font-semibold
-              transition-colors duration-200
-
-              ${
-                activeServiceId === null
-                  ? "bg-primary text-white"
-                  : "text-gray-700 hover:bg-gray-100"
-              }
-            `}
-          >
-            Show All
-          </button>
-
-          {serviceList.map((service) => {
-            const isActive = activeServiceId === service.id;
-
-            return (
-              <button
-                type="button"
-                key={service.id}
-                onClick={() => {
-                  handleFilterChange(service.id);
-                  setIsServiceDropdownOpen(false);
-                }}
-                className={`
-                  mt-1 flex w-full items-center
-                  rounded-md px-3 py-3
-                  text-left !text-[15px] !font-semibold
-                  transition-colors duration-200
-
-                  ${
-                    isActive
-                      ? "bg-primary text-white"
-                      : "text-gray-700 hover:bg-gray-100"
-                  }
-                `}
-              >
-                {service.service_name}
-              </button>
-            );
-          })}
-        </div>
-      )}
-    </div>
-
-   
-  </>
-)}
 
             {loading && (
               <div className="grid justify-center gap-5 grid-cols-2 xl:grid-cols-3">
@@ -563,7 +448,7 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
             )}
   
           {!loading && !error && (
-  <div className="grid grid-cols-1 gap-5 lg:grid-cols-3">
+  <div className="grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
     {visibleProjects.map((item, index) => {
       const firstImage = item.images?.[0]?.image_url;
 
@@ -583,7 +468,8 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
           onClick={() => openGallery(item)}
           className="
             group relative
-            h-[200px]
+            h-[260px]
+            md:h-[220px]
             w-full
             cursor-pointer
             overflow-hidden
@@ -591,7 +477,7 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
             bg-white
             shadow-md
 
-            xl:h-[250px]
+            lg:h-[270px]
             2xl:h-[354px]
           "
         >
@@ -685,7 +571,8 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
                   alt={item.title}
                   fill
                   className="
-                    object-cover
+                  object-contain
+                    lg:object-cover
                     transition-transform
                     duration-700
                     ease-out
@@ -1013,19 +900,13 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
   {selectedProject && (
     <motion.div
       className="
-        fixed
-        inset-0
-        z-[9999]
-        flex
-        items-center
-        justify-center
-        overflow-y-auto
-        bg-black/80
-        p-2
-        backdrop-blur-sm
-
-        sm:p-4
-        lg:px-4
+       fixed inset-0 z-[9999]
+      flex items-center justify-center
+      overflow-y-auto
+      bg-black/80
+      p-2 backdrop-blur-sm
+      sm:p-4
+      lg:px-4
       "
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -1034,21 +915,24 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
     >
       <motion.div
         className="
-          relative
-          my-auto
-          w-full
-          max-w-4xl
-          overflow-hidden
-          rounded-[14px]
-          bg-white
-          p-3
-          shadow-2xl
+          relative my-auto w-full max-w-lg lg:max-w-3xl
+        overflow-hidden rounded-[14px]
+        bg-white p-3 shadow-2xl
 
-          sm:rounded-[18px]
-          sm:p-4
+        h-auto
+        max-h-[calc(100dvh-24px)]
 
-          md:rounded-[24px]
-          md:p-6
+        sm:rounded-[18px]
+        sm:p-4
+        sm:max-h-[calc(100dvh-32px)]
+
+        md:h-auto
+        md:max-h-[calc(100dvh-40px)]
+        md:rounded-[24px]
+        md:p-6
+
+        lg:h-auto
+        lg:max-h-[calc(100dvh-32px)]
         "
         initial={{
           opacity: 0,
@@ -1140,21 +1024,17 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
         {/* Image slider */}
         <div
           className="
-            relative
-            flex
-            h-[calc(100dvh-155px)]
-            min-h-[200px]
-            max-h-[200px]
-            w-full
-            items-center
-            justify-center
-            overflow-hidden
-            rounded-[12px]
-            bg-[#f3f3f3] 
+           relative flex w-full
+          items-center justify-center
+          overflow-hidden
+          rounded-[12px]
+          bg-[#f3f3f3]
 
-            lg:h-[500px]
-            lg:max-h-none
-            lg:rounded-[18px]
+          h-[240px]
+          md:h-[310px]
+          lg:h-[480px]
+
+          lg:rounded-[18px]
           "
         >
          {selectedMedia.length > 0 ? (
@@ -1188,7 +1068,6 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
             w-full
             select-none
             object-contain
-            lg:object-cover
           "
           draggable={false}
         />

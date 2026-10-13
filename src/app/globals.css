@@ -773,3 +773,125 @@ border-radius: 999px;
   overflow: hidden !important;
   isolation: isolate;
 }
+
+
+
+.blog-description,
+.blog-description * {
+  text-transform: none !important;
+}
+
+
+/* Blog Description Table Design */
+
+.blog-description table {
+  width: 100% !important;
+  max-width: 100% !important;
+  margin: 28px 0 !important;
+
+  border: 2px solid #c9c9c9 !important;
+  border-collapse: collapse !important;
+  border-spacing: 0 !important;
+
+  table-layout: auto !important;
+  background: transparent;
+}
+
+/* Table header and cells */
+.blog-description table th,
+.blog-description table td {
+  border: 1px solid #c9c9c9 !important;
+
+  padding: 10px !important;
+
+  text-align: left !important;
+  vertical-align: top !important;
+
+  line-height: 1.5 !important;
+  height: auto !important;
+
+  color: #424242;
+}
+
+/* Header */
+.blog-description table th {
+  background: #e8dfe5 !important;
+  color: #242424 !important;
+  font-weight: 700 !important;
+}
+
+/* First column */
+.blog-description table td:first-child {
+  font-weight: 600;
+  color: #242424;
+}
+
+/* Alternate rows */
+.blog-description table tbody tr:nth-child(even) {
+  background: #f7f7f7;
+}
+
+/* Table Scroll Wrapper */
+.blog-table-scroll {
+  width: 100%;
+  max-width: 100%;
+  margin: 28px 0;
+}
+
+/* Existing table styling preserved */
+.blog-table-scroll table {
+  margin: 0 !important;
+}
+
+/* Mobile Only */
+@media (max-width: 767px) {
+
+  /* Blog content itself should NOT scroll horizontally */
+  .blog-description {
+    width: 100%;
+    max-width: 100%;
+    overflow: visible !important;
+  }
+
+  /* Only table scrolls */
+  .blog-table-scroll {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+    touch-action: pan-x pan-y;
+  }
+
+  .blog-table-scroll table {
+    width: 600px !important;
+    min-width: 600px !important;
+    max-width: none !important;
+    border-collapse: collapse !important;
+    table-layout: auto !important;
+  }
+
+  .blog-table-scroll table th,
+  .blog-table-scroll table td {
+    padding: 12px !important;
+    font-size: 14px;
+    line-height: 1.5 !important;
+    white-space: normal;
+  }
+
+  .blog-table-scroll::-webkit-scrollbar {
+    height: 5px;
+  }
+
+  .blog-table-scroll::-webkit-scrollbar-thumb {
+    background: #9c1367;
+    border-radius: 10px;
+  }
+
+  .blog-table-scroll::-webkit-scrollbar-track {
+    background: #e5e5e5;
+    border-radius: 10px;
+  }
+}
