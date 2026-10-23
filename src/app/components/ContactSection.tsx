@@ -588,12 +588,12 @@ const correctCaptcha = String(captcha.num1 + captcha.num2);
                     disabled={loading}
                     className="
                       animated-btn
-                      h-[50px]
+                      h-[50px]!
                       w-full
                       text-[16px]!
                       disabled:cursor-not-allowed
                       disabled:opacity-60
-                      xl:h-[61px]
+                      xl:h-[61px]!
                       xl:text-[18px]!
                     "
                   >

@@ -230,9 +230,6 @@ useEffect(() => {
   };
 }, [selectedProject, selectedMedia.length]);
 
-const selectedService = serviceList.find(
-  (service) => service.id === activeServiceId
-);
 
 useEffect(() => {
   const handleOutsideClick = (event: MouseEvent) => {
@@ -467,18 +464,21 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
           key={item.id}
           onClick={() => openGallery(item)}
           className="
-            group relative
-            h-[260px]
-            md:h-[220px]
-            w-full
-            cursor-pointer
-            overflow-hidden
-            rounded-xl
-            bg-white
-            shadow-md
+                 group relative
+    h-[200px]
+                    sm:h-[235px]
+                    md:h-[240px]
+    w-full
+    cursor-pointer
+    overflow-hidden
+    rounded-xl
+    bg-white
+    shadow-md
 
-            lg:h-[270px]
-            2xl:h-[354px]
+    lg:h-[270px]
+    lg:max-xl:h-[205px]
+
+    2xl:h-[354px]
           "
         >
           {/* =====================================================
@@ -915,7 +915,7 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
     >
       <motion.div
         className="
-          relative my-auto w-full max-w-lg lg:max-w-3xl
+          relative my-auto w-full max-w-[300px] sm:max-w-[340px] md:max-w-[500px] lg:max-w-[665px]
         overflow-hidden rounded-[14px]
         bg-white p-3 shadow-2xl
 
@@ -1028,11 +1028,11 @@ The work in this portfolio aims to make that experience purposeful, powerful, an
           items-center justify-center
           overflow-hidden
           rounded-[12px]
-          bg-[#f3f3f3]
+          bg-[#f5f5f5]
 
-          h-[240px]
-          md:h-[310px]
-          lg:h-[480px]
+          sm:h-[200px]
+          md:h-[298px]
+          lg:h-[410px]
 
           lg:rounded-[18px]
           "

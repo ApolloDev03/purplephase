@@ -846,7 +846,11 @@ lg:!text-[15px]
     <div className="flex flex-col items-center justify-between lg:flex-row lg:gap-12">
 
 
-      <div className="flex w-full flex-col justify-center md:w-[55%] lg:w-full">
+      <div className=" flex w-full flex-col justify-center
+  md:w-[55%]
+  lg:w-full
+  lg:max-xl:justify-start
+  lg:max-xl:pt-8">
         <h2 className="mt-[20px] font-semibold leading-[120%] text-primary lg:mt-0">
           We Are The Team Behind Your Team Dedicated To Build Your Brand
         </h2>
@@ -985,10 +989,19 @@ lg:!text-[15px]
 </section> */}
 <section id="team" className="overflow-hidden bg-white">
   <div className="max-w-full px-4 lg:px-6 xl:px-10 2xl:px-32">
-    <div className="flex flex-col items-center justify-between md:flex-row md:items-center md:gap-6 lg:gap-0 2xl:gap-12">
+    <div className="
+  flex flex-col items-center justify-between
+  md:flex-row md:items-center md:gap-6
+  lg:gap-0 2xl:gap-12
+  lg:max-xl:items-end
+">
 
       {/* LEFT CONTENT */}
-      <div className="flex w-full flex-col justify-center md:w-[55%] lg:w-full">
+      <div className=" flex w-full flex-col justify-center
+  md:w-[55%]
+  lg:w-full
+  lg:max-xl:justify-start
+  lg:max-xl:pt-8">
         {/* Section heading */}
         <h2 className="mt-[20px]  font-semibold 2xl:leading-[120%] text-primary lg:mt-0">
           The core team dedicated to build your brand.
@@ -1137,46 +1150,50 @@ lg:!text-[15px]
         </div>
       </div>
 
-      {/* DESKTOP MEMBER IMAGE — original right-side position */}
-     <div className="hidden w-full justify-center md:flex md:w-[45%] md:justify-end lg:w-[42%]">
-  <div
-    className="
-      relative
-      h-[400px]
-      w-full
-      max-w-[560px]
-      overflow-hidden
-
-      lg:h-[680px]
-    "
-  >
-          <AnimatePresence mode="wait">
-            {member && (
-              <motion.div
-                key={`desktop-image-${member.id}`}
-                className="absolute inset-0 flex items-end justify-center"
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -50 }}
-                transition={{
-                  duration: 0.5,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-              >
-                <Image
-                  src={member.photo}
-                  alt={member.name}
-                  fill
-                  priority
-                  unoptimized
-                  sizes="42vw"
-                  className="object-contain object-bottom"
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-      </div>
+<div className="
+  hidden w-full justify-center
+  md:flex
+  md:w-[45%]
+  md:justify-end
+  lg:w-[42%]
+  lg:max-xl:self-end
+">
+  <div className="
+    relative
+    h-[400px]
+    w-full
+    max-w-[560px]
+    overflow-hidden
+    lg:h-[680px]
+    lg:max-xl:h-[440px]
+  ">
+    <AnimatePresence mode="wait">
+      {member && (
+        <motion.div
+          key={`desktop-image-${member.id}`}
+          className="absolute inset-0 flex items-end justify-center"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -50 }}
+          transition={{
+            duration: 0.5,
+            ease: [0.22, 1, 0.36, 1],
+          }}
+        >
+          <Image
+            src={member.photo}
+            alt={member.name}
+            fill
+            priority
+            unoptimized
+            sizes="(max-width: 1199px) 45vw, 42vw"
+            className="object-contain object-bottom"
+          />
+        </motion.div>
+      )}
+    </AnimatePresence>
+  </div>
+</div>
     </div>
   </div>
 </section>
