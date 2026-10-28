@@ -122,7 +122,7 @@ export default function BrandPage() {
     "--desktop-scroll-distance":
       loading || total <= 1
         ? "0px"
-        : `${transitionCount * 70}svh`,
+        : `${transitionCount * 60}svh`,
 
     "--wide-scroll-distance":
       loading || total <= 1

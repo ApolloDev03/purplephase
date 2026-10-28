@@ -345,7 +345,7 @@ border-radius: 20px;
   border-radius: 5px;
   background: transparent;
   color: white;
-
+height: 50px;
   font-size: 18px;
   font-weight: 600;
   cursor: pointer;
@@ -636,8 +636,8 @@ border-radius: 999px;
   .brand-image-stage {
     width: 100% !important;
 
-    height: 800px !important;
-    min-height: 800px !important;
+    height: 550px !important;
+    min-height: 550px !important;
 
     border-radius: 18px;
     aspect-ratio: auto !important;

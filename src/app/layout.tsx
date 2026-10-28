@@ -1,71 +1,4 @@
 
-// import type { Metadata } from "next";
-// import { Montserrat } from "next/font/google";
-// import "./globals.css";
-// import Footer from "./components/Footer";
-// import StickyActions from "./components/StickyActions";
-// import { SidebarProvider } from "./components/SidebarContext";
-// import { ToastContainer } from "react-toastify";
-// import Header from "./components/Header";
-
-// const montserrat = Montserrat({
-//   subsets: ["latin"],
-//   weight: ["300", "400", "500", "600", "700", "800"],
-//   variable: "--font-montserrat",
-//   display: "swap",
-// });
-
-// export const metadata: Metadata = {
-//   title: "Purple Phase | Building Brands Since 2010",
-//   description: "Official website for Purple Phase Communications",
-// };
-
-// export default function RootLayout({
-//   children,
-// }: Readonly<{ children: React.ReactNode }>) {
-//   return (
-//     <html
-//       lang="en"
-//       className={montserrat.variable}
-//       suppressHydrationWarning={true}
-//     >
-//       <body
-//         className="min-h-screen flex flex-col font-body"
-//         suppressHydrationWarning={true}
-//       >
-//         {/* Google Tag Manager (noscript) */}
-//         <noscript>
-//           <iframe
-//             src="https://www.googletagmanager.com/ns.html?id=GTM-TL3MW6ZH"
-//             height="0"
-//             width="0"
-//             style={{ display: "none", visibility: "hidden" }}
-//           />
-//         </noscript>
-//         {/* End Google Tag Manager (noscript) */}
-
-//         <SidebarProvider>
-//           <StickyActions />
-//           <Header />
-//           {children}
-//           <Footer />
-//         </SidebarProvider>
-
-//         <ToastContainer
-//           position="top-right"
-//           autoClose={3000}
-//           hideProgressBar={false}
-//           newestOnTop
-//           closeOnClick
-//           pauseOnHover
-//           draggable
-//         />
-//       </body>
-//     </html>
-//   );
-// }
-
-
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import Script from "next/script";
@@ -86,10 +19,10 @@ const montserrat = Montserrat({
   display: "swap",
 });
 
-export const metadata: Metadata = {
-  title: "Purple Phase | Building Brands Since 2010",
-  description: "Official website for Purple Phase Communications",
-};
+// export const metadata: Metadata = {
+//   title: "Purple Phase | Building Brands Since 2010",
+//   description: "Official website for Purple Phase Communications",
+// };
 
 export default function RootLayout({
   children,
@@ -103,6 +36,26 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <head>
+        {/* Google Analytics (GA4) */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-E90ZBDK1VW"
+          strategy="afterInteractive"
+        />
+
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-E90ZBDK1VW');
+            `,
+          }}
+        />
+        {/* End Google Analytics */}
+
         {/* Meta Pixel Code */}
         <Script
           id="meta-pixel"
@@ -165,7 +118,6 @@ export default function RootLayout({
         </noscript>
         {/* End Google Tag Manager (noscript) */}
 
-
         {/* Meta Pixel Noscript */}
         <noscript>
           <img
@@ -178,7 +130,8 @@ export default function RootLayout({
         </noscript>
         {/* End Meta Pixel Noscript */}
 
- <GoogleAdsConversion />
+        <GoogleAdsConversion />
+
         <SidebarProvider>
           <StickyActions />
 
@@ -188,7 +141,6 @@ export default function RootLayout({
 
           <Footer />
         </SidebarProvider>
-
 
         <ToastContainer
           position="top-right"
